@@ -48,6 +48,7 @@ public class IndexController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ModelAndView create(@Valid SignupForm signupForm, BindingResult result, RedirectAttributes redirectAttributes) {
     	ModelAndView model;
+    	
     	if (!result.hasErrors()) {
             try {
             	sampleService.saveFrom(signupForm);
@@ -58,8 +59,6 @@ public class IndexController {
             }
         } else {
         	model = new ModelAndView("index");
-        	model.addObject("signupForm", new SignupForm());
-        	model.addObject("teams", loadTeams());
         }    
     	return model;
     }

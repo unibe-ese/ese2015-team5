@@ -38,13 +38,13 @@
                 <form:input path="lastName" id="field-lastName" tabindex="3" maxlength="35" placeholder="Last Name"/>
                 <form:errors path="lastName" cssClass="help-inline" element="span"/>
             </div>
+			<div>
+				<label class="control-label" for="field-lastName">Team</label>
+				<form:select path="team">
+					<form:options items="${teams}" itemLabel="name"/>
+				</form:select>
+			</div>
         </div>
-		<div>
-			<label class="control-label" for="field-lastName">Team</label>
-			<form:select path="team">
-				<form:options items="${teams}" itemLabel="name"/>
-			</form:select>
-		</div>
         <div class="form-actions">
             <button type="submit" class="btn btn-primary">Sign up</button>
             <button type="button" class="btn">Cancel</button>
@@ -60,6 +60,7 @@
         </div>
     </fieldset>
 </form:form>
+
 
 
 
