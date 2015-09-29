@@ -9,7 +9,9 @@ import org.sample.controller.exceptions.InvalidUserException;
 import org.sample.controller.pojos.SignupForm;
 import org.sample.controller.pojos.createTeamForm;
 import org.sample.model.Address;
+import org.sample.model.EmptyTeam;
 import org.sample.model.Team;
+import org.sample.model.TeamInterface;
 import org.sample.model.User;
 import org.sample.model.dao.AddressDao;
 import org.sample.model.dao.TeamDao;
@@ -86,5 +88,18 @@ public class SampleServiceImpl implements SampleService {
 		}
 		return teams;
 		
+	}
+
+	public User getUser(long userId) {
+		User requestedUser = userDao.findOne(userId);
+		if(requestedUser == null){
+			throw new InvalidUserException("No user with that ID");
+		}
+		return requestedUser;
+	}
+
+	public TeamInterface getTeam(long teamId) {
+		Team team = teamDao.findOne(teamId);
+		return (team == null) ? new EmptyTeam() : team;
 	}
 }
