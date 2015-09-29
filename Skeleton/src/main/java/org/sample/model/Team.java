@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Team {
+public class Team implements TeamInterface {
 
 	@Id
 	@GeneratedValue
@@ -14,8 +14,7 @@ public class Team {
 	private String name;
 	private long creationDateInMilisec;
 	
-	public Team() {
-	}
+
 	public String getName() {
 		return name;
 	}
@@ -28,6 +27,8 @@ public class Team {
 	public void setCreationDateInMilisec(long creationDateInMilisec) {
 		this.creationDateInMilisec = creationDateInMilisec;
 	}
+	
+	
 	
 	@Override
 	public int hashCode() {
@@ -56,6 +57,9 @@ public class Team {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
+	}
+	public long getId() {
+		return id;
 	}
 	
 	

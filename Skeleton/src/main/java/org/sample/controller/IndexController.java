@@ -33,7 +33,7 @@ public class IndexController {
     public ModelAndView index() {
     	ModelAndView model = new ModelAndView("index");   
     	model.addObject("signupForm", new SignupForm());
-    	model.addObject("teams", loadTeams());
+    	model.addObject("teams", sampleService.getTeams());
         return model;
     }
     
@@ -48,29 +48,22 @@ public class IndexController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ModelAndView create(@Valid SignupForm signupForm, BindingResult result, RedirectAttributes redirectAttributes) {
     	ModelAndView model;
-    	
     	if (!result.hasErrors()) {
             try {
-            	sampleService.saveFrom(signupForm);
+              	sampleService.saveFrom(signupForm);
             	model = new ModelAndView("show");
-            } catch (InvalidUserException e) {
+            } catch (InvalidUserException e) {           	
             	model = new ModelAndView("index");
             	model.addObject("page_error", e.getMessage());
             }
-        } else {
+        } else {        	
         	model = new ModelAndView("index");
+        	model.addObject("signupForm", new SignupForm());
+        	model.addObject("teams", sampleService.getTeams());
         }    
     	return model;
     }
     
-    private List<Team> loadTeams() {
-		List<Team> teams = new ArrayList<Team>();
-		Iterable<Team> teamIt = sampleService.getTeams();
-		for(Team t : teamIt){
-			teams.add(t);
-		}
-		return teams;
-	}
 
 	@RequestMapping(value="/createTeam", method=RequestMethod.POST)
     public ModelAndView createTeam(@ModelAttribute("teamForm") createTeamForm createTeamForm){

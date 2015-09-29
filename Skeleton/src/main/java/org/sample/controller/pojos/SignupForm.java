@@ -11,8 +11,7 @@ public class SignupForm {
     private Long id;
     private String firstName;
     private String lastName;
-    private Team team;
-
+    private long teamId;
 
     @NotNull
     @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", 
@@ -51,11 +50,11 @@ public class SignupForm {
         this.id = id;
     }
 
-	public Team getTeam() {
-		return team;
+	public long getTeamId() {
+		return teamId;
 	}
 
-	public void setTeam(Team team) {
-		this.team = team;
+	public void setTeamId(long teamId) {
+		this.teamId = teamId;
 	}
 }

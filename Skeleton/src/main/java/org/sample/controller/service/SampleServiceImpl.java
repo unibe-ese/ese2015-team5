@@ -1,6 +1,8 @@
 package org.sample.controller.service;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import org.sample.controller.exceptions.InvalidTeamException;
 import org.sample.controller.exceptions.InvalidUserException;
@@ -43,7 +45,9 @@ public class SampleServiceImpl implements SampleService {
         user.setEmail(signupForm.getEmail());
         user.setLastName(signupForm.getLastName());
         user.setAddress(address);
-        user.setTeam(signupForm.getTeam());
+        if(signupForm.getTeamId() != 0){
+        	 user.setTeamId(signupForm.getTeamId());
+        }
         
         user = userDao.save(user);   // save object to DB
         
@@ -57,8 +61,8 @@ public class SampleServiceImpl implements SampleService {
         return signupForm;
 
     }
-
-	public void saveFrom(createTeamForm createTeamForm) throws InvalidTeamException {
+    
+    public void saveFrom(createTeamForm createTeamForm) throws InvalidTeamException {
 		Team team = new Team();
 		team.setName(createTeamForm.getTeamName());
 		team.setCreationDateInMilisec(Calendar.getInstance().getTimeInMillis());
@@ -74,8 +78,13 @@ public class SampleServiceImpl implements SampleService {
 		team = teamDao.save(team);		
 	}
 
-	public Iterable<Team> getTeams() {
-		return teamDao.findAll();
+	public List<Team> getTeams() {
+		List<Team> teams = new ArrayList<Team>();
+		Iterable<Team> teamIt = teamDao.findAll();
+		for(Team t : teamIt){
+			teams.add(t);
+		}
+		return teams;
 		
 	}
 }
