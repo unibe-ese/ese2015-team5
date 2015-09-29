@@ -29,6 +29,8 @@ public class Team {
 		this.creationDateInMilisec = creationDateInMilisec;
 	}
 	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -56,6 +58,9 @@ public class Team {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
+	}
+	public long getId() {
+		return id;
 	}
 	
 	
