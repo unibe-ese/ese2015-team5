@@ -43,8 +43,7 @@ public class SampleServiceImpl implements SampleService {
         user.setEmail(signupForm.getEmail());
         user.setLastName(signupForm.getLastName());
         user.setAddress(address);
-        user.setTeamId(signupForm.getTeam().getId());
-        System.out.println("TEamid: " + signupForm.getTeam().getId());
+        user.setTeam(signupForm.getTeam());
         
         user = userDao.save(user);   // save object to DB
         
@@ -58,8 +57,8 @@ public class SampleServiceImpl implements SampleService {
         return signupForm;
 
     }
-    
-    public void saveFrom(createTeamForm createTeamForm) throws InvalidTeamException {
+
+	public void saveFrom(createTeamForm createTeamForm) throws InvalidTeamException {
 		Team team = new Team();
 		team.setName(createTeamForm.getTeamName());
 		team.setCreationDateInMilisec(Calendar.getInstance().getTimeInMillis());
