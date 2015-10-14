@@ -16,8 +16,7 @@
 	        	<th>First Name: <c:out value="${user.firstName}"/></th>
 			  	<th>Last Name: <c:out value="${user.lastName}"/></th>
 	          	<th>Email: <c:out value="${user.email}"/></th> 
-				<th>ID <c:out value="${user.id}"/></th>
-				<th>Team Name: <c:out value="${team.name}"/></th>		
+				<th>ID <c:out value="${user.id}"/></th>	
 		
 
 	

@@ -7,13 +7,9 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.sample.controller.exceptions.InvalidTeamException;
 import org.sample.controller.exceptions.InvalidUserException;
 import org.sample.controller.pojos.SignupForm;
-import org.sample.controller.pojos.createTeamForm;
 import org.sample.controller.service.SampleService;
-import org.sample.model.Team;
-import org.sample.model.TeamInterface;
 import org.sample.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,17 +33,9 @@ public class IndexController {
     public ModelAndView index() {
     	ModelAndView model = new ModelAndView("index");   
     	model.addObject("signupForm", new SignupForm());
-    	model.addObject("teams", sampleService.getTeams());
         return model;
     }
-    
-    @RequestMapping( value = "/newTeam")
-    public ModelAndView goToTeam(){
-    	ModelAndView model; 
-      	model = new ModelAndView("newTeam");	
-      	model.addObject("teamForm", new createTeamForm());
-    	return model;
-    }
+ 
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ModelAndView create(@Valid SignupForm signupForm, BindingResult result, RedirectAttributes redirectAttributes) {
@@ -63,7 +51,6 @@ public class IndexController {
         } else {        	
         	model = new ModelAndView("index");
         	model.addObject("signupForm", new SignupForm());
-        	model.addObject("teams", sampleService.getTeams());
         }    
     	return model;
     }
@@ -78,29 +65,9 @@ public class IndexController {
     		model.addObject("signupForm", new SignupForm());
     		return model;
     	}
-    	TeamInterface team = sampleService.getTeam(user.getTeamId());
     	model = new ModelAndView("profile");
     	model.addObject("user", user);
-    	model.addObject("team", team);
     	return model;
-    }
-    
-
-	@RequestMapping(value="/createTeam", method=RequestMethod.POST)
-    public ModelAndView createTeam(@ModelAttribute("teamForm") createTeamForm createTeamForm){
-    	ModelAndView model;
-    	try {
-        	sampleService.saveFrom(createTeamForm);
-        	model = new ModelAndView("show");
-        } catch (InvalidTeamException e) {
-        	model = new ModelAndView("index");
-        	model.addObject("page_error", e.getMessage());
-        }
-   
-    	model = new ModelAndView("index");
-    	model.addObject("signupForm", new SignupForm());    	
-        return model;
-    	
     }
     
     @RequestMapping(value = "/security-error", method = RequestMethod.GET)

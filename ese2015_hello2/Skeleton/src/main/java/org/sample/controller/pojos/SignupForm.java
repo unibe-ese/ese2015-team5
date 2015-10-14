@@ -3,7 +3,6 @@ package org.sample.controller.pojos;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import org.sample.model.Team;
 
 public class SignupForm {
 
@@ -11,7 +10,6 @@ public class SignupForm {
     private Long id;
     private String firstName;
     private String lastName;
-    private long teamId;
 
     @NotNull
     @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", 
@@ -50,11 +48,4 @@ public class SignupForm {
         this.id = id;
     }
 
-	public long getTeamId() {
-		return teamId;
-	}
-
-	public void setTeamId(long teamId) {
-		this.teamId = teamId;
-	}
 }
