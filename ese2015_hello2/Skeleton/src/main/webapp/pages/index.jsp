@@ -38,13 +38,6 @@
                 <form:input path="lastName" id="field-lastName" tabindex="3" maxlength="35" placeholder="Last Name"/>
                 <form:errors path="lastName" cssClass="help-inline" element="span"/>
             </div>
-        </div>
-		<div>
-			<label class="control-label" for="field-lastName">Team</label>
-			<form:select path="teamId">
-				<form:option value="0" label="--- Select ---"/>
-				<form:options items="${teams}" itemLabel="name" itemValue="id"/>
-			</form:select>
 		</div>
         <div class="form-actions">
             <button type="submit" class="btn btn-primary">Sign up</button>
@@ -53,14 +46,6 @@
     </fieldset>
 </form:form>
 
-<form:form method="post"  action="newTeam" id="signupForm" cssClass="form-horizontal"  autocomplete="off">
-    <fieldset>
-        <legend>Create Team</legend>
-        <div class="form-actions">
-            <button type="submit" class="btn btn-primary">GOTO</button>
-        </div>
-    </fieldset>
-</form:form>
 
 
 
