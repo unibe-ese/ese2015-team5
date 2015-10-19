@@ -12,11 +12,7 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <p>Greetings, this is a value from the controller: <c:out value="${value}"/></p>
+        <p>ADMIN! <c:out value="${value}"/></p>
         
-        
-        
-        
-
     </body>
 </html>
