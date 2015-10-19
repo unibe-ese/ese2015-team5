@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
-    <display-name>Sample App</display-name>
+    <display-name>Stutor</display-name>
     <distributable/>
 
     <welcome-file-list>
@@ -16,7 +16,7 @@
     	<param-name>contextConfigLocation</param-name>
     	<param-value>
     		/WEB-INF/config/springData.xml
-    		/WEB-INF/config/springSecurity.xml
+    		/WEB-INF/config/spring-security.xml
     	</param-value>
 	</context-param>
     
