@@ -12,3 +12,18 @@
 2015-10-16 17:17:45,211 [main] INFO  o.e.m2e.actions.ExecutePomAction - Creating new launch configuration
 2015-10-16 17:17:56,580 [Worker-12] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton
 2015-10-16 17:17:56,580 [Worker-12] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:stop jetty:run
+2015-10-18 23:12:10,859 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-18 23:12:10,866 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton/src/main/resources
+2015-10-18 23:12:10,870 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-18 23:12:10,870 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton/src/test/resources
+2015-10-19 10:44:42,305 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-19 10:44:42,310 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton/src/main/resources
+2015-10-19 10:44:42,314 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-19 10:44:42,314 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton/src/test/resources
+2015-10-19 10:44:45,232 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-19 10:44:45,232 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton/src/main/resources
+2015-10-19 10:44:45,234 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-19 10:44:45,235 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton/src/test/resources
+2015-10-19 10:45:34,423 [main] INFO  o.e.m2e.actions.ExecutePomAction - Creating new launch configuration
+2015-10-19 10:47:08,718 [Worker-9] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton
+2015-10-19 10:47:08,719 [Worker-9] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:stop jetty:run
