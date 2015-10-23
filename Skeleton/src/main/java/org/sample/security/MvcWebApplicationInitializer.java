@@ -22,5 +22,4 @@ public class MvcWebApplicationInitializer extends
 		return null;
 	}
 
-    // ... other overrides ...
 }
