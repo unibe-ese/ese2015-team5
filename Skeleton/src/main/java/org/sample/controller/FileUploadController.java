@@ -61,11 +61,14 @@ public class FileUploadController {
                 logger.info("Server File Location="
                         + serverFile.getAbsolutePath());
  
+                name = "your File";
                 return "You successfully uploaded file=" + name;
             } catch (Exception e) {
+            	name = "your File";
                 return "You failed to upload " + name + " => " + e.getMessage();
             }
         } else {
+        	name = "your File";
             return "You failed to upload " + name
                     + " because the file was empty.";
         }
