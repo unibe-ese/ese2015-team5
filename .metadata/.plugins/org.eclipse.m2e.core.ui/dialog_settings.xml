@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="/Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/Stutor"/>
 			<item value="/Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton"/>
 		</list>
 		<list key="projectNameTemplate">
