@@ -31,11 +31,17 @@
             		</div>
         		</div>
         
+<<<<<<< HEAD
         		<div class="form-actions">
             		<button type="submit">Login</button>
         		</div>
     		</fieldset>
 		</form:form>
         
+=======
+        
+        
+
+>>>>>>> Stutor
     </body>
 </html>

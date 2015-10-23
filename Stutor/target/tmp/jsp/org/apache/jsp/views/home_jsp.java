@@ -16,10 +16,14 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_dependants.add("/views/include.jsp");
   }
 
+<<<<<<< HEAD
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_form_input_tabindex_placeholder_path_maxlength_id_nobody;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_out_value_nobody;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_form_form_modelAttribute_method_id_cssClass_autocomplete_action;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_if_test;
+=======
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_out_value_nobody;
+>>>>>>> Stutor
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
 
@@ -28,6 +32,7 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
   }
 
   public void _jspInit() {
+<<<<<<< HEAD
     _jspx_tagPool_form_input_tabindex_placeholder_path_maxlength_id_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_c_out_value_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_form_form_modelAttribute_method_id_cssClass_autocomplete_action = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
@@ -39,6 +44,13 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_tagPool_c_out_value_nobody.release();
     _jspx_tagPool_form_form_modelAttribute_method_id_cssClass_autocomplete_action.release();
     _jspx_tagPool_c_if_test.release();
+=======
+    _jspx_tagPool_c_out_value_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+  }
+
+  public void _jspDestroy() {
+    _jspx_tagPool_c_out_value_nobody.release();
+>>>>>>> Stutor
   }
 
   public void _jspService(HttpServletRequest request, HttpServletResponse response)
@@ -63,25 +75,26 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write("\r\n");
-      out.write("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\r\n");
-      out.write("   \"http://www.w3.org/TR/html4/loose.dtd\">\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("<html>\r\n");
-      out.write("    <head>\r\n");
-      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
-      out.write("        <title>Home</title>\r\n");
-      out.write("    </head>\r\n");
-      out.write("    <body>\r\n");
-      out.write("        <h1>Hello World!</h1>\r\n");
+      out.write("\n");
+      out.write("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n");
+      out.write("   \"http://www.w3.org/TR/html4/loose.dtd\">\n");
+      out.write("\n");
+      out.write('\n');
+      out.write('\n');
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("<html>\n");
+      out.write("    <head>\n");
+      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
+      out.write("        <title>Home</title>\n");
+      out.write("    </head>\n");
+      out.write("    <body>\n");
+      out.write("        <h1>Hello World!</h1>\n");
       out.write("        <p>Greetings, this is a value from the controller: ");
       if (_jspx_meth_c_out_0(_jspx_page_context))
         return;
+<<<<<<< HEAD
       out.write("</p>\r\n");
       out.write("        \r\n");
       out.write("       ");
@@ -91,6 +104,16 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        \r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
+=======
+      out.write("</p>\n");
+      out.write("        \n");
+      out.write("        \n");
+      out.write("        \n");
+      out.write("        \n");
+      out.write("\n");
+      out.write("    </body>\n");
+      out.write("</html>\n");
+>>>>>>> Stutor
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;
@@ -121,6 +144,7 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_tagPool_c_out_value_nobody.reuse(_jspx_th_c_out_0);
     return false;
   }
+<<<<<<< HEAD
 
   private boolean _jspx_meth_form_form_0(PageContext _jspx_page_context)
           throws Throwable {
@@ -305,4 +329,6 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
     }
     return false;
   }
+=======
+>>>>>>> Stutor
 }
