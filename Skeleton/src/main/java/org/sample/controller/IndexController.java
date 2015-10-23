@@ -1,6 +1,8 @@
 package org.sample.controller;
 
 
+import java.util.logging.Logger;
+
 import javax.validation.Valid;
 
 import org.sample.controller.exceptions.InvalidUserException;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class IndexController {
 
+	
     @Autowired
     SampleService sampleService;
 
@@ -25,6 +28,7 @@ public class IndexController {
     public ModelAndView index() {
     	ModelAndView model = new ModelAndView("index");   
     	model.addObject("signupForm", new SignupForm());
+
         return model;
     }
     
