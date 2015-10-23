@@ -3,7 +3,8 @@ package org.sample.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
- 
+
+import org.sample.controller.pojos.SignupForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
  
 /**
  * Handles requests for the application file upload requests
@@ -21,6 +23,14 @@ public class FileUploadController {
  
     private static final Logger logger = LoggerFactory
             .getLogger(FileUploadController.class);
+    
+    
+    
+    @RequestMapping(value = "/uploadFileInitial", method = RequestMethod.GET)
+    public ModelAndView uploadFileInitial() {
+    	ModelAndView model = new ModelAndView("upload");   
+        return model;
+    }
  
     /**
      * Upload single file using Spring Controller
@@ -64,7 +74,7 @@ public class FileUploadController {
     /**
      * Upload multiple file using Spring Controller
      */
-    @RequestMapping(value = "/uploadMultipleFile", method = RequestMethod.POST)
+    @RequestMapping(value = "/uploadMultipleFileFinished", method = RequestMethod.POST)
     public @ResponseBody
     String uploadMultipleFileHandler(@RequestParam("name") String[] names,
             @RequestParam("file") MultipartFile[] files) {
