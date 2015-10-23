@@ -1,18 +1,11 @@
 package org.sample.controller.service;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 
-import org.sample.controller.exceptions.InvalidTeamException;
 import org.sample.controller.exceptions.InvalidUserException;
 import org.sample.controller.pojos.SignupForm;
-import org.sample.controller.pojos.createTeamForm;
 import org.sample.model.Address;
-import org.sample.model.Team;
 import org.sample.model.User;
 import org.sample.model.dao.AddressDao;
-import org.sample.model.dao.TeamDao;
 import org.sample.model.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +18,6 @@ public class SampleServiceImpl implements SampleService {
 
     @Autowired    UserDao userDao;
     @Autowired    AddressDao addDao;
-    @Autowired 	  TeamDao teamDao;
     
     @Transactional
     public SignupForm saveFrom(SignupForm signupForm) throws InvalidUserException{
@@ -62,29 +54,29 @@ public class SampleServiceImpl implements SampleService {
 
     }
     
-    public void saveFrom(createTeamForm createTeamForm) throws InvalidTeamException {
-		Team team = new Team();
-		team.setName(createTeamForm.getTeamName());
-		team.setCreationDateInMilisec(Calendar.getInstance().getTimeInMillis());
-		
-		Iterable<Team> teams = teamDao.findAll();
-		
-		for(Team t : teams){
-			if(t.equals(team)){
-				System.out.println("exception!");
-				throw new InvalidTeamException("This team already exists!");
-			}
-		}	
-		team = teamDao.save(team);		
-	}
+//    public void saveFrom(createTeamForm createTeamForm) throws InvalidTeamException {
+//		Team team = new Team();
+//		team.setName(createTeamForm.getTeamName());
+//		team.setCreationDateInMilisec(Calendar.getInstance().getTimeInMillis());
+//		
+//		Iterable<Team> teams = teamDao.findAll();
+//		
+//		for(Team t : teams){
+//			if(t.equals(team)){
+//				System.out.println("exception!");
+//				throw new InvalidTeamException("This team already exists!");
+//			}
+//		}	
+//		team = teamDao.save(team);		
+//	}
 
-	public List<Team> getTeams() {
-		List<Team> teams = new ArrayList<Team>();
-		Iterable<Team> teamIt = teamDao.findAll();
-		for(Team t : teamIt){
-			teams.add(t);
-		}
-		return teams;
-		
-	}
+//	public List<Team> getTeams() {
+//		List<Team> teams = new ArrayList<Team>();
+//		Iterable<Team> teamIt = teamDao.findAll();
+//		for(Team t : teamIt){
+//			teams.add(t);
+//		}
+//		return teams;
+//		
+//	}
 }
