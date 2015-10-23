@@ -1,5 +1,7 @@
 package org.sample.security;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.security.config.annotation.authentication.builders.*;
@@ -14,6 +16,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth
             .inMemoryAuthentication()
                 .withUser("user").password("password").roles("USER");
+        
     }
 
     
