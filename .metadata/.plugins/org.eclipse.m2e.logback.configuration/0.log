@@ -12,3 +12,55 @@
 2015-10-16 17:17:45,211 [main] INFO  o.e.m2e.actions.ExecutePomAction - Creating new launch configuration
 2015-10-16 17:17:56,580 [Worker-12] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton
 2015-10-16 17:17:56,580 [Worker-12] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:stop jetty:run
+2015-10-18 23:12:10,859 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-18 23:12:10,866 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton/src/main/resources
+2015-10-18 23:12:10,870 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-18 23:12:10,870 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton/src/test/resources
+2015-10-19 10:44:42,305 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-19 10:44:42,310 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton/src/main/resources
+2015-10-19 10:44:42,314 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-19 10:44:42,314 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton/src/test/resources
+2015-10-19 10:44:45,232 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-19 10:44:45,232 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton/src/main/resources
+2015-10-19 10:44:45,234 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-19 10:44:45,235 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton/src/test/resources
+2015-10-19 10:45:34,423 [main] INFO  o.e.m2e.actions.ExecutePomAction - Creating new launch configuration
+2015-10-19 10:47:08,718 [Worker-9] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton
+2015-10-19 10:47:08,719 [Worker-9] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:stop jetty:run
+2015-10-22 17:44:49,628 [Worker-46] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: Team5:Stutor:0.0.1-SNAPSHOT @ /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/Stutor/pom.xml.
+2015-10-22 17:44:52,940 [Worker-46] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://oss.sonatype.org/content/repositories/springsource-milestones/org/springframework/spring-aop/3.1.2.RELEASE/spring-aop-3.1.2.RELEASE.jar
+2015-10-22 17:44:53,404 [Worker-46] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://oss.sonatype.org/content/repositories/springsource-milestones/org/springframework/spring-beans/3.1.2.RELEASE/spring-beans-3.1.2.RELEASE.jar
+2015-10-22 17:44:53,873 [Worker-46] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://oss.sonatype.org/content/repositories/springsource-milestones/org/springframework/spring-core/3.1.2.RELEASE/spring-core-3.1.2.RELEASE.jar
+2015-10-22 17:44:54,661 [Worker-46] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-aop/3.1.2.RELEASE/spring-aop-3.1.2.RELEASE.jar
+2015-10-22 17:44:55,128 [Worker-46] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-aop/3.1.2.RELEASE/spring-aop-3.1.2.RELEASE.jar
+2015-10-22 17:44:55,161 [Worker-46] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-beans/3.1.2.RELEASE/spring-beans-3.1.2.RELEASE.jar
+2015-10-22 17:44:55,538 [Worker-46] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-beans/3.1.2.RELEASE/spring-beans-3.1.2.RELEASE.jar
+2015-10-22 17:44:55,573 [Worker-46] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-core/3.1.2.RELEASE/spring-core-3.1.2.RELEASE.jar
+2015-10-22 17:44:55,885 [Worker-46] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-core/3.1.2.RELEASE/spring-core-3.1.2.RELEASE.jar
+2015-10-22 17:44:59,006 [Worker-46] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /Stutor/src/main/java
+2015-10-22 17:44:59,007 [Worker-46] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /Stutor/src/test/java
+2015-10-22 17:45:00,202 [Worker-46] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 12 sec
+2015-10-22 17:45:01,757 [Worker-52] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-10-22 17:45:01,760 [Worker-52] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/Stutor/src/main/resources
+2015-10-22 17:45:01,763 [Worker-52] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-10-22 17:45:01,764 [Worker-52] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/Stutor/src/test/resources
+2015-10-23 13:17:02,975 [Worker-18] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-10-23 13:17:02,982 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/Stutor/src/main/resources
+2015-10-23 13:17:02,987 [Worker-18] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-10-23 13:17:02,988 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/Stutor/src/test/resources
+2015-10-23 13:17:54,933 [Worker-8] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: Skeleton:Skeleton:1.0 @ /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton/pom.xml.
+2015-10-23 13:17:56,498 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /Skeleton/src/main/java
+2015-10-23 13:17:56,502 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /Skeleton/src/test/java
+2015-10-23 13:17:57,912 [Worker-8] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 4 sec
+2015-10-23 13:18:01,010 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-23 13:18:01,010 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton/src/main/resources
+2015-10-23 13:18:01,012 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-23 13:18:01,012 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton/src/test/resources
+2015-10-23 13:19:30,656 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-23 13:19:30,657 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton/src/main/resources
+2015-10-23 13:19:30,658 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-23 13:19:30,659 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton/src/test/resources
+2015-10-23 13:20:01,163 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-23 13:20:01,163 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton/src/main/resources
+2015-10-23 13:20:01,165 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-23 13:20:01,165 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton/src/test/resources

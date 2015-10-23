@@ -3,6 +3,7 @@
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
 			<item value="/Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton"/>
+			<item value="/Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/Stutor"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
