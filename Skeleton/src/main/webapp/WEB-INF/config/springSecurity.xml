@@ -22,6 +22,9 @@
 
 	<!-- Declare an authentication-manager to use a custom userDetailsService -->
 	<security:authentication-manager>
+		    <security:authentication-provider>
+      			<security:jdbc-user-service data-source-ref="mainDataSource"/>
+    		</security:authentication-provider>
 		<security:authentication-provider user-service-ref="userDetailsService">
            <security:password-encoder ref="passwordEncoder"/>
          </security:authentication-provider>
