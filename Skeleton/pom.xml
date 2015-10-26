@@ -219,6 +219,7 @@
 							<contextPath>/Skeleton</contextPath>
 							<stopKey>1</stopKey>
 							<stopPort>9999</stopPort>
+							<scanIntervalSeconds>10</scanIntervalSeconds>
 						</configuration>
 						<executions>
 							<execution>
