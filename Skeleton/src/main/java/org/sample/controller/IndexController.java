@@ -1,18 +1,18 @@
 package org.sample.controller;
 
 
-import java.util.logging.Logger;
+
 
 import javax.validation.Valid;
 
 import org.sample.controller.exceptions.InvalidUserException;
 import org.sample.controller.pojos.SignupForm;
 import org.sample.controller.service.SampleService;
+import org.sample.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -48,6 +48,22 @@ public class IndexController {
 //      	model.addObject("teamForm", new createTeamForm());
 //    	return model;
 //    }
+    
+    @RequestMapping( value = "/profile")
+    public ModelAndView goToTeam(){
+    	ModelAndView model; 
+    	User user = sampleService.getCurrentUser();
+    	if(user != null){
+    		model = new ModelAndView("profile");
+    		model.addObject("user", user);
+    	}
+    	else{
+    		model = new ModelAndView("index");
+    	}
+    	return model;
+    }
+    
+    
     
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String getLoginPage(@RequestParam(value="error", required=false) boolean error, 

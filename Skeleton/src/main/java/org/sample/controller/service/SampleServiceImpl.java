@@ -1,8 +1,6 @@
 package org.sample.controller.service;
 
 
-import java.util.ArrayList;
-
 import org.sample.controller.exceptions.InvalidUserException;
 import org.sample.controller.pojos.SignupForm;
 import org.sample.model.Address;
@@ -10,6 +8,8 @@ import org.sample.model.User;
 import org.sample.model.dao.AddressDao;
 import org.sample.model.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -62,6 +62,13 @@ public class SampleServiceImpl implements SampleService {
 			}
 		}
 		return null;
+		
+	}
+
+	public User getCurrentUser() {
+		System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
+		UsernamePasswordAuthenticationToken authtok = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+		return loadUserByUserName(authtok.getName());
 		
 	}
     
