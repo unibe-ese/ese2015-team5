@@ -88,6 +88,14 @@ public class SampleServiceImpl implements SampleService {
     	profilePicDao.save(profilePicture);
     }
     
+    public ProfilePicture getProfilePicture(){
+    	Iterable<ProfilePicture> pics = profilePicDao.findAll();
+    	for (ProfilePicture p : pics){
+    		return p;
+    	}
+		return null;
+    }
+    
 //    public void saveFrom(createTeamForm createTeamForm) throws InvalidTeamException {
 //		Team team = new Team();
 //		team.setName(createTeamForm.getTeamName());

@@ -17,5 +17,6 @@ public interface SampleService {
 	
 	public void saveProfilePicture(ProfilePicture profilePicture);
     
+	public ProfilePicture getProfilePicture();
 
 }

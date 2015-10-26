@@ -8,6 +8,6 @@
 
 <h1>Sign Up Complete!</h1>
 
-
+<img src="/Skeleton/imageDisplay"/>
 
 <c:import url="template/footer.jsp" />
