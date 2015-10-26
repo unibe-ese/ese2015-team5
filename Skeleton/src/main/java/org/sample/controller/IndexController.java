@@ -1,8 +1,6 @@
 package org.sample.controller;
 
 
-
-
 import javax.validation.Valid;
 
 import org.sample.controller.exceptions.InvalidUserException;
