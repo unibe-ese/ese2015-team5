@@ -1,6 +1,8 @@
 package org.sample.controller.service;
 
 
+import java.util.ArrayList;
+
 import org.sample.controller.exceptions.InvalidUserException;
 import org.sample.controller.pojos.SignupForm;
 import org.sample.model.Address;
@@ -51,6 +53,17 @@ public class SampleServiceImpl implements SampleService {
         return signupForm;
 
     }
+
+	public User loadUserByUserName(String name) {
+		Iterable<User> users = userDao.findAll();
+		for(User u : users){
+			if(u.getEmail().equals(name)){
+				return u;
+			}
+		}
+		return null;
+		
+	}
     
 //    public void saveFrom(createTeamForm createTeamForm) throws InvalidTeamException {
 //		Team team = new Team();

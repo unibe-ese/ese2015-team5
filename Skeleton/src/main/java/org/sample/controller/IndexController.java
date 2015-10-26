@@ -34,6 +34,13 @@ public class IndexController {
         return model;
     }
     
+    @RequestMapping(value = "access-denied", method = RequestMethod.GET)
+    public String accessDenied() {
+    	
+
+        return "access-denied";
+    }
+    
 //    @RequestMapping( value = "/newTeam")
 //    public ModelAndView goToTeam(){
 //    	ModelAndView model; 
@@ -65,6 +72,8 @@ public class IndexController {
      // This will resolve to /WEB-INF/jsp/loginpage.jsp
      return "login";
     }
+    
+
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ModelAndView create(@Valid SignupForm signupForm, BindingResult result, RedirectAttributes redirectAttributes) {
