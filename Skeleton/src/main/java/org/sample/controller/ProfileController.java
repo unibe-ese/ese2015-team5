@@ -19,6 +19,8 @@ public class ProfileController {
 	public ModelAndView modifyUser(@Valid ModifyUserForm form, BindingResult result, RedirectAttributes redirectAttributes){
 		
 		System.out.println(form.getPasswordControll());
+		
+		
 		return null;
 	}
 	
