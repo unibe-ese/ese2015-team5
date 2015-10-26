@@ -8,6 +8,8 @@ import org.sample.model.User;
 import org.sample.model.dao.AddressDao;
 import org.sample.model.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -37,7 +39,7 @@ public class SampleServiceImpl implements SampleService {
         user.setEmail(signupForm.getEmail());
         user.setLastName(signupForm.getLastName());
         user.setAddress(address);
-        
+        user.setPassword(signupForm.getPassword());
         
         user = userDao.save(user);   // save object to DB
         
@@ -53,6 +55,24 @@ public class SampleServiceImpl implements SampleService {
         return signupForm;
 
     }
+
+	public User loadUserByUserName(String name) {
+		Iterable<User> users = userDao.findAll();
+		for(User u : users){
+			if(u.getEmail().equals(name)){
+				return u;
+			}
+		}
+		return null;
+		
+	}
+
+	public User getCurrentUser() {
+		System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
+		UsernamePasswordAuthenticationToken authtok = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+		return loadUserByUserName(authtok.getName());
+		
+	}
     
     
     public long countUsers(){

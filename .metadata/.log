@@ -8,6 +8,7 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.
 
 !ENTRY org.eclipse.core.net 1 0 2015-10-16 17:13:03.870
 !MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+<<<<<<< HEAD
 !SESSION 2015-10-18 23:11:49.412 -----------------------------------------------
 eclipse.buildId=4.5.0.I20150603-2000
 java.version=1.8.0_20
@@ -441,6 +442,22 @@ org.eclipse.core.internal.resources.ResourceException: Marker id 1 not found.
 
 !ENTRY org.eclipse.m2e.logback.appender 2 0 2015-10-23 13:24:12.063
 !MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+<<<<<<< HEAD
+=======
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2015-10-23 15:07:38.751
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2015-10-23 15:07:38.766
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2015-10-23 15:07:40.045
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2015-10-23 15:07:40.061
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+>>>>>>> XML-experiment
+=======
 !SESSION 2015-10-23 15:42:40.700 -----------------------------------------------
 eclipse.buildId=4.4.2.M20150204-1700
 java.version=1.8.0_25
@@ -3011,6 +3028,7 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.eclipse.m2e.logback.appender 4 0 2015-10-23 15:50:10.820
 !MESSAGE 
+<<<<<<< HEAD
 !SESSION 2015-10-26 10:54:18.987 -----------------------------------------------
 eclipse.buildId=4.4.2.M20150204-1700
 java.version=1.8.0_25
@@ -3324,3 +3342,6 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+=======
+>>>>>>> origin/master
+>>>>>>> 650f3489bb3a1e4ea2b68e78d686dd807de684eb

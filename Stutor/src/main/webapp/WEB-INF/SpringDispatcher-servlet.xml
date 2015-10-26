@@ -7,6 +7,7 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<bean name="/" class="controller.HomeController"></bean>
 
 
@@ -20,6 +21,9 @@
 	</bean>
 =======
   <bean name="/" class="Team5.Stutor.controller.HomeController"/>
+=======
+  
+>>>>>>> XML-experiment
   
   <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
