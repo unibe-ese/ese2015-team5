@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/profile/*")
 public class ProfileController {
 	
-	@RequestMapping(value="/profile/editUser", method=RequestMethod.POST)
+	@RequestMapping(value="/profile/modifyUser", method=RequestMethod.POST)
 	public ModelAndView modifyUser(@Valid ModifyUserForm form, BindingResult result, RedirectAttributes redirectAttributes){
 		
 		System.out.println(form.getPasswordControll());

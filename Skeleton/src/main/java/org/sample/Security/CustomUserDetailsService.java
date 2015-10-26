@@ -34,7 +34,6 @@ public class CustomUserDetailsService implements AuthenticationProvider {
 	public Authentication authenticate(Authentication authentication)
 			throws AuthenticationException {
 		// TODO Auto-generated method stub
-		print(authentication);
 		String name = authentication.getName();
 		String password = (String) authentication.getCredentials();
 		List<GrantedAuthority> grantedAuths = new ArrayList<GrantedAuthority>();
@@ -47,16 +46,10 @@ public class CustomUserDetailsService implements AuthenticationProvider {
         if(!user.getPassword().equals(password)){
         	throw new BadCredentialsException("Wrong Credentials");
         }
-        System.out.println(auth.toString());
 
 		return auth;
 	}
 
-	private void print(Authentication authentication) {
-		System.out.println(authentication.getName());
-		System.out.println(authentication.getCredentials());
-		System.out.println(authentication.getAuthorities());		
-	}
 
 	public boolean supports(Class<?> authentication) {
 		return true;

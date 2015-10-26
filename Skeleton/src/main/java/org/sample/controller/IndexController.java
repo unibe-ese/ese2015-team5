@@ -6,6 +6,7 @@ package org.sample.controller;
 import javax.validation.Valid;
 
 import org.sample.controller.exceptions.InvalidUserException;
+import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.pojos.SignupForm;
 import org.sample.controller.service.SampleService;
 import org.sample.model.User;
@@ -56,6 +57,7 @@ public class IndexController {
     	if(user != null){
     		model = new ModelAndView("profile");
     		model.addObject("user", user);
+    		model.addObject("modifyUserForm", new ModifyUserForm());
     	}
     	else{
     		model = new ModelAndView("index");
