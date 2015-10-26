@@ -9,7 +9,7 @@
 <form:form method="post" modelAttribute="modifyUserForm" action="profile/modifyUser" id="modifyUserForm" cssClass="form-horizontal"  autocomplete="off">
     <fieldset>
         <legend>Edit your information</legend>
-
+		
         <c:set var="firstNameErrors"><form:errors path="firstName"/></c:set>
         <div class="control-group<c:if test="${not empty firstNameErrors}"> error</c:if>">
             <label class="control-label" for="field-firstName">First Name</label>

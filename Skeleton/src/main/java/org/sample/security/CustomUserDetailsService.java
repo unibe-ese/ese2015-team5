@@ -26,26 +26,34 @@ public class CustomUserDetailsService implements AuthenticationProvider {
 	
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
-		System.out.println("IM HERE");
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public Authentication authenticate(Authentication authentication)
 			throws AuthenticationException {
-		// TODO Auto-generated method stub
-		String name = authentication.getName();
+		/**
+		 * Gets credentials from the authentication token. 
+		 * This method gets called somewhere in the authentication process.
+		 * The user is then loaded from the email.
+		 */
+		String email = authentication.getName();
 		String password = (String) authentication.getCredentials();
+		User user = sampleService.loadUserByUserName(email);
+		
+		/**
+		 * Creates a role for the authentication token. 
+		 */
 		List<GrantedAuthority> grantedAuths = new ArrayList<GrantedAuthority>();
         grantedAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
-        Authentication auth = new UsernamePasswordAuthenticationToken(name, password, grantedAuths);
-        User user = sampleService.loadUserByUserName(name);
+        
         if(user == null){
         	throw new BadCredentialsException("username not found");
         }
         if(!user.getPassword().equals(password)){
         	throw new BadCredentialsException("Wrong Credentials");
         }
+        
+        Authentication auth = new UsernamePasswordIDAuthenticationToken(user.getId(), email, password, grantedAuths);
 
 		return auth;
 	}

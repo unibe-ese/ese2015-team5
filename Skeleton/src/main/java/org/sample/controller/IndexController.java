@@ -6,10 +6,8 @@ package org.sample.controller;
 import javax.validation.Valid;
 
 import org.sample.controller.exceptions.InvalidUserException;
-import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.pojos.SignupForm;
 import org.sample.controller.service.SampleService;
-import org.sample.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -31,7 +29,7 @@ public class IndexController {
     public ModelAndView index() {
     	ModelAndView model = new ModelAndView("index");   
     	model.addObject("signupForm", new SignupForm());
-
+    	System.out.println("index");
         return model;
     }
     
@@ -49,22 +47,6 @@ public class IndexController {
 //      	model.addObject("teamForm", new createTeamForm());
 //    	return model;
 //    }
-    
-    @RequestMapping( value = "/profile")
-    public ModelAndView goToTeam(){
-    	ModelAndView model; 
-    	User user = sampleService.getCurrentUser();
-    	if(user != null){
-    		model = new ModelAndView("profile");
-    		model.addObject("user", user);
-    		model.addObject("modifyUserForm", new ModifyUserForm());
-    	}
-    	else{
-    		model = new ModelAndView("index");
-    	}
-    	return model;
-    }
-    
     
     
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -110,24 +92,6 @@ public class IndexController {
         }    
     	return model;
     }
-    
-
-//	@RequestMapping(value="/createTeam", method=RequestMethod.POST)
-//    public ModelAndView createTeam(@ModelAttribute("teamForm") createTeamForm createTeamForm){
-//    	ModelAndView model;
-//    	try {
-//        	sampleService.saveFrom(createTeamForm);
-//        	model = new ModelAndView("show");
-//        } catch (InvalidTeamException e) {
-//        	model = new ModelAndView("index");
-//        	model.addObject("page_error", e.getMessage());
-//        }
-//   
-//    	model = new ModelAndView("index");
-//    	model.addObject("signupForm", new SignupForm());    	
-//        return model;
-//    	
-//    }
     
     @RequestMapping(value = "/security-error", method = RequestMethod.GET)
     public String securityError(RedirectAttributes redirectAttributes) {
