@@ -4,8 +4,10 @@ package org.sample.controller.service;
 import org.sample.controller.exceptions.InvalidUserException;
 import org.sample.controller.pojos.SignupForm;
 import org.sample.model.Address;
+import org.sample.model.ProfilePicture;
 import org.sample.model.User;
 import org.sample.model.dao.AddressDao;
+import org.sample.model.dao.ProfilePictureDao;
 import org.sample.model.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,6 +22,7 @@ public class SampleServiceImpl implements SampleService {
 
     @Autowired    UserDao userDao;
     @Autowired    AddressDao addDao;
+    @Autowired	  ProfilePictureDao profilePicDao;
     
     @Transactional
     public SignupForm saveFrom(SignupForm signupForm) throws InvalidUserException{
@@ -78,6 +81,11 @@ public class SampleServiceImpl implements SampleService {
     public long countUsers(){
     	long count = userDao.count();
     	return count;
+    }
+    
+    
+    public void saveProfilePicture(ProfilePicture profilePicture){
+    	profilePicDao.save(profilePicture);
     }
     
 //    public void saveFrom(createTeamForm createTeamForm) throws InvalidTeamException {
