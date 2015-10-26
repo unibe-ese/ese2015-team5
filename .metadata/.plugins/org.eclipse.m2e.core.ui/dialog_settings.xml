@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<section name="org.eclipse.m2e.core.pom.dependencies">
+	</section>
+	<section name="org.eclipse.m2e.core.pom.overview">
+		<list key="ciManagementUrl">
+		</list>
+		<list key="ciManagementSystem">
+		</list>
+		<list key="issueManagementSystem">
+		</list>
+		<list key="issueManagementUrl">
+		</list>
+	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\S.Muerset\Universitaet\Bern\HS15\ESE\ese2015-team5\Skeleton"/>
 			<item value="C:\Users\S.Muerset\Universitaet\Bern\HS15\ESE\ese2015-team5"/>
 			<item value="/Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/ese2015_hello2/Skeleton"/>
 			<item value="/Users/alexkrauchi/Documents/ESE/Ese2015team5/ese2015-team5/Stutor"/>

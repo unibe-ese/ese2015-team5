@@ -37,11 +37,11 @@ public class SampleServiceImpl implements SampleService {
         user.setEmail(signupForm.getEmail());
         user.setLastName(signupForm.getLastName());
         user.setAddress(address);
-        if(signupForm.getTeamId() != 0){
-        	 user.setTeamId(signupForm.getTeamId());
-        }
+        
         
         user = userDao.save(user);   // save object to DB
+        
+        System.out.println(this.countUsers());
         
         
         // Iterable<Address> addresses = addDao.findAll();  // find all 
@@ -52,6 +52,12 @@ public class SampleServiceImpl implements SampleService {
 
         return signupForm;
 
+    }
+    
+    
+    public long countUsers(){
+    	long count = userDao.count();
+    	return count;
     }
     
 //    public void saveFrom(createTeamForm createTeamForm) throws InvalidTeamException {
