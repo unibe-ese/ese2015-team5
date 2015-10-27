@@ -1,12 +1,10 @@
 package org.sample.controller.pojos;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 
 public class ModifyUserForm{
-
 	
+	private long id;
     private String firstName;
     private String lastName;
     private String password;
@@ -42,5 +40,13 @@ public class ModifyUserForm{
 
 	public void setPasswordControll(String passwordControll) {
 		this.passwordControll = passwordControll;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 }

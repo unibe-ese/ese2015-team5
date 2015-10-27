@@ -59,9 +59,13 @@
 										<li><a href="#">Veroeros feugiat</a></li>
 									</ul>
 								</li>
-								<li><a href="left-sidebar.html">Left Sidebar</a></li>
-								<li><form action="profile" />">
-   							 			<button type="submit">Profile</button>
+								<li>
+									<form action="logout"/>
+									   <input type="submit" value="Logout"/>
+									</form>
+								</li>
+								<li><form action="/Skeleton/profile" />
+   							 			<input type="submit" value="Profile"/>
 								</form></li>
 								<li class="current"><a href="no-sidebar.html">No Sidebar</a></li>
 							</ul>

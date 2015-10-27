@@ -1,6 +1,7 @@
 package org.sample.controller.service;
 
 import org.sample.controller.exceptions.InvalidUserException;
+import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.pojos.SignupForm;
 import org.sample.model.User;
 
@@ -13,6 +14,8 @@ public interface SampleService {
 	public User loadUserByUserName(String name);
 
 	public User getCurrentUser();
+
+	public void updateFrom(ModifyUserForm form);
     
 
 }

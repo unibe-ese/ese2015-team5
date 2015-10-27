@@ -6,7 +6,6 @@ import javax.validation.Valid;
 import org.sample.controller.exceptions.InvalidUserException;
 import org.sample.controller.pojos.SignupForm;
 import org.sample.controller.service.SampleService;
-import org.sample.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,64 +25,38 @@ public class IndexController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView index() {
+    	System.out.println("index");
     	ModelAndView model = new ModelAndView("index");   
     	model.addObject("signupForm", new SignupForm());
-
+    	System.out.println("index");
         return model;
     }
     
     @RequestMapping(value = "access-denied", method = RequestMethod.GET)
     public String accessDenied() {
-    	
-
+    	System.out.println("access denided");
         return "access-denied";
     }
     
-//    @RequestMapping( value = "/newTeam")
-//    public ModelAndView goToTeam(){
-//    	ModelAndView model; 
-//      	model = new ModelAndView("newTeam");	
-//      	model.addObject("teamForm", new createTeamForm());
-//    	return model;
-//    }
-    
-    @RequestMapping( value = "/profile")
-    public ModelAndView goToTeam(){
-    	ModelAndView model; 
-    	User user = sampleService.getCurrentUser();
-    	if(user != null){
-    		model = new ModelAndView("profile");
-    		model.addObject("user", user);
-    	}
-    	else{
-    		model = new ModelAndView("index");
-    	}
+    @RequestMapping(value="/register", method=RequestMethod.GET)
+    public ModelAndView getRegisterPage(){
+    	ModelAndView model = new ModelAndView("register");
+    	model.addObject("signupForm", new SignupForm());
     	return model;
     }
-    
-    
     
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String getLoginPage(@RequestParam(value="error", required=false) boolean error, 
       ModelMap model) {
-    
-     // Add an error message to the model if login is unsuccessful
-     // The 'error' parameter is set to true based on the when the authentication has failed. 
-     // We declared this under the authentication-failure-url attribute inside the spring-security.xml
-     /* See below:
-      <form-login 
-       login-page="/krams/auth/login" 
-       authentication-failure-url="/krams/auth/login?error=true" 
-       default-target-url="/krams/main/common"/>
-      */
+    System.out.println("getLoginPage");
      if (error == true) {
-      // Assign an error message
+
       model.put("error", "You have entered an invalid username or password!");
      } else {
       model.put("error", "");
      }
       
-     // This will resolve to /WEB-INF/jsp/loginpage.jsp
+
      return "login";
     }
     
@@ -92,6 +65,7 @@ public class IndexController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ModelAndView create(@Valid SignupForm signupForm, BindingResult result, RedirectAttributes redirectAttributes) {
     	ModelAndView model;
+    	System.out.println("create");
     	if (!result.hasErrors()) {
             try {
               	sampleService.saveFrom(signupForm);
@@ -107,26 +81,9 @@ public class IndexController {
     	return model;
     }
     
-
-//	@RequestMapping(value="/createTeam", method=RequestMethod.POST)
-//    public ModelAndView createTeam(@ModelAttribute("teamForm") createTeamForm createTeamForm){
-//    	ModelAndView model;
-//    	try {
-//        	sampleService.saveFrom(createTeamForm);
-//        	model = new ModelAndView("show");
-//        } catch (InvalidTeamException e) {
-//        	model = new ModelAndView("index");
-//        	model.addObject("page_error", e.getMessage());
-//        }
-//   
-//    	model = new ModelAndView("index");
-//    	model.addObject("signupForm", new SignupForm());    	
-//        return model;
-//    	
-//    }
-    
     @RequestMapping(value = "/security-error", method = RequestMethod.GET)
     public String securityError(RedirectAttributes redirectAttributes) {
+    	System.out.println("securityError");
         redirectAttributes.addFlashAttribute("page_error", "You do have have permission to do that!");
         return "redirect:/";
     }

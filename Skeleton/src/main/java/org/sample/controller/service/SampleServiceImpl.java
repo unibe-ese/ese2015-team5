@@ -2,13 +2,14 @@ package org.sample.controller.service;
 
 
 import org.sample.controller.exceptions.InvalidUserException;
+import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.pojos.SignupForm;
 import org.sample.model.Address;
 import org.sample.model.User;
 import org.sample.model.dao.AddressDao;
 import org.sample.model.dao.UserDao;
+import org.sample.security.UsernamePasswordIDAuthenticationToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +31,6 @@ public class SampleServiceImpl implements SampleService {
             throw new InvalidUserException("Sorry, ESE is not a valid name");   // throw exception
         }
 
-
         Address address = new Address();
         address.setStreet("TestStreet-foo");
         
@@ -42,18 +42,20 @@ public class SampleServiceImpl implements SampleService {
         user.setPassword(signupForm.getPassword());
         
         user = userDao.save(user);   // save object to DB
-        
-        
-        // Iterable<Address> addresses = addDao.findAll();  // find all 
-        // Address anAddress = addDao.findOne((long)3); // find by ID
-        
-        
+             
         signupForm.setId(user.getId());
 
         return signupForm;
-
     }
-
+    
+	public void updateFrom(ModifyUserForm form) {
+		User user  = userDao.findOne(form.getId());
+		user.setFirstName(form.getFirstName());
+		user.setLastName(form.getLastName());
+		user.setPassword(form.getPassword());
+		userDao.save(user);
+	}
+  
 	public User loadUserByUserName(String name) {
 		Iterable<User> users = userDao.findAll();
 		for(User u : users){
@@ -67,34 +69,13 @@ public class SampleServiceImpl implements SampleService {
 
 	public User getCurrentUser() {
 		System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
-		UsernamePasswordAuthenticationToken authtok = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
-		return loadUserByUserName(authtok.getName());
+		UsernamePasswordIDAuthenticationToken authtok;
+		try{
+			authtok = (UsernamePasswordIDAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+		}catch(ClassCastException e){
+			return null;
+		}
+		return userDao.findOne(authtok.getId());
 		
 	}
-    
-//    public void saveFrom(createTeamForm createTeamForm) throws InvalidTeamException {
-//		Team team = new Team();
-//		team.setName(createTeamForm.getTeamName());
-//		team.setCreationDateInMilisec(Calendar.getInstance().getTimeInMillis());
-//		
-//		Iterable<Team> teams = teamDao.findAll();
-//		
-//		for(Team t : teams){
-//			if(t.equals(team)){
-//				System.out.println("exception!");
-//				throw new InvalidTeamException("This team already exists!");
-//			}
-//		}	
-//		team = teamDao.save(team);		
-//	}
-
-//	public List<Team> getTeams() {
-//		List<Team> teams = new ArrayList<Team>();
-//		Iterable<Team> teamIt = teamDao.findAll();
-//		for(Team t : teamIt){
-//			teams.add(t);
-//		}
-//		return teams;
-//		
-//	}
 }
