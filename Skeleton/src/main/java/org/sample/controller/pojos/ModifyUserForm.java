@@ -1,11 +1,16 @@
 package org.sample.controller.pojos;
 
+import javax.validation.constraints.NotNull;
+
 
 
 public class ModifyUserForm{
 	
 	private long id;
+	
+	@NotNull
     private String firstName;
+	@NotNull
     private String lastName;
     private String password;
     private String passwordControll;

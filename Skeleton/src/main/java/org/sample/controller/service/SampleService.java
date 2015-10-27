@@ -15,7 +15,9 @@ public interface SampleService {
 
 	public User getCurrentUser();
 
-	public void updateFrom(ModifyUserForm form);
+	public User updateFrom(ModifyUserForm form);
+	
+	public boolean validToUpdate(ModifyUserForm form);
     
 
 }

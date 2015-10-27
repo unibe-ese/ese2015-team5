@@ -48,12 +48,26 @@ public class SampleServiceImpl implements SampleService {
         return signupForm;
     }
     
-	public void updateFrom(ModifyUserForm form) {
+    public boolean validToUpdate(ModifyUserForm form){
+    	User user = userDao.findOne(form.getId());
+    	if(user == null || !form.getPassword().equals(form.getPasswordControll()) || form.getLastName().equals("")
+    			||  form.getFirstName().equals("")){
+    		return false;
+    	}
+    	
+    	return true;
+    }
+    
+    /**
+     * Only call this after validToUpdate
+     */
+    
+	public User updateFrom(ModifyUserForm form) {
 		User user  = userDao.findOne(form.getId());
 		user.setFirstName(form.getFirstName());
 		user.setLastName(form.getLastName());
 		user.setPassword(form.getPassword());
-		userDao.save(user);
+		return userDao.save(user);
 	}
   
 	public User loadUserByUserName(String name) {

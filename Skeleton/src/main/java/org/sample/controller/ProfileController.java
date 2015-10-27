@@ -44,13 +44,20 @@ public class ProfileController {
 	@RequestMapping(value="/modifyUser", method=RequestMethod.POST)
 	public ModelAndView modifyUser( @ModelAttribute("user") User user, @Valid ModifyUserForm form, BindingResult result, RedirectAttributes redirectAttributes){
 		System.out.println("modifyUser");
-		if(form.getPassword().equals(form.getPasswordControll())){
-			form.setId(user.getId());
-			sampleService.updateFrom(form);
+		form.setId(user.getId());
+		ModelAndView model = new ModelAndView("profile");  
+		if(sampleService.validToUpdate(form) && !result.hasErrors()){	
+			System.out.println("if");
+			user = sampleService.updateFrom(form);
 	    	
 		}
+		else if(result.hasErrors()){
+			model.addObject("error", "Invalid Information");
+		}
+			
 		
-		ModelAndView model = new ModelAndView("profile");   
+		
+		 
     	model.addObject("user", user);
 		model.addObject("modifyUserForm", new ModifyUserForm());
 
