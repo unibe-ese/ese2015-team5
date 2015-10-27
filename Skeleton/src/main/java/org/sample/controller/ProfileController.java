@@ -26,6 +26,7 @@ public class ProfileController {
 	
     @RequestMapping( value = "/profile")
     public ModelAndView gotoProfile(){
+    	System.out.println("gotoProfile");
     	ModelAndView model; 
     	User user = sampleService.getCurrentUser();
     	if(user != null){
@@ -40,9 +41,9 @@ public class ProfileController {
     }
 	
 	
-	@RequestMapping(value="/profile/modifyUser", method=RequestMethod.POST)
+	@RequestMapping(value="/modifyUser", method=RequestMethod.POST)
 	public ModelAndView modifyUser( @ModelAttribute("user") User user, @Valid ModifyUserForm form, BindingResult result, RedirectAttributes redirectAttributes){
-		
+		System.out.println("modifyUser");
 		if(form.getPassword().equals(form.getPasswordControll())){
 			form.setId(user.getId());
 			sampleService.updateFrom(form);

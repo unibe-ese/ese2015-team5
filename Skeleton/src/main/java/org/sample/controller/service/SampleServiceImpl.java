@@ -50,11 +50,10 @@ public class SampleServiceImpl implements SampleService {
     
 	public void updateFrom(ModifyUserForm form) {
 		User user  = userDao.findOne(form.getId());
-		userDao.delete(form.getId());
 		user.setFirstName(form.getFirstName());
 		user.setLastName(form.getLastName());
 		user.setPassword(form.getPassword());
-		user = userDao.save(user);
+		userDao.save(user);
 	}
   
 	public User loadUserByUserName(String name) {
