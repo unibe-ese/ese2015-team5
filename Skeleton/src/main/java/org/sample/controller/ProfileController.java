@@ -23,7 +23,6 @@ public class ProfileController {
 	@Autowired
 	SampleService sampleService;
 	
-	
     @RequestMapping( value = "/profile")
     public ModelAndView gotoProfile(){
     	System.out.println("gotoProfile");
@@ -39,25 +38,21 @@ public class ProfileController {
     	}
     	return model;
     }
-	
-	
+		
 	@RequestMapping(value="/modifyUser", method=RequestMethod.POST)
 	public ModelAndView modifyUser( @ModelAttribute("user") User user, @Valid ModifyUserForm form, BindingResult result, RedirectAttributes redirectAttributes){
 		System.out.println("modifyUser");
 		form.setId(user.getId());
 		ModelAndView model = new ModelAndView("profile");  
+		if(result.hasErrors()){
+			model.addObject("error", "Invalid Information");
+		}
 		if(sampleService.validToUpdate(form) && !result.hasErrors()){	
 			System.out.println("if");
 			user = sampleService.updateFrom(form);
 	    	
 		}
-		else if(result.hasErrors()){
-			model.addObject("error", "Invalid Information");
-		}
-			
-		
-		
-		 
+	
     	model.addObject("user", user);
 		model.addObject("modifyUserForm", new ModifyUserForm());
 

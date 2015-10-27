@@ -6,6 +6,10 @@
 
 <c:import url="template/header.jsp" />
 
+<c:if test="${not empty error}">
+   Error: ${error}
+</c:if>
+
 <form:form method="post" modelAttribute="modifyUserForm" action="./modifyUser" id="modifyUserForm" cssClass="form-horizontal"  autocomplete="off">
     <fieldset>
         <legend>Edit your information</legend>
