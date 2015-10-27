@@ -24,8 +24,7 @@ public class CustomUserDetailsService implements AuthenticationProvider {
 	@Autowired
     SampleService sampleService;
 	
-	public UserDetails loadUserByUsername(String username)
-			throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		System.out.println("IM HERE");
 		// TODO Auto-generated method stub
 		return null;
@@ -35,6 +34,7 @@ public class CustomUserDetailsService implements AuthenticationProvider {
 			throws AuthenticationException {
 		// TODO Auto-generated method stub
 		print(authentication);
+		
 		String name = authentication.getName();
 		String password = (String) authentication.getCredentials();
 		List<GrantedAuthority> grantedAuths = new ArrayList<GrantedAuthority>();

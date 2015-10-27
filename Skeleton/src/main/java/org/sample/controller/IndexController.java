@@ -9,11 +9,9 @@ import org.sample.controller.service.SampleService;
 import org.sample.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -34,8 +32,6 @@ public class IndexController {
     
     @RequestMapping(value = "access-denied", method = RequestMethod.GET)
     public String accessDenied() {
-    	
-
         return "access-denied";
     }
     
@@ -61,34 +57,6 @@ public class IndexController {
     	return model;
     }
     
-    
-    
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String getLoginPage(@RequestParam(value="error", required=false) boolean error, 
-      ModelMap model) {
-    
-     // Add an error message to the model if login is unsuccessful
-     // The 'error' parameter is set to true based on the when the authentication has failed. 
-     // We declared this under the authentication-failure-url attribute inside the spring-security.xml
-     /* See below:
-      <form-login 
-       login-page="/krams/auth/login" 
-       authentication-failure-url="/krams/auth/login?error=true" 
-       default-target-url="/krams/main/common"/>
-      */
-     if (error == true) {
-      // Assign an error message
-      model.put("error", "You have entered an invalid username or password!");
-     } else {
-      model.put("error", "");
-     }
-      
-     // This will resolve to /WEB-INF/jsp/loginpage.jsp
-     return "login";
-    }
-    
-
-
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ModelAndView create(@Valid SignupForm signupForm, BindingResult result, RedirectAttributes redirectAttributes) {
     	ModelAndView model;
@@ -127,7 +95,7 @@ public class IndexController {
     
     @RequestMapping(value = "/security-error", method = RequestMethod.GET)
     public String securityError(RedirectAttributes redirectAttributes) {
-        redirectAttributes.addFlashAttribute("page_error", "You do have have permission to do that!");
+        redirectAttributes.addFlashAttribute("page_error", "You do have permission to do that!");
         return "redirect:/";
     }
 
