@@ -1,15 +1,8 @@
 package org.sample.model;
 
 import javax.persistence.Entity;
-<<<<<<< HEAD
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-=======
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
->>>>>>> refs/remotes/origin/master
 
 
 @Entity

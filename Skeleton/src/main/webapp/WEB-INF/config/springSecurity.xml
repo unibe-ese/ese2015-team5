@@ -7,12 +7,6 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
-<<<<<<< HEAD
-	<security:http auto-config="true" use-expressions="true" access-denied-page="/access-denied">
-		<security:intercept-url pattern="/login" access="permitAll" />		
-		<security:form-login login-page="/login" authentication-failure-url="/login?error=true" default-target-url="/" />
-		<security:logout invalidate-session="true" logout-success-url="/" logout-url="/logout" />
-=======
 	<security:http auto-config="true" use-expressions="true" >
 		<security:intercept-url pattern="/login" access="permitAll" />	
 		<security:intercept-url pattern="/register" access="permitAll" />		
@@ -25,18 +19,10 @@
 			invalidate-session="true"
 			logout-success-url="/" 
 			logout-url="/logout" />
->>>>>>> refs/remotes/origin/master
 	</security:http>
 
 	<!-- Declare an authentication-manager to use a custom userDetailsService -->
 	<security:authentication-manager>
-<<<<<<< HEAD
-		<!-- .... -->
-	</security:authentication-manager>
-
-	
-	
-=======
  		<security:authentication-provider ref="userDetailsService"/>
 	</security:authentication-manager>
 
@@ -45,6 +31,5 @@
  
 	
 	<bean class="org.sample.security.CustomUserDetailsService" id="userDetailsService" ></bean>
->>>>>>> refs/remotes/origin/master
 
 </beans>

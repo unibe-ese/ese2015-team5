@@ -59,10 +59,6 @@
 										<li><a href="#">Veroeros feugiat</a></li>
 									</ul>
 								</li>
-<<<<<<< HEAD
-								<li><a href="left-sidebar.html">Left Sidebar</a></li>
-								<li><a href="right-sidebar.html">Right Sidebar</a></li>
-=======
 								<li>
 									<form action="logout"/>
 									   <input type="submit" value="Logout"/>
@@ -71,7 +67,6 @@
 								<li><form action="/Skeleton/profile" />
    							 			<input type="submit" value="Profile"/>
 								</form></li>
->>>>>>> refs/remotes/origin/master
 								<li class="current"><a href="no-sidebar.html">No Sidebar</a></li>
 							</ul>
 						</nav>

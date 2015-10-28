@@ -17,11 +17,7 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
-<<<<<<< HEAD
-    private long teamId;
-=======
     private String password;
->>>>>>> refs/remotes/origin/master
     
     @OneToOne(cascade = {CascadeType.ALL})
     private Address address; 
@@ -66,14 +62,6 @@ public class User {
 		this.address = address;
 	}
 
-<<<<<<< HEAD
-	public long getTeamId() {
-		return teamId;
-	}
-
-	public void setTeamId(long teamId) {
-		this.teamId = teamId;
-=======
 
 	public String getPassword() {
 		return password;
@@ -81,7 +69,6 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
->>>>>>> refs/remotes/origin/master
 	}
 	
 }

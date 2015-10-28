@@ -16,11 +16,7 @@
     	<param-name>contextConfigLocation</param-name>
     	<param-value>
     		/WEB-INF/config/springData.xml
-<<<<<<< HEAD
-    		/WEB-INF/config/springSecurity.xml
-=======
 			/WEB-INF/config/springSecurity.xml
->>>>>>> refs/remotes/origin/master
     	</param-value>
 	</context-param>
     
