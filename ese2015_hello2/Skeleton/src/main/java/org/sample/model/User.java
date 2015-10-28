@@ -20,7 +20,6 @@ public class User {
     private long teamId;
     
     @OneToOne(cascade = {CascadeType.ALL})
-    private Address address; 
     
     public Long getId() {
         return id;
@@ -54,13 +53,6 @@ public class User {
         this.email = email;
     }
 
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
 
 	public long getTeamId() {
 		return teamId;

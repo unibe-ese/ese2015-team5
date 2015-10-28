@@ -39,6 +39,17 @@
                 <form:errors path="lastName" cssClass="help-inline" element="span"/>
             </div>
         </div>
+<<<<<<< HEAD
+=======
+        <c:set var="passwordErrors"><form:errors path="password"/></c:set>
+        <div class="control-group<c:if test="${not empty password}"> error</c:if>">
+            <label class="control-label" for="field-password">Last Name</label>
+            <div class="controls">
+                <form:input path="password" id="field-password" tabindex="3" maxlength="35" placeholder="Password"/>
+                <form:errors path="password" cssClass="help-inline" element="span"/>
+            </div>
+        </div>
+>>>>>>> refs/remotes/origin/master
         <div class="form-actions">
             <button type="submit" class="btn btn-primary">Sign up</button>
             <button type="button" class="btn">Cancel</button>

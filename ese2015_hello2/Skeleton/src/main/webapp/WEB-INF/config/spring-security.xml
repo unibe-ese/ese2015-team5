@@ -15,8 +15,10 @@
 
 	<!-- Declare an authentication-manager to use a custom userDetailsService -->
 	<security:authentication-manager>
-		<!-- .... -->
-	</security:authentication-manager>
+         <security:authentication-provider user-service-ref="userDetailsService">
+           <security:password-encoder ref="passwordEncoder"/>
+         </security:authentication-provider>
+ 	</security:authentication-manager>
 
 	
 	

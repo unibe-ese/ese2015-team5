@@ -3,9 +3,7 @@ package org.sample.controller.service;
 
 import org.sample.controller.exceptions.InvalidUserException;
 import org.sample.controller.pojos.SignupForm;
-import org.sample.model.Address;
 import org.sample.model.User;
-import org.sample.model.dao.AddressDao;
 import org.sample.model.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +15,6 @@ import org.springframework.util.StringUtils;
 public class SampleServiceImpl implements SampleService {
 
     @Autowired    UserDao userDao;
-    @Autowired    AddressDao addDao;
     
     @Transactional
     public SignupForm saveFrom(SignupForm signupForm) throws InvalidUserException{
@@ -29,14 +26,10 @@ public class SampleServiceImpl implements SampleService {
         }
 
 
-        Address address = new Address();
-        address.setStreet("TestStreet-foo");
-        
         User user = new User();
         user.setFirstName(signupForm.getFirstName());
         user.setEmail(signupForm.getEmail());
         user.setLastName(signupForm.getLastName());
-        user.setAddress(address);
         
         user = userDao.save(user);   // save object to DB
         

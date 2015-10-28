@@ -2,12 +2,22 @@ package org.sample.controller.service;
 
 
 import org.sample.controller.exceptions.InvalidUserException;
+<<<<<<< HEAD
+=======
+import org.sample.controller.pojos.ModifyUserForm;
+>>>>>>> refs/remotes/origin/master
 import org.sample.controller.pojos.SignupForm;
 import org.sample.model.Address;
 import org.sample.model.User;
 import org.sample.model.dao.AddressDao;
 import org.sample.model.dao.UserDao;
+<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Autowired;
+=======
+import org.sample.security.UsernamePasswordIDAuthenticationToken;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+>>>>>>> refs/remotes/origin/master
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -28,7 +38,10 @@ public class SampleServiceImpl implements SampleService {
             throw new InvalidUserException("Sorry, ESE is not a valid name");   // throw exception
         }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/master
         Address address = new Address();
         address.setStreet("TestStreet-foo");
         
@@ -37,6 +50,7 @@ public class SampleServiceImpl implements SampleService {
         user.setEmail(signupForm.getEmail());
         user.setLastName(signupForm.getLastName());
         user.setAddress(address);
+<<<<<<< HEAD
         if(signupForm.getTeamId() != 0){
         	 user.setTeamId(signupForm.getTeamId());
         }
@@ -79,4 +93,45 @@ public class SampleServiceImpl implements SampleService {
 //		return teams;
 //		
 //	}
+=======
+        user.setPassword(signupForm.getPassword());
+        
+        user = userDao.save(user);   // save object to DB
+             
+        signupForm.setId(user.getId());
+
+        return signupForm;
+    }
+    
+	public void updateFrom(ModifyUserForm form) {
+		User user  = userDao.findOne(form.getId());
+		user.setFirstName(form.getFirstName());
+		user.setLastName(form.getLastName());
+		user.setPassword(form.getPassword());
+		userDao.save(user);
+	}
+  
+	public User loadUserByUserName(String name) {
+		Iterable<User> users = userDao.findAll();
+		for(User u : users){
+			if(u.getEmail().equals(name)){
+				return u;
+			}
+		}
+		return null;
+		
+	}
+
+	public User getCurrentUser() {
+		System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
+		UsernamePasswordIDAuthenticationToken authtok;
+		try{
+			authtok = (UsernamePasswordIDAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+		}catch(ClassCastException e){
+			return null;
+		}
+		return userDao.findOne(authtok.getId());
+		
+	}
+>>>>>>> refs/remotes/origin/master
 }
