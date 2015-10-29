@@ -61,7 +61,21 @@
     </fieldset>
 </form:form>
 
+<table>
+    <c:forEach items="${user.competences}" var="competence">
+        <tr>
+            <td>
+                ${competence.description}
+            </td>
+            <td>
+                <form:form action="profile/delete$id=${competence.id}">
+                    <input type="submit" value="Delete"></input>
+                </form:form>
+            </td>
 
+        </tr>
+    </c:forEach>
+</table>
 
 
 

@@ -1,7 +1,6 @@
 package org.sample.controller.pojos;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
 
 
 
@@ -9,13 +8,12 @@ public class ModifyUserForm{
 	
 	private long id;
 	
-	@Size(min=1)
-	@NotNull
+	@NotBlank(message = "Please provide your firstname")
     private String firstName;
 	
-	@Size(min=1)
-	@NotNull
+	@NotBlank(message = "Please provide your Lastname")
     private String lastName;
+	
     private String password;
     private String passwordControll;
     

@@ -1,12 +1,17 @@
 package org.sample.controller.service;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.sample.controller.exceptions.InvalidUserException;
 import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.pojos.SignupForm;
 import org.sample.model.Address;
 import org.sample.model.User;
+import org.sample.model.Competence;
 import org.sample.model.dao.AddressDao;
+import org.sample.model.dao.CompetenceDao;
 import org.sample.model.dao.UserDao;
 import org.sample.security.UsernamePasswordIDAuthenticationToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +26,7 @@ public class SampleServiceImpl implements SampleService {
 
     @Autowired    UserDao userDao;
     @Autowired    AddressDao addDao;
+    @Autowired	  CompetenceDao compDao;
     
     @Transactional
     public SignupForm saveFrom(SignupForm signupForm) throws InvalidUserException{
@@ -91,6 +97,18 @@ public class SampleServiceImpl implements SampleService {
 			return null;
 		}
 		return userDao.findOne(authtok.getId());
+		
+	}
+	
+	public List<Competence> getCompetences(long userId){
+		
+		List<Competence> competences = new ArrayList<Competence>();
+		for(Competence comp : compDao.findAll()){
+			if(comp.getOwner().getId() == userId){
+				competences.add(comp);
+			}
+		}
+		return competences;
 		
 	}
 }

@@ -28,11 +28,6 @@ public class ProfileController {
 	
     @RequestMapping( value = "/profile")
     public ModelAndView gotoProfile(Model model){
-    	System.out.println("ENTERED PROFILE ---------------------");
-    	System.out.println("contains?: " + model.containsAttribute("modifyUserForm"));
-    	System.out.println("contains register?: " + model.containsAttribute("org.springframework.validation.BindingResult.register"));
-    	System.out.println(model.asMap().keySet().toString());
-    	System.out.println(model.asMap().toString());
     	
     	ModelAndView modelAndView = new ModelAndView("profile", model.asMap());
     	User user = sampleService.getCurrentUser();
@@ -43,27 +38,30 @@ public class ProfileController {
     	}
     	
     	else if(!model.containsAttribute("modifyUserForm") ){
-    		System.out.println("contains?: " + model.containsAttribute("modifyUserForm"));
-    		
+    	
     		ModifyUserForm modForm = new ModifyUserForm();
     		modForm.setEnableTutor(user.getEnableTutor());
     		modelAndView.addObject("modifyUserForm", modForm);
     		
     	}
-    	
+    	System.out.println(user.getCompetences().toString());
+    	model.addAttribute("competenceList", sampleService.getCompetences(user.getId()));
     	return modelAndView;
-    }
+    }	
     
-    public ModelAndView prepareProfile(User user){
-    	ModelAndView model = new ModelAndView("profile");
-		model.addObject("user", user);
-		ModifyUserForm modForm = new ModifyUserForm();
-		modForm.setEnableTutor(user.getEnableTutor());
-		model.addObject("modifyUserForm", modForm);
-		return model;
-    }
-		
-    
+    /**
+     * Checks if modified information is valid, then redirects to correct URL
+     * 
+     * If the new information is not valid, the errors are store in redirectedAttributes, which can be
+     * accessed from the model in the gotoProfile-method. If the information is valid, they are saved to 
+     * the database. 
+     * 
+     * @param user The logged in user	
+     * @param form The form with the new information
+     * @param result Possible errors in the form
+     * @param redirectAttributes 
+     * @return Returns the new URL 
+     */
 	@RequestMapping(value="/modifyUser", method=RequestMethod.POST)
 	public String modifyUser( @ModelAttribute("user") User user, 
 			 @Valid ModifyUserForm form, BindingResult result, RedirectAttributes redirectAttributes){
@@ -77,7 +75,7 @@ public class ProfileController {
 		else if(sampleService.validToUpdate(form)){	
 			user = sampleService.updateFrom(form);
 		}
-        return "redirect:index";
+        return "redirect:profile";
 	}
 	
 	@RequestMapping(value="/addCompetence", method=RequestMethod.POST)

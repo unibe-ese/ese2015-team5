@@ -1,9 +1,10 @@
 package org.sample.model;
 
-import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -22,13 +23,21 @@ public class User {
     private String email;
     private String password;
     
-    @OneToMany(targetEntity=Competence.class, mappedBy="owner")
-    private Collection<Competence> comtepetences;
+    @OneToMany(fetch = FetchType.EAGER, targetEntity=Competence.class, mappedBy="owner", cascade=CascadeType.ALL)
+    private List<Competence> competences;
     
     private boolean enableTutor;
     
     @OneToOne(cascade = {CascadeType.ALL})
     private Address address; 
+    
+    public void setCompetences(List<Competence> competences){
+    	this.competences = competences;
+    }
+    
+    public List<Competence> getCompetences(){
+    	return competences;
+    }
     
     public Long getId() {
         return id;

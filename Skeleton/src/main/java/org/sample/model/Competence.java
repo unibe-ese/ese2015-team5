@@ -36,4 +36,8 @@ public class Competence {
 	public void setOwner(User owner) {
 		this.owner = owner;
 	}
+	
+	public String toString(){
+		return "Description: " + this.description + ", Owner: " + owner.getEmail();
+	}
 }
