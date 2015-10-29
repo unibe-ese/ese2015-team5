@@ -19,6 +19,8 @@ public class User {
     private String email;
     private String password;
     
+    private boolean enableTutor;
+    
     @OneToOne(cascade = {CascadeType.ALL})
     private Address address; 
     
@@ -69,6 +71,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public boolean getEnableTutor() {
+		return enableTutor;
+	}
+
+	public void setEnableTutor(boolean enableTutor) {
+		this.enableTutor = enableTutor;
 	}
 	
 }

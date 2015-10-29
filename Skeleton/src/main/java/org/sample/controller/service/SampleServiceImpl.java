@@ -40,7 +40,7 @@ public class SampleServiceImpl implements SampleService {
         user.setLastName(signupForm.getLastName());
         user.setAddress(address);
         user.setPassword(signupForm.getPassword());
-        
+        user.setEnableTutor(false);
         user = userDao.save(user);   // save object to DB
              
         signupForm.setId(user.getId());
@@ -67,6 +67,7 @@ public class SampleServiceImpl implements SampleService {
 		user.setFirstName(form.getFirstName());
 		user.setLastName(form.getLastName());
 		user.setPassword(form.getPassword());
+		user.setEnableTutor(form.getEnableTutor());
 		return userDao.save(user);
 	}
   
