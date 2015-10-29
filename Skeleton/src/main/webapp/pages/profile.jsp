@@ -5,7 +5,7 @@
 
 
 <c:import url="template/header.jsp" />
-
+<div style="width:500px;">
 <form:form method="post" modelAttribute="modifyUserForm" action="./modifyUser" id="modifyUserForm" cssClass="form-horizontal"  autocomplete="off">
     <fieldset>
         <legend><h1>Edit your information</h1></legend>
@@ -13,7 +13,13 @@
            Error: ${error}
         </c:if>
 
-        <div class="control-group<c:if test="${not empty firstName}"> error</c:if>">
+        <div>
+            <label class="control-label" >Email</label>
+                <div class="controls">
+                  ${user.email}
+                </div>
+        </div>
+        <div class="control-group">
             <label class="control-label" for="field-firstName">Enable Tutor</label>
             <div class="controls">
                 <form:checkbox path="enableTutor" id="field-enableTut" tabindex="1" value="${user.enableTutor}"/>
@@ -58,5 +64,5 @@
         </div>
     </fieldset>
 </form:form>
-
+</div>
 <c:import url="template/footer.jsp" />

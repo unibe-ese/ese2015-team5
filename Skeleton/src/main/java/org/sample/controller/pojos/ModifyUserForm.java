@@ -9,11 +9,11 @@ public class ModifyUserForm{
 	
 	private long id;
 	
-	@Size(min=2)
+	@Size(min=1)
 	@NotNull
     private String firstName;
 	
-	@Size(min=2)
+	@Size(min=1)
 	@NotNull
     private String lastName;
     private String password;
