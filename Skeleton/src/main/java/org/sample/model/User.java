@@ -23,7 +23,7 @@ public class User {
     private String email;
     private String password;
     
-    @OneToMany(fetch = FetchType.EAGER, targetEntity=Competence.class, mappedBy="owner", cascade=CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, targetEntity=Competence.class, mappedBy="owner", cascade=CascadeType.DETACH)
     private List<Competence> competences;
     
     private boolean enableTutor;

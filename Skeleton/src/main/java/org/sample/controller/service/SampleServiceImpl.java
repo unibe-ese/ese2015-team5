@@ -113,13 +113,19 @@ public class SampleServiceImpl implements SampleService {
 	}
 
 	public void removeCompetence(long compId) {
+//		System.out.println("removeComp");
+//		System.out.println(compId);
+//		Competence comp = compDao.findOne(compId);
+//		User owner = comp.getOwner();
+//		comp.setOwner(null);
+//		List<Competence> competences = owner.getCompetences();
+//		competences.remove(comp);
+//		System.out.println(competences.contains(comp));
+//		owner.setCompetences(competences);
+//		compDao.delete(compId);
 		Competence comp = compDao.findOne(compId);
-		User owner = comp.getOwner();
-		List<Competence> competences = owner.getCompetences();
-		competences.remove(comp);
-		owner.setCompetences(competences);
+		comp.setOwner(null);
 		compDao.delete(compId);
-		
 	}
 
 		
