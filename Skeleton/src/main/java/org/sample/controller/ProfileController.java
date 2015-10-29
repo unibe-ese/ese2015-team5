@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -90,6 +91,13 @@ public class ProfileController {
 		}
 		return null;
 		
+	}
+	
+	@RequestMapping(value="/profile/delete$id={compId}", method=RequestMethod.POST)
+	public String deleteCompetence(@PathVariable("compId")long compId, Model model){
+		sampleService.removeCompetence(compId);
+
+		return "redirect:/profile";
 	}
 	
 }

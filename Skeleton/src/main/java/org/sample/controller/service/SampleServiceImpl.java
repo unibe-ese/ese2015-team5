@@ -111,4 +111,17 @@ public class SampleServiceImpl implements SampleService {
 		return competences;
 		
 	}
+
+	public void removeCompetence(long compId) {
+		Competence comp = compDao.findOne(compId);
+		User owner = comp.getOwner();
+		List<Competence> competences = owner.getCompetences();
+		competences.remove(comp);
+		owner.setCompetences(competences);
+		compDao.delete(compId);
+		
+	}
+
+		
+
 }

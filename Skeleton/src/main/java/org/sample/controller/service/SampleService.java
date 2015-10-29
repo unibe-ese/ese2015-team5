@@ -23,6 +23,8 @@ public interface SampleService {
 	public boolean validToUpdate(ModifyUserForm form);
 	
 	public List<Competence> getCompetences(long userId);
+
+	public void removeCompetence(long compId);
     
 
 }
