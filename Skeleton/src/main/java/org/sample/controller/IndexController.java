@@ -25,7 +25,7 @@ public class IndexController {
     @Autowired
     SampleService sampleService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public ModelAndView index() {
     	System.out.println("index");
     	ModelAndView model = new ModelAndView("index");   

@@ -1,8 +1,11 @@
 package org.sample.controller.pojos;
 
+import javax.validation.constraints.Size;
+
 
 public class AddCompetenceForm {
 
+	@Size(min=1, max=20)
 	private String description;
 	
 	private long ownerId;

@@ -8,6 +8,7 @@ import org.sample.controller.service.SampleService;
 import org.sample.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,52 +27,71 @@ public class ProfileController {
 	
 	
     @RequestMapping( value = "/profile")
-    public ModelAndView gotoProfile(){
-  
-    	ModelAndView model; 
-    	User user = sampleService.getCurrentUser();
+    public ModelAndView gotoProfile(Model model){
+    	System.out.println("ENTERED PROFILE ---------------------");
+    	System.out.println("contains?: " + model.containsAttribute("modifyUserForm"));
+    	System.out.println("contains register?: " + model.containsAttribute("org.springframework.validation.BindingResult.register"));
+    	System.out.println(model.asMap().keySet().toString());
+    	System.out.println(model.asMap().toString());
     	
-    	if(user != null){
-    		model = new ModelAndView("profile");
-    		model.addObject("user", user);
+    	ModelAndView modelAndView = new ModelAndView("profile", model.asMap());
+    	User user = sampleService.getCurrentUser();
+    	modelAndView.addObject("user", user);
+    	
+    	if(user == null){
+    		return new ModelAndView("index");
+    	}
+    	
+    	else if(!model.containsAttribute("modifyUserForm") ){
+    		System.out.println("contains?: " + model.containsAttribute("modifyUserForm"));
+    		
     		ModifyUserForm modForm = new ModifyUserForm();
     		modForm.setEnableTutor(user.getEnableTutor());
-    		model.addObject("modifyUserForm", modForm);
-    		model.addObject("addCompetenceForm", new AddCompetenceForm());
-
+    		modelAndView.addObject("modifyUserForm", modForm);
+    		
     	}
-    	else{
-    		model = new ModelAndView("index");
-    	}
-    	return model;
+    	
+    	return modelAndView;
+    }
+    
+    public ModelAndView prepareProfile(User user){
+    	ModelAndView model = new ModelAndView("profile");
+		model.addObject("user", user);
+		ModifyUserForm modForm = new ModifyUserForm();
+		modForm.setEnableTutor(user.getEnableTutor());
+		model.addObject("modifyUserForm", modForm);
+		return model;
     }
 		
     
 	@RequestMapping(value="/modifyUser", method=RequestMethod.POST)
-	public ModelAndView modifyUser( @ModelAttribute("user") User user, 
+	public String modifyUser( @ModelAttribute("user") User user, 
 			 @Valid ModifyUserForm form, BindingResult result, RedirectAttributes redirectAttributes){
 		form.setId(user.getId());
-		ModelAndView model = new ModelAndView("profile");  
 		if(result.hasErrors()){
-			model.addObject("error", "Invalid Information");
-			
+			redirectAttributes.addFlashAttribute("modifyUserForm", form);
+			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.modifyUserForm", result);
+		
+			return "redirect:profile";
 		}
 		else if(sampleService.validToUpdate(form)){	
-			System.out.println("if");
 			user = sampleService.updateFrom(form);
-			model.addObject("user", user);
-			ModifyUserForm modForm = new ModifyUserForm();
-    		modForm.setEnableTutor(user.getEnableTutor());
-    		model.addObject("modifyUserForm", modForm);
-    		model.addObject("addCompetenceForm", new AddCompetenceForm());
 		}
-        return model;
+        return "redirect:index";
 	}
 	
-	@RequestMapping(value="profile/addCompetence", method=RequestMethod.POST)
-	public ModelAndView addCompetence(){
+	@RequestMapping(value="/addCompetence", method=RequestMethod.POST)
+	public ModelAndView addCompetence(@ModelAttribute("addCompetenceForm") @Valid AddCompetenceForm form, 
+			@ModelAttribute("user") User user, BindingResult result){
 		System.out.println("competence");
+		ModelAndView model;
+
+		if(result.hasErrors()){
+			System.out.println("error");
+			model = new ModelAndView("profile");
+		}
 		return null;
+		
 	}
 	
 }

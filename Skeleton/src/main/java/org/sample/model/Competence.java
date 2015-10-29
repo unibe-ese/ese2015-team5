@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Competence {
@@ -14,17 +15,15 @@ public class Competence {
 	
 	@ManyToOne
 	private User owner;
-	
-	private String name;
+	@Size(min=1)
+	private String description;
 
-		
-	public String getName() {
-		return name;
+	public String getDescription() {
+		return description;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-
 	public long getId() {
 		return id;
 	}

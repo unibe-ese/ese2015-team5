@@ -24,10 +24,7 @@
                 <form:checkbox path="enableTutor" id="field-enableTut" tabindex="1" value="${user.enableTutor}"/>
             </div>
         </div>
-
-
-        <c:set var="firstNameErrors"><form:errors path="firstName"/></c:set>
-        <div class="control-group<c:if test="${not empty firstName}"> error</c:if>">
+        <div class="control-group">
             <label class="control-label" for="field-firstName">First Name</label>
             <div class="controls">
                 <form:input path="firstName" id="field-firstName" tabindex="2" maxlength="35" value="${user.firstName}"/>
@@ -65,12 +62,7 @@
 </form:form>
 
 
-<form:form method="post" modelAttribute="addCompetenceForm" action="profile/addCompetence" id="addCompetenceForm">
-      <form:input path="description" id="field-description" tabindex="3" maxlength="35" value="Enter Description"/>
-      <div class="form-actions">
-          <input type="submit" value="Create" class="btn btn-primary"></input>
-      </div>
-</form:form>
+
 
 
 
