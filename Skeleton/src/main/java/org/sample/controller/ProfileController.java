@@ -2,6 +2,7 @@ package org.sample.controller;
 
 import javax.validation.Valid;
 
+import org.sample.controller.pojos.AddCompetenceForm;
 import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.service.SampleService;
 import org.sample.model.User;
@@ -36,6 +37,7 @@ public class ProfileController {
     		ModifyUserForm modForm = new ModifyUserForm();
     		modForm.setEnableTutor(user.getEnableTutor());
     		model.addObject("modifyUserForm", modForm);
+    		model.addObject("addCompetenceForm", new AddCompetenceForm());
 
     	}
     	else{
@@ -61,12 +63,15 @@ public class ProfileController {
 			ModifyUserForm modForm = new ModifyUserForm();
     		modForm.setEnableTutor(user.getEnableTutor());
     		model.addObject("modifyUserForm", modForm);
-	    	
+    		model.addObject("addCompetenceForm", new AddCompetenceForm());
 		}
-	
-    	
-
         return model;
+	}
+	
+	@RequestMapping(value="profile/addCompetence", method=RequestMethod.POST)
+	public ModelAndView addCompetence(){
+		System.out.println("competence");
+		return null;
 	}
 	
 }

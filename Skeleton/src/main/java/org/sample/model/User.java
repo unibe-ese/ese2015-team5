@@ -1,9 +1,12 @@
 package org.sample.model;
 
+import java.util.Collection;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 
@@ -18,6 +21,9 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+    
+    @OneToMany(targetEntity=Competence.class, mappedBy="owner")
+    private Collection<Competence> comtepetences;
     
     private boolean enableTutor;
     

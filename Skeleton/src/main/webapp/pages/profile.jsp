@@ -5,8 +5,7 @@
 
 
 <c:import url="template/header.jsp" />
-<div style="width:500px;">
-<form:form method="post" modelAttribute="modifyUserForm" action="./modifyUser" id="modifyUserForm" cssClass="form-horizontal"  autocomplete="off">
+<form:form method="post" modelAttribute="modifyUserForm" action="./modifyUser" id="modifyUserForm" cssClass="form-horizontal"  autocomplete="off" style="width:500px">
     <fieldset>
         <legend><h1>Edit your information</h1></legend>
         <c:if test="${not empty error}">
@@ -64,5 +63,15 @@
         </div>
     </fieldset>
 </form:form>
-</div>
+
+
+<form:form method="post" modelAttribute="addCompetenceForm" action="profile/addCompetence" id="addCompetenceForm">
+      <form:input path="description" id="field-description" tabindex="3" maxlength="35" value="Enter Description"/>
+      <div class="form-actions">
+          <input type="submit" value="Create" class="btn btn-primary"></input>
+      </div>
+</form:form>
+
+
+
 <c:import url="template/footer.jsp" />
