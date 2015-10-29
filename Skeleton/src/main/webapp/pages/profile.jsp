@@ -76,7 +76,11 @@
         </tr>
     </c:forEach>
 </table>
-
+<form:form method="post" modelAttribute="addCompetenceForm" action="./addCompetence" id="addComp">
+    <form:input path="description"/>
+    <form:errors path="description" cssClass="help-inline" element="span"/>
+    <input type="submit" value="Add"></input>
+</form:form>
 
 
 

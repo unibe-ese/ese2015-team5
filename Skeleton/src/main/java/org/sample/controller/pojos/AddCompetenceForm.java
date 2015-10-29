@@ -1,11 +1,11 @@
 package org.sample.controller.pojos;
 
-import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
 
 
 public class AddCompetenceForm {
 
-	@Size(min=1, max=20)
+	@NotBlank(message = "Please provide your firstname")
 	private String description;
 	
 	private long ownerId;

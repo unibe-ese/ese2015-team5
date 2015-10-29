@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.sample.controller.exceptions.InvalidUserException;
+import org.sample.controller.pojos.AddCompetenceForm;
 import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.pojos.SignupForm;
 import org.sample.model.Address;
@@ -126,6 +127,14 @@ public class SampleServiceImpl implements SampleService {
 		Competence comp = compDao.findOne(compId);
 		comp.setOwner(null);
 		compDao.delete(compId);
+	}
+
+	public void addCompetence(AddCompetenceForm form) {
+		Competence comp = new Competence();
+		User user = userDao.findOne(form.getOwnerId());
+		comp.setDescription(form.getDescription());
+		comp.setOwner(user);
+		compDao.save(comp);
 	}
 
 		

@@ -38,15 +38,21 @@ public class ProfileController {
     		return new ModelAndView("index");
     	}
     	
-    	else if(!model.containsAttribute("modifyUserForm") ){
+    	if(!model.containsAttribute("modifyUserForm") ){
     	
     		ModifyUserForm modForm = new ModifyUserForm();
     		modForm.setEnableTutor(user.getEnableTutor());
-    		modelAndView.addObject("modifyUserForm", modForm);
-    		
+    		modelAndView.addObject("modifyUserForm", modForm);		
     	}
+    	
+    	if(!model.containsAttribute("addCompetenceForm") ){
+    		modelAndView.addObject("addCompetenceForm", new AddCompetenceForm());
+    	}
+    	
+    	
     	System.out.println(user.getCompetences().toString());
     	model.addAttribute("competenceList", sampleService.getCompetences(user.getId()));
+    	
     	return modelAndView;
     }	
     
@@ -80,16 +86,19 @@ public class ProfileController {
 	}
 	
 	@RequestMapping(value="/addCompetence", method=RequestMethod.POST)
-	public ModelAndView addCompetence(@ModelAttribute("addCompetenceForm") @Valid AddCompetenceForm form, 
-			@ModelAttribute("user") User user, BindingResult result){
+	public String addCompetence(@ModelAttribute("addCompetenceForm") @Valid AddCompetenceForm form, 
+			@ModelAttribute("user") User user, BindingResult result, RedirectAttributes redirectedAttribtues){
 		System.out.println("competence");
-		ModelAndView model;
-
+		System.out.println("has error");
 		if(result.hasErrors()){
-			System.out.println("error");
-			model = new ModelAndView("profile");
+			redirectedAttribtues.addFlashAttribute("addCompetenceForm", form);
+			redirectedAttribtues.addFlashAttribute("org.springframework.validation.BindingResult.addCompetenceForm", result);
+			
+			return "redirect:profile";
 		}
-		return null;
+		form.setOwnerId(user.getId());
+		sampleService.addCompetence(form);
+		return "redirect:profile";
 		
 	}
 	
