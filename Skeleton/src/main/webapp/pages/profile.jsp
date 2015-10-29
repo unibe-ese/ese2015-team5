@@ -5,13 +5,26 @@
 
 
 <c:import url="template/header.jsp" />
-
-<form:form method="post" modelAttribute="modifyUserForm" action="./modifyUser" id="modifyUserForm" cssClass="form-horizontal"  autocomplete="off">
+<form:form method="post" modelAttribute="modifyUserForm" action="./modifyUser" id="modifyUserForm" cssClass="form-horizontal"  autocomplete="off" style="width:500px">
     <fieldset>
-        <legend>Edit your information</legend>
-		
-        <c:set var="firstNameErrors"><form:errors path="firstName"/></c:set>
-        <div class="control-group<c:if test="${not empty firstNameErrors}"> error</c:if>">
+        <legend><h1>Edit your information</h1></legend>
+        <c:if test="${not empty error}">
+           Error: ${error}
+        </c:if>
+
+        <div>
+            <label class="control-label" >Email</label>
+                <div class="controls">
+                  ${user.email}
+                </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="field-firstName">Enable Tutor</label>
+            <div class="controls">
+                <form:checkbox path="enableTutor" id="field-enableTut" tabindex="1" value="${user.enableTutor}"/>
+            </div>
+        </div>
+        <div class="control-group">
             <label class="control-label" for="field-firstName">First Name</label>
             <div class="controls">
                 <form:input path="firstName" id="field-firstName" tabindex="2" maxlength="35" value="${user.firstName}"/>
@@ -38,7 +51,7 @@
         <div class="control-group<c:if test="${not empty password}"> error</c:if>">
             <label class="control-label" for="field-password">Again Please</label>
             <div class="controls">
-                <form:input path="passwordControll" type="password" id="field-password" tabindex="3" maxlength="35" value="${user.password}"/>
+                <form:input path="passwordControll" type="password" id="field-password" tabindex="4" maxlength="35" value="${user.password}"/>
                 <form:errors path="password" cssClass="help-inline" element="span"/>
             </div>
         </div>
@@ -47,5 +60,28 @@
         </div>
     </fieldset>
 </form:form>
+
+<table>
+    <c:forEach items="${user.competences}" var="competence">
+        <tr>
+            <td>
+                ${competence.description}
+            </td>
+            <td>
+                <form:form action="profile/delete$id=${competence.id}">
+                    <input type="submit" value="Delete"></input>
+                </form:form>
+            </td>
+
+        </tr>
+    </c:forEach>
+</table>
+<form:form method="post" modelAttribute="addCompetenceForm" action="./addCompetence" id="addComp">
+    <form:input path="description"/>
+    <form:errors path="description" cssClass="help-inline" element="span"/>
+    <input type="submit" value="Add"></input>
+</form:form>
+
+
 
 <c:import url="template/footer.jsp" />

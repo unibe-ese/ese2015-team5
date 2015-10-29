@@ -1,14 +1,23 @@
 package org.sample.controller.pojos;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 
 
 public class ModifyUserForm{
 	
 	private long id;
+	
+	@NotBlank(message = "Please provide your firstname")
     private String firstName;
+	
+	@NotBlank(message = "Please provide your Lastname")
     private String lastName;
+	
     private String password;
     private String passwordControll;
+    
+    private boolean enableTutor;
 
     public String getFirstName() {
         return firstName;
@@ -48,5 +57,13 @@ public class ModifyUserForm{
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public boolean getEnableTutor() {
+		return enableTutor;
+	}
+
+	public void setEnableTutor(boolean enableTutor) {
+		this.enableTutor = enableTutor;
 	}
 }

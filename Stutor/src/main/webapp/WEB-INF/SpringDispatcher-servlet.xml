@@ -21,12 +21,12 @@
   <bean name="/" class="Team5.Stutor.controller.HomeController"/>
 
   
-  
+  <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
         <property name="prefix" value="/views/"></property>
-        <property name="suffix" value=".jsp"></property>        
+        <property name="suffix" value=".jsp"></property>
   </bean>
-   
+
 
 </beans>
