@@ -17,6 +17,8 @@ public class Competence {
 	private User owner;
 	@Size(min=1)
 	private String description;
+	
+	private boolean isActive;
 
 	public String getDescription() {
 		return description;
@@ -40,4 +42,11 @@ public class Competence {
 	public String toString(){
 		return "Description: " + this.description + ", Owner: " + owner.getEmail();
 	}
+	public boolean isActive() {
+		return isActive;
+	}
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+
 }

@@ -24,11 +24,8 @@ public class IndexController {
     SampleService sampleService;
 
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
-    public ModelAndView index() {
-    	System.out.println("index");
-    	ModelAndView model = new ModelAndView("index");   
-    	model.addObject("signupForm", new SignupForm());
-    	System.out.println("index");
+    public ModelAndView index() {   	
+    	ModelAndView model = new ModelAndView("index");      	   	
         return model;
     }
     
@@ -48,7 +45,7 @@ public class IndexController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String getLoginPage(@RequestParam(value="error", required=false) boolean error, 
       ModelMap model) {
-    System.out.println("getLoginPage");
+ 
      if (error == true) {
 
       model.put("error", "You have entered an invalid username or password!");
@@ -76,7 +73,6 @@ public class IndexController {
             }
         } else {        	
         	model = new ModelAndView("index");
-        	model.addObject("signupForm", new SignupForm());
         }    
     	return model;
     }

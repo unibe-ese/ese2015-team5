@@ -35,7 +35,7 @@ public class ProfileController {
 	 * 
 	 * 
 	 * @param model
-	 * @return
+	 * @return 
 	 */
     @RequestMapping( value = "/profile")
     public ModelAndView gotoProfile(Model model){
@@ -110,8 +110,7 @@ public class ProfileController {
 	@RequestMapping(value="/addCompetence", method=RequestMethod.POST)
 	public String addCompetence(@ModelAttribute("addCompetenceForm") @Valid AddCompetenceForm form, 
 			@ModelAttribute("user") User user, BindingResult result, RedirectAttributes redirectedAttribtues){
-		System.out.println("competence");
-		System.out.println("has error");
+		
 		if(result.hasErrors()){
 			redirectedAttribtues.addFlashAttribute("addCompetenceForm", form);
 			redirectedAttribtues.addFlashAttribute("org.springframework.validation.BindingResult.addCompetenceForm", result);
@@ -119,6 +118,7 @@ public class ProfileController {
 			return "redirect:profile";
 		}
 		form.setOwnerId(user.getId());
+		form.setActive(user.getEnableTutor());
 		sampleService.addCompetence(form);
 		return "redirect:profile";
 		

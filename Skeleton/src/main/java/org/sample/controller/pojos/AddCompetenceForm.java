@@ -10,7 +10,7 @@ public class AddCompetenceForm {
 	
 	private long ownerId;
 
-
+	private boolean isActive;
 
 	public long getOwnerId() {
 		return ownerId;
@@ -26,6 +26,14 @@ public class AddCompetenceForm {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 	
 	
