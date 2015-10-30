@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.sample.controller.pojos.AddCompetenceForm;
 import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.service.SampleService;
+import org.sample.model.Competence;
 import org.sample.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,16 @@ public class ProfileController {
 	@Autowired
 	SampleService sampleService;
 	
-	
+	/**
+	 * Displays the correct profile page.
+	 * 
+	 * Receives the model from the previous page. The model is filled with the necessary
+	 * Objects, depending on if it already contains an instance of them. 
+	 * 
+	 * 
+	 * @param model
+	 * @return
+	 */
     @RequestMapping( value = "/profile")
     public ModelAndView gotoProfile(Model model){
     	
@@ -49,8 +59,6 @@ public class ProfileController {
     		modelAndView.addObject("addCompetenceForm", new AddCompetenceForm());
     	}
     	
-    	
-    	System.out.println(user.getCompetences().toString());
     	model.addAttribute("competenceList", sampleService.getCompetences(user.getId()));
     	
     	return modelAndView;
@@ -85,6 +93,20 @@ public class ProfileController {
         return "redirect:profile";
 	}
 	
+	
+	/**
+	 * Adds competences to a user and redirects to next URL
+	 * 
+	 * Checks if the addCompetenceForm has errors. If yes, the errors are added to the 
+	 * redirectedAttributes, and the methods redirects to the profile page, to display errors.
+	 * If there are no errors, the sampleService is used to add and save the Competence.
+	 * 
+	 * @param form
+	 * @param user
+	 * @param result
+	 * @param redirectedAttribtues
+	 * @return
+	 */
 	@RequestMapping(value="/addCompetence", method=RequestMethod.POST)
 	public String addCompetence(@ModelAttribute("addCompetenceForm") @Valid AddCompetenceForm form, 
 			@ModelAttribute("user") User user, BindingResult result, RedirectAttributes redirectedAttribtues){
@@ -102,10 +124,22 @@ public class ProfileController {
 		
 	}
 	
+	
+	/**
+	 * Deletes a competence
+	 * 
+	 * Uses the SampleService to delete a competence. If there is no competence with the correct ID, 
+	 * the method does nothing.
+	 * 
+	 * @param compId The id of the competence.
+	 * @return Redirects to the profile page.
+	 */
 	@RequestMapping(value="/profile/delete$id={compId}", method=RequestMethod.POST)
-	public String deleteCompetence(@PathVariable("compId")long compId, Model model){
-		sampleService.removeCompetence(compId);
-
+	public String deleteCompetence(@PathVariable("compId")long compId){
+		Competence comp = sampleService.findCompetence(compId);
+		if(comp != null){
+			sampleService.removeCompetence(compId);
+		}
 		return "redirect:/profile";
 	}
 	

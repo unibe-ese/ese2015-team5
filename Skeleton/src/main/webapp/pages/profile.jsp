@@ -21,7 +21,7 @@
         <div class="control-group">
             <label class="control-label" for="field-firstName">Enable Tutor</label>
             <div class="controls">
-                <form:checkbox path="enableTutor" id="field-enableTut" tabindex="1" value="${user.enableTutor}"/>
+                <form:checkbox path="enableTutor" id="field-enableTut" tabindex="1" element="span"/>
             </div>
         </div>
         <div class="control-group">
@@ -76,9 +76,11 @@
         </tr>
     </c:forEach>
 </table>
-<form:form method="post" modelAttribute="addCompetenceForm" action="./addCompetence" id="addComp">
-    <form:input path="description"/>
-    <form:errors path="description" cssClass="help-inline" element="span"/>
+<form:form method="post" modelAttribute="addCompetenceForm" action="./addCompetence" id="addComp" disabled="${!user.enableTutor}">
+    <div>
+      <form:input path="description"/>
+      <form:errors path="description" cssClass="help-inline" element="span"/>
+    </div>
     <input type="submit" value="Add"></input>
 </form:form>
 
