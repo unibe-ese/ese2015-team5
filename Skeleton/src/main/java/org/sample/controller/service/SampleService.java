@@ -28,6 +28,8 @@ public interface SampleService {
 	public void removeCompetence(long compId);
 
 	public void addCompetence(AddCompetenceForm form);
+
+	public Competence findCompetence(long compId);
     
 
 }

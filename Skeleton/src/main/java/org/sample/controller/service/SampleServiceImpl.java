@@ -137,6 +137,11 @@ public class SampleServiceImpl implements SampleService {
 		compDao.save(comp);
 	}
 
+	public Competence findCompetence(long compId) {
+		return compDao.findOne(compId);
+		
+	}
+
 		
 
 }
