@@ -60,7 +60,8 @@
 	
 	h1, h2, h3, h4, h5, h6
 	{
-		color: #444;
+		color: lime;
+		background-color: magenta;
 		font-weight: 800;
 	}
 	
