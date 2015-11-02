@@ -85,6 +85,12 @@ public class SampleServiceImpl implements SampleService {
     
 	public User updateFrom(ModifyUserForm form) {
 		User user  = userDao.findOne(form.getId());
+		if(user.getEnableTutor() != form.getEnableTutor()){
+			for(Competence c : user.getCompetences()){
+				c.setisEnabled(form.getEnableTutor());
+				compDao.save(c);
+			}
+		}
 		user.setFirstName(form.getFirstName());
 		user.setLastName(form.getLastName());
 		user.setPassword(form.getPassword());
@@ -189,6 +195,7 @@ public class SampleServiceImpl implements SampleService {
 		User user = userDao.findOne(form.getOwnerId());
 		comp.setDescription(form.getDescription());
 		comp.setOwner(user);
+		comp.setisEnabled(user.getEnableTutor());
 		compDao.save(comp);
 	}
 
