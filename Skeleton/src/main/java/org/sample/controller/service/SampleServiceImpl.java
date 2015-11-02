@@ -59,6 +59,7 @@ public class SampleServiceImpl implements SampleService {
         user.setEmail(signupForm.getEmail());
         user.setLastName(signupForm.getLastName());
         user.setPassword(signupForm.getPassword());
+        user.setAboutYou("description");
         user.setEnableTutor(false);
         user.setPic(profilePicture);
         user = userDao.save(user);  
@@ -88,6 +89,7 @@ public class SampleServiceImpl implements SampleService {
 		user.setFirstName(form.getFirstName());
 		user.setLastName(form.getLastName());
 		user.setPassword(form.getPassword());
+		user.setAboutYou(form.getAboutYou());
 		user.setEnableTutor(form.getEnableTutor());
 		return userDao.save(user);
 	}

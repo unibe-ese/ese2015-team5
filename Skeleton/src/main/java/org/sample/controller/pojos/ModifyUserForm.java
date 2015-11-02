@@ -16,6 +16,7 @@ public class ModifyUserForm{
 	
     private String password;
     private String passwordControll;
+    private String aboutYou;
     
     private boolean enableTutor;
 
@@ -65,5 +66,13 @@ public class ModifyUserForm{
 
 	public void setEnableTutor(boolean enableTutor) {
 		this.enableTutor = enableTutor;
+	}
+
+	public String getAboutYou() {
+		return aboutYou;
+	}
+
+	public void setAboutYou(String aboutYou) {
+		this.aboutYou = aboutYou;
 	}
 }

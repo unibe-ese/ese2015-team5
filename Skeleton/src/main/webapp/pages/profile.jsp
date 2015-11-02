@@ -55,6 +55,9 @@
                 <form:errors path="password" cssClass="help-inline" element="span"/>
             </div>
         </div>
+		 <div>
+         		<textarea style="height: 200px; margin: 20px 0px 50px;" name="Tutor Description" maxlength=500 placeholder="personal description"></textarea>
+        </div>      
         <div class="form-actions">
             <input type="submit" value="Edit" class="btn btn-primary"></input>
         </div>

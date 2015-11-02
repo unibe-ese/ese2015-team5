@@ -424,6 +424,9 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
             out.write("\n");
             out.write("            </div>\n");
             out.write("        </div>\n");
+            out.write("\t\t <div>\n");
+            out.write("         \t<textarea style=\"height: 200px; margin: 20px 0px 50px;\" name=\"Tutor Description\" maxlength=500 placeholder=\"personal description\"></textarea>\n");
+            out.write("        </div>       \n");
             out.write("        <div class=\"form-actions\">\n");
             out.write("            <input type=\"submit\" value=\"Edit\" class=\"btn btn-primary\"></input>\n");
             out.write("        </div>\n");
