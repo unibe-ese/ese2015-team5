@@ -1,4 +1,4 @@
-package org.sample.controller;
+	package org.sample.controller;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;

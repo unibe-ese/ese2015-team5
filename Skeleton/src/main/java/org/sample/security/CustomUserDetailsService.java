@@ -23,32 +23,21 @@ public class CustomUserDetailsService implements AuthenticationProvider {
 	@Autowired
     SampleService sampleService;
 	
-<<<<<<< HEAD:Skeleton/src/main/java/org/sample/security/CustomUserDetailsService.java
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		System.out.println("IM HERE");
-		// TODO Auto-generated method stub
-=======
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
->>>>>>> master:Skeleton/src/main/java/org/sample/security/CustomUserDetailsService.java
 		return null;
 	}
 
 	public Authentication authenticate(Authentication authentication)
 			throws AuthenticationException {
-<<<<<<< HEAD:Skeleton/src/main/java/org/sample/security/CustomUserDetailsService.java
-		// TODO Auto-generated method stub
-		print(authentication);
 		
 		String name = authentication.getName();
-=======
 		/**
 		 * Gets credentials from the authentication token. 
 		 * This method gets called somewhere in the authentication process.
 		 * The user is then loaded from the email.
 		 */
 		String email = authentication.getName();
->>>>>>> master:Skeleton/src/main/java/org/sample/security/CustomUserDetailsService.java
 		String password = (String) authentication.getCredentials();
 		User user = sampleService.loadUserByUserName(email);
 		

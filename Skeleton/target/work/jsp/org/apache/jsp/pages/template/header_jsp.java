@@ -107,6 +107,18 @@ public final class header_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t\t\t\t\t\t\t</li>\r\n");
       out.write("\t\t\t\t\t\t\t\t\t</ul>\r\n");
       out.write("\t\t\t\t\t\t\t\t</li>\r\n");
+      out.write("<<<<<<< HEAD\r\n");
+      out.write("=======\r\n");
+      out.write("\t\t\t\t\t\t\t\t<li>\r\n");
+      out.write("\t\t\t\t\t\t\t\t\t<form action=\"logout\"/>\r\n");
+      out.write("\t\t\t\t\t\t\t\t\t   <input type=\"submit\" value=\"Logout\"/>\r\n");
+      out.write("\t\t\t\t\t\t\t\t\t</form>\r\n");
+      out.write("\t\t\t\t\t\t\t\t</li>\r\n");
+      out.write("\t\t\t\t\t\t\t\t<li><form action=\"/Skeleton/profile\" />\r\n");
+      out.write("   \t\t\t\t\t\t\t \t\t\t<input type=\"submit\" value=\"Profile\"/>\r\n");
+      out.write("\t\t\t\t\t\t\t\t</form></li>\r\n");
+      out.write("\t\t\t\t\t\t\t\t<li class=\"current\"><a href=\"no-sidebar.html\">No Sidebar</a></li>\r\n");
+      out.write(">>>>>>> master\r\n");
       out.write("\t\t\t\t\t\t\t</ul>\r\n");
       out.write("\t\t\t\t\t\t</nav>\r\n");
       out.write("\t\t\t\t\t\r\n");

@@ -8,13 +8,10 @@
 
 
 <c:import url="template/header.jsp" />
-<<<<<<< HEAD
-=======
 
 <title>Login</title>
 </head>
 <body>
->>>>>>> master
  
 	<h1>Login</h1>
 	<div id="login-error">
