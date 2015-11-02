@@ -56,12 +56,7 @@ public class FileUploadController {
             	
             	sampleService.saveProfilePicture(profilePicture);
             	
-            	BufferedImage img = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
-            	Pic pic = new Pic();
-            	pic.setImg(img);
-            	
             	ModelAndView model = new ModelAndView("show");
-            	model.addObject(img);
             	
                 return model;
             } catch (Exception e) {
