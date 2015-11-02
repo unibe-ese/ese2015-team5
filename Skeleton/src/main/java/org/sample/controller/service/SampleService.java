@@ -36,4 +36,6 @@ public interface SampleService {
     
 	public ProfilePicture getProfilePicture();
 
+	public void updateProfilePicture(ProfilePicture profilePicture);
+
 }

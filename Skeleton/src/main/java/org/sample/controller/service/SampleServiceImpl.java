@@ -121,6 +121,16 @@ public class SampleServiceImpl implements SampleService {
     	return count;
     }
     
+
+	public void updateProfilePicture(ProfilePicture profilePicture) {
+		System.out.println("update");
+		User user = getCurrentUser();
+		ProfilePicture pic = user.getPic();
+		pic.setFile(profilePicture.getFile());
+		userDao.save(user);
+		profilePicDao.save(pic);
+		
+	}
     
     public void saveProfilePicture(ProfilePicture profilePicture){
     	profilePicDao.save(profilePicture);
@@ -186,4 +196,5 @@ public class SampleServiceImpl implements SampleService {
 		return compDao.findOne(compId);
 		
 	}
+
 }

@@ -6,6 +6,7 @@ import org.sample.controller.pojos.AddCompetenceForm;
 import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.service.SampleService;
 import org.sample.model.Competence;
+import org.sample.model.ProfilePicture;
 import org.sample.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -142,5 +145,25 @@ public class ProfileController {
 		}
 		return "redirect:/profile";
 	}
+	
+	@RequestMapping(value = "/changeProfilePic", method = RequestMethod.POST)
+    public String uploadFileHandler(@RequestParam("file") MultipartFile file) {
+ 
+        if (!file.isEmpty()) {
+            try {
+            	ProfilePicture profilePicture = new ProfilePicture();
+            	
+            	profilePicture.setFile(file.getBytes());
+            	
+            	sampleService.updateProfilePicture(profilePicture);
+            	
+                return "redirect:profile";
+            } catch (Exception e) {
+                return "redirect:profile";
+            }
+        }else{       	
+        	return "redirect:profile";
+        }
+    }
 	
 }

@@ -85,5 +85,9 @@
 </form:form>
 
 <img src="/Skeleton/imageDisplay" style="height:100px; width:100px"/>
+<form method="POST" action="./changeProfilePic" enctype="multipart/form-data">
+         File to upload: <input type="file" name="file" >
+       <input type="submit" value="Upload"> Press here to upload the file!
+</form>
 
 <c:import url="template/footer.jsp" />
