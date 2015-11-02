@@ -105,7 +105,7 @@ public class ProfileController {
 	 * @param user
 	 * @param result
 	 * @param redirectedAttribtues
-	 * @return
+	 * @return 
 	 */
 	@RequestMapping(value="/addCompetence", method=RequestMethod.POST)
 	public String addCompetence(@ModelAttribute("addCompetenceForm") @Valid AddCompetenceForm form, 

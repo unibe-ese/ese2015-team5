@@ -30,6 +30,8 @@ public interface SampleService {
 	public void addCompetence(AddCompetenceForm form);
 
 	public Competence findCompetence(long compId);
+	
+	public List<Competence> searchCompetence(String nameLike);
     
 
 }

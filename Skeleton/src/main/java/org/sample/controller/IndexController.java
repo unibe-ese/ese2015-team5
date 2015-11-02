@@ -83,6 +83,13 @@ public class IndexController {
         redirectAttributes.addFlashAttribute("page_error", "You do have have permission to do that!");
         return "redirect:/";
     }
+    
+    @RequestMapping(value="/searchCompetence", method=RequestMethod.POST)
+    public String searchCompetences(@RequestParam("searchName") String searchName){
+    	System.out.println("SearchCompetence: " + searchName);
+    	System.out.println(sampleService.searchCompetence(searchName).toString());
+    	return "redirect:index";
+    }
 
 }
 

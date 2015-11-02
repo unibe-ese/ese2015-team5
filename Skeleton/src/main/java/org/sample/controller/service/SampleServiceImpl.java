@@ -154,6 +154,18 @@ public class SampleServiceImpl implements SampleService {
 		
 	}
 
+	public List<Competence> searchCompetence(String nameLike) {
+		System.out.println(nameLike);
+		List<Competence> comps = new ArrayList<Competence>();
+		for(Competence comp : compDao.findAll()){
+			if(comp.getDescription().contains(nameLike)){
+				comps.add(comp);
+			}
+		}
+		
+		return comps;
+	}
+
 		
 
 }

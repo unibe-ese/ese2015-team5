@@ -8,5 +8,10 @@
 
 <h1>Homepage</h1>
 
+<form:form action="searchCompetence">
+    <input type="text" name="searchName"/>
+    <input type="submit" value="Search"></input>
+</form:form>
+
 
 <c:import url="template/footer.jsp" />

@@ -31,13 +31,13 @@
 		<!-- Header -->
 			<div id="header-wrapper">
 				<header id="header" class="container">
-				
+
 					<!-- Logo -->
 						<div id="logo">
 							<h1><a href="index.html">Verti</a></h1>
 							<span>by HTML5 UP</span>
 						</div>
-					
+
 					<!-- Nav -->
 						<nav id="nav">
 							<ul>
@@ -70,12 +70,12 @@
 								<li class="current"><a href="no-sidebar.html">No Sidebar</a></li>
 							</ul>
 						</nav>
-					
+
 				</header>
 			</div>
-		
+
 		<!-- Main -->
-			<div id="main-wrapper">
+			<div id="main-wrapper" style="overflow:hidden;">
 				<div class="container">
 					<div id="content">
 
