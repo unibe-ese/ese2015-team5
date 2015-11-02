@@ -23,7 +23,7 @@ public class IndexController {
     @Autowired
     SampleService sampleService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public ModelAndView index() {
     	System.out.println("index");
     	ModelAndView model = new ModelAndView("index");   
@@ -34,7 +34,6 @@ public class IndexController {
     
     @RequestMapping(value = "access-denied", method = RequestMethod.GET)
     public String accessDenied() {
-    	System.out.println("access denided");
         return "access-denied";
     }
     
@@ -60,21 +59,23 @@ public class IndexController {
      return "login";
     }
     
-
-
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ModelAndView create(@Valid SignupForm signupForm, BindingResult result, RedirectAttributes redirectAttributes) {
     	ModelAndView model;
-    	System.out.println("create");
-    	if (!result.hasErrors()) {
+    	System.out.println(result.getAllErrors().toString());
+    	
+    	if (!result.hasErrors() && !signupForm.getProfilePic().isEmpty()) {
             try {
+            	
               	sampleService.saveFrom(signupForm);
             	model = new ModelAndView("show");
+            	
             } catch (InvalidUserException e) {           	
             	model = new ModelAndView("index");
             	model.addObject("page_error", e.getMessage());
             }
-        } else {        	
+        } else {
+        	System.out.println("nope");
         	model = new ModelAndView("index");
         	model.addObject("signupForm", new SignupForm());
         }    
@@ -83,8 +84,7 @@ public class IndexController {
     
     @RequestMapping(value = "/security-error", method = RequestMethod.GET)
     public String securityError(RedirectAttributes redirectAttributes) {
-    	System.out.println("securityError");
-        redirectAttributes.addFlashAttribute("page_error", "You do have have permission to do that!");
+        redirectAttributes.addFlashAttribute("page_error", "You do have permission to do that!");
         return "redirect:/";
     }
 

@@ -6,8 +6,6 @@
 
 <c:import url="template/header.jsp" />
 
-<h1>Sign Up Complete!</h1>
-
-<img src="/Skeleton/imageDisplay"/>
+<img src="${pageContext.request.contextPath}/upload/${pic.img}" />
 
 <c:import url="template/footer.jsp" />

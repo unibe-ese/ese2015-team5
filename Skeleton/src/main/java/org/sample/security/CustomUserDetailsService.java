@@ -9,7 +9,6 @@ import org.sample.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
@@ -31,6 +30,8 @@ public class CustomUserDetailsService implements AuthenticationProvider {
 
 	public Authentication authenticate(Authentication authentication)
 			throws AuthenticationException {
+		
+		String name = authentication.getName();
 		/**
 		 * Gets credentials from the authentication token. 
 		 * This method gets called somewhere in the authentication process.
