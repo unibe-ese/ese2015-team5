@@ -23,13 +23,24 @@ public class User {
     private String email;
     private String password;
     
-    @OneToMany(fetch = FetchType.EAGER, targetEntity=Competence.class, mappedBy="owner", cascade=CascadeType.DETACH)
+    @OneToOne
+    private ProfilePicture pic;
+
+	@OneToMany(fetch = FetchType.EAGER, targetEntity=Competence.class, mappedBy="owner", cascade=CascadeType.DETACH)
     private List<Competence> competences;
     
     private boolean enableTutor;
     
     @OneToOne(cascade = {CascadeType.ALL})
     private Address address; 
+    
+    public ProfilePicture getPic() {
+		return pic;
+	}
+
+	public void setPic(ProfilePicture pic) {
+		this.pic = pic;
+	}
     
     public void setCompetences(List<Competence> competences){
     	this.competences = competences;

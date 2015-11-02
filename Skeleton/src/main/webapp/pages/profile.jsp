@@ -84,6 +84,6 @@
     <input type="submit" value="Add"></input>
 </form:form>
 
-
+<img src="/Skeleton/imageDisplay" style="height:100px; width:100px"/>
 
 <c:import url="template/footer.jsp" />

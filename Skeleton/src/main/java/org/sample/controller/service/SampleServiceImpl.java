@@ -8,7 +8,6 @@ import org.sample.controller.exceptions.InvalidUserException;
 import org.sample.controller.pojos.AddCompetenceForm;
 import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.pojos.SignupForm;
-import org.sample.model.Address;
 import org.sample.model.Competence;
 import org.sample.model.ProfilePicture;
 import org.sample.model.User;
@@ -22,6 +21,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Service
@@ -34,32 +34,36 @@ public class SampleServiceImpl implements SampleService {
     
     @Transactional
     public SignupForm saveFrom(SignupForm signupForm) throws InvalidUserException{
-
+    	System.out.println("saveForm");
         String firstName = signupForm.getFirstName();
 
         if(!StringUtils.isEmpty(firstName) && "ESE".equalsIgnoreCase(firstName)) {
             throw new InvalidUserException("Sorry, ESE is not a valid name");   // throw exception
         }
-
-        Address address = new Address();
-        address.setStreet("TestStreet-foo");
         
+        MultipartFile file = signupForm.getProfilePic();
+        ProfilePicture profilePicture = new ProfilePicture();
+        try {
+        	
+        	
+        	profilePicture.setFile(file.getBytes());
+        	
+        	saveProfilePicture(profilePicture);
+        	
+           
+        } catch (Exception e) {
+            throw new InvalidUserException("Picture could not be processed");
+        }
         User user = new User();
         user.setFirstName(signupForm.getFirstName());
         user.setEmail(signupForm.getEmail());
         user.setLastName(signupForm.getLastName());
-        user.setAddress(address);
         user.setPassword(signupForm.getPassword());
         user.setEnableTutor(false);
-        user = userDao.save(user);   // save object to DB
+        user.setPic(profilePicture);
+        user = userDao.save(user);  
         
-        System.out.println(this.countUsers());
-        
-        
-        // Iterable<Address> addresses = addDao.findAll();  // find all 
-        // Address anAddress = addDao.findOne((long)3); // find by ID
-        
-        
+     
         signupForm.setId(user.getId());
 
         return signupForm;
@@ -123,11 +127,7 @@ public class SampleServiceImpl implements SampleService {
     }
     
     public ProfilePicture getProfilePicture(){
-    	Iterable<ProfilePicture> pics = profilePicDao.findAll();
-    	for (ProfilePicture p : pics){
-    		return p;
-    	}
-		return null;
+    	return getCurrentUser().getPic();
     }
     
 //    public void saveFrom(createTeamForm createTeamForm) throws InvalidTeamException {

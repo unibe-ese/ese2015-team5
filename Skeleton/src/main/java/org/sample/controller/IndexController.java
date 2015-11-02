@@ -13,7 +13,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -61,18 +60,22 @@ public class IndexController {
     }
     
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public ModelAndView create(@Valid SignupForm signupForm, @RequestParam("file") MultipartFile file, BindingResult result, RedirectAttributes redirectAttributes) {
+    public ModelAndView create(@Valid SignupForm signupForm, BindingResult result, RedirectAttributes redirectAttributes) {
     	ModelAndView model;
-    	System.out.println("create");
-    	if (!result.hasErrors()) {
+    	System.out.println(result.getAllErrors().toString());
+    	
+    	if (!result.hasErrors() && !signupForm.getProfilePic().isEmpty()) {
             try {
+            	
               	sampleService.saveFrom(signupForm);
             	model = new ModelAndView("show");
+            	
             } catch (InvalidUserException e) {           	
             	model = new ModelAndView("index");
             	model.addObject("page_error", e.getMessage());
             }
-        } else {        	
+        } else {
+        	System.out.println("nope");
         	model = new ModelAndView("index");
         	model.addObject("signupForm", new SignupForm());
         }    

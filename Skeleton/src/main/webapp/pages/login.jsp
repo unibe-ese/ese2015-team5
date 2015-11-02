@@ -3,16 +3,12 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-
-
-
-
 <c:import url="template/header.jsp" />
 
 <title>Login</title>
 </head>
 <body>
- 
+
 	<h1>Login</h1>
 	<div id="login-error">
 		${error}
@@ -26,7 +22,7 @@
 					<label for="j_password">Password</label>
  				   	<input id="j_password" name="j_password" type="password" />
 				</p>
-			<input  type="submit" value="Login" /> 
+			<input  type="submit" value="Login" />
 		</form>
 
 <form action="register">

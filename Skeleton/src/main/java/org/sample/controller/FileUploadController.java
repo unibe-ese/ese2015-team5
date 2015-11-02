@@ -1,16 +1,12 @@
 	package org.sample.controller;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.sample.controller.service.SampleService;
-import org.sample.model.Pic;
 import org.sample.model.ProfilePicture;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,7 +48,6 @@ public class FileUploadController {
             	ProfilePicture profilePicture = new ProfilePicture();
             	
             	profilePicture.setFile(file.getBytes());
-            	profilePicture.setName(name);
             	
             	sampleService.saveProfilePicture(profilePicture);
             	

@@ -9,9 +9,7 @@
 
 <h1>Sign Up Here!</h1>
 
-
-
-<form:form method="post" modelAttribute="signupForm" action="create" id="signupForm" cssClass="form-horizontal"  autocomplete="off">
+<form:form method="post" modelAttribute="signupForm" action="create" id="signupForm" cssClass="form-horizontal"  autocomplete="off" enctype="multipart/form-data">
     <fieldset>
         <legend>Enter Your Information</legend>
 
@@ -47,6 +45,10 @@
                 <form:input path="password" id="field-password" tabindex="3" maxlength="35" placeholder="Password"/>
                 <form:errors path="password" cssClass="help-inline" element="span"/>
             </div>
+        </div>
+        <div>
+          File to upload: <form:input type="file" path="profilePic"/>
+          <form:errors path="profilePic" cssClass="help-inline" element="span"/>
         </div>
         <div class="form-actions">
             <button type="submit" class="btn btn-primary">Sign up</button>

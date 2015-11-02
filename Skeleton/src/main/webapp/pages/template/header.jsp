@@ -31,13 +31,13 @@
 		<!-- Header -->
 			<div id="header-wrapper">
 				<header id="header" class="container">
-				
+
 					<!-- Logo -->
 						<div id="logo">
 							<h1><a href="index.html">Stutor</a></h1>
 							<span>Good Grades for Money</span>
 						</div>
-					
+
 					<!-- Nav -->
 						<nav id="nav">
 							<ul>
@@ -58,8 +58,6 @@
 										</li>
 									</ul>
 								</li>
-<<<<<<< HEAD
-=======
 								<li>
 									<form action="logout"/>
 									   <input type="submit" value="Logout"/>
@@ -69,13 +67,12 @@
    							 			<input type="submit" value="Profile"/>
 								</form></li>
 								<li class="current"><a href="no-sidebar.html">No Sidebar</a></li>
->>>>>>> master
 							</ul>
 						</nav>
-					
+
 				</header>
 			</div>
-		
+
 		<!-- Main -->
 			<div id="main-wrapper">
 				<div class="container">

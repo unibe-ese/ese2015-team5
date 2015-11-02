@@ -93,15 +93,14 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
         _jspx_resourceInjector.setContext(application);
       }
 
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
       if (_jspx_meth_c_import_0(_jspx_page_context))
         return;
-      out.write('\r');
       out.write('\n');
       //  form:form
       org.springframework.web.servlet.tags.form.FormTag _jspx_th_form_form_0 = (org.springframework.web.servlet.tags.form.FormTag) _jspx_tagPool_form_form_style_modelAttribute_method_id_cssClass_autocomplete_action.get(org.springframework.web.servlet.tags.form.FormTag.class);
@@ -119,38 +118,38 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
         int _jspx_eval_form_form_0 = _jspx_th_form_form_0.doStartTag();
         if (_jspx_eval_form_form_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
           do {
-            out.write("\r\n");
-            out.write("    <fieldset>\r\n");
-            out.write("        <legend><h1>Edit your information</h1></legend>\r\n");
+            out.write("\n");
+            out.write("    <fieldset>\n");
+            out.write("        <legend><h1>Edit your information</h1></legend>\n");
             out.write("        ");
             if (_jspx_meth_c_if_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_form_form_0, _jspx_page_context, _jspx_push_body_count_form_form_0))
               return;
-            out.write("\r\n");
-            out.write("\r\n");
-            out.write("        <div>\r\n");
-            out.write("            <label class=\"control-label\" >Email</label>\r\n");
-            out.write("                <div class=\"controls\">\r\n");
+            out.write("\n");
+            out.write("\n");
+            out.write("        <div>\n");
+            out.write("            <label class=\"control-label\" >Email</label>\n");
+            out.write("                <div class=\"controls\">\n");
             out.write("                  ");
             out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${user.email}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-            out.write("\r\n");
-            out.write("                </div>\r\n");
-            out.write("        </div>\r\n");
-            out.write("        <div class=\"control-group\">\r\n");
-            out.write("            <label class=\"control-label\" for=\"field-firstName\">Enable Tutor</label>\r\n");
-            out.write("            <div class=\"controls\">\r\n");
+            out.write("\n");
+            out.write("                </div>\n");
+            out.write("        </div>\n");
+            out.write("        <div class=\"control-group\">\n");
+            out.write("            <label class=\"control-label\" for=\"field-firstName\">Enable Tutor</label>\n");
+            out.write("            <div class=\"controls\">\n");
             out.write("                ");
             if (_jspx_meth_form_checkbox_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_form_form_0, _jspx_page_context, _jspx_push_body_count_form_form_0))
               return;
-            out.write("\r\n");
-            out.write("            </div>\r\n");
-            out.write("        </div>\r\n");
-            out.write("        <div class=\"control-group\">\r\n");
-            out.write("            <label class=\"control-label\" for=\"field-firstName\">First Name</label>\r\n");
-            out.write("            <div class=\"controls\">\r\n");
+            out.write("\n");
+            out.write("            </div>\n");
+            out.write("        </div>\n");
+            out.write("        <div class=\"control-group\">\n");
+            out.write("            <label class=\"control-label\" for=\"field-firstName\">First Name</label>\n");
+            out.write("            <div class=\"controls\">\n");
             out.write("                ");
             if (_jspx_meth_form_input_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_form_form_0, _jspx_page_context, _jspx_push_body_count_form_form_0))
               return;
-            out.write("\r\n");
+            out.write("\n");
             out.write("                ");
             //  form:errors
             org.springframework.web.servlet.tags.form.ErrorsTag _jspx_th_form_errors_0 = (org.springframework.web.servlet.tags.form.ErrorsTag) _jspx_tagPool_form_errors_path_element_cssClass_nobody.get(org.springframework.web.servlet.tags.form.ErrorsTag.class);
@@ -173,9 +172,9 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
               _jspx_th_form_errors_0.doFinally();
               _jspx_tagPool_form_errors_path_element_cssClass_nobody.reuse(_jspx_th_form_errors_0);
             }
-            out.write("\r\n");
-            out.write("            </div>\r\n");
-            out.write("        </div>\r\n");
+            out.write("\n");
+            out.write("            </div>\n");
+            out.write("        </div>\n");
             out.write("        ");
             //  c:set
             org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_0 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
@@ -223,17 +222,17 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
               return;
             }
             _jspx_tagPool_c_set_var.reuse(_jspx_th_c_set_0);
-            out.write("\r\n");
+            out.write("\n");
             out.write("        <div class=\"control-group");
             if (_jspx_meth_c_if_1((javax.servlet.jsp.tagext.JspTag) _jspx_th_form_form_0, _jspx_page_context, _jspx_push_body_count_form_form_0))
               return;
-            out.write("\">\r\n");
-            out.write("            <label class=\"control-label\" for=\"field-lastName\">Last Name</label>\r\n");
-            out.write("            <div class=\"controls\">\r\n");
+            out.write("\">\n");
+            out.write("            <label class=\"control-label\" for=\"field-lastName\">Last Name</label>\n");
+            out.write("            <div class=\"controls\">\n");
             out.write("                ");
             if (_jspx_meth_form_input_1((javax.servlet.jsp.tagext.JspTag) _jspx_th_form_form_0, _jspx_page_context, _jspx_push_body_count_form_form_0))
               return;
-            out.write("\r\n");
+            out.write("\n");
             out.write("                ");
             //  form:errors
             org.springframework.web.servlet.tags.form.ErrorsTag _jspx_th_form_errors_2 = (org.springframework.web.servlet.tags.form.ErrorsTag) _jspx_tagPool_form_errors_path_element_cssClass_nobody.get(org.springframework.web.servlet.tags.form.ErrorsTag.class);
@@ -256,9 +255,9 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
               _jspx_th_form_errors_2.doFinally();
               _jspx_tagPool_form_errors_path_element_cssClass_nobody.reuse(_jspx_th_form_errors_2);
             }
-            out.write("\r\n");
-            out.write("            </div>\r\n");
-            out.write("        </div>\r\n");
+            out.write("\n");
+            out.write("            </div>\n");
+            out.write("        </div>\n");
             out.write("        ");
             //  c:set
             org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_1 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
@@ -306,17 +305,17 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
               return;
             }
             _jspx_tagPool_c_set_var.reuse(_jspx_th_c_set_1);
-            out.write("\r\n");
+            out.write("\n");
             out.write("        <div class=\"control-group");
             if (_jspx_meth_c_if_2((javax.servlet.jsp.tagext.JspTag) _jspx_th_form_form_0, _jspx_page_context, _jspx_push_body_count_form_form_0))
               return;
-            out.write("\">\r\n");
-            out.write("            <label class=\"control-label\" for=\"field-password\">Password</label>\r\n");
-            out.write("            <div class=\"controls\">\r\n");
+            out.write("\">\n");
+            out.write("            <label class=\"control-label\" for=\"field-password\">Password</label>\n");
+            out.write("            <div class=\"controls\">\n");
             out.write("                ");
             if (_jspx_meth_form_input_2((javax.servlet.jsp.tagext.JspTag) _jspx_th_form_form_0, _jspx_page_context, _jspx_push_body_count_form_form_0))
               return;
-            out.write("\r\n");
+            out.write("\n");
             out.write("                ");
             //  form:errors
             org.springframework.web.servlet.tags.form.ErrorsTag _jspx_th_form_errors_4 = (org.springframework.web.servlet.tags.form.ErrorsTag) _jspx_tagPool_form_errors_path_element_cssClass_nobody.get(org.springframework.web.servlet.tags.form.ErrorsTag.class);
@@ -339,9 +338,9 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
               _jspx_th_form_errors_4.doFinally();
               _jspx_tagPool_form_errors_path_element_cssClass_nobody.reuse(_jspx_th_form_errors_4);
             }
-            out.write("\r\n");
-            out.write("            </div>\r\n");
-            out.write("        </div>\r\n");
+            out.write("\n");
+            out.write("            </div>\n");
+            out.write("        </div>\n");
             out.write("        ");
             //  c:set
             org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_2 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
@@ -389,17 +388,17 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
               return;
             }
             _jspx_tagPool_c_set_var.reuse(_jspx_th_c_set_2);
-            out.write("\r\n");
+            out.write("\n");
             out.write("        <div class=\"control-group");
             if (_jspx_meth_c_if_3((javax.servlet.jsp.tagext.JspTag) _jspx_th_form_form_0, _jspx_page_context, _jspx_push_body_count_form_form_0))
               return;
-            out.write("\">\r\n");
-            out.write("            <label class=\"control-label\" for=\"field-password\">Again Please</label>\r\n");
-            out.write("            <div class=\"controls\">\r\n");
+            out.write("\">\n");
+            out.write("            <label class=\"control-label\" for=\"field-password\">Again Please</label>\n");
+            out.write("            <div class=\"controls\">\n");
             out.write("                ");
             if (_jspx_meth_form_input_3((javax.servlet.jsp.tagext.JspTag) _jspx_th_form_form_0, _jspx_page_context, _jspx_push_body_count_form_form_0))
               return;
-            out.write("\r\n");
+            out.write("\n");
             out.write("                ");
             //  form:errors
             org.springframework.web.servlet.tags.form.ErrorsTag _jspx_th_form_errors_6 = (org.springframework.web.servlet.tags.form.ErrorsTag) _jspx_tagPool_form_errors_path_element_cssClass_nobody.get(org.springframework.web.servlet.tags.form.ErrorsTag.class);
@@ -422,13 +421,13 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
               _jspx_th_form_errors_6.doFinally();
               _jspx_tagPool_form_errors_path_element_cssClass_nobody.reuse(_jspx_th_form_errors_6);
             }
-            out.write("\r\n");
-            out.write("            </div>\r\n");
-            out.write("        </div>\r\n");
-            out.write("        <div class=\"form-actions\">\r\n");
-            out.write("            <input type=\"submit\" value=\"Edit\" class=\"btn btn-primary\"></input>\r\n");
-            out.write("        </div>\r\n");
-            out.write("    </fieldset>\r\n");
+            out.write("\n");
+            out.write("            </div>\n");
+            out.write("        </div>\n");
+            out.write("        <div class=\"form-actions\">\n");
+            out.write("            <input type=\"submit\" value=\"Edit\" class=\"btn btn-primary\"></input>\n");
+            out.write("        </div>\n");
+            out.write("    </fieldset>\n");
             int evalDoAfterBody = _jspx_th_form_form_0.doAfterBody();
             if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
               break;
@@ -445,14 +444,14 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
         _jspx_th_form_form_0.doFinally();
         _jspx_tagPool_form_form_style_modelAttribute_method_id_cssClass_autocomplete_action.reuse(_jspx_th_form_form_0);
       }
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("<table>\r\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("<table>\n");
       out.write("    ");
       if (_jspx_meth_c_forEach_0(_jspx_page_context))
         return;
-      out.write("\r\n");
-      out.write("</table>\r\n");
+      out.write("\n");
+      out.write("</table>\n");
       //  form:form
       org.springframework.web.servlet.tags.form.FormTag _jspx_th_form_form_2 = (org.springframework.web.servlet.tags.form.FormTag) _jspx_tagPool_form_form_modelAttribute_method_id_disabled_action.get(org.springframework.web.servlet.tags.form.FormTag.class);
       _jspx_th_form_form_2.setPageContext(_jspx_page_context);
@@ -467,12 +466,12 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
         int _jspx_eval_form_form_2 = _jspx_th_form_form_2.doStartTag();
         if (_jspx_eval_form_form_2 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
           do {
-            out.write("\r\n");
-            out.write("    <div>\r\n");
+            out.write("\n");
+            out.write("    <div>\n");
             out.write("      ");
             if (_jspx_meth_form_input_4((javax.servlet.jsp.tagext.JspTag) _jspx_th_form_form_2, _jspx_page_context, _jspx_push_body_count_form_form_2))
               return;
-            out.write("\r\n");
+            out.write("\n");
             out.write("      ");
             //  form:errors
             org.springframework.web.servlet.tags.form.ErrorsTag _jspx_th_form_errors_7 = (org.springframework.web.servlet.tags.form.ErrorsTag) _jspx_tagPool_form_errors_path_element_cssClass_nobody.get(org.springframework.web.servlet.tags.form.ErrorsTag.class);
@@ -495,9 +494,9 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
               _jspx_th_form_errors_7.doFinally();
               _jspx_tagPool_form_errors_path_element_cssClass_nobody.reuse(_jspx_th_form_errors_7);
             }
-            out.write("\r\n");
-            out.write("    </div>\r\n");
-            out.write("    <input type=\"submit\" value=\"Add\"></input>\r\n");
+            out.write("\n");
+            out.write("    </div>\n");
+            out.write("    <input type=\"submit\" value=\"Add\"></input>\n");
             int evalDoAfterBody = _jspx_th_form_form_2.doAfterBody();
             if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
               break;
@@ -514,13 +513,12 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
         _jspx_th_form_form_2.doFinally();
         _jspx_tagPool_form_form_modelAttribute_method_id_disabled_action.reuse(_jspx_th_form_form_2);
       }
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("<img src=\"/Skeleton/imageDisplay\" style=\"height:100px; width:100px\"/>\n");
+      out.write("\n");
       if (_jspx_meth_c_import_1(_jspx_page_context))
         return;
-      out.write('\r');
       out.write('\n');
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
@@ -572,10 +570,10 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
     int _jspx_eval_c_if_0 = _jspx_th_c_if_0.doStartTag();
     if (_jspx_eval_c_if_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
-        out.write("\r\n");
+        out.write("\n");
         out.write("           Error: ");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${error}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("\r\n");
+        out.write("\n");
         out.write("        ");
         int evalDoAfterBody = _jspx_th_c_if_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -834,21 +832,21 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       int _jspx_eval_c_forEach_0 = _jspx_th_c_forEach_0.doStartTag();
       if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
-          out.write("\r\n");
-          out.write("        <tr>\r\n");
-          out.write("            <td>\r\n");
+          out.write("\n");
+          out.write("        <tr>\n");
+          out.write("            <td>\n");
           out.write("                ");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${competence.description}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("\r\n");
-          out.write("            </td>\r\n");
-          out.write("            <td>\r\n");
+          out.write("\n");
+          out.write("            </td>\n");
+          out.write("            <td>\n");
           out.write("                ");
           if (_jspx_meth_form_form_1((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
             return true;
-          out.write("\r\n");
-          out.write("            </td>\r\n");
-          out.write("\r\n");
-          out.write("        </tr>\r\n");
+          out.write("\n");
+          out.write("            </td>\n");
+          out.write("\n");
+          out.write("        </tr>\n");
           out.write("    ");
           int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -883,8 +881,8 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       int _jspx_eval_form_form_1 = _jspx_th_form_form_1.doStartTag();
       if (_jspx_eval_form_form_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
-          out.write("\r\n");
-          out.write("                    <input type=\"submit\" value=\"Delete\"></input>\r\n");
+          out.write("\n");
+          out.write("                    <input type=\"submit\" value=\"Delete\"></input>\n");
           out.write("                ");
           int evalDoAfterBody = _jspx_th_form_form_1.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
