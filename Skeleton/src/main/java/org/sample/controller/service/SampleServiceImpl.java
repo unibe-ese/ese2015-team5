@@ -97,6 +97,7 @@ public class SampleServiceImpl implements SampleService {
 		user.setEnableTutor(form.getEnableTutor());
 		return userDao.save(user);
 	}
+	
   
 	public User loadUserByUserName(String name) {
 		Iterable<User> users = userDao.findAll();

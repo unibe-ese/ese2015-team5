@@ -9,6 +9,7 @@ import javax.persistence.Id;
 @Entity
 public class ProfilePicture {
 
+	
 	@Id
 	@GeneratedValue
 	private Long id;

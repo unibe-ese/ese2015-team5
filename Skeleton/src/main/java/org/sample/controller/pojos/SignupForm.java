@@ -19,6 +19,7 @@ public class SignupForm {
     @NotNull
     private String email;
    
+    
     private MultipartFile profilePic;
 
     public String getFirstName() {
