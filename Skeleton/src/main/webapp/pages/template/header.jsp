@@ -58,6 +58,18 @@
 										</li>
 									</ul>
 								</li>
+<<<<<<< HEAD
+=======
+								<li>
+									<form action="logout"/>
+									   <input type="submit" value="Logout"/>
+									</form>
+								</li>
+								<li><form action="/Skeleton/profile" />
+   							 			<input type="submit" value="Profile"/>
+								</form></li>
+								<li class="current"><a href="no-sidebar.html">No Sidebar</a></li>
+>>>>>>> master
 							</ul>
 						</nav>
 					

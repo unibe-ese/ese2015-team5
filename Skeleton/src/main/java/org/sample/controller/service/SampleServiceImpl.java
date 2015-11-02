@@ -1,16 +1,23 @@
 package org.sample.controller.service;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.sample.controller.exceptions.InvalidUserException;
+import org.sample.controller.pojos.AddCompetenceForm;
+import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.pojos.SignupForm;
 import org.sample.model.Address;
+import org.sample.model.Competence;
 import org.sample.model.ProfilePicture;
 import org.sample.model.User;
 import org.sample.model.dao.AddressDao;
+import org.sample.model.dao.CompetenceDao;
 import org.sample.model.dao.ProfilePictureDao;
 import org.sample.model.dao.UserDao;
+import org.sample.security.UsernamePasswordIDAuthenticationToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +30,7 @@ public class SampleServiceImpl implements SampleService {
     @Autowired    UserDao userDao;
     @Autowired    AddressDao addDao;
     @Autowired	  ProfilePictureDao profilePicDao;
+    @Autowired	  CompetenceDao compDao;
     
     @Transactional
     public SignupForm saveFrom(SignupForm signupForm) throws InvalidUserException{
@@ -33,7 +41,6 @@ public class SampleServiceImpl implements SampleService {
             throw new InvalidUserException("Sorry, ESE is not a valid name");   // throw exception
         }
 
-
         Address address = new Address();
         address.setStreet("TestStreet-foo");
         
@@ -43,7 +50,7 @@ public class SampleServiceImpl implements SampleService {
         user.setLastName(signupForm.getLastName());
         user.setAddress(address);
         user.setPassword(signupForm.getPassword());
-        
+        user.setEnableTutor(false);
         user = userDao.save(user);   // save object to DB
         
         System.out.println(this.countUsers());
@@ -56,9 +63,31 @@ public class SampleServiceImpl implements SampleService {
         signupForm.setId(user.getId());
 
         return signupForm;
-
     }
-
+    
+    public boolean validToUpdate(ModifyUserForm form){
+    	User user = userDao.findOne(form.getId());
+    	if(user == null || !form.getPassword().equals(form.getPasswordControll()) || form.getLastName().equals("")
+    			||  form.getFirstName().equals("")){
+    		return false;
+    	}
+    	
+    	return true;
+    }
+    
+    /**
+     * Only call this after validToUpdate
+     */
+    
+	public User updateFrom(ModifyUserForm form) {
+		User user  = userDao.findOne(form.getId());
+		user.setFirstName(form.getFirstName());
+		user.setLastName(form.getLastName());
+		user.setPassword(form.getPassword());
+		user.setEnableTutor(form.getEnableTutor());
+		return userDao.save(user);
+	}
+  
 	public User loadUserByUserName(String name) {
 		Iterable<User> users = userDao.findAll();
 		for(User u : users){
@@ -72,8 +101,13 @@ public class SampleServiceImpl implements SampleService {
 
 	public User getCurrentUser() {
 		System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
-		UsernamePasswordAuthenticationToken authtok = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
-		return loadUserByUserName(authtok.getName());
+		UsernamePasswordIDAuthenticationToken authtok;
+		try{
+			authtok = (UsernamePasswordIDAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+		}catch(ClassCastException e){
+			return null;
+		}
+		return userDao.findOne(authtok.getId());
 		
 	}
     
@@ -111,14 +145,45 @@ public class SampleServiceImpl implements SampleService {
 //		}	
 //		team = teamDao.save(team);		
 //	}
+	
+	public List<Competence> getCompetences(long userId){
+		
+		List<Competence> competences = new ArrayList<Competence>();
+		for(Competence comp : compDao.findAll()){
+			if(comp.getOwner().getId() == userId){
+				competences.add(comp);
+			}
+		}
+		return competences;
+		
+	}
 
-//	public List<Team> getTeams() {
-//		List<Team> teams = new ArrayList<Team>();
-//		Iterable<Team> teamIt = teamDao.findAll();
-//		for(Team t : teamIt){
-//			teams.add(t);
-//		}
-//		return teams;
-//		
-//	}
+	public void removeCompetence(long compId) {
+//		System.out.println("removeComp");
+//		System.out.println(compId);
+//		Competence comp = compDao.findOne(compId);
+//		User owner = comp.getOwner();
+//		comp.setOwner(null);
+//		List<Competence> competences = owner.getCompetences();
+//		competences.remove(comp);
+//		System.out.println(competences.contains(comp));
+//		owner.setCompetences(competences);
+//		compDao.delete(compId);
+		Competence comp = compDao.findOne(compId);
+		comp.setOwner(null);
+		compDao.delete(compId);
+	}
+
+	public void addCompetence(AddCompetenceForm form) {
+		Competence comp = new Competence();
+		User user = userDao.findOne(form.getOwnerId());
+		comp.setDescription(form.getDescription());
+		comp.setOwner(user);
+		compDao.save(comp);
+	}
+
+	public Competence findCompetence(long compId) {
+		return compDao.findOne(compId);
+		
+	}
 }
