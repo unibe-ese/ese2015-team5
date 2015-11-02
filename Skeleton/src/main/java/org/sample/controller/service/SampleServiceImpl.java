@@ -9,10 +9,12 @@ import org.sample.controller.pojos.AddCompetenceForm;
 import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.pojos.SignupForm;
 import org.sample.model.Address;
-import org.sample.model.User;
 import org.sample.model.Competence;
+import org.sample.model.ProfilePicture;
+import org.sample.model.User;
 import org.sample.model.dao.AddressDao;
 import org.sample.model.dao.CompetenceDao;
+import org.sample.model.dao.ProfilePictureDao;
 import org.sample.model.dao.UserDao;
 import org.sample.security.UsernamePasswordIDAuthenticationToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,7 @@ public class SampleServiceImpl implements SampleService {
 
     @Autowired    UserDao userDao;
     @Autowired    AddressDao addDao;
+    @Autowired	  ProfilePictureDao profilePicDao;
     @Autowired	  CompetenceDao compDao;
     
     @Transactional
@@ -113,6 +116,35 @@ public class SampleServiceImpl implements SampleService {
     	long count = userDao.count();
     	return count;
     }
+    
+    
+    public void saveProfilePicture(ProfilePicture profilePicture){
+    	profilePicDao.save(profilePicture);
+    }
+    
+    public ProfilePicture getProfilePicture(){
+    	Iterable<ProfilePicture> pics = profilePicDao.findAll();
+    	for (ProfilePicture p : pics){
+    		return p;
+    	}
+		return null;
+    }
+    
+//    public void saveFrom(createTeamForm createTeamForm) throws InvalidTeamException {
+//		Team team = new Team();
+//		team.setName(createTeamForm.getTeamName());
+//		team.setCreationDateInMilisec(Calendar.getInstance().getTimeInMillis());
+//		
+//		Iterable<Team> teams = teamDao.findAll();
+//		
+//		for(Team t : teams){
+//			if(t.equals(team)){
+//				System.out.println("exception!");
+//				throw new InvalidTeamException("This team already exists!");
+//			}
+//		}	
+//		team = teamDao.save(team);		
+//	}
 	
 	public List<Competence> getCompetences(long userId){
 		

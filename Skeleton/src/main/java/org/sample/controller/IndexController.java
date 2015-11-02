@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -34,7 +35,6 @@ public class IndexController {
     
     @RequestMapping(value = "access-denied", method = RequestMethod.GET)
     public String accessDenied() {
-    	System.out.println("access denided");
         return "access-denied";
     }
     
@@ -60,10 +60,8 @@ public class IndexController {
      return "login";
     }
     
-
-
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public ModelAndView create(@Valid SignupForm signupForm, BindingResult result, RedirectAttributes redirectAttributes) {
+    public ModelAndView create(@Valid SignupForm signupForm, @RequestParam("file") MultipartFile file, BindingResult result, RedirectAttributes redirectAttributes) {
     	ModelAndView model;
     	System.out.println("create");
     	if (!result.hasErrors()) {
@@ -83,8 +81,7 @@ public class IndexController {
     
     @RequestMapping(value = "/security-error", method = RequestMethod.GET)
     public String securityError(RedirectAttributes redirectAttributes) {
-    	System.out.println("securityError");
-        redirectAttributes.addFlashAttribute("page_error", "You do have have permission to do that!");
+        redirectAttributes.addFlashAttribute("page_error", "You do have permission to do that!");
         return "redirect:/";
     }
 

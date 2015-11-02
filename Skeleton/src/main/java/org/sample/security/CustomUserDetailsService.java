@@ -30,6 +30,8 @@ public class CustomUserDetailsService implements AuthenticationProvider {
 
 	public Authentication authenticate(Authentication authentication)
 			throws AuthenticationException {
+		
+		String name = authentication.getName();
 		/**
 		 * Gets credentials from the authentication token. 
 		 * This method gets called somewhere in the authentication process.

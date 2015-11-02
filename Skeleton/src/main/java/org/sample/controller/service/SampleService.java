@@ -7,6 +7,7 @@ import org.sample.controller.pojos.AddCompetenceForm;
 import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.pojos.SignupForm;
 import org.sample.model.Competence;
+import org.sample.model.ProfilePicture;
 import org.sample.model.User;
 
 
@@ -18,6 +19,8 @@ public interface SampleService {
 	public User loadUserByUserName(String name);
 
 	public User getCurrentUser();
+	
+	public void saveProfilePicture(ProfilePicture profilePicture);
 
 	public User updateFrom(ModifyUserForm form);
 	
@@ -31,5 +34,6 @@ public interface SampleService {
 
 	public Competence findCompetence(long compId);
     
+	public ProfilePicture getProfilePicture();
 
 }

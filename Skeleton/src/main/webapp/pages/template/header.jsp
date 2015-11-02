@@ -9,7 +9,7 @@
 -->
 <html>
 	<head>
-		<title>No Sidebar - Verti by HTML5 UP</title>
+		<title>Stutor</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -34,8 +34,8 @@
 				
 					<!-- Logo -->
 						<div id="logo">
-							<h1><a href="index.html">Verti</a></h1>
-							<span>by HTML5 UP</span>
+							<h1><a href="index.html">Stutor</a></h1>
+							<span>Good Grades for Money</span>
 						</div>
 					
 					<!-- Nav -->
@@ -45,20 +45,21 @@
 								<li>
 									<a href="">Dropdown</a>
 									<ul>
-										<li><a href="#">Lorem ipsum dolor</a></li>
-										<li><a href="#">Magna phasellus</a></li>
+										<li><a href="#">Learn More!</a></li>
+										<li><a href="#">About Stutor</a></li>
 										<li>
-											<a href="">Phasellus consequat</a>
+											<a href="">Where Your Money Goes</a>
 											<ul>
-												<li><a href="#">Lorem ipsum dolor</a></li>
-												<li><a href="#">Phasellus consequat</a></li>
-												<li><a href="#">Magna phasellus</a></li>
-												<li><a href="#">Etiam dolore nisl</a></li>
+												<li><a href="#">To Me</a></li>
+												<li><a href="#">Myself</a></li>
+												<li><a href="#">McDonalds</a></li>
+												<li><a href="#">Even More McDonalds</a></li>
 											</ul>
 										</li>
-										<li><a href="#">Veroeros feugiat</a></li>
 									</ul>
 								</li>
+<<<<<<< HEAD
+=======
 								<li>
 									<form action="logout"/>
 									   <input type="submit" value="Logout"/>
@@ -68,6 +69,7 @@
    							 			<input type="submit" value="Profile"/>
 								</form></li>
 								<li class="current"><a href="no-sidebar.html">No Sidebar</a></li>
+>>>>>>> master
 							</ul>
 						</nav>
 					
