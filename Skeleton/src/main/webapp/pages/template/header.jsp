@@ -9,7 +9,7 @@
 -->
 <html>
 	<head>
-		<title>No Sidebar - Verti by HTML5 UP</title>
+		<title>Stutor</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -31,13 +31,13 @@
 		<!-- Header -->
 			<div id="header-wrapper">
 				<header id="header" class="container">
-				
+
 					<!-- Logo -->
 						<div id="logo">
-							<h1><a href="index.html">Verti</a></h1>
-							<span>by HTML5 UP</span>
+							<h1><a href="index.html">Stutor</a></h1>
+							<span>Good Grades for Money</span>
 						</div>
-					
+
 					<!-- Nav -->
 						<nav id="nav">
 							<ul>
@@ -45,31 +45,34 @@
 								<li>
 									<a href="">Dropdown</a>
 									<ul>
-										<li><a href="#">Lorem ipsum dolor</a></li>
-										<li><a href="#">Magna phasellus</a></li>
+										<li><a href="#">Learn More!</a></li>
+										<li><a href="#">About Stutor</a></li>
 										<li>
-											<a href="">Phasellus consequat</a>
+											<a href="">Where Your Money Goes</a>
 											<ul>
-												<li><a href="#">Lorem ipsum dolor</a></li>
-												<li><a href="#">Phasellus consequat</a></li>
-												<li><a href="#">Magna phasellus</a></li>
-												<li><a href="#">Etiam dolore nisl</a></li>
+												<li><a href="#">Mario</a></li>
+												<li><a href="#">aka The God</a></li>
+												<li><a href="#">Jesus</a></li>
+												<li><a href="#">A freaking baller</a></li>
 											</ul>
 										</li>
-										<li><a href="#">Veroeros feugiat</a></li>
 									</ul>
 								</li>
-								<li><a href="left-sidebar.html">Left Sidebar</a></li>
-								<li><form action="profile" />">
-   							 			<button type="submit">Profile</button>
+								<li>
+									<form action="logout"/>
+									   <input type="submit" value="Logout"/>
+									</form>
+								</li>
+								<li><form action="/Skeleton/profile" />
+   							 			<input type="submit" value="Profile"/>
 								</form></li>
 								<li class="current"><a href="no-sidebar.html">No Sidebar</a></li>
 							</ul>
 						</nav>
-					
+
 				</header>
 			</div>
-		
+
 		<!-- Main -->
 			<div id="main-wrapper">
 				<div class="container">

@@ -1,7 +1,8 @@
 package org.sample.controller.pojos;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+
+import org.springframework.web.multipart.MultipartFile;
 
 
 public class SignupForm {
@@ -12,10 +13,14 @@ public class SignupForm {
     private String lastName;
     private String password;
 
+   
+   // @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", 
+   // message = "Must be valid email address")
     @NotNull
-    @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", 
-    message = "Must be valid email address")
     private String email;
+   
+    
+    private MultipartFile profilePic;
 
     public String getFirstName() {
         return firstName;
@@ -56,4 +61,13 @@ public class SignupForm {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public MultipartFile getProfilePic() {
+		return profilePic;
+	}
+
+	public void setProfilePic(MultipartFile profilePic) {
+		this.profilePic = profilePic;
+	}
+
 }
