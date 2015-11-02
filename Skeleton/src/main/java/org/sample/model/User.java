@@ -1,9 +1,13 @@
 package org.sample.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 
@@ -19,8 +23,21 @@ public class User {
     private String email;
     private String password;
     
+    @OneToMany(fetch = FetchType.EAGER, targetEntity=Competence.class, mappedBy="owner", cascade=CascadeType.DETACH)
+    private List<Competence> competences;
+    
+    private boolean enableTutor;
+    
     @OneToOne(cascade = {CascadeType.ALL})
     private Address address; 
+    
+    public void setCompetences(List<Competence> competences){
+    	this.competences = competences;
+    }
+    
+    public List<Competence> getCompetences(){
+    	return competences;
+    }
     
     public Long getId() {
         return id;
@@ -69,6 +86,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public boolean getEnableTutor() {
+		return enableTutor;
+	}
+
+	public void setEnableTutor(boolean enableTutor) {
+		this.enableTutor = enableTutor;
 	}
 	
 }
