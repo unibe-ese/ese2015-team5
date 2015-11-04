@@ -34,7 +34,7 @@ public interface SampleService {
 
 	public Competence findCompetence(long compId);
     
-	public ProfilePicture getProfilePicture();
+	public ProfilePicture getProfilePicture(long userId);
 
 	public void updateProfilePicture(ProfilePicture profilePicture);
 

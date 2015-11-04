@@ -143,7 +143,11 @@ public class SampleServiceImpl implements SampleService {
     	profilePicDao.save(profilePicture);
     }
     
-    public ProfilePicture getProfilePicture(){
+    public ProfilePicture getProfilePicture(long userId){
+    	User user = userDao.findOne(userId);
+    	if(user != null){
+    		return user.getPic();
+    	}
     	return getCurrentUser().getPic();
     }
     

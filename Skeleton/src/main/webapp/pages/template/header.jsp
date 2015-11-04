@@ -34,7 +34,7 @@
 
 					<!-- Logo -->
 						<div id="logo">
-							<h1><a href="index.html">Stutor</a></h1>
+							<h1><a href="index.html">Studer Stinks</a></h1>
 							<span>Good Grades for Money</span>
 						</div>
 
