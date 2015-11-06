@@ -34,10 +34,14 @@ public class UserServiceImpl implements UserService {
 
 		return signupForm;
 	}
-
+	
 	public User getUserByEmail(String email) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public User getUserById(long userId) {
+		return userDao.findOne(userId);
 	}
 
 	public User getCurrentUser() {
@@ -80,5 +84,7 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+
 
 }
