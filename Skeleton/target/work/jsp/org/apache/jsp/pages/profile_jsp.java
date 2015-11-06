@@ -515,7 +515,9 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       }
       out.write("\n");
       out.write("\n");
-      out.write("<img src=\"/Skeleton/imageDisplay\" style=\"height:100px; width:100px\"/>\n");
+      out.write("<img src=\"/Skeleton/imageDisplay$userId=");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${user.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\" style=\"height:100px; width:100px\"/>\n");
       out.write("<form method=\"POST\" action=\"./changeProfilePic\" enctype=\"multipart/form-data\">\n");
       out.write("         File to upload: <input type=\"file\" name=\"file\" >\n");
       out.write("       <input type=\"submit\" value=\"Upload\"> Press here to upload the file!\n");

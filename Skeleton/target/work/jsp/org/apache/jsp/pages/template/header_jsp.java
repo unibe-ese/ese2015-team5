@@ -83,7 +83,7 @@ public final class header_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\t\t\t\t\t<!-- Logo -->\n");
       out.write("\t\t\t\t\t\t<div id=\"logo\">\n");
-      out.write("\t\t\t\t\t\t\t<h1><a href=\"index.html\">Stutor</a></h1>\n");
+      out.write("\t\t\t\t\t\t\t<h1><a href=\"index.html\">Studer Stinks</a></h1>\n");
       out.write("\t\t\t\t\t\t\t<span>Good Grades for Money</span>\n");
       out.write("\t\t\t\t\t\t</div>\n");
       out.write("\n");
@@ -99,10 +99,10 @@ public final class header_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t\t\t\t\t\t\t<li>\n");
       out.write("\t\t\t\t\t\t\t\t\t\t\t<a href=\"\">Where Your Money Goes</a>\n");
       out.write("\t\t\t\t\t\t\t\t\t\t\t<ul>\n");
-      out.write("\t\t\t\t\t\t\t\t\t\t\t\t<li><a href=\"#\">To Me</a></li>\n");
-      out.write("\t\t\t\t\t\t\t\t\t\t\t\t<li><a href=\"#\">Myself</a></li>\n");
-      out.write("\t\t\t\t\t\t\t\t\t\t\t\t<li><a href=\"#\">McDonalds</a></li>\n");
-      out.write("\t\t\t\t\t\t\t\t\t\t\t\t<li><a href=\"#\">Even More McDonalds</a></li>\n");
+      out.write("\t\t\t\t\t\t\t\t\t\t\t\t<li><a href=\"#\">Mario</a></li>\n");
+      out.write("\t\t\t\t\t\t\t\t\t\t\t\t<li><a href=\"#\">aka The God</a></li>\n");
+      out.write("\t\t\t\t\t\t\t\t\t\t\t\t<li><a href=\"#\">Jesus</a></li>\n");
+      out.write("\t\t\t\t\t\t\t\t\t\t\t\t<li><a href=\"#\">A freaking baller</a></li>\n");
       out.write("\t\t\t\t\t\t\t\t\t\t\t</ul>\n");
       out.write("\t\t\t\t\t\t\t\t\t\t</li>\n");
       out.write("\t\t\t\t\t\t\t\t\t</ul>\n");

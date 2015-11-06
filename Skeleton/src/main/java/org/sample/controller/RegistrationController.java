@@ -49,39 +49,39 @@ public class RegistrationController {
 //	}
 	
 	
-	
-	 
-    @RequestMapping(value="/register", method=RequestMethod.GET)
-    public ModelAndView getRegisterPage(){
-    	ModelAndView model = new ModelAndView("register");
-    	model.addObject("signupForm", new SignupForm());
-    	return model;
-    }
-	
-	
-	
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public ModelAndView create(@Valid SignupForm signupForm, BindingResult result, RedirectAttributes redirectAttributes) {
-    	ModelAndView model;
-    	System.out.println(result.getAllErrors().toString());
-    	
-    	if (!result.hasErrors() && !signupForm.getProfilePic().isEmpty()) {
-            try {
-            	
-              	sampleService.saveFrom(signupForm);
-            	model = new ModelAndView("show");
-            	
-            } catch (InvalidUserException e) {           	
-            	model = new ModelAndView("index");
-            	model.addObject("page_error", e.getMessage());
-            }
-        } else {
-        	System.out.println("nope");
-        	model = new ModelAndView("index");
-        	model.addObject("signupForm", new SignupForm());
-        }    
-    	return model;
-    }
-	
-	
+//	
+//	 
+//    @RequestMapping(value="/register", method=RequestMethod.GET)
+//    public ModelAndView getRegisterPage(){
+//    	ModelAndView model = new ModelAndView("register");
+//    	model.addObject("signupForm", new SignupForm());
+//    	return model;
+//    }
+//	
+//	
+//	
+//    @RequestMapping(value = "/create", method = RequestMethod.POST)
+//    public ModelAndView create(@Valid SignupForm signupForm, BindingResult result, RedirectAttributes redirectAttributes) {
+//    	ModelAndView model;
+//    	System.out.println(result.getAllErrors().toString());
+//    	
+//    	if (!result.hasErrors() && !signupForm.getProfilePic().isEmpty()) {
+//            try {
+//            	
+//              	sampleService.saveFrom(signupForm);
+//            	model = new ModelAndView("show");
+//            	
+//            } catch (InvalidUserException e) {           	
+//            	model = new ModelAndView("index");
+//            	model.addObject("page_error", e.getMessage());
+//            }
+//        } else {
+//        	System.out.println("nope");
+//        	model = new ModelAndView("index");
+//        	model.addObject("signupForm", new SignupForm());
+//        }    
+//    	return model;
+//    }
+//	
+//	
 }

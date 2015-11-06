@@ -33,8 +33,10 @@ public interface SampleService {
 	public void addCompetence(AddCompetenceForm form);
 
 	public Competence findCompetence(long compId);
+	
+	public List<Competence> findCompetenceLike(String string);
     
-	public ProfilePicture getProfilePicture();
+	public ProfilePicture getProfilePicture(long userId);
 
 	public void updateProfilePicture(ProfilePicture profilePicture);
 
