@@ -204,12 +204,12 @@ body {
 }
 
 a {
-    color: #08c;
+    color: #FFDCAD;
     text-decoration: none
 }
 
 a:hover {
-    color: #005580;
+    color: #ffe9ca;
     text-decoration: underline
 }
 
@@ -699,7 +699,8 @@ h1, h2, h3 {
 }
 
 h1 {
-    font-size: 38.5px
+    font-size: 38.5px;
+    color: FFD49A;
 }
 
 h2 {
@@ -723,7 +724,8 @@ h6 {
 }
 
 h1 small {
-    font-size: 24.5px
+    font-size: 24.5px;
+    color: #FFD49A;
 }
 
 h2 small {
@@ -956,17 +958,19 @@ legend {
     display: block;
     width: 100%;
     padding: 0;
-    margin-bottom: 20px;
     font-size: 21px;
     line-height: 40px;
     color: #333;
     border: 0;
-    border-bottom: 1px solid #e5e5e5
+    border-bottom: 1px solid #e5e5e5;		
+    margin: 3px 0 1em 20px;
+	
 }
 
 legend small {
     font-size: 15px;
-    color: #999
+    color: #999;
+    margin: 3px 0 1em 20px;
 }
 
 label, input, button, select, textarea {

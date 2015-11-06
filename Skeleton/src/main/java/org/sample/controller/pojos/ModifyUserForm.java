@@ -14,9 +14,6 @@ public class ModifyUserForm{
 	@NotBlank(message = "Please provide your Lastname")
     private String lastName;
 	
-	@NotBlank(message = "Please provide a description")
-	private String aboutYou;
-	
     private String password;
     private String passwordControll;
     
@@ -68,13 +65,5 @@ public class ModifyUserForm{
 
 	public void setEnableTutor(boolean enableTutor) {
 		this.enableTutor = enableTutor;
-	}
-
-	public String getAboutYou() {
-		return aboutYou;
-	}
-
-	public void setAboutYou(String aboutYou) {
-		this.aboutYou = aboutYou;
 	}
 }

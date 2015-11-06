@@ -22,7 +22,6 @@ public class User {
     private String lastName;
     private String email;
     private String password;
-    private String aboutYou;
     
     @OneToOne
     private ProfilePicture pic;
@@ -32,8 +31,6 @@ public class User {
     
     private boolean enableTutor;
     
-    @OneToOne(cascade = {CascadeType.ALL})
-    private Address address; 
     
     public ProfilePicture getPic() {
 		return pic;
@@ -83,14 +80,6 @@ public class User {
         this.email = email;
     }
 
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-
 
 	public String getPassword() {
 		return password;
@@ -106,14 +95,6 @@ public class User {
 
 	public void setEnableTutor(boolean enableTutor) {
 		this.enableTutor = enableTutor;
-	}
-
-	public String getAboutYou() {
-		return aboutYou;
-	}
-
-	public void setAboutYou(String aboutYou) {
-		this.aboutYou = aboutYou;
 	}
 	
 }

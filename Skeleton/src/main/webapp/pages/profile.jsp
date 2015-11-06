@@ -7,7 +7,7 @@
 <c:import url="template/header.jsp" />
 <form:form method="post" modelAttribute="modifyUserForm" action="./modifyUser" id="modifyUserForm" cssClass="form-horizontal"  autocomplete="off" style="width:500px">
     <fieldset>
-        <legend><h1>Edit your information</h1></legend>
+        <h1>Edit your information</h1>
         <c:if test="${not empty error}">
            Error: ${error}
         </c:if>
@@ -55,18 +55,9 @@
                 <form:errors path="password" cssClass="help-inline" element="span"/>
             </div>
         </div>
-         <div>
-        	<textarea style="height: 200px; margin: 20px 0px 50px;" name="Tutor Description" maxlength=500 autocomplete="off" placeholder="personal description";></textarea>
-        </div>
         <div class="form-actions">
             <input type="submit" value="Edit" class="btn btn-primary"></input>
         </div>
-        
-       
-        
-        
-        
-        
     </fieldset>
 </form:form>
 

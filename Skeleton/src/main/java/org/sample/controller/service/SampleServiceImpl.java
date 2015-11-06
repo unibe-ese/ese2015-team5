@@ -11,7 +11,6 @@ import org.sample.controller.pojos.SignupForm;
 import org.sample.model.Competence;
 import org.sample.model.ProfilePicture;
 import org.sample.model.User;
-import org.sample.model.dao.AddressDao;
 import org.sample.model.dao.CompetenceDao;
 import org.sample.model.dao.ProfilePictureDao;
 import org.sample.model.dao.UserDao;
@@ -28,7 +27,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class SampleServiceImpl implements SampleService {
 
     @Autowired    UserDao userDao;
-    @Autowired    AddressDao addDao;
     @Autowired	  ProfilePictureDao profilePicDao;
     @Autowired	  CompetenceDao compDao;
     
@@ -61,7 +59,6 @@ public class SampleServiceImpl implements SampleService {
         user.setPassword(signupForm.getPassword());
         user.setEnableTutor(false);
         user.setPic(profilePicture);
-        user.setAboutYou("");
         user = userDao.save(user);  
         
      
@@ -86,13 +83,19 @@ public class SampleServiceImpl implements SampleService {
     
 	public User updateFrom(ModifyUserForm form) {
 		User user  = userDao.findOne(form.getId());
+		if(user.getEnableTutor() != form.getEnableTutor()){
+			for(Competence c : user.getCompetences()){
+				c.setisEnabled(form.getEnableTutor());
+				compDao.save(c);
+			}
+		}
 		user.setFirstName(form.getFirstName());
 		user.setLastName(form.getLastName());
 		user.setPassword(form.getPassword());
 		user.setEnableTutor(form.getEnableTutor());
-		user.setAboutYou(form.getAboutYou());
 		return userDao.save(user);
 	}
+	
   
 	public User loadUserByUserName(String name) {
 		Iterable<User> users = userDao.findAll();
@@ -191,6 +194,7 @@ public class SampleServiceImpl implements SampleService {
 		User user = userDao.findOne(form.getOwnerId());
 		comp.setDescription(form.getDescription());
 		comp.setOwner(user);
+		comp.setisEnabled(user.getEnableTutor());
 		compDao.save(comp);
 	}
 

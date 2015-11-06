@@ -13,6 +13,8 @@ public class Competence {
     @GeneratedValue
 	private long id;
 	
+	private boolean isEnabled;
+	
 	@ManyToOne
 	private User owner;
 	@Size(min=1)
@@ -39,5 +41,11 @@ public class Competence {
 	
 	public String toString(){
 		return "Description: " + this.description + ", Owner: " + owner.getEmail();
+	}
+	public boolean getisEnabled() {
+		return isEnabled;
+	}
+	public void setisEnabled(boolean isEnabled) {
+		this.isEnabled = isEnabled;
 	}
 }

@@ -11,7 +11,7 @@
 
 <form:form method="post" modelAttribute="signupForm" action="create" id="signupForm" cssClass="form-horizontal"  autocomplete="off" enctype="multipart/form-data">
     <fieldset>
-        <legend>Enter Your Information</legend>
+        <h4>Enter Your Information</h4>
 
         <c:set var="emailErrors"><form:errors path="email"/></c:set>
         <div class="control-group<c:if test="${not empty emailErrors}"> error</c:if>">
@@ -40,7 +40,7 @@
         </div>
         <c:set var="passwordErrors"><form:errors path="password"/></c:set>
         <div class="control-group<c:if test="${not empty password}"> error</c:if>">
-            <label class="control-label" for="field-password">Last Name</label>
+            <label class="control-label" for="field-password">Password</label>
             <div class="controls">
                 <form:input path="password" id="field-password" tabindex="3" maxlength="35" placeholder="Password"/>
                 <form:errors path="password" cssClass="help-inline" element="span"/>

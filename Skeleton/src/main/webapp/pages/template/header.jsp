@@ -34,14 +34,14 @@
 
 					<!-- Logo -->
 						<div id="logo">
-							<h1><a href="index.html">Stutor</a></h1>
+							<h1><a href="index.html">S t u t o r</a></h1>
 							<span>Good Grades for Money</span>
 						</div>
 
 					<!-- Nav -->
 						<nav id="nav">
 							<ul>
-								<li><a href="index.html">Welcome</a></li>
+							<!--<li><a href="index.html">Welcome</a></li>
 								<li>
 									<a href="">Dropdown</a>
 									<ul>
@@ -50,23 +50,24 @@
 										<li>
 											<a href="">Where Your Money Goes</a>
 											<ul>
-												<li><a href="#">To Me</a></li>
-												<li><a href="#">Myself</a></li>
-												<li><a href="#">McDonalds</a></li>
-												<li><a href="#">Even More McDonalds</a></li>
+												<li><a href="#">Mario</a></li>
+												<li><a href="#">aka The God</a></li>
+												<li><a href="#">Jesus</a></li>
+												<li><a href="#">A freaking baller</a></li>
 											</ul>
 										</li>
 									</ul>
-								</li>
+								</li> -->
 								<li>
+									<form action="/Skeleton/profile" />
+   							 			<input type="submit" value="Profile"/>
+									</form></li>
+							<!-- 	<li class="current"><a href="no-sidebar.html">No Sidebar</a></li>  -->
+								<li> 
 									<form action="logout"/>
 									   <input type="submit" value="Logout"/>
 									</form>
 								</li>
-								<li><form action="/Skeleton/profile" />
-   							 			<input type="submit" value="Profile"/>
-								</form></li>
-								<li class="current"><a href="no-sidebar.html">No Sidebar</a></li>
 							</ul>
 						</nav>
 
