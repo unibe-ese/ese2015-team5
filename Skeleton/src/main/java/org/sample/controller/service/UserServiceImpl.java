@@ -32,31 +32,7 @@ public class UserServiceImpl implements UserService {
 		}catch(ClassCastException e){
 			return null;
 		}
-		
-<<<<<<< HEAD
 		return userDao.findOne(authtok.getId());
-=======
-		User user = new User(signupForm, pic);
-		userDao.save(user);
-
-		signupForm.setId(user.getId());
-
-		return signupForm;
-	}
-	
-	public User getUserByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	public User getUserById(long userId) {
-		return userDao.findOne(userId);
-	}
-
-	public User getCurrentUser() {
-		// TODO Auto-generated method stub
-		return null;
->>>>>>> 49b36d3060886bcab193b6ef95f92bef874898ef
 	}
 
 	public long countUsers() {
@@ -100,6 +76,10 @@ public class UserServiceImpl implements UserService {
 	public boolean validToUpdate(ModifyUserForm form) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	public User getUserById(long id) {
+		return userDao.findOne(id);
 	}
 
 
