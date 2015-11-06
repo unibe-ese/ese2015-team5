@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 
 
 @Controller
@@ -78,6 +77,6 @@ public class LoginController {
 	 * @param ModelAndView loginPageView
 	 * @return ModelAndView loginPageView
 	 */
-	public void checkLoginPageValidity(View loginPageView) throws Exception{
+	public void checkLoginPageValidity(org.springframework.web.servlet.View view) throws Exception{
 	}
 }

@@ -7,7 +7,7 @@
 <c:import url="template/header.jsp" />
 
 <h1>Homepage</h1>
-<form action="/findCompetenceLike"  commandName="searchQuery" method="get">
+<form action="/Skeleton/findCompetenceLike"  commandName="searchQuery" method="get">
     <input type="text" name="searchQuery" path="searchQuery"/>
     <input type="submit" value="Search"></input>
 </form>
