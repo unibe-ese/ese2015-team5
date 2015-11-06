@@ -212,11 +212,13 @@ public class SampleServiceImpl implements SampleService {
 	
 	public List<Competence> findCompetenceLike(String string){
 		List<Competence> comps = new ArrayList<Competence>();
+
 		for(Competence c : compDao.findAll()){
-			if(c.getDescription().contains(string)){
+			if(c.getDescription().toLowerCase().contains(string.toLowerCase()) && c.getisEnabled()){
 				comps.add(c);
 			}
 		}
+		
 		return comps;
 	}
 

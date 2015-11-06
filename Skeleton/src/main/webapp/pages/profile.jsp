@@ -56,7 +56,7 @@
             </div>
 		 	<div>
          		<form:input type="textarea" path="aboutYou" value="${user.aboutYou}" style="height: 400px; margin: 20px 0px 50px;" name="Tutor Description" maxlength="500" placeholder="Personal Description" />
-        	</div> 
+        	</div>
         </div>
         <div class="form-actions">
             <input type="submit" value="Edit" class="btn btn-primary"></input>
@@ -71,7 +71,7 @@
                 ${competence.description}
             </td>
             <td>
-                <form:form action="profile/delete$id=${competence.id}">
+                <form:form action="profile/delete$id=${competence.id}" method="get">
                     <input type="submit" value="Delete"></input>
                 </form:form>
             </td>

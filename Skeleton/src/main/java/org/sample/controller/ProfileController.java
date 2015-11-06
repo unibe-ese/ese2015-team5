@@ -40,8 +40,7 @@ public class ProfileController {
 	 * @param model
 	 * @return
 	 */
-    @RequestMapping( value = "/profile"
-    		)
+    @RequestMapping( value = "/profile")
     public ModelAndView gotoProfile(Model model){
     	
     	ModelAndView modelAndView = new ModelAndView("profile", model.asMap());
@@ -138,7 +137,7 @@ public class ProfileController {
 	 * @param compId The id of the competence.
 	 * @return Redirects to the profile page.
 	 */
-	@RequestMapping(value="/profile/delete$id={compId}", method=RequestMethod.POST)
+	@RequestMapping(value="/profile/delete$id={compId}", method=RequestMethod.GET)
 	public String deleteCompetence(@PathVariable("compId")long compId){
 		Competence comp = sampleService.findCompetence(compId);
 		if(comp != null){

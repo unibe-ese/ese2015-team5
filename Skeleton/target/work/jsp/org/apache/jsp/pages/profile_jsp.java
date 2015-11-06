@@ -20,7 +20,7 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_form_input_value_type_tabindex_path_maxlength_id_nobody;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_form_input_value_type_style_placeholder_path_name_maxlength_nobody;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_forEach_var_items;
-  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_form_form_action;
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_form_form_method_action;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_form_form_modelAttribute_method_id_disabled_action;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_form_input_path_nobody;
 
@@ -42,7 +42,7 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_tagPool_form_input_value_type_tabindex_path_maxlength_id_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_form_input_value_type_style_placeholder_path_name_maxlength_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_c_forEach_var_items = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
-    _jspx_tagPool_form_form_action = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _jspx_tagPool_form_form_method_action = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_form_form_modelAttribute_method_id_disabled_action = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_form_input_path_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
   }
@@ -59,7 +59,7 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_tagPool_form_input_value_type_tabindex_path_maxlength_id_nobody.release();
     _jspx_tagPool_form_input_value_type_style_placeholder_path_name_maxlength_nobody.release();
     _jspx_tagPool_c_forEach_var_items.release();
-    _jspx_tagPool_form_form_action.release();
+    _jspx_tagPool_form_form_method_action.release();
     _jspx_tagPool_form_form_modelAttribute_method_id_disabled_action.release();
     _jspx_tagPool_form_input_path_nobody.release();
   }
@@ -919,10 +919,11 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
     PageContext pageContext = _jspx_page_context;
     JspWriter out = _jspx_page_context.getOut();
     //  form:form
-    org.springframework.web.servlet.tags.form.FormTag _jspx_th_form_form_1 = (org.springframework.web.servlet.tags.form.FormTag) _jspx_tagPool_form_form_action.get(org.springframework.web.servlet.tags.form.FormTag.class);
+    org.springframework.web.servlet.tags.form.FormTag _jspx_th_form_form_1 = (org.springframework.web.servlet.tags.form.FormTag) _jspx_tagPool_form_form_method_action.get(org.springframework.web.servlet.tags.form.FormTag.class);
     _jspx_th_form_form_1.setPageContext(_jspx_page_context);
     _jspx_th_form_form_1.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_forEach_0);
     _jspx_th_form_form_1.setAction((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("profile/delete$id=${competence.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+    _jspx_th_form_form_1.setMethod("get");
     int[] _jspx_push_body_count_form_form_1 = new int[] { 0 };
     try {
       int _jspx_eval_form_form_1 = _jspx_th_form_form_1.doStartTag();
@@ -945,7 +946,7 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_th_form_form_1.doCatch(_jspx_exception);
     } finally {
       _jspx_th_form_form_1.doFinally();
-      _jspx_tagPool_form_form_action.reuse(_jspx_th_form_form_1);
+      _jspx_tagPool_form_form_method_action.reuse(_jspx_th_form_form_1);
     }
     return false;
   }
