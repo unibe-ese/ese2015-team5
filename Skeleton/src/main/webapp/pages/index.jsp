@@ -6,7 +6,6 @@
 
 <c:import url="template/header.jsp" />
 
-<h1>Homepage</h1>
 
 
 <c:import url="template/footer.jsp" />
