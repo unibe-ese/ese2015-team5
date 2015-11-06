@@ -54,6 +54,9 @@
                 <form:input path="passwordControll" type="password" id="field-password" tabindex="4" maxlength="35" value="${user.password}"/>
                 <form:errors path="password" cssClass="help-inline" element="span"/>
             </div>
+		 	<div>
+         		<form:input type="textarea" path="aboutYou" value="${user.aboutYou}" style="height: 400px; margin: 20px 0px 50px;" name="Tutor Description" maxlength="500" placeholder="Personal Description" />
+        	</div> 
         </div>
         <div class="form-actions">
             <input type="submit" value="Edit" class="btn btn-primary"></input>
