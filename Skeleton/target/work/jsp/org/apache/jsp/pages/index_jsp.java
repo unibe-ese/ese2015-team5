@@ -60,31 +60,30 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
         _jspx_resourceInjector.setContext(application);
       }
 
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
       if (_jspx_meth_c_import_0(_jspx_page_context))
         return;
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("<h1>Homepage</h1>\r\n");
-      out.write("<form action=\"/findCompetenceLike\"  commandName=\"searchQuery\" method=\"get\">\r\n");
-      out.write("    <input type=\"text\" name=\"searchQuery\" path=\"searchQuery\"/>\r\n");
-      out.write("    <input type=\"submit\" value=\"Search\"></input>\r\n");
-      out.write("</form>\r\n");
-      out.write("<table>\r\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("<h1>Homepage</h1>\n");
+      out.write("<form action=\"/Skeleton/findCompetenceLike\"  commandName=\"searchQuery\" method=\"get\">\n");
+      out.write("    <input type=\"text\" name=\"searchQuery\" path=\"searchQuery\"/>\n");
+      out.write("    <input type=\"submit\" value=\"Search\"></input>\n");
+      out.write("</form>\n");
+      out.write("<table>\n");
       out.write("    ");
       if (_jspx_meth_c_forEach_0(_jspx_page_context))
         return;
-      out.write("\r\n");
-      out.write("</table>\r\n");
-      out.write("\r\n");
+      out.write("\n");
+      out.write("</table>\n");
+      out.write("\n");
       if (_jspx_meth_c_import_1(_jspx_page_context))
         return;
-      out.write('\r');
       out.write('\n');
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
@@ -139,14 +138,14 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       int _jspx_eval_c_forEach_0 = _jspx_th_c_forEach_0.doStartTag();
       if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
-          out.write("\r\n");
-          out.write("        <tr>\r\n");
-          out.write("            <td>\r\n");
+          out.write("\n");
+          out.write("        <tr>\n");
+          out.write("            <td>\n");
           out.write("                ");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${competence.description}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("\r\n");
-          out.write("            </td>\r\n");
-          out.write("        </tr>\r\n");
+          out.write("\n");
+          out.write("            </td>\n");
+          out.write("        </tr>\n");
           out.write("    ");
           int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
