@@ -431,7 +431,7 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
             if (_jspx_meth_form_input_4((javax.servlet.jsp.tagext.JspTag) _jspx_th_form_form_0, _jspx_page_context, _jspx_push_body_count_form_form_0))
               return;
             out.write("\n");
-            out.write("        \t</div> \n");
+            out.write("        \t</div>\n");
             out.write("        </div>\n");
             out.write("        <div class=\"form-actions\">\n");
             out.write("            <input type=\"submit\" value=\"Edit\" class=\"btn btn-primary\"></input>\n");

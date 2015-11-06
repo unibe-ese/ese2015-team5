@@ -5,6 +5,7 @@ import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.pojos.SignupForm;
 import org.sample.model.ProfilePicture;
 import org.sample.model.User;
+<<<<<<< Updated upstream
 import org.sample.model.dao.ProfilePictureDao;
 import org.sample.model.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +35,26 @@ public class UserServiceImpl implements UserService {
 
 		return signupForm;
 	}
+=======
+import org.sample.model.dao.UserDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+
+@Service
+public class UserServiceImpl implements UserService{
+>>>>>>> Stashed changes
+
+	@Autowired
+	UserDao userDao;
+	
 	public User getUserByEmail(String email) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public User getUserById(long userId) {
+		return userDao.findOne(userId);
 	}
 
 	public User getCurrentUser() {
@@ -80,5 +97,7 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+
 
 }
