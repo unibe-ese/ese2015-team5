@@ -7,6 +7,18 @@
 <c:import url="template/header.jsp" />
 
 <h1>Homepage</h1>
-
+<form action="/findCompetenceLike"  commandName="searchQuery" method="get">
+    <input type="text" name="searchQuery" path="searchQuery"/>
+    <input type="submit" value="Search"></input>
+</form>
+<table>
+    <c:forEach items="${competences}" var="competence">
+        <tr>
+            <td>
+                ${competence.description}
+            </td>
+        </tr>
+    </c:forEach>
+</table>
 
 <c:import url="template/footer.jsp" />
