@@ -47,6 +47,7 @@ public final class header_jsp extends org.apache.jasper.runtime.HttpJspBase
         _jspx_resourceInjector.setContext(application);
       }
 
+<<<<<<< Updated upstream
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -129,6 +130,90 @@ public final class header_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("\t\t\t\t\t\t<!-- Content -->\r\n");
       out.write("\t\t\t\t\t\t\t<article>\r\n");
+=======
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("<!DOCTYPE HTML>\n");
+      out.write("<!--\n");
+      out.write("\tVerti by HTML5 UP\n");
+      out.write("\thtml5up.net | @n33co\n");
+      out.write("\tFree for personal and commercial use under the CCA 3.0 license (html5up.net/license)\n");
+      out.write("-->\n");
+      out.write("<html>\n");
+      out.write("\t<head>\n");
+      out.write("\t\t<title>Stutor</title>\n");
+      out.write("\t\t<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />\n");
+      out.write("\t\t<meta name=\"description\" content=\"\" />\n");
+      out.write("\t\t<meta name=\"keywords\" content=\"\" />\n");
+      out.write("\t\t<!--[if lte IE 8]><script src=\"/Skeleton/css/ie/html5shiv.js\"></script><![endif]-->\n");
+      out.write("\t\t<script src=\"/Skeleton/js/jquery.min.js\"></script>\n");
+      out.write("\t\t<script src=\"/Skeleton/js/jquery.dropotron.min.js\"></script>\n");
+      out.write("\t\t<script src=\"/Skeleton/js/skel.min.js\"></script>\n");
+      out.write("\t\t<script src=\"/Skeleton/js/skel-layers.min.js\"></script>\n");
+      out.write("\t\t<script src=\"/Skeleton/js/init.js\"></script>\n");
+      out.write("\t\t<noscript>\n");
+      out.write("\t\t\t<link rel=\"stylesheet\" href=\"/Skeleton/css/skel.css\" />\n");
+      out.write("\t\t\t<link rel=\"stylesheet\" href=\"/Skeleton/css/style.css\" />\n");
+      out.write("\t\t\t<link rel=\"stylesheet\" href=\"/Skeleton/css/style-desktop.css\" />\n");
+      out.write("\t\t</noscript>\n");
+      out.write("\t\t<!--[if lte IE 8]><link rel=\"stylesheet\" href=\"/Skeleton/css/ie/v8.css\" /><![endif]-->\n");
+      out.write("\t</head>\n");
+      out.write("\t<body class=\"no-sidebar\">\n");
+      out.write("\n");
+      out.write("\t\t<!-- Header -->\n");
+      out.write("\t\t\t<div id=\"header-wrapper\">\n");
+      out.write("\t\t\t\t<header id=\"header\" class=\"container\">\n");
+      out.write("\n");
+      out.write("\t\t\t\t\t<!-- Logo -->\n");
+      out.write("\t\t\t\t\t\t<div id=\"logo\">\n");
+      out.write("\t\t\t\t\t\t\t<h1><a href=\"index.html\">Stutor</a></h1>\n");
+      out.write("\t\t\t\t\t\t\t<span>Good Grades for Money</span>\n");
+      out.write("\t\t\t\t\t\t</div>\n");
+      out.write("\n");
+      out.write("\t\t\t\t\t<!-- Nav -->\n");
+      out.write("\t\t\t\t\t\t<nav id=\"nav\">\n");
+      out.write("\t\t\t\t\t\t\t<ul>\n");
+      out.write("\t\t\t\t\t\t\t\t<li><a href=\"index.html\">Welcome</a></li>\n");
+      out.write("\t\t\t\t\t\t\t\t<li>\n");
+      out.write("\t\t\t\t\t\t\t\t\t<a href=\"\">Dropdown</a>\n");
+      out.write("\t\t\t\t\t\t\t\t\t<ul>\n");
+      out.write("\t\t\t\t\t\t\t\t\t\t<li><a href=\"#\">Learn More!</a></li>\n");
+      out.write("\t\t\t\t\t\t\t\t\t\t<li><a href=\"#\">About Stutor</a></li>\n");
+      out.write("\t\t\t\t\t\t\t\t\t\t<li>\n");
+      out.write("\t\t\t\t\t\t\t\t\t\t\t<a href=\"\">Where Your Money Goes</a>\n");
+      out.write("\t\t\t\t\t\t\t\t\t\t\t<ul>\n");
+      out.write("\t\t\t\t\t\t\t\t\t\t\t\t<li><a href=\"#\">Mario</a></li>\n");
+      out.write("\t\t\t\t\t\t\t\t\t\t\t\t<li><a href=\"#\">aka The God</a></li>\n");
+      out.write("\t\t\t\t\t\t\t\t\t\t\t\t<li><a href=\"#\">Jesus</a></li>\n");
+      out.write("\t\t\t\t\t\t\t\t\t\t\t\t<li><a href=\"#\">A freaking baller</a></li>\n");
+      out.write("\t\t\t\t\t\t\t\t\t\t\t</ul>\n");
+      out.write("\t\t\t\t\t\t\t\t\t\t</li>\n");
+      out.write("\t\t\t\t\t\t\t\t\t</ul>\n");
+      out.write("\t\t\t\t\t\t\t\t</li>\n");
+      out.write("\t\t\t\t\t\t\t\t<li>\n");
+      out.write("\t\t\t\t\t\t\t\t\t<form action=\"logout\"/>\n");
+      out.write("\t\t\t\t\t\t\t\t\t   <input type=\"submit\" value=\"Logout\"/>\n");
+      out.write("\t\t\t\t\t\t\t\t\t</form>\n");
+      out.write("\t\t\t\t\t\t\t\t</li>\n");
+      out.write("\t\t\t\t\t\t\t\t<li><form action=\"/Skeleton/profile\" />\n");
+      out.write("   \t\t\t\t\t\t\t \t\t\t<input type=\"submit\" value=\"Profile\"/>\n");
+      out.write("\t\t\t\t\t\t\t\t</form></li>\n");
+      out.write("\t\t\t\t\t\t\t\t<li class=\"current\"><a href=\"no-sidebar.html\">No Sidebar</a></li>\n");
+      out.write("\t\t\t\t\t\t\t</ul>\n");
+      out.write("\t\t\t\t\t\t</nav>\n");
+      out.write("\n");
+      out.write("\t\t\t\t</header>\n");
+      out.write("\t\t\t</div>\n");
+      out.write("\n");
+      out.write("\t\t<!-- Main -->\n");
+      out.write("\t\t\t<div id=\"main-wrapper\">\n");
+      out.write("\t\t\t\t<div class=\"container\">\n");
+      out.write("\t\t\t\t\t<div id=\"content\">\n");
+      out.write("\n");
+      out.write("\t\t\t\t\t\t<!-- Content -->\n");
+      out.write("\t\t\t\t\t\t\t<article>\n");
+>>>>>>> Stashed changes
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;
