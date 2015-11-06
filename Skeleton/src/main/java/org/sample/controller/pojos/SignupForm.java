@@ -18,8 +18,6 @@ public class SignupForm {
    // message = "Must be valid email address")
     @NotNull
     private String email;
-   
-    
     private MultipartFile profilePic;
 
     public String getFirstName() {

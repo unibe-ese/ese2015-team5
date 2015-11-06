@@ -61,6 +61,7 @@ public class SampleServiceImpl implements SampleService {
         user.setPassword(signupForm.getPassword());
         user.setEnableTutor(false);
         user.setPic(profilePicture);
+        user.setAboutYou(null);
         user = userDao.save(user);  
         
      
@@ -95,6 +96,7 @@ public class SampleServiceImpl implements SampleService {
 		user.setLastName(form.getLastName());
 		user.setPassword(form.getPassword());
 		user.setEnableTutor(form.getEnableTutor());
+		user.setAboutYou(form.getAboutYou());
 		return userDao.save(user);
 	}
 	

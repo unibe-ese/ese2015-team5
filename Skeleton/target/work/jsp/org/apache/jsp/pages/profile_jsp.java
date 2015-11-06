@@ -18,6 +18,7 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_set_var;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_form_errors_path_nobody;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_form_input_value_type_tabindex_path_maxlength_id_nobody;
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_form_input_value_type_style_placeholder_path_name_maxlength_nobody;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_forEach_var_items;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_form_form_action;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_form_form_modelAttribute_method_id_disabled_action;
@@ -39,6 +40,7 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_tagPool_c_set_var = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_form_errors_path_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_form_input_value_type_tabindex_path_maxlength_id_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _jspx_tagPool_form_input_value_type_style_placeholder_path_name_maxlength_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_c_forEach_var_items = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_form_form_action = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_form_form_modelAttribute_method_id_disabled_action = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
@@ -55,6 +57,7 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_tagPool_c_set_var.release();
     _jspx_tagPool_form_errors_path_nobody.release();
     _jspx_tagPool_form_input_value_type_tabindex_path_maxlength_id_nobody.release();
+    _jspx_tagPool_form_input_value_type_style_placeholder_path_name_maxlength_nobody.release();
     _jspx_tagPool_c_forEach_var_items.release();
     _jspx_tagPool_form_form_action.release();
     _jspx_tagPool_form_form_modelAttribute_method_id_disabled_action.release();
@@ -423,6 +426,12 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
             }
             out.write("\n");
             out.write("            </div>\n");
+            out.write("\t\t \t<div>\n");
+            out.write("         \t\t");
+            if (_jspx_meth_form_input_4((javax.servlet.jsp.tagext.JspTag) _jspx_th_form_form_0, _jspx_page_context, _jspx_push_body_count_form_form_0))
+              return;
+            out.write("\n");
+            out.write("        \t</div> \n");
             out.write("        </div>\n");
             out.write("        <div class=\"form-actions\">\n");
             out.write("            <input type=\"submit\" value=\"Edit\" class=\"btn btn-primary\"></input>\n");
@@ -469,7 +478,7 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
             out.write("\n");
             out.write("    <div>\n");
             out.write("      ");
-            if (_jspx_meth_form_input_4((javax.servlet.jsp.tagext.JspTag) _jspx_th_form_form_2, _jspx_page_context, _jspx_push_body_count_form_form_2))
+            if (_jspx_meth_form_input_5((javax.servlet.jsp.tagext.JspTag) _jspx_th_form_form_2, _jspx_page_context, _jspx_push_body_count_form_form_2))
               return;
             out.write("\n");
             out.write("      ");
@@ -823,6 +832,38 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
     return false;
   }
 
+  private boolean _jspx_meth_form_input_4(javax.servlet.jsp.tagext.JspTag _jspx_th_form_form_0, PageContext _jspx_page_context, int[] _jspx_push_body_count_form_form_0)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  form:input
+    org.springframework.web.servlet.tags.form.InputTag _jspx_th_form_input_4 = (org.springframework.web.servlet.tags.form.InputTag) _jspx_tagPool_form_input_value_type_style_placeholder_path_name_maxlength_nobody.get(org.springframework.web.servlet.tags.form.InputTag.class);
+    _jspx_th_form_input_4.setPageContext(_jspx_page_context);
+    _jspx_th_form_input_4.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_form_0);
+    _jspx_th_form_input_4.setDynamicAttribute(null, "type", new String("textarea"));
+    _jspx_th_form_input_4.setPath("aboutYou");
+    _jspx_th_form_input_4.setDynamicAttribute(null, "value", (java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${user.aboutYou}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    _jspx_th_form_input_4.setDynamicAttribute(null, "style", new String("height: 400px; margin: 20px 0px 50px;"));
+    _jspx_th_form_input_4.setDynamicAttribute(null, "name", new String("Tutor Description"));
+    _jspx_th_form_input_4.setMaxlength("500");
+    _jspx_th_form_input_4.setDynamicAttribute(null, "placeholder", new String("Personal Description"));
+    int[] _jspx_push_body_count_form_input_4 = new int[] { 0 };
+    try {
+      int _jspx_eval_form_input_4 = _jspx_th_form_input_4.doStartTag();
+      if (_jspx_th_form_input_4.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+        return true;
+      }
+    } catch (Throwable _jspx_exception) {
+      while (_jspx_push_body_count_form_input_4[0]-- > 0)
+        out = _jspx_page_context.popBody();
+      _jspx_th_form_input_4.doCatch(_jspx_exception);
+    } finally {
+      _jspx_th_form_input_4.doFinally();
+      _jspx_tagPool_form_input_value_type_style_placeholder_path_name_maxlength_nobody.reuse(_jspx_th_form_input_4);
+    }
+    return false;
+  }
+
   private boolean _jspx_meth_c_forEach_0(PageContext _jspx_page_context)
           throws Throwable {
     PageContext pageContext = _jspx_page_context;
@@ -909,28 +950,28 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
     return false;
   }
 
-  private boolean _jspx_meth_form_input_4(javax.servlet.jsp.tagext.JspTag _jspx_th_form_form_2, PageContext _jspx_page_context, int[] _jspx_push_body_count_form_form_2)
+  private boolean _jspx_meth_form_input_5(javax.servlet.jsp.tagext.JspTag _jspx_th_form_form_2, PageContext _jspx_page_context, int[] _jspx_push_body_count_form_form_2)
           throws Throwable {
     PageContext pageContext = _jspx_page_context;
     JspWriter out = _jspx_page_context.getOut();
     //  form:input
-    org.springframework.web.servlet.tags.form.InputTag _jspx_th_form_input_4 = (org.springframework.web.servlet.tags.form.InputTag) _jspx_tagPool_form_input_path_nobody.get(org.springframework.web.servlet.tags.form.InputTag.class);
-    _jspx_th_form_input_4.setPageContext(_jspx_page_context);
-    _jspx_th_form_input_4.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_form_2);
-    _jspx_th_form_input_4.setPath("description");
-    int[] _jspx_push_body_count_form_input_4 = new int[] { 0 };
+    org.springframework.web.servlet.tags.form.InputTag _jspx_th_form_input_5 = (org.springframework.web.servlet.tags.form.InputTag) _jspx_tagPool_form_input_path_nobody.get(org.springframework.web.servlet.tags.form.InputTag.class);
+    _jspx_th_form_input_5.setPageContext(_jspx_page_context);
+    _jspx_th_form_input_5.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_form_form_2);
+    _jspx_th_form_input_5.setPath("description");
+    int[] _jspx_push_body_count_form_input_5 = new int[] { 0 };
     try {
-      int _jspx_eval_form_input_4 = _jspx_th_form_input_4.doStartTag();
-      if (_jspx_th_form_input_4.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      int _jspx_eval_form_input_5 = _jspx_th_form_input_5.doStartTag();
+      if (_jspx_th_form_input_5.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
         return true;
       }
     } catch (Throwable _jspx_exception) {
-      while (_jspx_push_body_count_form_input_4[0]-- > 0)
+      while (_jspx_push_body_count_form_input_5[0]-- > 0)
         out = _jspx_page_context.popBody();
-      _jspx_th_form_input_4.doCatch(_jspx_exception);
+      _jspx_th_form_input_5.doCatch(_jspx_exception);
     } finally {
-      _jspx_th_form_input_4.doFinally();
-      _jspx_tagPool_form_input_path_nobody.reuse(_jspx_th_form_input_4);
+      _jspx_th_form_input_5.doFinally();
+      _jspx_tagPool_form_input_path_nobody.reuse(_jspx_th_form_input_5);
     }
     return false;
   }

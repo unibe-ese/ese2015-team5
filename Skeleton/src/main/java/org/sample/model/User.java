@@ -22,6 +22,7 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+	private String aboutYou;
     
     @OneToOne
     private ProfilePicture pic;
@@ -105,6 +106,14 @@ public class User {
 
 	public void setEnableTutor(boolean enableTutor) {
 		this.enableTutor = enableTutor;
+	}
+
+	public String getAboutYou() {
+		return aboutYou;
+	}
+
+	public void setAboutYou(String aboutYou) {
+		this.aboutYou = aboutYou;
 	}
 	
 }
