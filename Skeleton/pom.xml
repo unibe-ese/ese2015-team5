@@ -7,6 +7,8 @@
 	<artifactId>Skeleton</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
+	
+	
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -57,6 +59,30 @@
 	<!-- </build> -->
 
 	<dependencies>
+
+		<!-- Testing, JUnit -->
+		<dependency>
+		    <groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		    <version>4.12</version>
+		    <scope>test</scope>
+		</dependency>
+		
+		<!-- Testing, mockito -->
+		<dependency>
+		    <groupId>org.mockito</groupId>
+		    <artifactId>mockito-core</artifactId>
+		    <version>1.9.5</version>
+		    <scope>test</scope>
+		</dependency>
+		
+		<!-- Testing, spring-test -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-test</artifactId>
+		    <version>4.2.2.RELEASE</version>
+		    <scope>test</scope>
+		</dependency>
 
 		<!-- Servlet & JSTL -->
 		<dependency>
