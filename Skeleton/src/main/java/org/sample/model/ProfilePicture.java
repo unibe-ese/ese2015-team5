@@ -48,5 +48,15 @@ public class ProfilePicture {
 		this.file = bs;
 	}
 
+	public ProfilePicture update(MultipartFile file) throws InvalidUserException {
+		try {
+			this.file = file.getBytes();
+		} catch (IOException e) {
+			throw new InvalidUserException("Picture could not be processed");
+		}
+		return this;
+		
+	}
+
 
 }

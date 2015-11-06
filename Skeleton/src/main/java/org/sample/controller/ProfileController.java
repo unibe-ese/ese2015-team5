@@ -5,8 +5,8 @@ import javax.validation.Valid;
 import org.sample.controller.pojos.AddCompetenceForm;
 import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.service.SampleService;
+import org.sample.controller.service.UserService;
 import org.sample.model.Competence;
-import org.sample.model.ProfilePicture;
 import org.sample.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +30,9 @@ public class ProfileController {
 	@Autowired
 	SampleService sampleService;
 	
+	@Autowired
+	UserService userService;
+	
 	/**
 	 * Displays the correct profile page.
 	 * 
@@ -44,7 +47,7 @@ public class ProfileController {
     public ModelAndView gotoProfile(Model model){
     	
     	ModelAndView modelAndView = new ModelAndView("profile", model.asMap());
-    	User user = sampleService.getCurrentUser();
+    	User user = userService.getCurrentUser();
     	modelAndView.addObject("user", user);
     	
     	if(user == null){
@@ -147,20 +150,10 @@ public class ProfileController {
 	}
 	
 	@RequestMapping(value = "/changeProfilePic", method = RequestMethod.POST)
-    public String uploadFileHandler(@RequestParam("file") MultipartFile file) {
- 
+    public String uploadFileHandler(@RequestParam("file") MultipartFile file){
         if (!file.isEmpty()) {
-            try {
-            	ProfilePicture profilePicture = new ProfilePicture();
-            	
-            	profilePicture.setFile(file.getBytes());
-            	
-            	sampleService.updateProfilePicture(profilePicture);
-            	
-                return "redirect:profile";
-            } catch (Exception e) {
-                return "redirect:profile";
-            }
+        	userService.updateProfilePicture(file);
+            return "redirect:profile";
         }else{       	
         	return "redirect:profile";
         }
