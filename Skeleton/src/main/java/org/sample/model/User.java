@@ -10,78 +10,104 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.sample.controller.exceptions.InvalidUserException;
+import org.sample.controller.pojos.ModifyUserForm;
+import org.sample.controller.pojos.SignupForm;
 
 @Entity
 public class User {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+	@Id
+	@GeneratedValue
+	private Long id;
 
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String password;
-	private String aboutYou;
-    
-    @OneToOne
-    private ProfilePicture pic;
+	private String firstName;
+	private String lastName;
+	private String email;
+	private String password;
+	private String aboutYou = null;
 
-	@OneToMany(fetch = FetchType.EAGER, targetEntity=Competence.class, mappedBy="owner", cascade=CascadeType.DETACH)
-    private List<Competence> competences;
-    
-    private boolean enableTutor;
-    
-    @OneToOne(cascade = {CascadeType.ALL})
-    private Address address; 
-    
-    public ProfilePicture getPic() {
+	@OneToOne
+	private ProfilePicture pic;
+
+	@OneToMany(fetch = FetchType.EAGER, targetEntity = Competence.class, mappedBy = "owner", cascade = CascadeType.DETACH)
+	private List<Competence> competences;
+
+	private boolean enableTutor = false;
+
+	@OneToOne(cascade = { CascadeType.ALL })
+	private Address address;
+
+	public User() {
+
+	}
+	
+	public User(SignupForm signup, ProfilePicture pic) throws InvalidUserException {
+		this.id = signup.getId();
+		this.firstName = signup.getFirstName();
+		this.lastName = signup.getLastName();
+		this.email = signup.getEmail();
+		this.password = signup.getPassword();
+		
+		this.pic = pic;
+	}
+
+	public User update(ModifyUserForm mod) {
+		this.setFirstName(mod.getFirstName());
+		this.setLastName(mod.getLastName());
+		this.setPassword(mod.getPassword());
+		this.setEnableTutor(mod.getEnableTutor());
+		this.setAboutYou(mod.getAboutYou());
+		return this;
+	}
+
+	public ProfilePicture getPic() {
 		return pic;
 	}
 
 	public void setPic(ProfilePicture pic) {
 		this.pic = pic;
 	}
-    
-    public void setCompetences(List<Competence> competences){
-    	this.competences = competences;
-    }
-    
-    public List<Competence> getCompetences(){
-    	return competences;
-    }
-    
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setCompetences(List<Competence> competences) {
+		this.competences = competences;
+	}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public List<Competence> getCompetences() {
+		return competences;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public Address getAddress() {
 		return address;
@@ -90,7 +116,6 @@ public class User {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-
 
 	public String getPassword() {
 		return password;
@@ -115,5 +140,5 @@ public class User {
 	public void setAboutYou(String aboutYou) {
 		this.aboutYou = aboutYou;
 	}
-	
+
 }

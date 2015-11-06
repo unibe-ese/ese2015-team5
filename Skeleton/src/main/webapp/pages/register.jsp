@@ -9,7 +9,7 @@
 
 <h1>Sign Up Here!</h1>
 
-<form:form method="post" modelAttribute="signupForm" action="create" id="signupForm" cssClass="form-horizontal"  autocomplete="off" enctype="multipart/form-data">
+<form:form method="post" modelAttribute="signupForm" action="register" id="signupForm" cssClass="form-horizontal"  autocomplete="off" enctype="multipart/form-data">
     <fieldset>
         <legend>Enter Your Information</legend>
 
