@@ -25,4 +25,6 @@ public interface UserService {
 		
 	public boolean validToUpdate(ModifyUserForm form);
 
+	public User getUserById(long userId);
+
 }

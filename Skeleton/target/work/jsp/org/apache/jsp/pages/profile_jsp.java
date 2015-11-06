@@ -431,6 +431,10 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
             out.write("         \t\t");
             if (_jspx_meth_form_input_4((javax.servlet.jsp.tagext.JspTag) _jspx_th_form_form_0, _jspx_page_context, _jspx_push_body_count_form_form_0))
               return;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 49b36d3060886bcab193b6ef95f92bef874898ef
             out.write("\r\n");
             out.write("        \t</div>\r\n");
             out.write("        </div>\r\n");
@@ -438,6 +442,18 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
             out.write("            <input type=\"submit\" value=\"Edit\" class=\"btn btn-primary\"></input>\r\n");
             out.write("        </div>\r\n");
             out.write("    </fieldset>\r\n");
+<<<<<<< HEAD
+=======
+=======
+            out.write("\n");
+            out.write("        \t</div>\n");
+            out.write("        </div>\n");
+            out.write("        <div class=\"form-actions\">\n");
+            out.write("            <input type=\"submit\" value=\"Edit\" class=\"btn btn-primary\"></input>\n");
+            out.write("        </div>\n");
+            out.write("    </fieldset>\n");
+>>>>>>> origin/master
+>>>>>>> 49b36d3060886bcab193b6ef95f92bef874898ef
             int evalDoAfterBody = _jspx_th_form_form_0.doAfterBody();
             if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
               break;

@@ -22,6 +22,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+/**
+ * 
+ * 
+ * @author hess
+ *
+ */
 
 @Controller
 @SessionAttributes("user")
@@ -149,6 +155,18 @@ public class ProfileController {
 		return "redirect:/profile";
 	}
 	
+	/**
+	 * Validates and saves a picture to the DB.
+	 * 
+	 * Receives a MultipartFile, checks if its empty.
+	 * If the File is valid, creates a profiePicture object, and adds the file to the object.
+	 * If an exception is thrown, returns redirects to the profile page and does't change the profile
+	 * picture. 
+	 * 
+	 * 
+	 * @param file:  A  multipartFile containing a picture.
+	 * @return: Redirects to the profile page. 
+	 */
 	@RequestMapping(value = "/changeProfilePic", method = RequestMethod.POST)
     public String uploadFileHandler(@RequestParam("file") MultipartFile file){
         if (!file.isEmpty()) {
