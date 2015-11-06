@@ -2,6 +2,14 @@ package org.sample.controller.pojos;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+/**
+ * Holds information to create a {@link org.sample.model.Competence} Object and add it to a {@link org.sample.model.User}.
+ * 
+ * Is used to get information from the HTML file into the a Java Controller handily.
+ * 
+ * @author ESE Team5
+ *
+ */
 
 public class AddCompetenceForm {
 

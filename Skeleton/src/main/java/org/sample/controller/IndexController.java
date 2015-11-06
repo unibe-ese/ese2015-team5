@@ -1,6 +1,5 @@
 package org.sample.controller;
 
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.sample.controller.service.SampleService;
@@ -12,6 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+/**
+ * Handles request that originate from the index page.
+ *
+ *@Author: ESE Team 5
+ *
+ */
+
 @Controller
 public class IndexController {
 
@@ -19,6 +25,13 @@ public class IndexController {
     @Autowired
     SampleService sampleService;
 
+    /**
+     * Displays the index page.
+     * 
+     * Adds a list of competences to the model and then returns the {@link ModelAndView} of the index page.
+     * 
+     * @return {@link ModelAndView} of index.
+     */
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public ModelAndView index() {
     	ModelAndView model = new ModelAndView("index");   
@@ -26,6 +39,11 @@ public class IndexController {
         return model;
     }
     
+    /**
+     * Not used. Will be used, if the searchCompetenceLike redirects to the index page. 
+     * @param model
+     * @return
+     */
     public ModelAndView index(Model model) {
     	System.out.println("index");
     	ModelAndView newModel = new ModelAndView("index", model.asMap());   
@@ -34,11 +52,6 @@ public class IndexController {
     	}
     	
         return newModel;
-    }
-    
-    @RequestMapping(value = "access-denied", method = RequestMethod.GET)
-    public String accessDenied() {
-        return "access-denied";
     }
     
 //    @RequestMapping(value="/register", method=RequestMethod.GET)
@@ -87,16 +100,24 @@ public class IndexController {
 //    }
 //    
 
+    /**
+     * Handles requests that search for {@link org.sample.model.Competence}
+     * 
+     * Receives a String, and searches the DB for Competences that contain the String in 
+     * their description. Then returns the user to the index, displaying the found Competences. 
+     * 
+     * @param request: A request containing a searchQuery.
+     * @return A {@link ModelAndView} of the index page. 
+     */
     @RequestMapping(value="/findCompetenceLike", method=RequestMethod.GET)
     public ModelAndView findCompetenceLike(HttpServletRequest request){
-    	System.out.println("findComp");
-    	System.out.println(request.getParameter("searchQuery"));
+    	findCompetenceLike(null);
     	String searchQuery = request.getParameter("searchQuery");
-    	System.out.println(sampleService.findCompetenceLike(searchQuery));
     	ModelAndView model = new ModelAndView("index");
     	model.addObject("competences", sampleService.findCompetenceLike(searchQuery));
     	return model;
     }
+    
     
     @RequestMapping(value = "/security-error", method = RequestMethod.GET)
     public String securityError(RedirectAttributes redirectAttributes) {
@@ -104,6 +125,10 @@ public class IndexController {
         return "redirect:/";
     }
     
+    @RequestMapping(value = "access-denied", method = RequestMethod.GET)
+    public String accessDenied() {
+        return "access-denied";
+    }
     
 
 }
