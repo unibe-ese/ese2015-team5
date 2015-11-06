@@ -1,4 +1,4 @@
-	package org.sample.controller;
+package org.sample.controller;
 
 import java.io.IOException;
 
@@ -10,6 +10,7 @@ import org.sample.controller.service.SampleService;
 import org.sample.model.ProfilePicture;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,12 +30,12 @@ public class FileUploadController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/imageDisplay", method = RequestMethod.GET)
-	  public void showImage(HttpServletResponse response,HttpServletRequest request) 
+	@RequestMapping(value = "/imageDisplay$userId={userId}", method = RequestMethod.GET)
+	  public void showImage(@PathVariable("userId") long userId, HttpServletResponse response,HttpServletRequest request) 
 	          throws ServletException, IOException{
+		System.out.println("display");
 
-
-	    ProfilePicture item = sampleService.getProfilePicture();    
+	    ProfilePicture item = sampleService.getProfilePicture(userId);    
 	    response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
 	    response.getOutputStream().write(item.getFile());
 	    response.getOutputStream().close();

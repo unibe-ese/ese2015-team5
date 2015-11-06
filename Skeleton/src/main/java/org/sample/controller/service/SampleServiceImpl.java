@@ -143,7 +143,11 @@ public class SampleServiceImpl implements SampleService {
     	profilePicDao.save(profilePicture);
     }
     
-    public ProfilePicture getProfilePicture(){
+    public ProfilePicture getProfilePicture(long userId){
+    	User user = userDao.findOne(userId);
+    	if(user != null){
+    		return user.getPic();
+    	}
     	return getCurrentUser().getPic();
     }
     
@@ -201,8 +205,17 @@ public class SampleServiceImpl implements SampleService {
 	}
 
 	public Competence findCompetence(long compId) {
-		return compDao.findOne(compId);
-		
+		return compDao.findOne(compId);	
+	}
+	
+	public List<Competence> findCompetenceLike(String string){
+		List<Competence> comps = new ArrayList<Competence>();
+		for(Competence c : compDao.findAll()){
+			if(c.getDescription().contains(string)){
+				comps.add(c);
+			}
+		}
+		return comps;
 	}
 
 }

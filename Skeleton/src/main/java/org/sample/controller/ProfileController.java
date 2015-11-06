@@ -40,7 +40,8 @@ public class ProfileController {
 	 * @param model
 	 * @return
 	 */
-    @RequestMapping( value = "/profile")
+    @RequestMapping( value = "/profile"
+    		)
     public ModelAndView gotoProfile(Model model){
     	
     	ModelAndView modelAndView = new ModelAndView("profile", model.asMap());

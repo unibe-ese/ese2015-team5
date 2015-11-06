@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,8 +28,7 @@ public class IndexController {
     public ModelAndView index() {
     	System.out.println("index");
     	ModelAndView model = new ModelAndView("index");   
-    	model.addObject("signupForm", new SignupForm());
-    	System.out.println("index");
+    	model.addObject("competences", sampleService.findCompetenceLike(""));
         return model;
     }
     
@@ -77,9 +77,15 @@ public class IndexController {
         } else {
         	System.out.println("nope");
         	model = new ModelAndView("index");
-        	model.addObject("signupForm", new SignupForm());
         }    
     	return model;
+    }
+    
+    @RequestMapping(value="/findCompetenceLike?searchQuery={searchQuerty}", method=RequestMethod.GET)
+    public String findCompetenceLike(@PathVariable("searchQuery") String query ){
+    	
+    	
+    	return "redirect:index";
     }
     
     @RequestMapping(value = "/security-error", method = RequestMethod.GET)
@@ -87,6 +93,8 @@ public class IndexController {
         redirectAttributes.addFlashAttribute("page_error", "You do have permission to do that!");
         return "redirect:/";
     }
+    
+    
 
 }
 
