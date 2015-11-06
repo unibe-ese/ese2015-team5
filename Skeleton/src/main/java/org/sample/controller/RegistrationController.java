@@ -30,8 +30,6 @@ public class RegistrationController {
 	@Autowired
 	UserService userService;
 	
-	@Autowired
-	UserService userService;
 	
 
 	/*
