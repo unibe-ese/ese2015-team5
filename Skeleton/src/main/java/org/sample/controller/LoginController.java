@@ -1,5 +1,7 @@
 package org.sample.controller;
 
+import org.sample.controller.service.SampleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +30,10 @@ public class LoginController {
 	 */
 	
 	
+	@Autowired
+	SampleService sampleService;
+	
+	
 	
 	/**
 	 * This method handles the GET request for the login page.
@@ -45,10 +51,26 @@ public class LoginController {
 	 * 
 	 * @return ModelAndView loginPageView
 	 */
-//	@RequestMapping(value="/login", method=RequestMethod.GET)
-//	public ModelAndView getLoginPage(){
-//		return null;
-//	}
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public ModelAndView getLoginPage(@RequestParam(value="error", required=false) boolean error, ModelMap model){
+		if (error){
+			model.put("error", "You have entered an invalid email or password");
+		} else {
+			model.put("error", null);
+		}
+		
+		ModelAndView loginPageView = new ModelAndView("login");
+		
+		
+		try {
+			this.checkLoginPageValidity(loginPageView.getView());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return loginPageView;
+	}
 	
 	
 	/**
@@ -56,26 +78,6 @@ public class LoginController {
 	 * @param ModelAndView loginPageView
 	 * @return ModelAndView loginPageView
 	 */
-//	public View checkLoginPageValidity(View loginPageView){
-//		return loginPageView;
-//		
-//	}
-	
-	
-//	
-//	  
-//    @RequestMapping(value = "/login", method = RequestMethod.GET)
-//    public String getLoginPage(@RequestParam(value="error", required=false) boolean error, 
-//      ModelMap model) {
-//    System.out.println("getLoginPage");
-//     if (error == true) {
-//
-//      model.put("error", "You have entered an invalid username or password!");
-//     } else {
-//      model.put("error", "");
-//     }
-//      
-//
-//     return "login";
-//    }
+	public void checkLoginPageValidity(View loginPageView) throws Exception{
+	}
 }
