@@ -30,7 +30,6 @@ public class RegistrationController {
 	@Autowired
 	UserService userService;
 	
-	
 
 	/*
 	 *	Here we'd like to create the controller logic for the registration process
