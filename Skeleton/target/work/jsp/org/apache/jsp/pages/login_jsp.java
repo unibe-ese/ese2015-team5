@@ -57,43 +57,44 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
         _jspx_resourceInjector.setContext(application);
       }
 
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       if (_jspx_meth_c_import_0(_jspx_page_context))
         return;
-      out.write("\n");
-      out.write("\n");
-      out.write("<title>Login</title>\n");
-      out.write("</head>\n");
-      out.write("<body>\n");
-      out.write("\n");
-      out.write("\t<h1>Login</h1>\n");
-      out.write("\t<div id=\"login-error\">\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<title>Login</title>\r\n");
+      out.write("</head>\r\n");
+      out.write("<body>\r\n");
+      out.write("\r\n");
+      out.write("\t<h1>Login</h1>\r\n");
+      out.write("\t<div id=\"login-error\">\r\n");
       out.write("\t\t");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${error}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\n");
-      out.write("\t</div>\n");
-      out.write("\t\t<form action=\"./j_spring_security_check\" method=\"post\" >\n");
-      out.write("\t\t\t<p>\n");
-      out.write("\t\t\t\t<label for=\"j_username\">Username</label>\n");
-      out.write(" \t\t\t   \t\t<input id=\"j_username\" name=\"j_username\" type=\"text\" />\n");
-      out.write("\t\t\t\t</p>\n");
-      out.write("\t\t\t\t<p>\n");
-      out.write("\t\t\t\t\t<label for=\"j_password\">Password</label>\n");
-      out.write(" \t\t\t\t   \t<input id=\"j_password\" name=\"j_password\" type=\"password\" />\n");
-      out.write("\t\t\t\t</p>\n");
-      out.write("\t\t\t<input  type=\"submit\" value=\"Login\" />\n");
-      out.write("\t\t</form>\n");
-      out.write("\n");
-      out.write("<form action=\"register\">\n");
-      out.write("\t<input type=\"submit\" value=\"Register\">\n");
-      out.write("</form>\n");
-      out.write("\n");
+      out.write("\r\n");
+      out.write("\t</div>\r\n");
+      out.write("\t\t<form action=\"./j_spring_security_check\" method=\"post\" >\r\n");
+      out.write("\t\t\t<p>\r\n");
+      out.write("\t\t\t\t<label for=\"j_username\">Username</label>\r\n");
+      out.write(" \t\t\t   \t\t<input id=\"j_username\" name=\"j_username\" type=\"text\" />\r\n");
+      out.write("\t\t\t\t</p>\r\n");
+      out.write("\t\t\t\t<p>\r\n");
+      out.write("\t\t\t\t\t<label for=\"j_password\">Password</label>\r\n");
+      out.write(" \t\t\t\t   \t<input id=\"j_password\" name=\"j_password\" type=\"password\" />\r\n");
+      out.write("\t\t\t\t</p>\r\n");
+      out.write("\t\t\t<input  type=\"submit\" value=\"Login\" />\r\n");
+      out.write("\t\t</form>\r\n");
+      out.write("\r\n");
+      out.write("<form action=\"register\">\r\n");
+      out.write("\t<input type=\"submit\" value=\"Register\">\r\n");
+      out.write("</form>\r\n");
+      out.write("\r\n");
       if (_jspx_meth_c_import_1(_jspx_page_context))
         return;
+      out.write('\r');
       out.write('\n');
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
