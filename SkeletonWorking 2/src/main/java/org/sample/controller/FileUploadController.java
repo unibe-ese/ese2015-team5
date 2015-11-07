@@ -27,12 +27,7 @@ public class FileUploadController {
 	 
 	 @Autowired
 	 UserService userService;
-	 
-	/**
-	 * @Deprecated
-	 * 
-	 * @return 
-	 */
+
 	@Deprecated
 	@RequestMapping(value = "/upload", method = RequestMethod.GET)
 	public ModelAndView uploadForm(){

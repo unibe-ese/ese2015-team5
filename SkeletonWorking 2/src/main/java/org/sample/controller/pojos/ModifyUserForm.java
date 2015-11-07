@@ -2,7 +2,12 @@ package org.sample.controller.pojos;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-
+/**
+ * Contains information to edit a {@link org.sample.model.User}.
+ * 
+ * @author ESE Team5
+ *
+ */
 
 public class ModifyUserForm{
 	

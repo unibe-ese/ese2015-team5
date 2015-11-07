@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 /**
  * Handles requests that originate from the Registration page, or want to redirect to it. 
  * 
- * @author Mario Hess
+ * @author ESE Team5
  *
  */
 

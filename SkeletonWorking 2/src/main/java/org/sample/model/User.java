@@ -10,6 +10,20 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+/**
+ * Represents a registered User of Stutor.
+ * 
+ * @field firstName, lastName: The complete Name of a User.
+ * @field email: Used to login.
+ * @field password: Used to authenticate.
+ * @field aboutYou: A description of a User.
+ * @field pic: {@ProfilePicture} of the User
+ * @field competences: A list of {@Competence} a User might offer.
+ * @field enableTutor: A boolean indicating if he offers tutoring at the moment. (Used for Competences) 
+ * 
+ * @author ESE Team5
+ *
+ */
 
 @Entity
 public class User {

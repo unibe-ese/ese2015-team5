@@ -23,6 +23,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * Provides generic functionalities like searching and saving in the DB.
+ * 
+ * @author ESE Team5
+ *
+ */
 
 @Service
 public class SampleServiceImpl implements SampleService {

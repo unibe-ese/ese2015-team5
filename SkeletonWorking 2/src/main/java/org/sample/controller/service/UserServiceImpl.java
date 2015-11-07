@@ -8,6 +8,12 @@ import org.sample.model.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Provides functionalities like searching, modifying and saving of {@link User} in the DB.
+ * 
+ * @author ESE Team5
+ *
+ */
 
 @Service
 public class UserServiceImpl implements UserService{

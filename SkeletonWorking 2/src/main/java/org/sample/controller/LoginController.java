@@ -13,8 +13,6 @@ import org.springframework.web.servlet.View;
 
 /**
  * Handles requests that have to do with logging in. 
- * 
- *
  */
 
 @Controller

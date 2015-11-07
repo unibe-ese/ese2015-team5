@@ -6,6 +6,19 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 
+/**
+ * Represents a course that a {@link User} might offer as a tutor course. 
+ * Contains a boolean value isEnabled, which indicates, if the owner is an enabled Tutor
+ * at the moment. 
+ * 
+ * @field isEnabled: If the owner is offering tutoring at the moment.
+ * @field description: A short description of the course.
+ * @field owner: The {@link User}, who is offering the course.
+ * 
+ * @author ESE Team5
+ *
+ */
+
 @Entity
 public class Competence {
 

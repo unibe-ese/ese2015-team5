@@ -17,6 +17,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
  
+/**
+ * Provides Authentication for Users, using the DB.
+ * 
+ * @author ESE Team5
+ *
+ */
+
 @Component
 public class CustomUserDetailsService implements AuthenticationProvider {
 

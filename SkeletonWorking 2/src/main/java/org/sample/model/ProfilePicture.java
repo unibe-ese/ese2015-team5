@@ -5,6 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+/**
+ * A profile picture for a {@link User}.
+ * 
+ * @author Ese Team5
+ *
+ */
 
 @Entity
 public class ProfilePicture {

@@ -5,6 +5,13 @@ import java.util.Collection;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 
+/**
+ * Extends a {@link UsernamePasswordAuthenticationToken} with a ID field.
+ * 
+ * @author ESE Team5
+ *
+ */
+
 public class UsernamePasswordIDAuthenticationToken extends
 		UsernamePasswordAuthenticationToken {
 
