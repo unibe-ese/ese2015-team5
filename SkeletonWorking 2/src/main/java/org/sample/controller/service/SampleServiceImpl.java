@@ -4,6 +4,7 @@ package org.sample.controller.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.sample.controller.builder.UserBuilder;
 import org.sample.controller.exceptions.InvalidUserException;
 import org.sample.controller.pojos.AddCompetenceForm;
 import org.sample.controller.pojos.ModifyUserForm;
@@ -20,7 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -41,12 +41,7 @@ public class SampleServiceImpl implements SampleService {
     @Transactional
     public SignupForm saveFrom(SignupForm signupForm) throws InvalidUserException{
     	System.out.println("saveForm");
-        String firstName = signupForm.getFirstName();
 
-        if(!StringUtils.isEmpty(firstName) && "ESE".equalsIgnoreCase(firstName)) {
-            throw new InvalidUserException("Sorry, ESE is not a valid name");   // throw exception
-        }
-        
         MultipartFile file = signupForm.getProfilePic();
         ProfilePicture profilePicture = new ProfilePicture();
         try {
@@ -60,18 +55,22 @@ public class SampleServiceImpl implements SampleService {
         } catch (Exception e) {
             throw new InvalidUserException("Picture could not be processed");
         }
-        User user = new User();
-        user.setFirstName(signupForm.getFirstName());
-        user.setEmail(signupForm.getEmail());
-        user.setLastName(signupForm.getLastName());
-        user.setPassword(signupForm.getPassword());
-        user.setEnableTutor(false);
+        
+        User user = UserBuilder.buildUser(signupForm);
         user.setPic(profilePicture);
-        user.setAboutYou(null);
-        user = userDao.save(user);  
+        user = userDao.save(user);
+//        User user = new User();
+//        user.setFirstName(signupForm.getFirstName());
+//        user.setEmail(signupForm.getEmail());
+//        user.setLastName(signupForm.getLastName());
+//        user.setPassword(signupForm.getPassword());
+//        user.setEnableTutor(false);
+//        user.setPic(profilePicture);
+//        user.setAboutYou(null);
+         
         
      
-        signupForm.setId(user.getId());
+        
 
         return signupForm;
     }

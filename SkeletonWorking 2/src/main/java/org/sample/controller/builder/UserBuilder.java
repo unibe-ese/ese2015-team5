@@ -15,8 +15,21 @@ public class UserBuilder {
 		
 	}
 	
-	public User buildUser(SignupForm signupForm) throws InvalidUserException{
-
+	public static User buildUser(SignupForm signupForm) throws InvalidUserException{
+		
+		
+		User user = new User();
+        user.setFirstName(signupForm.getFirstName());
+        user.setEmail(signupForm.getEmail());
+        user.setLastName(signupForm.getLastName());
+        user.setPassword(signupForm.getPassword());
+        user.setEnableTutor(false);
+        user.setAboutYou(null);
+		return user;
+	}
+	
+	public static User modifyUser(ModifyUserForm modifyUserForm){
+		
 		return null;
 	}
 
