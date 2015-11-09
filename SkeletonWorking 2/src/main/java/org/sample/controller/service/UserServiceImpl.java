@@ -2,11 +2,19 @@ package org.sample.controller.service;
 
 import org.sample.controller.exceptions.InvalidUserException;
 import org.sample.controller.pojos.ModifyUserForm;
-import org.sample.controller.pojos.RegistrationForm;
+import org.sample.controller.pojos.SignupForm;
+import org.sample.model.Competence;
+import org.sample.model.ProfilePicture;
 import org.sample.model.User;
+import org.sample.model.dao.CompetenceDao;
+import org.sample.model.dao.ProfilePictureDao;
 import org.sample.model.dao.UserDao;
+import org.sample.security.UsernamePasswordIDAuthenticationToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Provides functionalities like searching, modifying and saving of {@link User} in the DB.
@@ -20,6 +28,10 @@ public class UserServiceImpl implements UserService{
 
 	@Autowired
 	UserDao userDao;
+	@Autowired
+	CompetenceDao compDao;
+	@Autowired
+	ProfilePictureDao profilePicDao;
 	
 	public User getUserByEmail(String email) {
 		// TODO Auto-generated method stub
@@ -31,39 +43,70 @@ public class UserServiceImpl implements UserService{
 	}
 
 	public User getCurrentUser() {
-		// TODO Auto-generated method stub
-		return null;
+		UsernamePasswordIDAuthenticationToken authtok;
+		try{
+			authtok = (UsernamePasswordIDAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+		}catch(ClassCastException e){
+			return null;
+		}
+		return userDao.findOne(authtok.getId());
+		
 	}
-
-	public int countUsers() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public Iterable<User> getUsers() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public User saveUser(RegistrationForm reg) throws InvalidUserException {
-		// TODO Auto-generated method stub
-		return null;
+	
+	@Transactional
+	public User saveUser(SignupForm sgnUp) throws InvalidUserException {
+		
+		MultipartFile file = sgnUp.getProfilePic();
+        ProfilePicture profilePicture = new ProfilePicture();
+        try {       	
+        	profilePicture.setFile(file.getBytes());    	
+        	saveProfilePicture(profilePicture);
+        } catch (Exception e) {
+            throw new InvalidUserException("Picture could not be processed");
+        }
+   
+        User user = new User();
+        user.setFirstName(sgnUp.getFirstName());
+        user.setEmail(sgnUp.getEmail());
+        user.setLastName(sgnUp.getLastName());
+        user.setPassword(sgnUp.getPassword());
+        user.setEnableTutor(false);
+        user.setPic(profilePicture);
+        user.setAboutYou(null);
+        
+        return user;
 	}
 
 	public User updateUser(ModifyUserForm mod) throws InvalidUserException {
-		// TODO Auto-generated method stub
-		return null;
+		User user  = userDao.findOne(mod.getId());
+		if(user.getEnableTutor() != mod.getEnableTutor()){
+			for(Competence c : user.getCompetences()){
+				c.setisEnabled(mod.getEnableTutor());
+				compDao.save(c);
+			}
+		}
+		user.setFirstName(mod.getFirstName());
+		user.setLastName(mod.getLastName());
+		user.setPassword(mod.getPassword());
+		user.setEnableTutor(mod.getEnableTutor());
+		user.setAboutYou(mod.getAboutYou());
+		return userDao.save(user);
 	}
 
 	public boolean validateModifyUserForm(ModifyUserForm mod) {
-		// TODO Auto-generated method stub
-		return false;
+		User user = userDao.findOne(mod.getId());
+    	if(user == null || !mod.getPassword().equals(mod.getPasswordControll()) || mod.getLastName().equals("")
+    			||  mod.getFirstName().equals("")){
+    		return false;
+    	}
+    	
+    	return true;
 	}
 
-	public boolean validToUpdate(ModifyUserForm form) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    public void saveProfilePicture(ProfilePicture profilePicture){
+    	profilePicDao.save(profilePicture);
+    }
+    
 
 
 
