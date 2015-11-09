@@ -55,7 +55,8 @@
                 <form:errors path="password" cssClass="help-inline" element="span"/>
             </div>
 		 	<div>
-         		<form:input type="textarea" path="aboutYou" value="${user.aboutYou}" style="height: 400px; margin: 20px 0px 50px;" name="Tutor Description" maxlength="500" placeholder="Personal Description" />
+         		<!--<form:textarea path="aboutYou" value="${user.aboutYou}" style="height: 200px; margin: 20px 0px 50px;" cols="5" rows="5" name="Tutor_Description" maxlength="500" />-->
+            <textarea id="aboutYou" name="aboutYou">${user.aboutYou}</textarea>
         	</div>
         </div>
         <div class="form-actions">
