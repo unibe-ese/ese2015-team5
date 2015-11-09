@@ -1,8 +1,5 @@
 package org.sample.controller;
 
-import org.sample.controller.service.SampleService;
-import org.sample.controller.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,13 +29,6 @@ public class LoginController {
 	 *
 	 * 	
 	 */
-	
-	
-	@Autowired
-	SampleService sampleService;
-	@Autowired 
-	UserService userService;
-	
 	
 	/**
 	 * This method handles the GET request for the login page.

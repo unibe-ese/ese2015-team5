@@ -4,7 +4,6 @@ import javax.validation.Valid;
 
 import org.sample.controller.exceptions.InvalidUserException;
 import org.sample.controller.pojos.SignupForm;
-import org.sample.controller.service.SampleService;
 import org.sample.controller.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,9 +23,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class RegistrationController {
 	
-	
-	@Autowired
-	SampleService sampleService;
 	@Autowired
 	UserService userService;
 	
@@ -74,7 +70,7 @@ public class RegistrationController {
 		if (!result.hasErrors() && !signupForm.getProfilePic().isEmpty()){
 			try {
 				
-				sampleService.saveFrom(signupForm);
+				userService.saveUser(signupForm);
 				view = new ModelAndView("show");
 				
 			} catch (InvalidUserException e){

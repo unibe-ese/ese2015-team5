@@ -3,7 +3,7 @@ package org.sample.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.sample.controller.service.SampleService;
+import org.sample.controller.service.CompetenceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,9 +22,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class IndexController {
 
-	
     @Autowired
-    SampleService sampleService;
+    CompetenceService compService;
 
     /**
      * Displays the index page.
@@ -36,7 +35,7 @@ public class IndexController {
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public ModelAndView index() {
     	ModelAndView model = new ModelAndView("index");   
-    	model.addObject("competences", sampleService.findCompetenceLike(""));
+    	model.addObject("competences", compService.findCompetenceLike(""));
         return model;
     }
     
@@ -49,7 +48,7 @@ public class IndexController {
     	System.out.println("index");
     	ModelAndView newModel = new ModelAndView("index", model.asMap());   
     	if(!model.containsAttribute("competences")){
-    		newModel.addObject("competences", sampleService.findCompetenceLike(""));
+    		newModel.addObject("competences", compService.findCompetenceLike(""));
     	}
     	
         return newModel;
@@ -120,9 +119,9 @@ public class IndexController {
     	System.out.println("findComp");
     	System.out.println(request.getParameter("searchQuery"));
     	String searchQuery = request.getParameter("searchQuery");
-    	System.out.println(sampleService.findCompetenceLike(searchQuery));
+    	System.out.println(compService.findCompetenceLike(searchQuery));
     	ModelAndView model = new ModelAndView("index");
-    	model.addObject("competences", sampleService.findCompetenceLike(searchQuery));
+    	model.addObject("competences", compService.findCompetenceLike(searchQuery));
     	return model;
     }
     

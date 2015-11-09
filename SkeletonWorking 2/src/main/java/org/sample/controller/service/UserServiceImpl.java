@@ -106,6 +106,14 @@ public class UserServiceImpl implements UserService{
     public void saveProfilePicture(ProfilePicture profilePicture){
     	profilePicDao.save(profilePicture);
     }
+
+	public void updateProfilePicture(ProfilePicture profilePicture) {
+		User user = getCurrentUser();
+		ProfilePicture pic = user.getPic();
+		pic.setFile(profilePicture.getFile());
+		userDao.save(user);
+		profilePicDao.save(pic);		
+	}
     
 
 

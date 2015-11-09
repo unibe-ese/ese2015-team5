@@ -4,7 +4,8 @@ import javax.validation.Valid;
 
 import org.sample.controller.pojos.AddCompetenceForm;
 import org.sample.controller.pojos.ModifyUserForm;
-import org.sample.controller.service.SampleService;
+import org.sample.controller.service.CompetenceService;
+import org.sample.controller.service.UserService;
 import org.sample.model.Competence;
 import org.sample.model.ProfilePicture;
 import org.sample.model.User;
@@ -33,8 +34,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @SessionAttributes("user")
 public class ProfileController {
 	
+	@Autowired 
+	UserService userService;
 	@Autowired
-	SampleService sampleService;
+	CompetenceService compService;
 	
 	/**
 	 * Displays the correct profile page.
@@ -50,7 +53,7 @@ public class ProfileController {
     public ModelAndView gotoProfile(Model model){
     	
     	ModelAndView modelAndView = new ModelAndView("profile", model.asMap());
-    	User user = sampleService.getCurrentUser();
+    	User user = userService.getCurrentUser();
     	modelAndView.addObject("user", user);
     	
     	if(user == null){
@@ -67,8 +70,6 @@ public class ProfileController {
     	if(!model.containsAttribute("addCompetenceForm") ){
     		modelAndView.addObject("addCompetenceForm", new AddCompetenceForm());
     	}
-    	
-    	model.addAttribute("competenceList", sampleService.getCompetences(user.getId()));
     	
     	return modelAndView;
     }	
@@ -96,8 +97,8 @@ public class ProfileController {
 		
 			return "redirect:profile";
 		}
-		else if(sampleService.validToUpdate(form)){	
-			user = sampleService.updateFrom(form);
+		else if(userService.validateModifyUserForm(form)){	
+			user = userService.updateUser(form);
 		}
         return "redirect:profile";
 	}
@@ -108,11 +109,11 @@ public class ProfileController {
 	 * 
 	 * Checks if the addCompetenceForm has errors. If yes, the errors are added to the 
 	 * redirectedAttributes, and the methods redirects to the profile page, to display errors.
-	 * If there are no errors, the sampleService is used to add and save the Competence.
+	 * If there are no errors, the {@link org.sample.controller.service.CompetenceService} is used to add and save the Competence.
 	 * 
-	 * @param form
-	 * @param user
-	 * @param result
+	 * @param form: A pojo containing the edited user information. Valiadted by annotations.
+	 * @param user: The user editing his profile.
+	 * @param result: The result of validation. 
 	 * @param redirectedAttribtues
 	 * @return
 	 */
@@ -128,7 +129,7 @@ public class ProfileController {
 			return "redirect:profile";
 		}
 		form.setOwnerId(user.getId());
-		sampleService.addCompetence(form);
+		compService.saveCompetence(form);
 		return "redirect:profile";
 		
 	}
@@ -137,7 +138,7 @@ public class ProfileController {
 	/**
 	 * Deletes a competence
 	 * 
-	 * Uses the SampleService to delete a competence. If there is no competence with the correct ID, 
+	 * Uses the CompetenceService to delete a competence. If there is no competence with the correct ID, 
 	 * the method does nothing.
 	 * 
 	 * @param compId The id of the competence.
@@ -145,9 +146,9 @@ public class ProfileController {
 	 */
 	@RequestMapping(value="/profile/delete$id={compId}", method=RequestMethod.GET)
 	public String deleteCompetence(@PathVariable("compId")long compId){
-		Competence comp = sampleService.findCompetence(compId);
+		Competence comp = compService.findCompetenceById(compId);
 		if(comp != null){
-			sampleService.removeCompetence(compId);
+			compService.deleteCompetence(comp);
 		}
 		return "redirect:/profile";
 	}
@@ -173,7 +174,7 @@ public class ProfileController {
             	
             	profilePicture.setFile(file.getBytes());
             	
-            	sampleService.updateProfilePicture(profilePicture);
+            	userService.updateProfilePicture(profilePicture);
             	
                 return "redirect:profile";
             } catch (Exception e) {

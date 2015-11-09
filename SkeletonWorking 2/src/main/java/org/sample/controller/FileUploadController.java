@@ -6,7 +6,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.sample.controller.service.SampleService;
 import org.sample.controller.service.UserService;
 import org.sample.model.ProfilePicture;
 import org.sample.model.User;
@@ -22,9 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class FileUploadController {
 	
-	 @Autowired
-	 SampleService sampleService;
-	 
 	 @Autowired
 	 UserService userService;
 
@@ -80,7 +76,7 @@ public class FileUploadController {
             	
             	profilePicture.setFile(file.getBytes());
             	
-            	sampleService.saveProfilePicture(profilePicture);
+            	userService.saveProfilePicture(profilePicture);
             	
             	ModelAndView model = new ModelAndView("show");
             	

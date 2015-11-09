@@ -9,6 +9,7 @@ import org.sample.model.User;
 import org.sample.model.dao.CompetenceDao;
 import org.sample.model.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Provides functionalities like searching and saving of Competences in the DB.
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  */
 
+@Service
 public class CompetenceServiceImpl implements CompetenceService{
 
 	@Autowired
