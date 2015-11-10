@@ -1,5 +1,10 @@
 package org.sample.controller;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -173,8 +178,18 @@ public class ProfileController {
 	 */
 	@RequestMapping(value = "/changeProfilePic", method = RequestMethod.POST)
     public String uploadFileHandler(@RequestParam("file") MultipartFile file) {
- 
+		System.out.println(file.isEmpty());	
+		System.out.println(file.getContentType());
+		System.out.println(file.getSize());
+		System.out.println(file.toString());
+		try {
+			System.out.println(file.getBytes().toString());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
         if (!file.isEmpty()) {
+        	System.out.println("if");
             try {
             	ProfilePicture profilePicture = new ProfilePicture();
             	
@@ -190,5 +205,31 @@ public class ProfileController {
         	return "redirect:profile";
         }
     }
+	
+	/**
+	 * Displays the profile picture of a user.
+	 * 
+	 * Takes a user ID, and checks if a user with said ID exists. If one exists, 
+	 * gets the the users profile picture, and fills it into the response, which is 
+	 * sent to the client. 
+	 * 
+	 * @param userId  The ID of the user
+	 * @param response  The response to the request of the client.
+	 * @param request   A request from a client
+	 * @throws ServletException  
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/imageDisplay$userId={userId}", method = RequestMethod.GET)
+	  public void showImage(@PathVariable("userId") long userId, HttpServletResponse response,HttpServletRequest request) 
+	          throws ServletException, IOException{
+		User user = userService.getUserById(userId);
+		if(user != null){
+			ProfilePicture item = user.getPic(); 
+	    	response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
+	    	response.getOutputStream().write(item.getFile());
+	    	response.getOutputStream().close();
+		}
+		
+	}
 	
 }

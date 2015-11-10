@@ -67,11 +67,14 @@
            	<div style="margin:25px 0px 25px 0;">
            	<h1>Change your Profile Picture</h1>
 	 		<img src="/Skeleton/imageDisplay$userId=${user.id}" style="height:100px; width:100px"/>
-			<form method="POST" action="./changeProfilePic" enctype="multipart/form-data"><input type="file" name="file" >
-	       		<input type="submit" value="Upload new Picture">
-			</form>
+
         </div>
 </form:form>
+
+<form method="POST" action="./changeProfilePic" enctype="multipart/form-data">
+    <input type="file" name="file"/>
+    <input type="submit" value="Upload new Picture">
+</form>
 
 <div>
 	<h1>Add your Tutoring Subjects</h1>
