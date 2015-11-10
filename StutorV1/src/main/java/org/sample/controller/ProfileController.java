@@ -56,16 +56,16 @@ public class ProfileController {
     	
     	ModelAndView modelAndView = new ModelAndView("profile", model.asMap());
     	User user = userService.getCurrentUser();
-    	modelAndView.addObject("user", user);
-    	
     	if(user == null){
     		return new ModelAndView("index");
     	}
+    	modelAndView.addObject("user", user);	
     	
     	if(!model.containsAttribute("modifyUserForm") ){
     	
     		ModifyUserForm modForm = new ModifyUserForm();
     		modForm.setEnableTutor(user.getEnableTutor());
+    		modForm.setId(user.getId());
     		modelAndView.addObject("modifyUserForm", modForm);		
     	}
     	
@@ -89,15 +89,18 @@ public class ProfileController {
      * @param redirectAttributes 
      * @return Returns the new URL 
      */
-	@RequestMapping(value="/modifyUser", method=RequestMethod.POST)
+    @RequestMapping(value="/modifyUser", method=RequestMethod.POST)
 	public String modifyUser( @ModelAttribute("user") User user, 
 			 @Valid ModifyUserForm form, BindingResult result, RedirectAttributes redirectAttributes){
 		form.setId(user.getId());
-		if(result.hasErrors()){
+		if(result.hasErrors() || !form.getPasswordControll().equals(form.getPassword())){
+			
 			redirectAttributes.addFlashAttribute("modifyUserForm", form);
-			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.modifyUserForm", result);
-		
-			return "redirect:profile";
+			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.modifyUserForm", result);			
+			if(!form.getPasswordControll().equals(form.getPassword())){
+				System.out.println("added PasswordControllerror");
+				redirectAttributes.addFlashAttribute("passwordControllError", "Must match password");
+			}
 		}
 		else if(userService.validateModifyUserForm(form)){	
 			user = userService.updateUser(form);
@@ -113,7 +116,7 @@ public class ProfileController {
 	 * redirectedAttributes, and the methods redirects to the profile page, to display errors.
 	 * If there are no errors, the {@link org.sample.controller.service.CompetenceService} is used to add and save the Competence.
 	 * 
-	 * @param form: A pojo containing the edited user information. Valiadted by annotations.
+	 * @param form: A pojo containing the edited user information. Validated by annotations.
 	 * @param user: The user editing his profile.
 	 * @param result: The result of validation. 
 	 * @param redirectedAttribtues
@@ -122,9 +125,9 @@ public class ProfileController {
 	@RequestMapping(value="/addCompetence", method=RequestMethod.POST)
 	public String addCompetence(@ModelAttribute("addCompetenceForm") @Valid AddCompetenceForm form, 
 			@ModelAttribute("user") User user, BindingResult result, RedirectAttributes redirectedAttribtues){
-		System.out.println("competence");
-		System.out.println("has error");
+		System.out.println("added error");
 		if(result.hasErrors()){
+			
 			redirectedAttribtues.addFlashAttribute("addCompetenceForm", form);
 			redirectedAttribtues.addFlashAttribute("org.springframework.validation.BindingResult.addCompetenceForm", result);
 			

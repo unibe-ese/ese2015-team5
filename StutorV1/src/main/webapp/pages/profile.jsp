@@ -52,7 +52,9 @@
             <label class="control-label" for="field-password">Again Please</label>
             <div class="controls">
                 <form:input path="passwordControll" type="password" id="field-password" tabindex="4" maxlength="35" value="${user.password}"/>
-                <form:errors path="password" cssClass="help-inline" element="span"/>
+                <c:if test="${not empty passwordControllError}">
+                   ${passwordControllError}
+                </c:if>
             </div>
 		 	<div>
             	<textarea id="aboutYou" name="aboutYou" maxlength="500">${user.aboutYou}</textarea>
@@ -79,7 +81,7 @@
         </tr>
     </c:forEach>
 </table>
-<form:form method="post" modelAttribute="addCompetenceForm" action="./addCompetence" id="addComp" disabled="${!user.enableTutor}">
+<form:form method="post" modelAttribute="addCompetenceForm" action="./addCompetence" id="addComp">
     <div>
       <form:input path="description"/>
       <form:errors path="description" cssClass="help-inline" element="span"/>

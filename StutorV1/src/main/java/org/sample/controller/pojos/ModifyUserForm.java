@@ -19,6 +19,7 @@ public class ModifyUserForm{
 	@NotBlank(message = "Please provide your Lastname")
     private String lastName;
 	
+	@NotBlank(message="Password cant be empty")
     private String password;
     private String passwordControll;
     private String aboutYou;

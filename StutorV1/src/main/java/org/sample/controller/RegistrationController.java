@@ -75,7 +75,7 @@ public class RegistrationController {
 	public String register(@Valid SignupForm signupForm, BindingResult result, RedirectAttributes att){
 		
 		
-		if(result.hasErrors()){
+		if(result.hasErrors() || signupForm.getProfilePic().isEmpty()){
 			att.addFlashAttribute("signupForm", new SignupForm());
 			att.addFlashAttribute("org.springframework.validation.BindingResult.signupForm", result);
 

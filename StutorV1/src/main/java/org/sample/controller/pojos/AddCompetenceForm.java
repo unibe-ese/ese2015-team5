@@ -1,6 +1,6 @@
 package org.sample.controller.pojos;
 
-import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Holds information to create a {@link org.sample.model.Competence} Object and add it to a {@link org.sample.model.User}.
@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 public class AddCompetenceForm {
 
-	@NotBlank(message = "Please provide your firstname")
+	@NotEmpty
 	private String description;
 	
 	private long ownerId;
