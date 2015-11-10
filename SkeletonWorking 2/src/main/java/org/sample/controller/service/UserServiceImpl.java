@@ -73,6 +73,7 @@ public class UserServiceImpl implements UserService{
         user.setEnableTutor(false);
         user.setPic(profilePicture);
         user.setAboutYou(null);
+        userDao.save(user);
         
         return user;
 	}
