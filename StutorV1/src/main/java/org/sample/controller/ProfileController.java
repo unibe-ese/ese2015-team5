@@ -1,5 +1,6 @@
 package org.sample.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.sample.controller.pojos.AddCompetenceForm;
@@ -123,8 +124,8 @@ public class ProfileController {
 	 * @return
 	 */
 	@RequestMapping(value="/addCompetence", method=RequestMethod.POST)
-	public String addCompetence(@ModelAttribute("addCompetenceForm") @Valid AddCompetenceForm form, 
-			@ModelAttribute("user") User user, BindingResult result, RedirectAttributes redirectedAttribtues){
+	public String addCompetence(@ModelAttribute("addCompetenceForm") @Valid AddCompetenceForm form, BindingResult result, RedirectAttributes redirectedAttribtues, HttpSession session){
+		User user = (User)session.getAttribute("user");
 		System.out.println("added error");
 		if(result.hasErrors()){
 			

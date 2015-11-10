@@ -25,6 +25,7 @@ public class ModifyUserForm{
     private String aboutYou;
     
     private boolean enableTutor;
+    
 
     public String getFirstName() {
         return firstName;

@@ -83,7 +83,7 @@
 </table>
 <form:form method="post" modelAttribute="addCompetenceForm" action="./addCompetence" id="addComp">
     <div>
-      <form:input path="description"/>
+      <form:input type="text" path="description"/>
       <form:errors path="description" cssClass="help-inline" element="span"/>
     </div>
     <input type="submit" value="Add"></input>
