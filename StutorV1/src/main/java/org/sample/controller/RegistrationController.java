@@ -73,25 +73,25 @@ public class RegistrationController {
 	 */
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String register(@Valid SignupForm signupForm, BindingResult result, RedirectAttributes att){
-		
-		
+				
 		if(result.hasErrors() || signupForm.getProfilePic().isEmpty()){
 			att.addFlashAttribute("signupForm", new SignupForm());
 			att.addFlashAttribute("org.springframework.validation.BindingResult.signupForm", result);
 
 			if(signupForm.getProfilePic().isEmpty()){
+				System.out.println(signupForm.getProfilePic().isEmpty());
 				att.addFlashAttribute("pictureError", "please choose a picture");
 				System.out.println("added picerror");
 			}
 			
 			return "redirect:register";
 		}	
-			try {				
-				userService.saveUser(signupForm);			
-			} catch (InvalidUserException e){
-				att.addFlashAttribute("error", "Whoops, something went Wrong");
-				att.addFlashAttribute("signupForm", new SignupForm());
-			} 
+		try {				
+			userService.saveUser(signupForm);			
+		} catch (InvalidUserException e){
+			att.addFlashAttribute("error", "Whoops, something went Wrong");
+			att.addFlashAttribute("signupForm", new SignupForm());
+		} 
 		
 		return "redirect:register";
 	}
