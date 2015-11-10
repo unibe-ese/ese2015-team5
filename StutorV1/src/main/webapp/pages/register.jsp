@@ -40,7 +40,7 @@
         </div>
         <c:set var="passwordErrors"><form:errors path="password"/></c:set>
         <div class="control-group<c:if test="${not empty password}"> error</c:if>">
-            <label class="control-label" for="field-password">Last Name</label>
+            <label class="control-label" for="field-password">Password</label>
             <div class="controls">
                 <form:input path="password" id="field-password" tabindex="3" maxlength="35" placeholder="Password"/>
                 <form:errors path="password" cssClass="help-inline" element="span"/>
@@ -49,6 +49,9 @@
         <div>
           File to upload: <form:input type="file" path="profilePic"/>
           <form:errors path="profilePic" cssClass="help-inline" element="span"/>
+          <c:if test="${not empty pictureError}">
+             ${pictureError}
+          </c:if>
         </div>
         <div class="form-actions">
             <button type="submit" class="btn btn-primary">Sign up</button>

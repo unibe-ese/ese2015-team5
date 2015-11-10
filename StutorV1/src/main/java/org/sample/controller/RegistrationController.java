@@ -7,6 +7,7 @@ import org.sample.controller.pojos.SignupForm;
 import org.sample.controller.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,13 +41,20 @@ public class RegistrationController {
 	 *
 	 * 	
 	 */
-	
-	
 	@RequestMapping(value="/register", method=RequestMethod.GET)
-	public ModelAndView getRegisterPage(){
-		ModelAndView view = new ModelAndView("register");
-		view.addObject("signupForm", new SignupForm());
-		return view;
+	public ModelAndView getRegisterPage(Model model){
+		ModelAndView newModel;
+		if(model.containsAttribute("signupForm")){
+			newModel = new ModelAndView("register", model.asMap());
+			if(model.containsAttribute("pictureError")){
+				System.out.println("nopicture!");
+			}
+			return newModel;
+		}
+		
+		newModel = new ModelAndView("register");
+		newModel.addObject("signupForm", new SignupForm());
+		return newModel;
 	}
 	
 	/**
@@ -64,26 +72,27 @@ public class RegistrationController {
 	 * @return: A {@link ModelAndView} of the correct page.
 	 */
 	@RequestMapping(value="/register", method=RequestMethod.POST)
-	public ModelAndView register(@Valid SignupForm signupForm, BindingResult result, RedirectAttributes att){
-		ModelAndView view;
+	public String register(@Valid SignupForm signupForm, BindingResult result, RedirectAttributes att){
 		
-		if (!result.hasErrors() && !signupForm.getProfilePic().isEmpty()){
-			try {
-				
-				userService.saveUser(signupForm);
-				view = new ModelAndView("show");
-				
+		
+		if(result.hasErrors()){
+			att.addFlashAttribute("signupForm", new SignupForm());
+			att.addFlashAttribute("org.springframework.validation.BindingResult.signupForm", result);
+
+			if(signupForm.getProfilePic().isEmpty()){
+				att.addFlashAttribute("pictureError", "please choose a picture");
+				System.out.println("added picerror");
+			}
+			
+			return "redirect:register";
+		}	
+			try {				
+				userService.saveUser(signupForm);			
 			} catch (InvalidUserException e){
-				
-				view = new ModelAndView("index");
-				view.addObject("page_error", e.getMessage());
+				att.addFlashAttribute("error", "Whoops, something went Wrong");
+				att.addFlashAttribute("signupForm", new SignupForm());
 			} 
-		} else {
-			
-			view = new ModelAndView("register");
-			view.addObject("signupForm", new SignupForm());
-			
-		}
-		return view;
+		
+		return "redirect:register";
 	}
 }

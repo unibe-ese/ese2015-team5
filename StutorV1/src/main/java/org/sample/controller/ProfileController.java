@@ -24,7 +24,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
- * Handles requests that display the profile and modify the user.
+ * Handles requests that display the profile and modify the {@link org.sample.model.User}.
+ * Contains methods to modify the user information, change the {@link ProfilePicture}, and add/remove
+ * {@link Competence}s.
  * 
  * @author ESE Team5
  *

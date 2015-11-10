@@ -2,6 +2,7 @@ package org.sample.controller.pojos;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,8 +16,11 @@ public class SignupForm {
 
 
     private Long id;
+    @Size(min=1, max=32, message="Please enter firstname")
     private String firstName;
+    @Size(min=1, max=32, message="Please enter lastname")
     private String lastName;
+    @Size(min=1, max=32, message="Please enter password")
     private String password;
 
    

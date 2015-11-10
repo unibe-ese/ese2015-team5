@@ -14,6 +14,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * Handles request that originate from the index page.
+ * 
+ * Also handles the search function for {@link org.sample.model.Competence}
  *
  *@Author: ESE Team 5
  *
@@ -59,57 +61,13 @@ public class IndexController {
         return "access-denied";
     }
     
-//    @RequestMapping(value="/register", method=RequestMethod.GET)
-//    public ModelAndView getRegisterPage(){
-//    	ModelAndView model = new ModelAndView("register");
-//    	model.addObject("signupForm", new SignupForm());
-//    	return model;
-//    }
     
-//    @RequestMapping(value = "/login", method = RequestMethod.GET)
-//    public String getLoginPage(@RequestParam(value="error", required=false) boolean error, 
-//      ModelMap model) {
-//    System.out.println("getLoginPage");
-//     if (error == true) {
-//
-//      model.put("error", "You have entered an invalid username or password!");
-//     } else {
-//      model.put("error", "");
-//     }
-//      
-//
-//     return "login";
-//    }
-    
-
-//    @RequestMapping(value = "/create", method = RequestMethod.POST)
-//    public ModelAndView create(@Valid SignupForm signupForm, BindingResult result, RedirectAttributes redirectAttributes) {
-//    	ModelAndView model;
-//    	System.out.println(result.getAllErrors().toString());
-//    	
-//    	if (!result.hasErrors() && !signupForm.getProfilePic().isEmpty()) {
-//            try {
-//            	
-//              	sampleService.saveFrom(signupForm);
-//            	model = new ModelAndView("show");
-//            	
-//            } catch (InvalidUserException e) {           	
-//            	model = new ModelAndView("index");
-//            	model.addObject("page_error", e.getMessage());
-//            }
-//        } else {
-//        	System.out.println("nope");
-//        	model = new ModelAndView("index");
-//        }    
-//    	return model;
-//    }
-//    
-
     /**
      * Handles requests that search for {@link org.sample.model.Competence}
      * 
      * Receives a String, and searches the DB for Competences that contain the String in 
-     * their description. Then returns the user to the index, displaying the found Competences. 
+     * their description, and are enabled. So only if the owner offers tutoring at the moment the competence
+     * is added. Then returns the user to the index, displaying the found Competences.
      * 
      * @param request: A request containing a searchQuery.
      * @return A {@link ModelAndView} of the index page. 
