@@ -4,6 +4,7 @@
 				</div>
 			</div>
 
+
 		<!-- Footer -->
 			<div id="footer-wrapper">
 				<footer id="footer" class="container">
@@ -11,7 +12,7 @@
 						<div class="3u">
 						
 							<!-- Links -->
-								<section class="widget links">
+								<!-- <section class="widget links">
 									<h3>Random Stuff</h3>
 									<ul class="style2">
 										<li><a href="#">Etiam feugiat condimentum</a></li>
@@ -22,11 +23,11 @@
 									</ul>
 								</section>
 						
-						</div>
-						<div class="3u">
+						</div> 
+						<div class="3u">  -->
 						
 							<!-- Links -->
-								<section class="widget links">
+								<!-- <section class="widget links">
 									<h3>Random Stuff</h3>
 									<ul class="style2">
 										<li><a href="#">Etiam feugiat condimentum</a></li>
@@ -38,10 +39,10 @@
 								</section>
 						
 						</div>
-						<div class="3u">
+						<div class="3u">  -->
 						
 							<!-- Links -->
-								<section class="widget links">
+								<!-- <section class="widget links">
 									<h3>Random Stuff</h3>
 									<ul class="style2">
 										<li><a href="#">Etiam feugiat condimentum</a></li>
@@ -53,10 +54,10 @@
 								</section>
 						
 						</div>
-						<div class="3u">
+						<div class="3u"> -->
 						
 							<!-- Contact -->
-								<section class="widget contact last">
+								<!--  <section class="widget contact last">
 									<h3>Contact Us</h3>
 									<ul>
 										<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
@@ -71,12 +72,12 @@
 								</section>
 						
 						</div>
-					</div>
+					</div> 
 					<div class="row">
-						<div class="12u">
+						<div class="12u">-->
 							<div id="copyright">
 								<ul class="menu">
-									<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+									<li>&copy; EseTeam5. All rights reserved</li>
 								</ul>
 							</div>
 						</div>
