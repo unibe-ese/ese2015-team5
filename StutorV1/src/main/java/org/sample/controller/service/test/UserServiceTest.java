@@ -2,6 +2,7 @@ package org.sample.controller.service.test;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -22,21 +23,33 @@ public class UserServiceTest {
 
 	@Autowired
 	private UserService testUserService;
+	@Autowired
+	private UserDao testUserDao;
 
-	@Test
-	public void testSaveUser() throws Exception {
-		
+	private SignupForm testSignupForm;
+	private MockMultipartFile testPic;
+	
+	@Before
+	public void setUp()
+	{
 		byte[] byteArray = {0,1,0};
 		
-		MockMultipartFile testPic = new MockMultipartFile("file", byteArray);
+		testPic = new MockMultipartFile("file", byteArray);
 		
-		SignupForm testSignupForm = new SignupForm();
+		
+
+		testSignupForm = new SignupForm();
 		testSignupForm.setEmail("ese@hs15.ch");
 		testSignupForm.setFirstName("John");
 		testSignupForm.setLastName("Doe");
 		testSignupForm.setPassword("asdf");
 		testSignupForm.setProfilePic(testPic);
-
+	}
+	
+	@Test
+	public void testSaveUser() throws Exception {
+		
+		
 		User testUser = testUserService.saveUser(testSignupForm);
 		
 		assertEquals("ese@hs15.ch", testUser.getEmail());
@@ -46,27 +59,22 @@ public class UserServiceTest {
 		assertEquals(testPic.getBytes(), testUser.getPic().getFile());
 	}
 	
-	@Test
+/*	@Test
 	public void testUpdateUser() throws InvalidUserException
 	{
-		User testUser = new User();
-		testUser.setAboutYou("'special' wizzard");
-		testUser.setEmail("CastThatShit@Magiczz.ch");
-		testUser.setFirstName("Gundolf");
-		testUser.setEnableTutor(false);
-		testUser.setLastName("the Grey");
-		testUser.setPassword("fdsa");
+		User testUser = testUserService.saveUser(testSignupForm);
 		
-		UserDao userDao = Mockito.mock(UserDao.class);
-		Mockito.when(userDao.findOne(Mockito.anyLong())).thenReturn(testUser);
+		
+//		UserDao userDao = Mockito.mock(UserDao.class);
+//		Mockito.when(userDao.findOne(Mockito.anyLong())).thenReturn(testUser);
 
 		
 		ModifyUserForm testForm = new ModifyUserForm();
 		testForm.setAboutYou("Powerful Magician");
 		testForm.setEnableTutor(true);
 		testForm.setFirstName("Gandalf");
-		testForm.setId(0);
-		testForm.setLastName("the White");
+		testForm.setId(testUserService.getUserByEmail("ese@hs15.ch").getId());
+		testForm.setLastName("Doe");
 		testForm.setPassword("asdf");
 		testForm.setPasswordControll("asdf");
 		
@@ -75,8 +83,10 @@ public class UserServiceTest {
 		assertEquals("Powerful Magician", testUser.getAboutYou());
 		assertEquals(true, testUser.getEnableTutor());
 		assertEquals("Gandalf", testUser.getFirstName());
-		assertEquals("the White", testUser.getLastName());
+		assertEquals("Doe", testUser.getLastName());
 		assertEquals("asdf", testUser.getPassword());
-	}
+		
+		testUserDao.delete(testUser);
+	}*/
 	
 }

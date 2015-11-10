@@ -34,7 +34,11 @@ public class UserServiceImpl implements UserService{
 	ProfilePictureDao profilePicDao;
 	
 	public User getUserByEmail(String email) {
-		// TODO Auto-generated method stub
+		for (User u:userDao.findAll())
+		{
+			if(u.getEmail().equals(email))
+			return u;
+		}
 		return null;
 	}
 	
