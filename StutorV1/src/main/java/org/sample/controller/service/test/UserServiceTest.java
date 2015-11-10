@@ -4,9 +4,13 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.sample.controller.exceptions.InvalidUserException;
+import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.pojos.SignupForm;
 import org.sample.controller.service.UserService;
 import org.sample.model.User;
+import org.sample.model.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ContextConfiguration;
@@ -43,7 +47,41 @@ public class UserServiceTest {
 	}
 	
 	@Test
-	public void testUpdateUser(){
+	public void testUpdateUser() throws InvalidUserException
+	{
+		User testUser = new User();
+		testUser.setAboutYou("'special' wizzard");
+		testUser.setEmail("CastThatShit@Magiczz.ch");
+		testUser.setFirstName("Gundolf");
+		testUser.setEnableTutor(false);
+		testUser.setLastName("the Grey");
+		testUser.setPassword("fdsa");
+		
+		UserDao userDao = Mockito.mock(UserDao.class);
+		Mockito.when(userDao.findOne(Mockito.anyLong())).thenReturn(testUser);
+
+		
+		ModifyUserForm testForm = new ModifyUserForm();
+		testForm.setAboutYou("Powerful Magician");
+		testForm.setEnableTutor(true);
+		testForm.setFirstName("Gandalf");
+		testForm.setId(0);
+		testForm.setLastName("the White");
+		testForm.setPassword("asdf");
+		testForm.setPasswordControll("asdf");
+		
+		testUserService.updateUser(testForm);
+		
+		assertEquals("Powerful Magician", testUser.getAboutYou());
+		assertEquals(true, testUser.getEnableTutor());
+		assertEquals("Gandalf", testUser.getFirstName());
+		assertEquals("the White", testUser.getLastName());
+		assertEquals("asdf", testUser.getPassword());
+		
+		
+		
+		
+		
 		
 	}
 	
