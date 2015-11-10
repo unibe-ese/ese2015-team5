@@ -12,7 +12,6 @@ import org.sample.controller.pojos.SignupForm;
 import org.sample.model.Competence;
 import org.sample.model.ProfilePicture;
 import org.sample.model.User;
-import org.sample.model.dao.AddressDao;
 import org.sample.model.dao.CompetenceDao;
 import org.sample.model.dao.ProfilePictureDao;
 import org.sample.model.dao.UserDao;
@@ -34,7 +33,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class SampleServiceImpl implements SampleService {
 
     @Autowired    UserDao userDao;
-    @Autowired    AddressDao addDao;
     @Autowired	  ProfilePictureDao profilePicDao;
     @Autowired	  CompetenceDao compDao;
     
