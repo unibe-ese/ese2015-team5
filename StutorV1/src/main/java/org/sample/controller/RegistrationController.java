@@ -1,5 +1,7 @@
 package org.sample.controller;
 
+import java.io.IOException;
+
 import javax.validation.Valid;
 
 import org.sample.controller.exceptions.InvalidUserException;
@@ -73,7 +75,16 @@ public class RegistrationController {
 	 */
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String register(@Valid SignupForm signupForm, BindingResult result, RedirectAttributes att){
-				
+		System.out.println(signupForm.getProfilePic().isEmpty());	
+		System.out.println(signupForm.getProfilePic().getContentType());
+		System.out.println(signupForm.getProfilePic().getSize());
+		System.out.println(signupForm.getProfilePic().toString());
+		try {
+			System.out.println(signupForm.getProfilePic().getBytes().toString());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if(result.hasErrors() || signupForm.getProfilePic().isEmpty()){
 			att.addFlashAttribute("signupForm", new SignupForm());
 			att.addFlashAttribute("org.springframework.validation.BindingResult.signupForm", result);
@@ -93,6 +104,6 @@ public class RegistrationController {
 			att.addFlashAttribute("signupForm", new SignupForm());
 		} 
 		
-		return "redirect:register";
+		return "redirect:login";
 	}
 }

@@ -48,7 +48,6 @@
         </div>
         <div>
           File to upload: <form:input type="file" path="profilePic"/>
-          <form:errors path="profilePic" cssClass="help-inline" element="span"/>
           <c:if test="${not empty pictureError}">
              ${pictureError}
           </c:if>
