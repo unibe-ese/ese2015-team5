@@ -77,12 +77,6 @@ public class UserServiceTest {
 		assertEquals("Gandalf", testUser.getFirstName());
 		assertEquals("the White", testUser.getLastName());
 		assertEquals("asdf", testUser.getPassword());
-		
-		
-		
-		
-		
-		
 	}
 	
 }
