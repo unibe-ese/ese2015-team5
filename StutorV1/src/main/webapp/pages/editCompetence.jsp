@@ -20,10 +20,25 @@ ID of Comp: ${competence.id}
 <form:form method="post" modelAttribute="editCompetenceForm" action="/Skeleton/profile/editComp/${competence.id}">
     <form:input type="text" path="description" value="${competence.description}"/>
     <form:errors path="description" cssClass="help-inline" element="span"/>
-    <input type="Submit" value="Edit!"></input>
+
+
+<table class="calendar">
+    <c:forEach items="${editCompetenceForm.availabilityBoard}" var="availabilityRow">
+
+        <tr>
+          <c:forEach items="${availabilityRow}" var="boolean">
+            <td>
+              ${boolean}
+                <input type="checkbox" path="boolean"/>
+            </td>
+              </c:forEach>
+        </tr>
+
+    </c:forEach>
+</table>
+<input type="Submit" value="Edit!"></input>
+
 </form:form>
-
-
 
 
 <c:import url="template/footer.jsp" />

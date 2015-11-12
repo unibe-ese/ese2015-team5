@@ -147,63 +147,7 @@ public class ProfileController {
 	}
 	
 	
-	/**
-	 * Deletes a competence
-	 * 
-	 * Uses the CompetenceService to delete a competence. If there is no competence with the correct ID, 
-	 * the method does nothing.
-	 * 
-	 * @param compId The id of the competence.
-	 * @return Redirects to the profile page.
-	 */
-	@RequestMapping(value="/profile/deleteComp/{compId}", method=RequestMethod.GET)
-	public String deleteCompetence(@PathVariable("compId")long compId){
-		Competence comp = compService.findCompetenceById(compId);
-		if(comp != null){
-			compService.deleteCompetence(comp);
-		}
-		return "redirect:/profile";
-	}
 	
-	@RequestMapping(value="/profile/editComp/{compId}", method=RequestMethod.GET)
-	public ModelAndView editCompetence(@PathVariable("compId")Long compId, HttpSession session, Model model){
-		
-		User user  = (User)session.getAttribute("user");
-	
-		Competence comp = compService.findCompetenceById(compId);
-
-		ModelAndView newModel = new ModelAndView("editCompetence", model.asMap());
-		
-		if(!user.getCompetences().contains(comp)){
-			return new ModelAndView("index");
-		}
-		newModel.addObject("competence", comp);
-		if(!model.containsAttribute("editCompetenceForm") ){
-			EditCompetenceForm editForm = new EditCompetenceForm(comp);
-			
-			newModel.addObject("editCompetenceForm", editForm);
-		}
-		
-		return newModel;
-	}
-	
-	@RequestMapping(value="/profile/editComp/{compId}", method=RequestMethod.POST)
-	public String editCompetence(@ModelAttribute("editCompetenceForm") @Valid EditCompetenceForm editForm, BindingResult result, RedirectAttributes redirectedAttribtues,
-			@PathVariable("compId") long compId){
-		editForm.setCompReferenceId(compId);
-		System.out.println(result.toString());
-		if(result.hasErrors()){
-			System.out.println("error");
-			redirectedAttribtues.addFlashAttribute("editCompetenceForm", editForm);
-			redirectedAttribtues.addFlashAttribute("org.springframework.validation.BindingResult.editCompetenceForm", result);
-			
-			return "redirect:/profile/editComp/"  + compId;
-		}
-		
-		compService.updateCompetence(editForm);
-		
-		return "redirect:/profile/editComp/"  + compId;
-	}
 	
 	/**
 	 * Validates and saves a picture to the DB.

@@ -11,6 +11,8 @@ public class EditCompetenceForm {
 	
 	private Long compReferenceId;
 	
+	private boolean [][] availabilityBoard = new boolean[5][5];
+	
 	public EditCompetenceForm(){
 		
 	}
@@ -38,6 +40,14 @@ public class EditCompetenceForm {
 	
 	public String toString(){
 		return "Desc: " + this.description + ", ID: " + this.compReferenceId;
+	}
+
+	public boolean [][] getAvailabilityBoard() {
+		return availabilityBoard;
+	}
+
+	public void setAvailabilityBoard(boolean [][] availabilityBoard) {
+		this.availabilityBoard = availabilityBoard;
 	}
 
 }
