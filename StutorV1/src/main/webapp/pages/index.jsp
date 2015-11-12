@@ -20,5 +20,9 @@
         </tr>
     </c:forEach>
 </table>
+<input type="text" id="searchQuery"/>
+<button type="button"onclick="ajaxTest()">Search</button>
+
+<p id="demo"></p>
 
 <c:import url="template/footer.jsp" />

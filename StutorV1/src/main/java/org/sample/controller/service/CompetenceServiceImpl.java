@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.sample.controller.pojos.AddCompetenceForm;
+import org.sample.controller.pojos.EditCompetenceForm;
 import org.sample.model.Competence;
 import org.sample.model.User;
 import org.sample.model.dao.CompetenceDao;
@@ -68,6 +69,16 @@ public class CompetenceServiceImpl implements CompetenceService{
 		}
 		
 		return comps;
+	}
+
+	public Competence updateCompetence(EditCompetenceForm editForm) {
+		System.out.println(editForm.toString());
+		Competence comp = compDao.findOne(editForm.getCompReferenceId());
+		if(comp != null){
+			comp.setDescription(editForm.getDescription());
+			return compDao.save(comp);
+		}
+		return null;
 	}
 
 

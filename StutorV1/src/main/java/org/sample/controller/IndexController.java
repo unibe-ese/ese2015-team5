@@ -3,6 +3,7 @@ package org.sample.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.mortbay.util.ajax.AjaxFilter.AjaxResponse;
 import org.sample.controller.service.CompetenceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -74,10 +75,7 @@ public class IndexController {
      */
     @RequestMapping(value="/findCompetenceLike", method=RequestMethod.GET)
     public ModelAndView findCompetenceLike(HttpServletRequest request){
-    	System.out.println("findComp");
-    	System.out.println(request.getParameter("searchQuery"));
     	String searchQuery = request.getParameter("searchQuery");
-    	System.out.println(compService.findCompetenceLike(searchQuery));
     	ModelAndView model = new ModelAndView("index");
     	model.addObject("competences", compService.findCompetenceLike(searchQuery));
     	return model;
@@ -87,6 +85,13 @@ public class IndexController {
     public String securityError(RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("page_error", "You do have permission to do that!");
         return "redirect:/";
+    }
+    
+    @RequestMapping(value="/ajaxTest", method = RequestMethod.GET)
+    public AjaxResponse ajaxTest(){
+    	System.out.println("works on this end!");
+		return null;
+  
     }
     
     

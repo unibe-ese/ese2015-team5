@@ -3,6 +3,7 @@ package org.sample.controller.service;
 import java.util.List;
 
 import org.sample.controller.pojos.AddCompetenceForm;
+import org.sample.controller.pojos.EditCompetenceForm;
 import org.sample.model.Competence;
 
 public interface CompetenceService {
@@ -13,7 +14,7 @@ public interface CompetenceService {
 	
 	public Competence saveCompetence(AddCompetenceForm form);
 	
-	public Competence updateCompetence(Competence comp);
+	public Competence updateCompetence(EditCompetenceForm editForm);
 	
 	public void deleteCompetence(Competence comp);
 	

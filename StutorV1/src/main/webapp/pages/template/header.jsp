@@ -19,6 +19,7 @@
 		<script src="/Skeleton/js/skel.min.js"></script>
 		<script src="/Skeleton/js/skel-layers.min.js"></script>
 		<script src="/Skeleton/js/init.js"></script>
+		<script src="/Skeleton/js/search.js"></script>
 		<noscript>
 			<link rel="stylesheet" href="/Skeleton/css/skel.css" />
 			<link rel="stylesheet" href="/Skeleton/css/style.css" />
@@ -63,7 +64,7 @@
    							 			<input type="submit" value="Profile"/>
 									</form></li>
 							<!-- 	<li class="current"><a href="no-sidebar.html">No Sidebar</a></li>  -->
-								<li> 
+								<li>
 									<form action="logout"/>
 									   <input type="submit" value="Logout"/>
 									</form>

@@ -85,16 +85,18 @@
 	                ${competence.description}
 	            </td>
 	            <td>
-	                <form:form action="profile/delete$id=${competence.id}" method="get">
+	                <form:form action="profile/deleteComp/${competence.id}" method="get">
 	                    <input type="submit" value="X"></input>
 	                </form:form>
+                   <button class="btn btn-primary"
+                                          onclick="location.href='profile/editComp/${competence.id}'">Update</button>
 	            </td>
 
 	        </tr>
 	    </c:forEach>
 	</table>
 </div>
-<form:form method="post" modelAttribute="addCompetenceForm" action="./addCompetence" id="addComp" disabled="${!user.enableTutor}">
+<form:form method="post" modelAttribute="addCompetenceForm" action="./addCompetence" id="addComp">
 
     <div>
       <form:input type="text" path="description"/>

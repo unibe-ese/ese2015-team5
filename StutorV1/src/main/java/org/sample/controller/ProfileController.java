@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.sample.controller.pojos.AddCompetenceForm;
+import org.sample.controller.pojos.EditCompetenceForm;
 import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.service.CompetenceService;
 import org.sample.controller.service.UserService;
@@ -155,13 +156,53 @@ public class ProfileController {
 	 * @param compId The id of the competence.
 	 * @return Redirects to the profile page.
 	 */
-	@RequestMapping(value="/profile/delete$id={compId}", method=RequestMethod.GET)
+	@RequestMapping(value="/profile/deleteComp/{compId}", method=RequestMethod.GET)
 	public String deleteCompetence(@PathVariable("compId")long compId){
 		Competence comp = compService.findCompetenceById(compId);
 		if(comp != null){
 			compService.deleteCompetence(comp);
 		}
 		return "redirect:/profile";
+	}
+	
+	@RequestMapping(value="/profile/editComp/{compId}", method=RequestMethod.GET)
+	public ModelAndView editCompetence(@PathVariable("compId")Long compId, HttpSession session, Model model){
+		
+		User user  = (User)session.getAttribute("user");
+	
+		Competence comp = compService.findCompetenceById(compId);
+
+		ModelAndView newModel = new ModelAndView("editCompetence", model.asMap());
+		
+		if(!user.getCompetences().contains(comp)){
+			return new ModelAndView("index");
+		}
+		newModel.addObject("competence", comp);
+		if(!model.containsAttribute("editCompetenceForm") ){
+			EditCompetenceForm editForm = new EditCompetenceForm(comp);
+			
+			newModel.addObject("editCompetenceForm", editForm);
+		}
+		
+		return newModel;
+	}
+	
+	@RequestMapping(value="/profile/editComp/{compId}", method=RequestMethod.POST)
+	public String editCompetence(@ModelAttribute("editCompetenceForm") @Valid EditCompetenceForm editForm, BindingResult result, RedirectAttributes redirectedAttribtues,
+			@PathVariable("compId") long compId){
+		editForm.setCompReferenceId(compId);
+		System.out.println(result.toString());
+		if(result.hasErrors()){
+			System.out.println("error");
+			redirectedAttribtues.addFlashAttribute("editCompetenceForm", editForm);
+			redirectedAttribtues.addFlashAttribute("org.springframework.validation.BindingResult.editCompetenceForm", result);
+			
+			return "redirect:/profile/editComp/"  + compId;
+		}
+		
+		compService.updateCompetence(editForm);
+		
+		return "redirect:/profile/editComp/"  + compId;
 	}
 	
 	/**
@@ -178,10 +219,6 @@ public class ProfileController {
 	 */
 	@RequestMapping(value = "/changeProfilePic", method = RequestMethod.POST)
     public String uploadFileHandler(@RequestParam("file") MultipartFile file) {
-		System.out.println(file.isEmpty());	
-		System.out.println(file.getContentType());
-		System.out.println(file.getSize());
-		System.out.println(file.toString());
 		try {
 			System.out.println(file.getBytes().toString());
 		} catch (IOException e1) {

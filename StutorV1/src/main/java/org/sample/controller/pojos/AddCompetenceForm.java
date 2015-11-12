@@ -16,7 +16,7 @@ public class AddCompetenceForm {
 	@Size(min=1, message="Cannot be empty")
 	private String description;
 	
-	private long ownerId;
+	private Long ownerId;
 
 	public AddCompetenceForm(){
 		
