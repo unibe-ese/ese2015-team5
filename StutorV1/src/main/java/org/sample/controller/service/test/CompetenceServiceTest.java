@@ -2,6 +2,10 @@ package org.sample.controller.service.test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +13,7 @@ import org.mockito.AdditionalAnswers;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.sample.controller.pojos.AddCompetenceForm;
+import org.sample.controller.pojos.EditCompetenceForm;
 import org.sample.controller.service.CompetenceService;
 import org.sample.model.Competence;
 import org.sample.model.User;
@@ -35,20 +40,32 @@ public class CompetenceServiceTest {
 	@Autowired CompetenceDao compDao;
 	@Autowired UserDao userDao;
 	
-	private static User loggedin;
+	private User loggedin;
+	private Competence comp;
 	
 	private String competenceDescription = "Ballerness";
-	private static boolean isUserEnabled = true;
-	private static long userId = 333;
+	private String editCompetenceDescription = "JipJip";
+	private boolean isUserEnabled = true;
+	private long userId = 333;
+	private long randId = 123;
 	
 	@BeforeClass
 	public static void setup(){
+		
+	
+	}
+	
+	@Before
+	public void classicSetup(){
 		loggedin= new User();
 		loggedin.setEnableTutor(isUserEnabled);
 		loggedin.setId(userId);
 		
-		
-		
+		comp = new Competence();
+		comp.setDescription(competenceDescription);
+		comp.setId(randId);
+		comp.setisEnabled(isUserEnabled);
+		comp.setOwner(loggedin);
 	}
 	
 	@Test
@@ -71,6 +88,23 @@ public class CompetenceServiceTest {
 		assertEquals(competenceDescription, comp.getDescription());
 		assertEquals(isUserEnabled, comp.getisEnabled());
 		assertTrue(userId == comp.getOwner().getId());
+	}
+	
+	@Test
+	public void editCompetenceTest(){
+		
+	
+		when(compDao.findOne(any(long.class))).thenReturn(comp);
+		
+		EditCompetenceForm editForm = new EditCompetenceForm();
+		editForm.setDescription(editCompetenceDescription);
+		
+		Competence editedComp = compService.updateCompetence(editForm);
+		assertEquals(editCompetenceDescription, editedComp.getDescription());
+		assertEquals(randId, editedComp.getId());
+		assertEquals(isUserEnabled, editedComp.getisEnabled());
+		assertTrue(userId == editedComp.getOwner().getId());
+		
 	}
 	
 

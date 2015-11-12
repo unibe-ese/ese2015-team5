@@ -44,11 +44,6 @@ public class CompetenceServiceImpl implements CompetenceService{
 		return compDao.save(comp);
 	}
 
-	public Competence updateCompetence(Competence comp) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 	public void deleteCompetence(Competence comp) {
 		comp.setOwner(null);
 		compDao.delete(comp);
