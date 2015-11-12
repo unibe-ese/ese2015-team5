@@ -8,7 +8,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hdiv="http://www.hdi
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd 
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
        http://www.hdiv.org/schema/hdiv http://www.hdiv.org/schema/hdiv/hdiv.xsd">
-
+	
 	<!-- MOCK data access classes (DAO) -->
 	<bean class="org.mockito.Mockito" factory-method="mock">
 		<constructor-arg value="org.sample.model.dao.UserDao"/>
@@ -21,9 +21,13 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hdiv="http://www.hdi
 	<bean class="org.mockito.Mockito" factory-method="mock">
 		<constructor-arg value="org.sample.model.dao.CompetenceDao"/>
 	</bean>
+
 	
 	<!-- AUTOWIRE services -->
 	<bean class="org.sample.controller.service.UserServiceImpl" />
+	
+	<bean class="org.sample.controller.service.CompetenceServiceImpl" />
 
+	
 
 </beans>
