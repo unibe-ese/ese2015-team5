@@ -66,8 +66,7 @@ public class CompetenceServiceTest {
 	@Test
 	public void injectionTest(){
 		assertNotNull(compService);
-		assertNotNull(compDao);
-			
+		assertNotNull(compDao);		
 	}
 	
 	@Test

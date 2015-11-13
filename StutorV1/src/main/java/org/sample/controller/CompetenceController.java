@@ -4,7 +4,6 @@ package org.sample.controller;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.sample.controller.pojos.EditCalendarForm;
 import org.sample.controller.pojos.EditCompetenceForm;
 import org.sample.controller.service.CompetenceService;
 import org.sample.model.Competence;
@@ -54,7 +53,7 @@ public class CompetenceController {
 
 		ModelAndView newModel = new ModelAndView("editCompetence", model.asMap());
 		
-		if(!user.getCompetences().contains(comp)){
+		if(!user.getCompetences().contains(comp) || comp == null){
 			return new ModelAndView("index");
 		}
 		newModel.addObject("competence", comp);
@@ -63,7 +62,7 @@ public class CompetenceController {
 			
 			newModel.addObject("editCompetenceForm", editForm);
 		}
-		newModel.addObject("editCalendarForm", new EditCalendarForm());
+		
 		return newModel;
 	}
 	
@@ -86,7 +85,7 @@ public class CompetenceController {
 				System.out.println(editForm.getAvailabilityBoard()[i][j]);
 			}
 		}
-		System.out.println(editForm.getAvailabilityBoard().toString());
+		
 		return "redirect:/profile/editComp/"  + compId;
 	}
     

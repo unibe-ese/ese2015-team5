@@ -41,6 +41,7 @@ public class UserServiceTest {
 		testSignupForm.setLastName("Doe");
 		testSignupForm.setPassword("asdf");
 		testSignupForm.setProfilePic(testPic);
+		
 	}
 	
 	@Test
@@ -48,6 +49,7 @@ public class UserServiceTest {
 		
 		
 		User testUser = testUserService.saveUser(testSignupForm);
+		System.out.println(testUser.toString());
 		
 		assertEquals("ese@hs15.ch", testUser.getEmail());
 		assertEquals("John", testUser.getFirstName());
