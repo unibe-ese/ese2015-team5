@@ -116,7 +116,6 @@ public class UserServiceImpl implements UserService{
     }
 
 	public void updateProfilePicture(ProfilePicture profilePicture) {
-		System.out.println("updateProfile");
 		User user = getCurrentUser();
 		ProfilePicture pic = user.getPic();
 		pic.setFile(profilePicture.getFile());

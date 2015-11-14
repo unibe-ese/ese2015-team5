@@ -70,9 +70,7 @@ public class CompetenceController {
 	public String editCompetence(@ModelAttribute("editCompetenceForm") @Valid EditCompetenceForm editForm, BindingResult result, RedirectAttributes redirectedAttribtues,
 			@PathVariable("compId") long compId){
 		editForm.setCompReferenceId(compId);
-		System.out.println(result.toString());
 		if(result.hasErrors()){
-			System.out.println("error");
 			redirectedAttribtues.addFlashAttribute("editCompetenceForm", editForm);
 			redirectedAttribtues.addFlashAttribute("org.springframework.validation.BindingResult.editCompetenceForm", result);
 			

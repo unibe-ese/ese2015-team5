@@ -56,8 +56,9 @@ public class CompetenceServiceImpl implements CompetenceService{
 	
 	public List<Competence> findCompetenceLike(String string){
 		List<Competence> comps = new ArrayList<Competence>();
-
+		System.out.println(compDao.findAll().toString());
 		for(Competence c : compDao.findAll()){
+			
 			if(c.getDescription().toLowerCase().contains(string.toLowerCase()) && c.getisEnabled()){
 				comps.add(c);
 			}

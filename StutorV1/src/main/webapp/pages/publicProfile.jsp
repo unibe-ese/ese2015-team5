@@ -13,6 +13,8 @@
 
 ${visitee.email}
 
+<div>${visitee.aboutYou}</div>
+
 <c:forEach items="${visitee.competences}" var="competence">
     <tr>
         <td>

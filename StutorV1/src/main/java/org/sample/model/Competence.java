@@ -53,7 +53,7 @@ public class Competence {
 	}
 	
 	public String toString(){
-		return "Description: " + this.description + ", Owner: " + owner.getEmail();
+		return "Description: " + this.description;
 	}
 	public boolean getisEnabled() {
 		return isEnabled;

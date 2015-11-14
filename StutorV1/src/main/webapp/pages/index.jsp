@@ -17,7 +17,7 @@
             <td>
                 ${competence.description}
                 <button class="btn btn-primary"
-                                       onclick="location.href='profile/${competence.owner.id}'">Update</button>
+                                       onclick="location.href='profile/${competence.owner.id}'">Visit</button>
             </td>
         </tr>
     </c:forEach>
