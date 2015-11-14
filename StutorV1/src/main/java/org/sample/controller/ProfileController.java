@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.sample.controller.pojos.AddCompetenceForm;
-import org.sample.controller.pojos.EditCompetenceForm;
 import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.service.CompetenceService;
 import org.sample.controller.service.UserService;
@@ -201,7 +200,7 @@ public class ProfileController {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/imageDisplay$userId={userId}", method = RequestMethod.GET)
-	  public void showImage(@PathVariable("userId") long userId, HttpServletResponse response,HttpServletRequest request) 
+	public void showImage(@PathVariable("userId") long userId, HttpServletResponse response,HttpServletRequest request) 
 	          throws ServletException, IOException{
 		User user = userService.getUserById(userId);
 		if(user != null){
@@ -211,6 +210,27 @@ public class ProfileController {
 	    	response.getOutputStream().close();
 		}
 		
+	}
+	
+	@RequestMapping(value="/profile/{userId}", method=RequestMethod.GET)
+	public String showPublicProfile(@PathVariable long userId, Model model){
+		System.out.println(userId);
+		User visitee = userService.getUserById(userId);
+		User visiter = userService.getCurrentUser();
+		if(visitee == null){
+			System.out.println("null");
+			return "redirect:/index";
+		}
+		//TODO: Can a user view his profile as visitor?
+		if(visitee.equals(visiter)){
+			System.out.println("equsl");
+			return "redirect:/profile";
+		}
+		System.out.println(visitee.toString());
+		System.out.println(visiter.toString());
+		model.addAttribute("visitee", visitee);
+		System.out.println("public");
+		return "publicProfile";
 	}
 	
 }

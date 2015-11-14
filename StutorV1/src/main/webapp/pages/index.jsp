@@ -16,6 +16,8 @@
         <tr>
             <td>
                 ${competence.description}
+                <button class="btn btn-primary"
+                                       onclick="location.href='profile/${competence.owner.id}'">Update</button>
             </td>
         </tr>
     </c:forEach>
