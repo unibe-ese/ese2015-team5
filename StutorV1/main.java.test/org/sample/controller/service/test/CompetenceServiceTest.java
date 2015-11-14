@@ -1,10 +1,14 @@
 package org.sample.controller.service.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -36,9 +40,11 @@ public class CompetenceServiceTest {
 	@Autowired UserDao userDao;
 	
 	private User loggedin;
-	private Competence comp;
+	private Competence comp, comp2, comp3, comp4;
+	private List<Competence> comps;
 	
-	private String competenceDescription = "Ballerness";
+	private String competenceDescription = "Ballerness", competenceDescription2 = "Kickass",
+			competenceDescription3 = "Blubbi", competenceDescription4 = "iRanOutOfNames";
 	private String editCompetenceDescription = "JipJip";
 	private boolean isUserEnabled = true;
 	private long userId = 333;
@@ -61,6 +67,27 @@ public class CompetenceServiceTest {
 		comp.setId(randId);
 		comp.setisEnabled(isUserEnabled);
 		comp.setOwner(loggedin);
+		
+		comp2 = new Competence();
+		comp2.setDescription(competenceDescription2);
+		comp2.setisEnabled(true);
+		comp2.setId(333);
+		
+		comp3 = new Competence();
+		comp3.setDescription(competenceDescription3);
+		comp3.setisEnabled(false);
+		comp3.setId(111);
+		
+		comp4 = new Competence();
+		comp4.setDescription(competenceDescription4);
+		comp4.setisEnabled(true);
+		comp4.setId(999);
+		
+		List<Competence> comps = new ArrayList<Competence>();
+		comps.add(comp);
+		comps.add(comp2);
+		comps.add(comp3);
+		System.out.println("before: " + comps.toString());
 	}
 	
 	@Test
@@ -99,6 +126,32 @@ public class CompetenceServiceTest {
 		assertEquals(isUserEnabled, editedComp.getisEnabled());
 		assertTrue(userId == editedComp.getOwner().getId());
 		
+	}
+	
+	@Test
+	public void editCompetenceTestInvalid(){
+		when(compDao.findOne(any(long.class))).thenReturn(null);
+		EditCompetenceForm editForm = new EditCompetenceForm();
+		editForm.setDescription(editCompetenceDescription);
+		
+		Competence editedComp = compService.updateCompetence(editForm);
+		assertEquals(null, editedComp);
+	}
+	
+	@Test
+	public void findCompetenceLikeTest1(){
+		comps = new ArrayList<Competence>();
+		comps.add(comp);
+		comps.add(comp2);
+		comps.add(comp3);
+		comps.add(comp4);
+		when(compDao.findAll()).thenReturn(comps);
+		List<Competence> competenceLike = compService.findCompetenceLike("b");
+		
+		assertTrue(competenceLike.contains(comp));
+		assertFalse(competenceLike.contains(comp2));
+		assertFalse(competenceLike.contains(comp3));
+		assertFalse(competenceLike.contains(comp4));
 	}
 	
 
