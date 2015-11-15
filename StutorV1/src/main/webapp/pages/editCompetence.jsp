@@ -23,18 +23,12 @@ ID of Comp: ${competence.id}
 
 
 <table class="calendar">
-    <c:forEach items="${editCompetenceForm.availabilityBoard}" var="availabilityRow" varStatus="statusI">
-
+    <c:forEach items="${editCompetenceForm.availabilityRows}" var="availabilityRow" varStatus="statusI">
         <tr>
-          <c:forEach items="${availabilityRow}" var="availability" varStatus="statusJ">
-            <td>
-              ${availability.available}
-              ${statusI.index}
-              ${statusJ.index}
-              
-              <form:checkbox path="editCompetenceForm.availabilityBoard[${statusI.index}][${statusJ.index}]" />
-            </td>
-              </c:forEach>
+          <c:forEach items="${availabilityRow.availabilities}" var="availability" varStatus="statusJ">
+            ${availability.available}
+            <form:checkbox path="availability.available"/>
+          </c:forEach>
         </tr>
 
     </c:forEach>
