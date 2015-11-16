@@ -9,7 +9,7 @@ public class Availability {
 		this.available = available;
 	}
 	
-	public boolean getAvailable(){
+	public boolean isAvailable(){
 		return this.available;
 	}
 

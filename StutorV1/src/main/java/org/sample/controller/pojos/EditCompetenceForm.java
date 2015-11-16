@@ -11,7 +11,7 @@ public class EditCompetenceForm {
 	
 	private Long compReferenceId;
 	
-	private Availability [][] availabilityBoard = new Availability[size][size];
+	private AvailabilityRow [] availabilityRows;
 	
 	private static int size = 5;
 	
@@ -30,11 +30,9 @@ public class EditCompetenceForm {
 	public EditCompetenceForm(Competence comp){
 		this.description = comp.getDescription();
 		this.compReferenceId = comp.getId();
-		this.availabilityBoard = new Availability[5][5];
+		this.availabilityRows = new AvailabilityRow[size];
 		for(int i = 0; i < size; i++){
-			for (int j = 0; j < size; j++){
-				this.availabilityBoard[i][j] = new Availability();
-			}
+			this.availabilityRows[i]= new AvailabilityRow(size);
 		}
 	}
 
@@ -58,12 +56,14 @@ public class EditCompetenceForm {
 		return "Desc: " + this.description + ", ID: " + this.compReferenceId;
 	}
 
-	public Availability [][] getAvailabilityBoard() {
-		return availabilityBoard;
+	public AvailabilityRow[] getAvailabilityRows() {
+		return availabilityRows;
 	}
 
-	public void setAvailabilityBoard(Availability [][] availabilityBoard) {
-		this.availabilityBoard = availabilityBoard;
+	public void setAvailabilityRows(AvailabilityRow[] availabilityRows) {
+		this.availabilityRows = availabilityRows;
 	}
+	
+	
 
 }

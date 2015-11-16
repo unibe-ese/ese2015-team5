@@ -22,28 +22,17 @@ ID of Comp: ${competence.id}
     <form:errors path="description" cssClass="help-inline" element="span"/>
 
 
-<table class="calendar">
-    <c:forEach items="${editCompetenceForm.availabilityBoard}" var="availabilityRow" varStatus="statusI">
 
-        <tr>
-          <c:forEach items="${availabilityRow}" var="availability" varStatus="statusJ">
-            <td>
-              ${availability.available}
-              ${statusI.index}
-              ${statusJ.index}
-              
-              <form:checkbox path="editCompetenceForm.availabilityBoard[${statusI.index}][${statusJ.index}]" />
-            </td>
-              </c:forEach>
-        </tr>
+<%-- <table class="calendar">
+    <c:forEach items="${editCompetenceForm.availabilities}" var="availability" varStatus="statusI">
+        ${availability.available}
+        <form:checkbox path="availability.available"/>
 
     </c:forEach>
-</table>
-
+</table> --%>
 
 
 <input type="Submit" value="Edit!"></input>
-
 </form:form>
 
 

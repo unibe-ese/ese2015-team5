@@ -78,11 +78,6 @@ public class CompetenceController {
 		}
 		
 		compService.updateCompetence(editForm);
-		for( int i = 0; i < editForm.getAvailabilityBoard().length; i++){
-			for(int j = 0; j < editForm.getAvailabilityBoard()[i].length; j++){
-				System.out.println(editForm.getAvailabilityBoard()[i][j]);
-			}
-		}
 		
 		return "redirect:/profile/editComp/"  + compId;
 	}
