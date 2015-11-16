@@ -47,6 +47,9 @@ public class User {
     
     private boolean enableTutor;
     
+//    @OneToMany(targetEntity=Course.class, mappedBy="owner", cascade=CascadeType.ALL)
+//    private List<Course> courses;
+    
     public ProfilePicture getPic() {
 		return pic;
 	}

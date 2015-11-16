@@ -1,20 +1,22 @@
 package org.sample.controller;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.sample.controller.pojos.AddCompetenceForm;
 import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.service.CompetenceService;
+import org.sample.controller.service.CourseService;
 import org.sample.controller.service.UserService;
 import org.sample.model.Competence;
 import org.sample.model.ProfilePicture;
 import org.sample.model.User;
+import org.sample.model.Week;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,6 +48,8 @@ public class ProfileController {
 	UserService userService;
 	@Autowired
 	CompetenceService compService;
+	@Autowired 
+	CourseService courseService;
 	
 	/**
 	 * Displays the correct profile page.
@@ -59,28 +63,40 @@ public class ProfileController {
 	 */
     @RequestMapping( value = "/profile")
     public ModelAndView gotoProfile(Model model){
-    	
-    	ModelAndView modelAndView = new ModelAndView("profile", model.asMap());
+  	
     	User user = userService.getCurrentUser();
     	if(user == null){
     		return new ModelAndView("index");
-    	}
-    	modelAndView.addObject("user", user);	
+    	}   	
+    	  	
+    	ModelAndView modelAndView = new ModelAndView("profile", buildProfileModel(model, user).asMap());
+    	return modelAndView;
+    }
+
+	private Model buildProfileModel(Model model, User user) {
+		model.addAttribute("user", user);	
     	
     	if(!model.containsAttribute("modifyUserForm") ){
-    	
-    		ModifyUserForm modForm = new ModifyUserForm();
-    		modForm.setEnableTutor(user.getEnableTutor());
-    		modForm.setId(user.getId());
-    		modelAndView.addObject("modifyUserForm", modForm);		
+    		model.addAttribute("modifyUserForm", buildModForm(user));		
     	}
     	
     	if(!model.containsAttribute("addCompetenceForm") ){
-    		modelAndView.addObject("addCompetenceForm", new AddCompetenceForm());
+    		model.addAttribute("addCompetenceForm", new AddCompetenceForm());
+    	}
+    	if(!model.containsAttribute("calendar")){
+    		Week week = courseService.buildCalendar(Calendar.getInstance());
+    		model.addAttribute("week", week);
     	}
     	
-    	return modelAndView;
-    }	
+    	return model;
+	}
+
+	private ModifyUserForm buildModForm(User user) {
+		ModifyUserForm modForm = new ModifyUserForm();
+		modForm.setEnableTutor(user.getEnableTutor());
+		modForm.setId(user.getId());
+		return modForm;
+	}	
     
     /**
      * Checks if modified information is valid, then redirects to correct URL
@@ -104,7 +120,6 @@ public class ProfileController {
 			redirectAttributes.addFlashAttribute("modifyUserForm", form);
 			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.modifyUserForm", result);			
 			if(!form.getPasswordControll().equals(form.getPassword())){
-				System.out.println("added PasswordControllerror");
 				redirectAttributes.addFlashAttribute("passwordControllError", "Must match password");
 			}
 		}
@@ -113,40 +128,6 @@ public class ProfileController {
 		}
         return "redirect:profile";
 	}
-	
-	
-	/**
-	 * Adds competences to a user and redirects to next URL
-	 * 
-	 * Checks if the addCompetenceForm has errors. If yes, the errors are added to the 
-	 * redirectedAttributes, and the methods redirects to the profile page, to display errors.
-	 * If there are no errors, the {@link org.sample.controller.service.CompetenceService} is used to add and save the Competence.
-	 * 
-	 * @param form: A pojo containing the edited user information. Validated by annotations.
-	 * @param user: The user editing his profile.
-	 * @param result: The result of validation. 
-	 * @param redirectedAttribtues
-	 * @return
-	 */
-	@RequestMapping(value="/addCompetence", method=RequestMethod.POST)
-	public String addCompetence(@ModelAttribute("addCompetenceForm") @Valid AddCompetenceForm form, BindingResult result, RedirectAttributes redirectedAttribtues, HttpSession session){
-		User user = (User)session.getAttribute("user");
-		System.out.println("added error");
-		if(result.hasErrors()){
-			
-			redirectedAttribtues.addFlashAttribute("addCompetenceForm", form);
-			redirectedAttribtues.addFlashAttribute("org.springframework.validation.BindingResult.addCompetenceForm", result);
-			
-			return "redirect:profile";
-		}
-		form.setOwnerId(user.getId());
-		compService.saveCompetence(form);
-		return "redirect:profile";
-		
-	}
-	
-	
-	
 	
 	/**
 	 * Validates and saves a picture to the DB.
@@ -169,7 +150,6 @@ public class ProfileController {
 			e1.printStackTrace();
 		}
         if (!file.isEmpty()) {
-        	System.out.println("if");
             try {
             	ProfilePicture profilePicture = new ProfilePicture();
             	
@@ -214,22 +194,17 @@ public class ProfileController {
 	
 	@RequestMapping(value="/profile/{userId}", method=RequestMethod.GET)
 	public String showPublicProfile(@PathVariable long userId, Model model){
-		System.out.println(userId);
 		User visitee = userService.getUserById(userId);
 		User visiter = userService.getCurrentUser();
 		if(visitee == null){
-			System.out.println("null");
 			return "redirect:/index";
 		}
 		//TODO: Can a user view his profile as visitor?
 		if(visitee.equals(visiter)){
-			System.out.println("equsl");
+			
 			return "redirect:/profile";
 		}
-		System.out.println(visitee.toString());
-		System.out.println(visiter.toString());
 		model.addAttribute("visitee", visitee);
-		System.out.println("public");
 		return "publicProfile";
 	}
 	

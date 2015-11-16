@@ -4,6 +4,7 @@ package org.sample.controller;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.sample.controller.pojos.AddCompetenceForm;
 import org.sample.controller.pojos.EditCompetenceForm;
 import org.sample.controller.service.CompetenceService;
 import org.sample.model.Competence;
@@ -21,7 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
-public class CompetenceController {
+public class TutorController {
 
 	@Autowired 
 	CompetenceService compService;
@@ -62,7 +63,6 @@ public class CompetenceController {
 			
 			newModel.addObject("editCompetenceForm", editForm);
 		}
-		
 		return newModel;
 	}
 	
@@ -82,6 +82,36 @@ public class CompetenceController {
 		return "redirect:/profile/editComp/"  + compId;
 	}
     
+	/**
+	 * Adds competences to a user and redirects to next URL
+	 * 
+	 * Checks if the addCompetenceForm has errors. If yes, the errors are added to the 
+	 * redirectedAttributes, and the methods redirects to the profile page, to display errors.
+	 * If there are no errors, the {@link org.sample.controller.service.CompetenceService} is used to add and save the Competence.
+	 * 
+	 * @param form: A pojo containing the edited user information. Validated by annotations.
+	 * @param user: The user editing his profile.
+	 * @param result: The result of validation. 
+	 * @param redirectedAttribtues
+	 * @return
+	 */
+	@RequestMapping(value="/addCompetence", method=RequestMethod.POST)
+	public String addCompetence(@ModelAttribute("addCompetenceForm") @Valid AddCompetenceForm form, BindingResult result, RedirectAttributes redirectedAttribtues, HttpSession session){
+		User user = (User)session.getAttribute("user");
+		System.out.println("added error");
+		if(result.hasErrors()){
+			
+			redirectedAttribtues.addFlashAttribute("addCompetenceForm", form);
+			redirectedAttribtues.addFlashAttribute("org.springframework.validation.BindingResult.addCompetenceForm", result);
+			
+			return "redirect:profile";
+		}
+		form.setOwnerId(user.getId());
+		compService.saveCompetence(form);
+		return "redirect:profile";
+		
+	}
+
     
 
 }
