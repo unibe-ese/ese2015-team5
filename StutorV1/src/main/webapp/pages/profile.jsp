@@ -7,10 +7,10 @@
 <c:import url="template/header.jsp" />
 
 <div id="tab1" class="nonTutorProfile">
-    <c:import url="nonTutorProfile.jsp" />
+    <c:import url="nonTutorProfile.jsp"/>
 </div>
 <div id="tab2" class="tutorProfile">
-    <c:import url="tutorProfile.jsp" />
+    <c:import url="tutorProfile.jsp"/>
 </div>
 
 
