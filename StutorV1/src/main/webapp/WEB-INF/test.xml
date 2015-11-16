@@ -13,7 +13,6 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hdiv="http://www.hdi
 	<bean class="org.mockito.Mockito" factory-method="mock">
 		<constructor-arg value="org.sample.model.dao.UserDao"/>
 	</bean>
-
 	<bean class="org.mockito.Mockito" factory-method="mock">
 		<constructor-arg value="org.sample.model.dao.ProfilePictureDao"/>
 	</bean>
@@ -26,8 +25,6 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hdiv="http://www.hdi
 	<!-- AUTOWIRE services -->
 	<bean class="org.sample.controller.service.UserServiceImpl" />
 	
+	<bean class="org.sample.controller.RegistrationController" />
 	<bean class="org.sample.controller.service.CompetenceServiceImpl" />
-
-	
-
 </beans>
