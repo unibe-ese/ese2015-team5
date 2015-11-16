@@ -22,9 +22,11 @@ public class ModifyUserForm{
 	@NotBlank(message="Password cant be empty")
     private String password;
     private String passwordControll;
-    private String aboutYou;
+    
     
     private boolean enableTutor;
+    
+    private String aboutYou;
     
 
     public String getFirstName() {
@@ -82,4 +84,5 @@ public class ModifyUserForm{
 	public void setAboutYou(String aboutYou) {
 		this.aboutYou = aboutYou;
 	}
+
 }

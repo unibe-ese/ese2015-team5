@@ -83,10 +83,10 @@ public class ProfileController {
     	if(!model.containsAttribute("addCompetenceForm") ){
     		model.addAttribute("addCompetenceForm", new AddCompetenceForm());
     	}
-    	if(!model.containsAttribute("calendar")){
+    	/*if(!model.containsAttribute("calendar")){
     		Week week = courseService.buildCalendar(Calendar.getInstance());
     		model.addAttribute("week", week);
-    	}
+    	}*/
     	
     	return model;
 	}

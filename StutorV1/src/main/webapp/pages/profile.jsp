@@ -5,8 +5,26 @@
 
 <c:import url="template/header.jsp" />
 
+<div class="tabbable">
+    <ul class="tabs">
+        <li><a href="#tab1">Personal Information</a></li>
+        <li><a href="#tab2">Tutoring Information</a></li>
+    </ul>
+    <div class="tabcontent">
+        <div id="tab1" class="tab">
+            <c:import url="nonTutorProfile.jsp" />
+        </div>
+        <div id="tab2" class="tab">
+            <c:import url="tutorProfile.jsp" />
+        </div>
+    </div>
+</div>
 
-<!doctype html>
+
+
+
+
+<!-- <!doctype html>
 <html lang="en">
 
 <body>
@@ -26,7 +44,7 @@
  
  
 </body>
-</html>
+</html> -->
 
 
 <c:import url="template/footer.jsp" />
