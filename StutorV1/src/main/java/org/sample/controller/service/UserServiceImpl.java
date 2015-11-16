@@ -34,7 +34,11 @@ public class UserServiceImpl implements UserService{
 	ProfilePictureDao profilePicDao;
 	
 	public User getUserByEmail(String email) {
-		// TODO Auto-generated method stub
+		for (User u:userDao.findAll())
+		{
+			if(u.getEmail().equals(email))
+			return u;
+		}
 		return null;
 	}
 	
@@ -78,6 +82,10 @@ public class UserServiceImpl implements UserService{
         return user;
 	}
 
+	/**
+	 * Only call this method after calling validateModifyUserForm.
+	 * 
+	 */
 	public User updateUser(ModifyUserForm mod) throws InvalidUserException {
 		User user  = userDao.findOne(mod.getId());
 		if(user.getEnableTutor() != mod.getEnableTutor()){
@@ -96,8 +104,7 @@ public class UserServiceImpl implements UserService{
 
 	public boolean validateModifyUserForm(ModifyUserForm mod) {
 		User user = userDao.findOne(mod.getId());
-    	if(user == null || !mod.getPassword().equals(mod.getPasswordControll()) || mod.getLastName().equals("")
-    			||  mod.getFirstName().equals("")){
+    	if(user == null || !mod.getPassword().equals(mod.getPasswordControll())){
     		return false;
     	}
     	

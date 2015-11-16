@@ -6,7 +6,7 @@
 
 <c:import url="template/header.jsp" />
 
-<h1>Homepage</h1>
+<h1>Search for your courses:</h1>
 <form action="/Skeleton/findCompetenceLike"  commandName="searchQuery" method="get">
     <input type="text" name="searchQuery" path="searchQuery"/>
     <input type="submit" value="Search"></input>
@@ -16,9 +16,15 @@
         <tr>
             <td>
                 ${competence.description}
+                <button class="btn btn-primary"
+                                       onclick="location.href='profile/${competence.owner.id}'">Visit</button>
             </td>
         </tr>
     </c:forEach>
 </table>
+<input type="text" id="searchQuery"/>
+<button type="button"onclick="ajaxTest()">Search</button>
+
+<p id="demo"></p>
 
 <c:import url="template/footer.jsp" />
