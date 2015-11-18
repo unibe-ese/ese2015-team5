@@ -1,6 +1,6 @@
 package org.sample.model;
 
-import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,13 +19,13 @@ public class Course {
 	
 	private long customerId;
 	
-	private Calendar date;
+	private Date date;
 
-	public Calendar getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(Calendar date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

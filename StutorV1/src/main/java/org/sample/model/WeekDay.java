@@ -1,23 +1,23 @@
 package org.sample.model;
 
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class WeekDay {
 
-	private Calendar date;
+	private Date date;
 	
 	private List<Course> courses;
 
-	public WeekDay(Calendar instance) {
-		this.date = instance;
+	public WeekDay(Date date) {
+		this.date = date;
 	}
 
-	public Calendar getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(Calendar date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
