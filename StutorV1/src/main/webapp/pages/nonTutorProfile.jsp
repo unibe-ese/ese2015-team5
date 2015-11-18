@@ -53,10 +53,6 @@
                    ${passwordControllError}
                 </c:if>
             </div>
-		 	<div>
-		 		<label class="control-label" for="field-aboutYou">Tell something about yourself</label>
-            	<textarea id="aboutYou" name="aboutYou" maxlength="500">${user.aboutYou}</textarea>
-        	</div>
         </div>
         <div class="form-actions">
             <input type="submit" value="Submit Changes" class="btn btn-primary"></input>
@@ -65,7 +61,6 @@
            	<div style="margin:25px 0px 25px 0;">
            	<h1>Change your Profile Picture</h1>
 	 		<img src="/Skeleton/imageDisplay$userId=${user.id}" style="height:100px; width:100px"/>
-
         </div>
 </form:form>
 

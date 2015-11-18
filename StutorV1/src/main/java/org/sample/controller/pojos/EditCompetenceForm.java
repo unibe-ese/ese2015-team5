@@ -68,8 +68,5 @@ public class EditCompetenceForm {
 	public void setAvailability(Boolean[] availability) {
 		this.availability = availability;
 	}
-	
-	
-
 
 }
