@@ -85,6 +85,10 @@ public class ProfileController {
     	}
     	if(!model.containsAttribute("calendar")){
     		Week week = courseService.buildCalendar(Calendar.getInstance());
+    		for(int i = 0; i < week.getWeekDays().length; i++){
+    			System.out.println(week.getWeekDays()[i].getDate().getTime());
+    			System.out.println(week.getWeekDays()[i].toString());
+    		}
     		model.addAttribute("week", week);
     	}
     	

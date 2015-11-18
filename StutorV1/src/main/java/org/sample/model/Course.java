@@ -30,10 +30,7 @@ public class Course {
 	}
 
 	public boolean isDuring(Week week) {
-		if(date.before(week.getEndOfWeek()) && date.after(week.getStartOfWeek())){
-			return true;
-		}
-		return false;
+		return true;
 	}
 
 	public long getCustomerId() {

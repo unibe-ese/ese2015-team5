@@ -6,36 +6,32 @@ import java.util.List;
 
 public class Week {
 
-	private Calendar startOfWeek, endOfWeek;
+	public final static int WEEKDAYS = 6;
+	
+	private WeekDay[] weekDays;
 	
 	private List<Course> coursesDuringTheWeek;
 	
 	public void setStartOfWeek(Calendar instance) {
-		this.startOfWeek = instance;
+		this.weekDays = new WeekDay[WEEKDAYS];
+		this.weekDays[0] = new WeekDay(instance);
 		
 	}
 
-	public void setEndOfWeek(Calendar instance) {
-		this.endOfWeek = instance;
-		
-	}
 
 	public static Week buildWeek(Calendar instance) {
 		instance.set(Calendar.DAY_OF_WEEK, instance.getFirstDayOfWeek());
 		Week week = new Week();
 		week.setStartOfWeek(instance);
-		instance.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-		week.setEndOfWeek(instance);
+		for(int j = 1; j < WEEKDAYS; j++){
+			instance.add(Calendar.DATE, j);
+			week.weekDays[j] = new WeekDay(instance);
+			System.out.println(week.weekDays[j].getDate().getTime());
+		}	
 		return week;
 	}
 
-	public Calendar getStartOfWeek() {
-		return startOfWeek;
-	}
 
-	public Calendar getEndOfWeek() {
-		return endOfWeek;
-	}
 
 	public void addCourse(Course course) {
 		if(this.coursesDuringTheWeek == null){
@@ -45,4 +41,8 @@ public class Week {
 		
 	}
 
+
+	public WeekDay[] getWeekDays() {
+		return weekDays;
+	}
 }
