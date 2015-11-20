@@ -56,23 +56,7 @@ public class LoginController {
 		
 		ModelAndView loginPageView = new ModelAndView("login");
 		
-		
-		try {
-			this.checkLoginPageValidity(loginPageView.getView());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		assert loginPageView != null;
 		return loginPageView;
-	}
-	
-	
-	/**
-	 * Helper method!
-	 * @param ModelAndView loginPageView
-	 * @return ModelAndView loginPageView
-	 */
-	public void checkLoginPageValidity(View view) throws Exception{
 	}
 }
