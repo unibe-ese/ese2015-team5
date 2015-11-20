@@ -90,6 +90,11 @@ public class WeekDay {
 	public void setDateString(String dateString) {
 		this.dateString = dateString;
 	}
+
+	public void addCourse(Course course) {
+		this.courses.add(course.getSlot(), course);
+		
+	}
 	
 	
 	//TODO: name

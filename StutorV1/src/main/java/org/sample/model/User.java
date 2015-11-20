@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 /**
  * Represents a registered User of Stutor.
  * 
@@ -47,8 +50,9 @@ public class User {
     
     private boolean enableTutor;
     
-//    @OneToMany(targetEntity=Course.class, mappedBy="owner", cascade=CascadeType.ALL)
-//    private List<Course> courses;
+    @OneToMany(fetch = FetchType.EAGER, targetEntity=Course.class, mappedBy="owner", cascade=CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<Course> courses;
     
     public ProfilePicture getPic() {
 		return pic;
@@ -164,6 +168,14 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName="
 				+ lastName + ", email=" + email + "]";
+	}
+
+	public List<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
 	}
 	
 }

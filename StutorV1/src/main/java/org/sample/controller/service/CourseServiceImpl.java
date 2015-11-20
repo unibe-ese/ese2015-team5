@@ -2,6 +2,7 @@ package org.sample.controller.service;
 
 import java.text.ParseException;
 import java.util.Calendar;
+import java.util.List;
 
 import org.sample.controller.pojos.AddCourseForm;
 import org.sample.model.Course;
@@ -17,6 +18,8 @@ public class CourseServiceImpl implements CourseService {
 	
 	@Autowired 
 	CourseDao courseDao;
+	@Autowired 
+	UserService userService;
 	
 	@Override
 	public Week buildCalendar(Calendar instance) {
@@ -26,10 +29,15 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	private Week findAllForWeek(Week week) {
-		for(Course course : courseDao.findAll()){
-			if(course.isDuring(week)){
-//				week.addCourse(course);
-			}
+		User user  = userService.getCurrentUser();
+		List<Course> courses = user.getCourses();		
+			for(Course course : courses){
+				if(course.isDuring(week)){
+					Calendar cal = Calendar.getInstance();
+					cal.setTime(course.getDate());
+					int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+					week.getWeekDays()[dayOfWeek].addCourse(course);
+				}			
 		}
 		return week;
 	}
