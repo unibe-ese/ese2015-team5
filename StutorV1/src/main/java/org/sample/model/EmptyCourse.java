@@ -15,4 +15,9 @@ public class EmptyCourse implements CourseInterface {
 		
 	}
 
+	@Override
+	public String getDescription() {
+		return "free";
+	}
+
 }

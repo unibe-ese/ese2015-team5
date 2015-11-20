@@ -58,6 +58,11 @@ public class Course implements CourseInterface{
 	public void setOwner(User owner) {
 		this.owner = owner;
 	}
+
+	@Override
+	public String getDescription() {
+		return "occupied";
+	}
 	
 	
 	

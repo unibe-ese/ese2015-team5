@@ -19,7 +19,7 @@ public class WeekDay {
 	
 	private String name;
 	
-	private List<CourseInterface> courses;
+	private CourseInterface[] courses;
 	
 	public WeekDay(Date date) {
 		this.date = date;
@@ -29,11 +29,11 @@ public class WeekDay {
 	}
 
 	private void setupCourses() {
-		this.courses = new ArrayList<CourseInterface>();
+		this.courses = new CourseInterface[24];
 		for(int i = 0; i < 24; i++){
 			EmptyCourse course = new EmptyCourse();
 			course.setSlot(i);
-			courses.add(course);
+			courses[i] = course;
 			
 		}
 	}
@@ -75,11 +75,11 @@ public class WeekDay {
 	
 	}
 
-	public List<CourseInterface> getCourses() {
+	public CourseInterface[] getCourses() {
 		return courses;
 	}
 
-	public void setCourses(List<CourseInterface> courses) {
+	public void setCourses(CourseInterface[] courses) {
 		this.courses = courses;
 	}
 
@@ -92,7 +92,7 @@ public class WeekDay {
 	}
 
 	public void addCourse(Course course) {
-		this.courses.add(course.getSlot(), course);
+		this.courses[course.getSlot()] = course;
 		
 	}
 	

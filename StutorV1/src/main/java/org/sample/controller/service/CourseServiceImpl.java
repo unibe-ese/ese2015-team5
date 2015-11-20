@@ -36,7 +36,7 @@ public class CourseServiceImpl implements CourseService {
 					Calendar cal = Calendar.getInstance();
 					cal.setTime(course.getDate());
 					int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
-					week.getWeekDays()[dayOfWeek].addCourse(course);
+					week.getWeekDays()[dayOfWeek-1].addCourse(course);
 				}			
 		}
 		return week;

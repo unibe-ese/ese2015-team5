@@ -39,6 +39,7 @@
           <c:forEach items="${day.courses}" var="course">
             <li>
               ${course.slot}
+              ${course.description}
               <form:form modelAttribute="addCourseForm" action="./addCourse">
                  <form:hidden path="slot" value="${course.slot}"/>
                  <form:hidden path="date" value="${day.dateString}" />
