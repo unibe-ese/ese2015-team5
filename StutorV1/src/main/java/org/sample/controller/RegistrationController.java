@@ -1,16 +1,18 @@
 package org.sample.controller;
 
-import java.io.IOException;
-
 import javax.validation.Valid;
 
 import org.sample.controller.exceptions.InvalidUserException;
 import org.sample.controller.pojos.SignupForm;
 import org.sample.controller.service.UserService;
+import org.sample.controller.validator.SignupFormValidator;
+import org.sample.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,7 +30,6 @@ public class RegistrationController {
 	
 	@Autowired
 	UserService userService;
-	
 
 	/*
 	 *	Here we'd like to create the controller logic for the registration process
@@ -75,6 +76,9 @@ public class RegistrationController {
 	 */
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String register(@Valid SignupForm signupForm, BindingResult result, RedirectAttributes att){
+		
+		SignupFormValidator validator = new SignupFormValidator();
+		validator.validate(signupForm, result);
 		
 		if(result.hasErrors() || signupForm.getProfilePic().isEmpty()){
 			att.addFlashAttribute("signupForm", new SignupForm());
