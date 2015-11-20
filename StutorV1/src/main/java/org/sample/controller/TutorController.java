@@ -74,6 +74,7 @@ public class TutorController {
 			
 			newModel.addObject("editCompetenceForm", editForm);
 		}
+		assert newModel != null;
 		return newModel;
 	}
 	
