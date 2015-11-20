@@ -69,8 +69,12 @@ public class ProfileController {
     	if(user == null){
     		return new ModelAndView("index");
     	}   	
-    	  	
-    	ModelAndView modelAndView = new ModelAndView("profile", buildProfileModel(model, user).asMap());
+
+    	ModelAndView modelAndView = new ModelAndView("profileOnlyPersonalInformation", buildProfileModel(model, user).asMap());
+    	if(user.getEnableTutor())
+    	{
+    		modelAndView = new ModelAndView("profile", buildProfileModel(model, user).asMap());
+    	}
     	return modelAndView;
     }
 
