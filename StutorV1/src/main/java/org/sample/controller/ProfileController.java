@@ -75,6 +75,7 @@ public class ProfileController {
     	{
     		modelAndView = new ModelAndView("profile", buildProfileModel(model, user).asMap());
     	}
+    	assert modelAndView != null;
     	return modelAndView;
     }
 
@@ -93,7 +94,7 @@ public class ProfileController {
     		model.addAttribute("addCourseForm", new AddCourseForm());
     		model.addAttribute("week", week);
     	}
-    	
+    	assert model != null;
     	return model;
 	}
 
@@ -101,6 +102,7 @@ public class ProfileController {
 		ModifyUserForm modForm = new ModifyUserForm();
 		modForm.setEnableTutor(user.getEnableTutor());
 		modForm.setId(user.getId());
+		assert modForm != null;
 		return modForm;
 	}	
     

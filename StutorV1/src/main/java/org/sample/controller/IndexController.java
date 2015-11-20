@@ -54,7 +54,7 @@ public class IndexController {
     	if(!model.containsAttribute("competences")){
     		newModel.addObject("competences", compService.findCompetenceLike(""));
     	}
-    	assert model != null;
+    	assert newModel != null;
         return newModel;
     }
     
