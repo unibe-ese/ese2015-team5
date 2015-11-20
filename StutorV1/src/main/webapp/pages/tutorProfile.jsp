@@ -23,10 +23,31 @@
 </table>
 </div>
 <form:form method="post" modelAttribute="addCompetenceForm" action="./addCompetence" id="addComp">
-
   <div>
     <form:input type="text" path="description"/>
     <form:errors path="description" cssClass="help-inline" element="span"/>
   </div>
   <input type="submit" value="Add new Subject"></input>
 </form:form>
+
+<table>
+  <tr>
+    <c:forEach items="${week.weekDays}" var="day">
+      <td>
+        ${day.name}
+        <ul>
+          <c:forEach items="${day.courses}" var="course">
+            <li>
+              ${course.slot}
+              <form:form modelAttribute="addCourseForm" action="./addCourse">
+                 <form:hidden path="slot" value="${course.slot}"/>
+                 <form:hidden path="date" value="${day.dateString}" />
+                 <input type="submit"/>
+              </form:form>
+            </li>
+          </c:forEach>
+        </ul>
+      </td>
+    </c:forEach>
+  </tr>
+</table>

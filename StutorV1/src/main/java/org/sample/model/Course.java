@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Course {
+public class Course implements CourseInterface{
 
 	@Id
     @GeneratedValue
@@ -20,6 +20,8 @@ public class Course {
 	private long customerId;
 	
 	private Date date;
+	
+	private int slot;
 
 	public Date getDate() {
 		return date;
@@ -39,6 +41,22 @@ public class Course {
 
 	public void setCustomerId(long customerId) {
 		this.customerId = customerId;
+	}
+
+	public int getSlot() {
+		return slot;
+	}
+
+	public void setSlot(int slot) {
+		this.slot = slot;
+	}
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
 	}
 	
 	

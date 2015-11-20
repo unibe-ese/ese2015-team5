@@ -27,7 +27,8 @@ public class WeekTest {
 		for(int i = 0; i < Week.WEEKDAYS; i++){
 			assertEquals(instance.getTime(), week.getWeekDays()[i].getDate());
 			
-			instance.add(Calendar.DAY_OF_WEEK, 1);		
+			instance.add(Calendar.DAY_OF_WEEK, 1);	
+			
 		}			
 	}
 	

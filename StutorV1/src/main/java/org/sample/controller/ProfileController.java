@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.sample.controller.pojos.AddCompetenceForm;
+import org.sample.controller.pojos.AddCourseForm;
 import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.service.CompetenceService;
 import org.sample.controller.service.CourseService;
@@ -85,10 +86,7 @@ public class ProfileController {
     	}
     	if(!model.containsAttribute("calendar")){
     		Week week = courseService.buildCalendar(Calendar.getInstance());
-    		for(int i = 0; i < week.getWeekDays().length; i++){
-    			System.out.println(week.getWeekDays()[i].getDate().getTime());
-    			System.out.println(week.getWeekDays()[i].toString());
-    		}
+    		model.addAttribute("addCourseForm", new AddCourseForm());
     		model.addAttribute("week", week);
     	}
     	

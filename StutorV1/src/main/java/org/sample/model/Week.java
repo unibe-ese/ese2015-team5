@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Week {
 
-	public final static int WEEKDAYS = 6;
+	public final static int WEEKDAYS = 7;
 	
 	private WeekDay[] weekDays;
 	
@@ -23,6 +23,7 @@ public class Week {
 
 	public static Week buildWeek(Calendar instance) {
 		instance.set(Calendar.DAY_OF_WEEK, instance.getFirstDayOfWeek());
+		System.out.println("firstbuild: " + instance.getTime());
 		
 		Week week = new Week();		
 		week.initializeDays(instance);	
@@ -31,20 +32,21 @@ public class Week {
 
 	private void initializeDays(Calendar instance) {
 		this.weekDays = new WeekDay[WEEKDAYS];
-		for(int j = 0; j < WEEKDAYS; j++){			
-			this.weekDays[j] = new WeekDay(instance.getTime());
+		for(int j = 0; j < WEEKDAYS; j++){		
+			WeekDay day = new WeekDay(instance.getTime());
+			this.weekDays[j] = day;
 			instance.add(Calendar.DAY_OF_YEAR, 1);
 		}
 	}
-
-	public void addCourse(Course course) {
-		for(int i = 0; i < WEEKDAYS; i++){
-			if(weekDays[i].sameDay(course.getDate())){
-				weekDays[i].addCourse(course);
-			}
-		}
-		
-	}
+//
+//	public void addCourse(Course course) {
+//		for(int i = 0; i < WEEKDAYS; i++){
+//			if(weekDays[i].sameDay(course.getDate())){
+//				weekDays[i].addCourse(course);
+//			}
+//		}
+//		
+//	}
 
 
 	public WeekDay[] getWeekDays() {

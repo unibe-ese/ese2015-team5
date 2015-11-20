@@ -60,14 +60,14 @@ public class CourseServiceTest {
 		assertNotNull(courseDao);
 	}
 	
-	@Test
-	public void buildWeekTest(){
-		Week week = courseService.buildCalendar(Calendar.getInstance());
-		assertEquals(1, week.getWeekDays()[0].getCourses().size());
-		assertEquals(course1, week.getWeekDays()[0].getCourses().get(0));
-		for(int i = 1; i < Week.WEEKDAYS; i++){
-			assertEquals(0, week.getWeekDays()[i].getCourses().size());
-		}
-	}
+//	@Test
+//	public void buildWeekTest(){
+//		Week week = courseService.buildCalendar(Calendar.getInstance());
+//		assertEquals(1, week.getWeekDays()[0].getCourses().size());
+//		assertEquals(course1, week.getWeekDays()[0].getCourses().get(0));
+//		for(int i = 1; i < Week.WEEKDAYS; i++){
+//			assertEquals(0, week.getWeekDays()[i].getCourses().size());
+//		}
+//	}
 
 }

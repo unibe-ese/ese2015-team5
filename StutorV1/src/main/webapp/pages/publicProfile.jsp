@@ -14,7 +14,7 @@
 ${visitee.email}
 
 <div>${visitee.aboutYou}</div>
-
+<img src="/Skeleton/imageDisplay$userId=${visitee.id}" style="height:100px; width:100px"/>
 <c:forEach items="${visitee.competences}" var="competence">
     <tr>
         <td>
