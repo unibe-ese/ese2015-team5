@@ -10,9 +10,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CourseServiceImpl implements CourseService {
-
-	@Autowired 
-	CalendarService calService;
 	
 	@Autowired 
 	CourseDao courseDao;
@@ -20,7 +17,6 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public Week buildCalendar(Calendar instance) {
 		Week week = Week.buildWeek(instance);
-		//System.out.println(week.getWeekDays()[3].getDate().getTime());
 		return findAllForWeek(week);
 		
 	}
