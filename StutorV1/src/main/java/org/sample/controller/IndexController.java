@@ -39,6 +39,7 @@ public class IndexController {
     public ModelAndView index() {
     	ModelAndView model = new ModelAndView("index");   
     	model.addObject("competences", compService.findCompetenceLike(""));
+    	assert model != null;
         return model;
     }
     
@@ -53,7 +54,7 @@ public class IndexController {
     	if(!model.containsAttribute("competences")){
     		newModel.addObject("competences", compService.findCompetenceLike(""));
     	}
-    	
+    	assert model != null;
         return newModel;
     }
     
@@ -78,6 +79,7 @@ public class IndexController {
     	String searchQuery = request.getParameter("searchQuery");
     	ModelAndView model = new ModelAndView("index");
     	model.addObject("competences", compService.findCompetenceLike(searchQuery));
+    	assert model != null;
     	return model;
     }
     
