@@ -1,13 +1,23 @@
 package org.sample.controller;
 
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.sample.controller.pojos.AddCompetenceForm;
+import org.sample.controller.pojos.AddCourseForm;
 import org.sample.controller.pojos.EditCompetenceForm;
 import org.sample.controller.service.CompetenceService;
+import org.sample.controller.service.CourseService;
 import org.sample.model.Competence;
+import org.sample.model.Course;
 import org.sample.model.User;
+import org.sample.model.WeekDay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,10 +31,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
-public class CompetenceController {
+public class TutorController {
 
 	@Autowired 
 	CompetenceService compService;
+	@Autowired
+	CourseService courseService;
 	
 	/**
 	 * Deletes a competence
@@ -62,7 +74,7 @@ public class CompetenceController {
 			
 			newModel.addObject("editCompetenceForm", editForm);
 		}
-		
+		assert newModel != null;
 		return newModel;
 	}
 	
@@ -82,7 +94,59 @@ public class CompetenceController {
 		return "redirect:/profile/editComp/"  + compId;
 	}
     
-    
+	/**
+	 * Adds competences to a user and redirects to next URL
+	 * 
+	 * Checks if the addCompetenceForm has errors. If yes, the errors are added to the 
+	 * redirectedAttributes, and the methods redirects to the profile page, to display errors.
+	 * If there are no errors, the {@link org.sample.controller.service.CompetenceService} is used to add and save the Competence.
+	 * 
+	 * @param form: A pojo containing the edited user information. Validated by annotations.
+	 * @param user: The user editing his profile.
+	 * @param result: The result of validation. 
+	 * @param redirectedAttribtues
+	 * @return
+	 */
+	@RequestMapping(value="/addCompetence", method=RequestMethod.POST)
+	public String addCompetence(@ModelAttribute("addCompetenceForm") @Valid AddCompetenceForm form, BindingResult result, RedirectAttributes redirectedAttribtues, HttpSession session){
+		User user = (User)session.getAttribute("user");
+		System.out.println("added error");
+		if(result.hasErrors()){
+			
+			redirectedAttribtues.addFlashAttribute("addCompetenceForm", form);
+			redirectedAttribtues.addFlashAttribute("org.springframework.validation.BindingResult.addCompetenceForm", result);
+			
+			return "redirect:profile";
+		}
+		form.setOwnerId(user.getId());
+		compService.saveCompetence(form);
+		return "redirect:profile";
+		
+	}
+
+	@RequestMapping(value="/addCourse", method=RequestMethod.POST)
+    public String addCourse(@ModelAttribute("addCourseForm") AddCourseForm form, HttpSession session){
+		Date date;
+		System.out.println("Unparsed: " + form.getDate());
+		System.out.println("Slot: " + form.getSlot());
+		try {
+			date = WeekDay.FORMAT.parse(form.getDate());
+			System.out.println("ParsedDate: " + date);
+		} catch (ParseException e) {
+			System.out.println("nope");
+			e.printStackTrace();
+			return "redirect:/profile";
+		}
+		User user = (User)session.getAttribute("user");
+		form.setOwner(user);
+		try {
+			Course course = courseService.save(form);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return "redirect:/profile";
+    }
 
 }
 

@@ -57,6 +57,7 @@ public class RegistrationController {
 		
 		newModel = new ModelAndView("register");
 		newModel.addObject("signupForm", new SignupForm());
+		assert newModel != null;
 		return newModel;
 	}
 	

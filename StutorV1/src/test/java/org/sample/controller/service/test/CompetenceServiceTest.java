@@ -87,7 +87,6 @@ public class CompetenceServiceTest {
 		comps.add(comp);
 		comps.add(comp2);
 		comps.add(comp3);
-		System.out.println("before: " + comps.toString());
 	}
 	
 	@Test
