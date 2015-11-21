@@ -36,19 +36,27 @@ public class CourseServiceImpl implements CourseService {
 					Calendar cal = Calendar.getInstance();
 					cal.setTime(course.getDate());
 					int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
-					week.getWeekDays()[dayOfWeek-1].addCourse(course);
+					dayOfWeek = computeArraySlot(dayOfWeek);
+					week.getWeekDays()[dayOfWeek].addCourse(course);
 				}			
 		}
 		return week;
 	}
 
+	private int computeArraySlot(int dayOfWeek) {
+		int tempInt = dayOfWeek - 2;
+		if(tempInt < 0)
+			return 7 - dayOfWeek;
+		return tempInt;
+	}
+
 	@Override
-	public Course save(AddCourseForm form) throws ParseException {
+	public Course save(AddCourseForm form){
 		User user = form.getOwner();
 		if(user != null){
 			Course course = new Course();
 			course.setOwner(user);
-			course.setDate(WeekDay.FORMAT.parse(form.getDate()));
+			course.setDate(form.getDate());
 			course.setSlot(form.getSlot());
 			return courseDao.save(course);
 		}

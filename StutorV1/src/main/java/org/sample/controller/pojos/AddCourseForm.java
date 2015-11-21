@@ -1,15 +1,18 @@
 package org.sample.controller.pojos;
 
+import java.util.Date;
+
 import org.sample.model.User;
 
 public class AddCourseForm {
 	
 	private int slot;
 	
-	private String date;
+	private String dateString;
 	
 	private User owner;
 	
+	private Date date;
 
 	public int getSlot() {
 		return slot;
@@ -19,12 +22,12 @@ public class AddCourseForm {
 		this.slot = slot;
 	}
 
-	public String getDate() {
-		return date;
+	public String getDateString() {
+		return dateString;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setDateString(String date) {
+		this.dateString = date;
 	}
 
 	public User getOwner() {
@@ -33,6 +36,14 @@ public class AddCourseForm {
 
 	public void setOwner(User owner) {
 		this.owner = owner;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 }

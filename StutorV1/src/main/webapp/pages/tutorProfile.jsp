@@ -35,15 +35,16 @@
     <c:forEach items="${week.weekDays}" var="day">
       <td>
         ${day.name}
+        ${day.dateString}
         <ul>
           <c:forEach items="${day.courses}" var="course">
             <li>
               ${course.slot}
-              ${course.description}
+
               <form:form modelAttribute="addCourseForm" action="./addCourse">
                  <form:hidden path="slot" value="${course.slot}"/>
-                 <form:hidden path="date" value="${day.dateString}" />
-                 <input type="submit"/>
+                 <form:hidden path="dateString" value="${day.dateString}" />
+                 <input type="submit" value="${course.description}"/>
               </form:form>
             </li>
           </c:forEach>

@@ -1,9 +1,7 @@
 package org.sample.controller;
 
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpSession;
@@ -15,7 +13,6 @@ import org.sample.controller.pojos.EditCompetenceForm;
 import org.sample.controller.service.CompetenceService;
 import org.sample.controller.service.CourseService;
 import org.sample.model.Competence;
-import org.sample.model.Course;
 import org.sample.model.User;
 import org.sample.model.WeekDay;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,24 +124,28 @@ public class TutorController {
 	@RequestMapping(value="/addCourse", method=RequestMethod.POST)
     public String addCourse(@ModelAttribute("addCourseForm") AddCourseForm form, HttpSession session){
 		Date date;
-		System.out.println("Unparsed: " + form.getDate());
+		System.out.println("Unparsed: " + form.getDateString());
 		System.out.println("Slot: " + form.getSlot());
 		try {
-			date = WeekDay.FORMAT.parse(form.getDate());
+			date = WeekDay.FORMAT.parse(form.getDateString());
 			System.out.println("ParsedDate: " + date);
 		} catch (ParseException e) {
 			System.out.println("nope");
 			e.printStackTrace();
 			return "redirect:/profile";
 		}
+		
 		User user = (User)session.getAttribute("user");
 		form.setOwner(user);
+		form.setDate(date);
+		
 		try {
-			Course course = courseService.save(form);
+			courseService.save(form);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
     	return "redirect:/profile";
     }
 
