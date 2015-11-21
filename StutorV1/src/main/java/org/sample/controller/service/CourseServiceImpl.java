@@ -2,6 +2,7 @@ package org.sample.controller.service;
 
 import java.text.ParseException;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.sample.controller.pojos.AddCourseForm;
@@ -26,6 +27,13 @@ public class CourseServiceImpl implements CourseService {
 		Week week = Week.buildWeek(instance);
 		return findAllForWeek(week);
 		
+	}
+	
+	@Override
+	public Week buildCalendar(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		return buildCalendar(cal);
 	}
 
 	private Week findAllForWeek(Week week) {
@@ -62,5 +70,7 @@ public class CourseServiceImpl implements CourseService {
 		}
 		return null;
 	}
+
+	
 
 }

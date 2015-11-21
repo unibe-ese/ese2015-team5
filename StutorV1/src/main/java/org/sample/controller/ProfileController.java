@@ -81,7 +81,7 @@ public class ProfileController {
 
 	private Model buildProfileModel(Model model, User user) {
 		model.addAttribute("user", user);	
-    	
+
     	if(!model.containsAttribute("modifyUserForm") ){
     		model.addAttribute("modifyUserForm", buildModForm(user));		
     	}
@@ -89,11 +89,13 @@ public class ProfileController {
     	if(!model.containsAttribute("addCompetenceForm") ){
     		model.addAttribute("addCompetenceForm", new AddCompetenceForm());
     	}
-    	if(!model.containsAttribute("calendar")){
+    	System.out.println(model.asMap().toString());
+    	if(!model.containsAttribute("week")){
+    		System.out.println("-------------------Doesnt contain yet-------------------");
     		Week week = courseService.buildCalendar(Calendar.getInstance());
-    		model.addAttribute("addCourseForm", new AddCourseForm());
     		model.addAttribute("week", week);
     	}
+    	model.addAttribute("addCourseForm", new AddCourseForm());
     	assert model != null;
     	return model;
 	}

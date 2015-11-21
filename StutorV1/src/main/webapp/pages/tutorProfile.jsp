@@ -30,6 +30,10 @@
   <input type="submit" value="Add new Subject"></input>
 </form:form>
 
+<button class="btn btn-primary"
+                       onclick="location.href='profile/lastWeek/${week.weekDays[0].dateString}/'">Last Week</button>
+<button class="btn btn-primary"
+                       onclick="location.href='profile/nextWeek/${week.weekDays[0].dateString}/'">Next Week</button>
 <table>
   <tr>
     <c:forEach items="${week.weekDays}" var="day">
