@@ -81,7 +81,7 @@ public class ProfileController {
 
 	private Model buildProfileModel(Model model, User user) {
 		model.addAttribute("user", user);	
-    	
+
     	if(!model.containsAttribute("modifyUserForm") ){
     		model.addAttribute("modifyUserForm", buildModForm(user));		
     	}
@@ -89,11 +89,12 @@ public class ProfileController {
     	if(!model.containsAttribute("addCompetenceForm") ){
     		model.addAttribute("addCompetenceForm", new AddCompetenceForm());
     	}
-    	if(!model.containsAttribute("calendar")){
-    		Week week = courseService.buildCalendar(Calendar.getInstance());
-    		model.addAttribute("addCourseForm", new AddCourseForm());
+    	System.out.println(model.asMap().toString());
+    	if(!model.containsAttribute("week")){
+    		Week week = courseService.buildCalendar(Calendar.getInstance(), user);
     		model.addAttribute("week", week);
     	}
+    	model.addAttribute("addCourseForm", new AddCourseForm());
     	assert model != null;
     	return model;
 	}
@@ -213,6 +214,24 @@ public class ProfileController {
 			return "redirect:/profile";
 		}
 		model.addAttribute("visitee", visitee);
+		model.addAttribute("week", courseService.buildCalendar(Calendar.getInstance(), visitee));
+		return "publicProfile";
+	}
+	
+	@RequestMapping(value="/profile/{userId}/nextWeek/", method=RequestMethod.GET)
+	public String showPublicProfileNextWeek(@PathVariable long userId, Model model){
+		User visitee = userService.getUserById(userId);
+		User visiter = userService.getCurrentUser();
+		if(visitee == null){
+			return "redirect:/index";
+		}
+		//TODO: Can a user view his profile as visitor?
+		if(visitee.equals(visiter)){
+			
+			return "redirect:/profile";
+		}
+		model.addAttribute("visitee", visitee);
+		model.addAttribute("week", courseService.buildCalendar(Calendar.getInstance(), visitee));
 		return "publicProfile";
 	}
 	

@@ -18,13 +18,13 @@ public class Week {
 	public boolean isDuring(Date date){
 		Date monday = weekDays[0].getDate();
 		Date sunday = weekDays[WEEKDAYS - 1].getDate();
+		System.out.println("Sunday: " + date.compareTo(sunday));
+		System.out.println("Monday: " + date.compareTo(monday));
 		return date.compareTo(sunday) <= 0 && 0 <= date.compareTo(monday);
 	}
 
 	public static Week buildWeek(Calendar instance) {
 		instance.set(Calendar.DAY_OF_WEEK, instance.getFirstDayOfWeek());
-		System.out.println("firstbuild: " + instance.getTime());
-		
 		Week week = new Week();		
 		week.initializeDays(instance);	
 		return week;

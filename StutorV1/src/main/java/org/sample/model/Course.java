@@ -1,5 +1,6 @@
 package org.sample.model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -31,8 +32,20 @@ public class Course implements CourseInterface{
 		this.date = date;
 	}
 
-	public boolean isDuring(Week week) {
-		return true;
+	public boolean isDuring(Week week){
+		Date monday = week.getWeekDays()[0].getDate();
+		Date sunday = week.getWeekDays()[6].getDate();
+		
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(monday);
+		int startDay = cal.get(Calendar.DAY_OF_YEAR);
+		cal.setTime(sunday);
+		int endDay = cal.get(Calendar.DAY_OF_YEAR);
+		int year = cal.get(Calendar.YEAR);
+		
+		cal.setTime(this.date);
+		int courseDay = cal.get(Calendar.DAY_OF_YEAR);
+		return year == cal.get(Calendar.YEAR) && startDay <= courseDay && courseDay <= endDay;
 	}
 
 	public long getCustomerId() {

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-
+<div>
 <h1>Add your Tutoring Subjects</h1>
 <table class="competenceList">
     <c:forEach items="${user.competences}" var="competence">
@@ -30,20 +30,25 @@
   <input type="submit" value="Add new Subject"></input>
 </form:form>
 
+<button class="btn btn-primary"
+                       onclick="location.href='profile/lastWeek/${week.weekDays[0].dateString}/'">Last Week</button>
+<button class="btn btn-primary"
+                       onclick="location.href='profile/nextWeek/${week.weekDays[0].dateString}/'">Next Week</button>
 <table>
   <tr>
     <c:forEach items="${week.weekDays}" var="day">
       <td>
         ${day.name}
+        ${day.dateString}
         <ul>
           <c:forEach items="${day.courses}" var="course">
             <li>
               ${course.slot}
-              ${course.description}
+
               <form:form modelAttribute="addCourseForm" action="./addCourse">
                  <form:hidden path="slot" value="${course.slot}"/>
-                 <form:hidden path="date" value="${day.dateString}" />
-                 <input type="submit"/>
+                 <form:hidden path="dateString" value="${day.dateString}" />
+                 <input type="submit" value="${course.description}"/>
               </form:form>
             </li>
           </c:forEach>
@@ -52,3 +57,4 @@
     </c:forEach>
   </tr>
 </table>
+</div>

@@ -2,6 +2,7 @@ package org.sample.controller.service;
 
 import java.text.ParseException;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.sample.controller.pojos.AddCourseForm;
@@ -21,38 +22,67 @@ public class CourseServiceImpl implements CourseService {
 	@Autowired 
 	UserService userService;
 	
+
 	@Override
-	public Week buildCalendar(Calendar instance) {
+	public Week buildCalendar(Calendar cal) {
+		User user = userService.getCurrentUser();
+		return buildCalendar(cal, user);
+	}
+	
+
+	@Override
+	public Object buildCalendar(Date date) {
+		User user = userService.getCurrentUser();
+		return buildCalendar(date, user);
+	}
+	
+	@Override
+	public Week buildCalendar(Date date, User user) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		return buildCalendar(cal, user);
+	}
+		
+	@Override
+	public Week buildCalendar(Calendar instance, User user) {
 		Week week = Week.buildWeek(instance);
-		return findAllForWeek(week);
+		return findAllForWeek(week, user);
 		
 	}
 
-	private Week findAllForWeek(Week week) {
-		User user  = userService.getCurrentUser();
+	private Week findAllForWeek(Week week, User user) {
 		List<Course> courses = user.getCourses();		
 			for(Course course : courses){
 				if(course.isDuring(week)){
 					Calendar cal = Calendar.getInstance();
 					cal.setTime(course.getDate());
 					int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
-					week.getWeekDays()[dayOfWeek-1].addCourse(course);
+					dayOfWeek = computeArraySlot(dayOfWeek);
+					week.getWeekDays()[dayOfWeek].addCourse(course);
 				}			
 		}
 		return week;
 	}
 
+	private int computeArraySlot(int dayOfWeek) {
+		int tempInt = dayOfWeek - 2;
+		if(tempInt < 0)
+			return 7 - dayOfWeek;
+		return tempInt;
+	}
+
 	@Override
-	public Course save(AddCourseForm form) throws ParseException {
+	public Course save(AddCourseForm form){
 		User user = form.getOwner();
 		if(user != null){
 			Course course = new Course();
 			course.setOwner(user);
-			course.setDate(WeekDay.FORMAT.parse(form.getDate()));
+			course.setDate(form.getDate());
 			course.setSlot(form.getSlot());
 			return courseDao.save(course);
 		}
 		return null;
 	}
+
 
 }

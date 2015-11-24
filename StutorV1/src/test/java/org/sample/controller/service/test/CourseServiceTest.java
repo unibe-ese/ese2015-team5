@@ -1,7 +1,6 @@
 package org.sample.controller.service.test;
 
-import static org.junit.Assert.*;
-import static org.mockito.Matchers.any;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -13,7 +12,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.sample.controller.service.CourseService;
 import org.sample.model.Course;
-import org.sample.model.Week;
 import org.sample.model.dao.CourseDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
