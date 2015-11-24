@@ -30,8 +30,14 @@ ${visitee.email}
         <ul>
           <c:forEach items="${day.courses}" var="course">
             <li>
-              ${course.slot}
               ${course.description}
+              ${course.available}
+              <c:if test="${course.available == true}">
+                <form action="./application" method="post">
+                  <input name="courseId" value="${course.id}" type="hidden"/>
+                  <input type="submit" value="${course.id}">/
+                </form>
+              </c:if>
             </li>
           </c:forEach>
         </ul>

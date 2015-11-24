@@ -17,7 +17,17 @@ public class EmptyCourse implements CourseInterface {
 
 	@Override
 	public String getDescription() {
-		return "free";
+		return "X";
+	}
+
+	@Override
+	public boolean isAvailable() {
+		return false;
+	}
+
+	@Override
+	public long getId() {
+		return -1;
 	}
 
 }

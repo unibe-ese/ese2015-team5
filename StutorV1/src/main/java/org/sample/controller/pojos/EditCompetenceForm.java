@@ -10,18 +10,6 @@ public class EditCompetenceForm {
 	private String description;
 	
 	private Long compReferenceId;
-	
-	private Boolean[] availability = new Boolean[5];
-	
-	private static int size = 5;
-	
-	public int getSize() {
-		return size;
-	}
-
-	public void setSize(int size) {
-		EditCompetenceForm.size = size;
-	}
 
 	public EditCompetenceForm(){
 		
@@ -51,22 +39,6 @@ public class EditCompetenceForm {
 	
 	public String toString(){
 		return "Desc: " + this.description + ", ID: " + this.compReferenceId;
-	}
-//
-//	public boolean isAvailability() {
-//		return availability;
-//	}
-//
-//	public void setAvailability(boolean availability) {
-//		this.availability = availability;
-//	}
-
-	public Boolean[] getAvailability() {
-		return availability;
-	}
-
-	public void setAvailability(Boolean[] availability) {
-		this.availability = availability;
 	}
 
 }

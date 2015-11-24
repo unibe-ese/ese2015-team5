@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Course implements CourseInterface{
@@ -17,8 +18,8 @@ public class Course implements CourseInterface{
 	
 	@ManyToOne
 	private User owner;
-	
-	private long customerId;
+	@OneToOne
+	private User customer;
 	
 	private Date date;
 	
@@ -47,14 +48,14 @@ public class Course implements CourseInterface{
 		int courseDay = cal.get(Calendar.DAY_OF_YEAR);
 		return year == cal.get(Calendar.YEAR) && startDay <= courseDay && courseDay <= endDay;
 	}
-
-	public long getCustomerId() {
-		return customerId;
-	}
-
-	public void setCustomerId(long customerId) {
-		this.customerId = customerId;
-	}
+//
+//	public long getCustomerId() {
+//		return customerId;
+//	}
+//
+//	public void setCustomerId(long customerId) {
+//		this.customerId = customerId;
+//	}
 
 	public int getSlot() {
 		return slot;
@@ -74,7 +75,36 @@ public class Course implements CourseInterface{
 
 	@Override
 	public String getDescription() {
-		return "occupied";
+		return "Free";
+	}
+
+	public boolean sameDay(Date date2) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		int courseYear = cal.get(Calendar.YEAR);
+		int courseDayOfYear = cal.get(Calendar.DAY_OF_YEAR);
+		cal.setTime(date2);
+		int compareYear = cal.get(Calendar.YEAR);
+		int compareDayOfYear = cal.get(Calendar.DAY_OF_YEAR);
+		return courseYear == compareYear && courseDayOfYear == compareDayOfYear;
+	}
+
+	@Override
+	public boolean isAvailable() {
+		return true;
+	}
+
+	@Override
+	public long getId() {
+		return this.id;
+	}
+
+	public User getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(User customer) {
+		this.customer = customer;
 	}
 	
 	

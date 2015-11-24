@@ -21,6 +21,17 @@
             </td>
         </tr>
     </c:forEach>
+    <h1>Applications:</h1>
+    <c:forEach items="${applications}" var="application">
+        <tr>
+            <td>
+                ${application.master.firstName}
+                ${application.slave.firstName}
+                <button onclick="location.href='./accept/${application.id}'">Accept</button>
+                <button onclick="location.href='./decline/${application.id}'">Decline</button>
+            </td>
+        </tr>
+    </c:forEach>
 </table>
 <input type="text" id="searchQuery"/>
 <button type="button"onclick="ajaxTest()">Search</button>

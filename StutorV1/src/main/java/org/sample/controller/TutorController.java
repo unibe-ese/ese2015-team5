@@ -14,13 +14,10 @@ import org.sample.controller.pojos.EditCompetenceForm;
 import org.sample.controller.service.CompetenceService;
 import org.sample.controller.service.CourseService;
 import org.sample.model.Competence;
-import org.sample.model.Course;
 import org.sample.model.User;
 import org.sample.model.Week;
 import org.sample.model.WeekDay;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -129,28 +126,28 @@ public class TutorController {
 	@RequestMapping(value="/addCourse", method=RequestMethod.POST)
     public String addCourse(@ModelAttribute("addCourseForm") AddCourseForm form, HttpSession session, RedirectAttributes redirectAttributes){
 		Date date;
-		System.out.println("Unparsed: " + form.getDateString());
-		System.out.println("Slot: " + form.getSlot());
 		try {
 			date = WeekDay.FORMAT.parse(form.getDateString());
-			System.out.println("ParsedDate: " + date);
 		} catch (ParseException e) {
-			System.out.println("nope");
 			e.printStackTrace();
 			return "redirect:/profile";
 		}
-		
 		User user = (User)session.getAttribute("user");
 		form.setOwner(user);
 		form.setDate(date);
-		Course course;
-		try {
-			course = courseService.save(form);
-		} catch (ParseException e) {
-			e.printStackTrace();
-			return "redirect:/profile";
+		
+		if(courseService.alreadyExists(form)){
+			courseService.deleteCourse(form);
 		}
-		redirectAttributes.addFlashAttribute("week", courseService.buildCalendar(course.getDate()));
+		else{	
+			try {
+				courseService.save(form);
+			} catch (ParseException e) {
+				e.printStackTrace();
+				return "redirect:/profile";
+			}	
+		}
+		redirectAttributes.addFlashAttribute("week", courseService.buildCalendar(date));
     	return "redirect:/profile";
     }
 	
@@ -169,7 +166,7 @@ public class TutorController {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		cal.add(Calendar.DAY_OF_YEAR, 7);
-		Week week = courseService.buildCalendar(cal);
+		Week week = courseService.buildCalendar(cal, user);
 		redirectAttributes.addFlashAttribute("week", week);
 		return "redirect:/profile";
 	}
@@ -177,6 +174,7 @@ public class TutorController {
 	@RequestMapping(value="/profile/lastWeek/{dateString}/", method=RequestMethod.GET)
 	public String lastWeek(@PathVariable("dateString") String dateString, RedirectAttributes redirectAttributes,
 			HttpSession session){
+		
 		Date date;
 		User user = (User)session.getAttribute("user");
 		try {
@@ -189,7 +187,7 @@ public class TutorController {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		cal.add(Calendar.DAY_OF_YEAR, -1);
-		Week week = courseService.buildCalendar(cal);
+		Week week = courseService.buildCalendar(cal, user);
 		redirectAttributes.addFlashAttribute("week", week);
 		return "redirect:/profile";
 	}

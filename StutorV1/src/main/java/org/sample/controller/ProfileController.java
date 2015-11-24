@@ -10,7 +10,9 @@ import javax.validation.Valid;
 
 import org.sample.controller.pojos.AddCompetenceForm;
 import org.sample.controller.pojos.AddCourseForm;
+import org.sample.controller.pojos.ApplicationForm;
 import org.sample.controller.pojos.ModifyUserForm;
+import org.sample.controller.service.ApplicationService;
 import org.sample.controller.service.CompetenceService;
 import org.sample.controller.service.CourseService;
 import org.sample.controller.service.UserService;
@@ -51,6 +53,8 @@ public class ProfileController {
 	CompetenceService compService;
 	@Autowired 
 	CourseService courseService;
+	@Autowired
+	ApplicationService appService;
 	
 	/**
 	 * Displays the correct profile page.
@@ -89,7 +93,6 @@ public class ProfileController {
     	if(!model.containsAttribute("addCompetenceForm") ){
     		model.addAttribute("addCompetenceForm", new AddCompetenceForm());
     	}
-    	System.out.println(model.asMap().toString());
     	if(!model.containsAttribute("week")){
     		Week week = courseService.buildCalendar(Calendar.getInstance(), user);
     		model.addAttribute("week", week);
@@ -152,12 +155,6 @@ public class ProfileController {
 	 */
 	@RequestMapping(value = "/changeProfilePic", method = RequestMethod.POST)
     public String uploadFileHandler(@RequestParam("file") MultipartFile file) {
-		try {
-			System.out.println(file.getBytes().toString());
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
         if (!file.isEmpty()) {
             try {
             	ProfilePicture profilePicture = new ProfilePicture();
@@ -215,6 +212,7 @@ public class ProfileController {
 		}
 		model.addAttribute("visitee", visitee);
 		model.addAttribute("week", courseService.buildCalendar(Calendar.getInstance(), visitee));
+		model.addAttribute("application", new ApplicationForm());
 		return "publicProfile";
 	}
 	
@@ -233,6 +231,24 @@ public class ProfileController {
 		model.addAttribute("visitee", visitee);
 		model.addAttribute("week", courseService.buildCalendar(Calendar.getInstance(), visitee));
 		return "publicProfile";
+	}
+	
+	@RequestMapping(value="/profile/application", method=RequestMethod.POST)
+	public String addApplication(@RequestParam("courseId") long courseId){
+		System.out.println(courseId);
+		ApplicationForm application = buildAppForm(courseId);
+		if(courseService.courseIsAvailable(application.getCourse())){
+			appService.saveApplication(application);
+		}
+		return "redirect:/index";
+	}
+
+	private ApplicationForm buildAppForm(long courseId) {
+		ApplicationForm application = new ApplicationForm();
+		
+		application.setCourse(courseService.getCourseById(courseId));
+		application.setApplicant(userService.getCurrentUser());
+		return application;
 	}
 	
 }

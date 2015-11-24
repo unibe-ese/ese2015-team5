@@ -54,6 +54,14 @@ public class User {
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Course> courses;
     
+    @OneToMany(fetch = FetchType.EAGER, targetEntity=Application.class, mappedBy="master", cascade=CascadeType.DETACH)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<Application> myTutorApplications;
+    
+    @OneToMany(fetch = FetchType.EAGER, targetEntity=Application.class, mappedBy="slave", cascade=CascadeType.DETACH)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<Application> myApplications;
+      
     public ProfilePicture getPic() {
 		return pic;
 	}
@@ -176,6 +184,22 @@ public class User {
 
 	public void setCourses(List<Course> courses) {
 		this.courses = courses;
+	}
+
+	public List<Application> getMyTutorApplications() {
+		return myTutorApplications;
+	}
+
+	public void setMyTutorApplications(List<Application> myTutorApplications) {
+		this.myTutorApplications = myTutorApplications;
+	}
+
+	public List<Application> getMyApplications() {
+		return myApplications;
+	}
+
+	public void setMyApplications(List<Application> myApplications) {
+		this.myApplications = myApplications;
 	}
 	
 }
