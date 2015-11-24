@@ -25,7 +25,7 @@
 <!-- 	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
   		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>  -->
 		<noscript>
-		<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">  -->
+		<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">  -->	
 			<link rel="stylesheet" href="/Skeleton/css/skel.css" />
 			<link rel="stylesheet" href="/Skeleton/css/style.css" />
 			<link rel="stylesheet" href="/Skeleton/css/style-desktop.css" />
@@ -40,7 +40,7 @@
 
 					<!-- Logo -->
 						<div id="logo">
-							<h1><a href="/Skeleton/index.html">S t u t o r</a></h1>
+							<h1><a href="index.html">S t u t o r</a></h1>
 							<span>Good Grades for Money</span>
 						</div>
 
@@ -70,7 +70,7 @@
 									</form></li>
 							<!-- 	<li class="current"><a href="no-sidebar.html">No Sidebar</a></li>  -->
 								<li>
-									<form action="Skeleton/logout"/>
+									<form action="logout"/>
 									   <input type="submit" value="Logout"/>
 									</form>
 								</li>
