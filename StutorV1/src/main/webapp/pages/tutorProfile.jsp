@@ -2,6 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+
+<div>
+	<label class="control-label" for="field-aboutYou">Tell something about yourself</label>
+    <textarea id="aboutYou" name="aboutYou" maxlength="500">${user.aboutYou}</textarea>
+</div>
 <div>
 <h1>Add your Tutoring Subjects</h1>
 <table class="competenceList">
