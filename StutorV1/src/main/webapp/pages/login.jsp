@@ -23,7 +23,8 @@
  				   	<input id="j_password" name="j_password" type="password" />
 				</p>
 			<input  type="submit" value="Login" />
-			or <a href= "/Skeleton/register"> Register here  </a>
+			or
+			<input  type="submit" value="Register" class="alt"/>
 		</form>
 
 
