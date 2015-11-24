@@ -16,12 +16,29 @@ ${visitee.email}
 <div>${visitee.aboutYou}</div>
 <img src="/Skeleton/imageDisplay$userId=${visitee.id}" style="height:100px; width:100px"/>
 <c:forEach items="${visitee.competences}" var="competence">
-    <tr>
-        <td>
-            ${competence.description}
-        </td>
-    </tr>
+    <li>
+        ${competence.description}
+    </li>
 </c:forEach>
+
+<table>
+  <tr>
+    <c:forEach items="${week.weekDays}" var="day">
+      <td>
+        ${day.name}
+        ${day.dateString}
+        <ul>
+          <c:forEach items="${day.courses}" var="course">
+            <li>
+              ${course.slot}
+              ${course.description}
+            </li>
+          </c:forEach>
+        </ul>
+      </td>
+    </c:forEach>
+  </tr>
+</table>
 
 
 <c:import url="template/footer.jsp" />

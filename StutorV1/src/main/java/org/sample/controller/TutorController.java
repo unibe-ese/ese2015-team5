@@ -155,9 +155,10 @@ public class TutorController {
     }
 	
 	@RequestMapping(value="/profile/nextWeek/{dateString}/", method=RequestMethod.GET)
-	public String nextWeek(@PathVariable("dateString") String dateString, RedirectAttributes redirectAttributes){
+	public String nextWeek(@PathVariable("dateString") String dateString, RedirectAttributes redirectAttributes,
+			HttpSession session){
 		Date date;
-		System.out.println(dateString);
+		User user = (User)session.getAttribute("user");
 		try {
 			date = WeekDay.FORMAT.parse(dateString);
 		} catch (ParseException e) {
@@ -174,9 +175,10 @@ public class TutorController {
 	}
 	
 	@RequestMapping(value="/profile/lastWeek/{dateString}/", method=RequestMethod.GET)
-	public String lastWeek(@PathVariable("dateString") String dateString, RedirectAttributes redirectAttributes){
+	public String lastWeek(@PathVariable("dateString") String dateString, RedirectAttributes redirectAttributes,
+			HttpSession session){
 		Date date;
-		System.out.println(dateString);
+		User user = (User)session.getAttribute("user");
 		try {
 			date = WeekDay.FORMAT.parse(dateString);
 		} catch (ParseException e) {

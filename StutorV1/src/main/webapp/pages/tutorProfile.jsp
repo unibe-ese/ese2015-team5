@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-
+<div>
 <h1>Add your Tutoring Subjects</h1>
 <table class="competenceList">
     <c:forEach items="${user.competences}" var="competence">
@@ -57,3 +57,4 @@
     </c:forEach>
   </tr>
 </table>
+</div>

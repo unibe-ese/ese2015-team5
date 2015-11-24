@@ -22,22 +22,35 @@ public class CourseServiceImpl implements CourseService {
 	@Autowired 
 	UserService userService;
 	
+
 	@Override
-	public Week buildCalendar(Calendar instance) {
-		Week week = Week.buildWeek(instance);
-		return findAllForWeek(week);
-		
+	public Week buildCalendar(Calendar cal) {
+		User user = userService.getCurrentUser();
+		return buildCalendar(cal, user);
+	}
+	
+
+	@Override
+	public Object buildCalendar(Date date) {
+		User user = userService.getCurrentUser();
+		return buildCalendar(date, user);
 	}
 	
 	@Override
-	public Week buildCalendar(Date date) {
+	public Week buildCalendar(Date date, User user) {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
-		return buildCalendar(cal);
+		return buildCalendar(cal, user);
+	}
+		
+	@Override
+	public Week buildCalendar(Calendar instance, User user) {
+		Week week = Week.buildWeek(instance);
+		return findAllForWeek(week, user);
+		
 	}
 
-	private Week findAllForWeek(Week week) {
-		User user  = userService.getCurrentUser();
+	private Week findAllForWeek(Week week, User user) {
 		List<Course> courses = user.getCourses();		
 			for(Course course : courses){
 				if(course.isDuring(week)){
@@ -71,6 +84,5 @@ public class CourseServiceImpl implements CourseService {
 		return null;
 	}
 
-	
 
 }

@@ -91,8 +91,7 @@ public class ProfileController {
     	}
     	System.out.println(model.asMap().toString());
     	if(!model.containsAttribute("week")){
-    		System.out.println("-------------------Doesnt contain yet-------------------");
-    		Week week = courseService.buildCalendar(Calendar.getInstance());
+    		Week week = courseService.buildCalendar(Calendar.getInstance(), user);
     		model.addAttribute("week", week);
     	}
     	model.addAttribute("addCourseForm", new AddCourseForm());
@@ -215,6 +214,24 @@ public class ProfileController {
 			return "redirect:/profile";
 		}
 		model.addAttribute("visitee", visitee);
+		model.addAttribute("week", courseService.buildCalendar(Calendar.getInstance(), visitee));
+		return "publicProfile";
+	}
+	
+	@RequestMapping(value="/profile/{userId}/nextWeek/", method=RequestMethod.GET)
+	public String showPublicProfileNextWeek(@PathVariable long userId, Model model){
+		User visitee = userService.getUserById(userId);
+		User visiter = userService.getCurrentUser();
+		if(visitee == null){
+			return "redirect:/index";
+		}
+		//TODO: Can a user view his profile as visitor?
+		if(visitee.equals(visiter)){
+			
+			return "redirect:/profile";
+		}
+		model.addAttribute("visitee", visitee);
+		model.addAttribute("week", courseService.buildCalendar(Calendar.getInstance(), visitee));
 		return "publicProfile";
 	}
 	
