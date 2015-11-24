@@ -23,7 +23,6 @@
 		background-position:	top left,														top left;
 		background-repeat:		repeat-x,														repeat;
 		background-size:		100% 30em,														auto;
-		border: white 2px solid;
 	}
 
 		body.is-loading *
@@ -75,87 +74,36 @@
 	.tabbable .tabs li a
 	{
 		text-decoration: none;
-		color: #000;
-		border: 1px solid #ccc;
+		color: white;
+		border: 2px solid white;
 		padding: 3px 20px;
 		display: inline-block;
 		border-radius: 10px 10px 0 0;
-		background: #f5f5f5;
+		background: #84ACD2;
+		font-weight: 600;
 	}
 	
 	.tabbable .tabs li a.active, .tabbable .tabs li a:hover
 	{
-		border-bottom-color: #fff;
-		background: #fff;
+		border-bottom-color: #B0CDEA;
+		background: #B0CDEA;
 	}
 	
 	.tabcontent
 	{
-		border: 1px solid #ccc;
-		margin-top: -1px;
+		border: 2px solid white;
+		margin-top: -2px;
 		padding: 10px;
 		border-radius: 10px;
+		background: #B0CDEA;
 	}	
-	
 
-#tabs li.ui-state-active
-{
-	z-index: 2;
-	border-bottom-color: white;
-	border-bottom-style: solid;
-	border-bottom-width: 10px;
-}
-
-#tabs:before 
-{
-	z-index: 1;	
-}
-
-#tabs li
-{
-	position: relative;
-	z-index: 0;
-}
-
-#tabs li.selectedIndex
-{
-	z-index: 2;
-	border-bottom-color: #FFF;
-}
-
-#tabs-1
-{
-	border: 1px solid black;
-}
-
-#tabs ul
-{
-margin: 0 0 0 0;
-padding: 0;
-list-style-type: none;
-}
-
-#tabs ul li { display: inline; }
-
-#tabs ul li a
-{
-text-decoration: none;
-padding: .2em 1em;
-color: #black;
-background-color: #FFD49A;
-border-top-left-radius: 10px;
-border-top-right-radius: 10px;
-}
-
-#tabs ul li a:hover
-{
-color: #fff;
-background-color: #369;
-}
-	a
+a
 	{
-		color: #0090c5;
+		color: #FFC878;
 		text-decoration: underline;
+		font-weight: 600;
+		cursor: pointer;
 	}
 
 		a:hover
@@ -287,10 +235,11 @@ background-color: #369;
 			{
 				-webkit-appearance: none;
 				display: block;
-				width: 30%;
+				width: 100%;
 				border-radius: 8px;
 				border: solid 2px #5A86B0;
 				margin: 0px 0px 25px 0px;
+				background: #F7F7F7;
 			}
 
 				form input[type="text"]:focus,
@@ -300,6 +249,8 @@ background-color: #369;
 				form textarea:focus
 				{
 					border: solid 2px #FFE3BA;
+					background: linear-gradient(to bottom, #F7F7F7 0%, #FFE3BA 500%);
+					
 				}
 
 			form input[type="text"],
@@ -469,11 +420,11 @@ background-color: #369;
 			outline: 0;
 			border: 0;
 			cursor: pointer;
-			-moz-transition: background-color .25s ease-in-out;
-			-webkit-transition: background-color .25s ease-in-out;
-			-o-transition: background-color .25s ease-in-out;
-			-ms-transition: background-color .25s ease-in-out;
-			transition: background-color .25s ease-in-out;
+			-moz-transition: background .25s ease-in-out;
+			-webkit-transition: background .25s ease-in-out;
+			-o-transition: background .25s ease-in-out;
+			-ms-transition: background .25s ease-in-out;
+			transition: background .25s ease-in-out;
 		}
 
 			input[type="button"]:hover,
@@ -506,9 +457,19 @@ background-color: #369;
 			input[type="reset"].alt,
 			.button.alt
 			{
-				background: #f1f1f1;
-				background: rgba(0,0,0,0.05);
-				color: #444;
+				-webkit-appearance: none;
+				position: relative;
+				line-height: 0.1em;
+				display: inline-block;
+				background: linear-gradient(to bottom, rgba(173,204,235,1) 0%,rgba(145,187,229,1) 50%,rgba(123,171,215,1) 51%,rgba(44,116,194,1) 100%);
+				
+				color: grey;
+				text-decoration: none;
+				border-radius: 10px;
+				font-weight: 800;
+				outline: 0;
+				border: 0;
+				cursor: pointer;
 			}
 
 				input[type="button"].alt:hover,
@@ -516,8 +477,7 @@ background-color: #369;
 				input[type="reset"].alt:hover,
 				.button.alt:hover
 				{
-					background: #e8e8e8;
-					background: rgba(0,0,0,0.085);
+					background: linear-gradient(to bottom, rgba(235,241,246,1) 0%,rgba(171,211,238,1) 50%,rgba(137,195,235,1) 51%,rgba(213,235,251,1) 100%);
 				}
 
 				input[type="button"].alt:active,
@@ -525,8 +485,7 @@ background-color: #369;
 				input[type="reset"].alt:active,
 				.button.alt:active
 				{
-					background: #e4e4e4;
-					background: rgba(0,0,0,0.15);
+					background: linear-gradient(to bottom, rgba(246,244,236,1) 0%,rgba(238,222,172,1) 50%,rgba(235,210,137,1) 51%,rgba(251,242,213,1) 100%);
 				}
 
 	/* List */

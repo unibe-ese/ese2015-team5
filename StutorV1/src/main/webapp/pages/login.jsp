@@ -23,10 +23,10 @@
  				   	<input id="j_password" name="j_password" type="password" />
 				</p>
 			<input  type="submit" value="Login" />
+			or
+			<input  type="submit" value="Register" class="alt"/>
 		</form>
 
-<form action="register">
-	<input type="submit" value="Register">
-</form>
+
 
 <c:import url="template/footer.jsp" />
