@@ -47,7 +47,7 @@
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
                 <property name="generateDdl" value="true"/>
-                <property name="showSql" value="true"/>
+                <property name="showSql" value="false"/>
                 <property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect"/>
                 <property name="database" value="MYSQL"/>
             </bean>
@@ -60,14 +60,7 @@
                 hibernate.generate_statistics = true
                 hibernate.hbm2ddl.auto = update
             </value>
-  	      
         </property>
     </bean>
-    
-     <bean class="org.springframework.orm.hibernate4.HibernateExceptionTranslator"/>
-    
-     
-    
-
-	
-</beans>
+    	<bean class="org.springframework.orm.hibernate4.HibernateExceptionTranslator"/>
+	</beans>

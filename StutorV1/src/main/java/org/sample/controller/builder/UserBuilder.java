@@ -23,6 +23,7 @@ public class UserBuilder {
         user.setPassword(signupForm.getPassword());
         user.setEnableTutor(false);
         user.setAboutYou(null);
+        assert user != null;
 		return user;
 	}
 	
