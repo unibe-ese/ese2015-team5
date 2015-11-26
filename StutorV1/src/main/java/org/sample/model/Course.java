@@ -24,6 +24,8 @@ public class Course implements CourseInterface{
 	private Date date;
 	
 	private int slot;
+	
+	private boolean available;
 
 	public Date getDate() {
 		return date;
@@ -91,7 +93,11 @@ public class Course implements CourseInterface{
 
 	@Override
 	public boolean isAvailable() {
-		return true;
+		return this.available;
+	}
+	
+	public void setAvailable(boolean available){
+		this.available = available;
 	}
 
 	@Override
@@ -106,7 +112,43 @@ public class Course implements CourseInterface{
 	public void setCustomer(User customer) {
 		this.customer = customer;
 	}
-	
-	
+
+	public boolean isInThePast() {
+		Calendar cal = Calendar.getInstance();
+		
+		int compareYear = cal.get(Calendar.YEAR);
+		int compareDayOfYear = cal.get(Calendar.DAY_OF_YEAR);
+		
+		cal.setTime(this.date);
+		int courseYear = cal.get(Calendar.YEAR);
+		int courseDayOfYear = cal.get(Calendar.DAY_OF_YEAR);
+		System.out.println(courseYear + ", " +  compareYear);
+		System.out.println(courseDayOfYear + ", " + compareDayOfYear);
+		
+		return courseYear < compareYear || (courseYear == compareYear && courseDayOfYear < compareDayOfYear);
+		
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Course other = (Course) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
 	
 }

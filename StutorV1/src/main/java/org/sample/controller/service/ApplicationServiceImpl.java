@@ -1,5 +1,9 @@
 package org.sample.controller.service;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.sample.controller.pojos.ApplicationForm;
@@ -18,6 +22,9 @@ public class ApplicationServiceImpl implements ApplicationService {
 	
 	@Autowired 
 	CourseService courseService;
+	
+	@Autowired
+	UserService userService;
 	
 	@Override
 	public Application saveApplication(ApplicationForm form) {
@@ -60,6 +67,34 @@ public class ApplicationServiceImpl implements ApplicationService {
 		Course course = courseService.settleCourseFromApplication(app);
 		deleteApplication(app);
 		return course;
+	}
+
+	
+	@Override
+	public Object getFutureApplications() {
+		User user = userService.getCurrentUser();
+		List<Application> apps = user.getMyTutorApplications();
+		List<Application> toRemove = new ArrayList<Application>();
+		for(Application app : apps){
+			if(app.isInThePast()){
+				toRemove.add(app);
+			}
+		}
+		for(Application app : toRemove){
+			apps.remove(app);
+		}
+		appDao.delete(toRemove);
+		return apps;
+	}
+
+	@Override
+	public boolean notDuplicate(ApplicationForm application) {
+		for(Application app : application.getApplicant().getMyApplications()){
+			if(app.getCourse().equals(application.getCourse())){
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	

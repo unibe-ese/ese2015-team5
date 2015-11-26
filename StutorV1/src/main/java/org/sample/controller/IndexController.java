@@ -4,9 +4,9 @@ package org.sample.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.mortbay.util.ajax.AjaxFilter.AjaxResponse;
+import org.sample.controller.service.ApplicationService;
 import org.sample.controller.service.CompetenceService;
 import org.sample.controller.service.UserService;
-import org.sample.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +32,9 @@ public class IndexController {
     
     @Autowired 
     UserService userService;
+    
+    @Autowired
+    ApplicationService appService;
 
     /**
      * Displays the index page.
@@ -44,8 +47,8 @@ public class IndexController {
     public ModelAndView index() {
     	ModelAndView model = new ModelAndView("index");   
     	model.addObject("competences", compService.findCompetenceLike(""));
-    	User user = userService.getCurrentUser();
-    	model.addObject("applications", user.getMyTutorApplications());
+    	
+    	model.addObject("applications", appService.getFutureApplications());
     	assert model != null;
         return model;
     }

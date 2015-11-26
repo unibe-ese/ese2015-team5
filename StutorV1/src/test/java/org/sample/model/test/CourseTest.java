@@ -13,7 +13,7 @@ import static org.junit.Assert.assertTrue;
 public class CourseTest {
 	
 	private Course course;
-	private Date oneYearLater, oneYearAndADayLater, oneDayLater, sameDayYear;
+	private Date oneYearLater, oneYearAndADayLater, oneDayLater, sameDayYear, oneDayEarlier;
 	
 	@Before
 	public void setup(){
@@ -26,7 +26,9 @@ public class CourseTest {
 		cal.add(Calendar.DAY_OF_YEAR, 1);
 		oneYearAndADayLater = cal.getTime();
 		cal.add(Calendar.YEAR, -1);
-		oneDayLater = cal.getTime();		
+		oneDayLater = cal.getTime();	
+		cal.add(Calendar.DAY_OF_YEAR, -2);
+		oneDayEarlier = cal.getTime();
 	}
 	
 	@Test
@@ -35,6 +37,16 @@ public class CourseTest {
 		assertFalse(course.sameDay(oneYearLater));
 		assertFalse(course.sameDay(oneYearAndADayLater));
 		assertFalse(course.sameDay(oneDayLater));
+	}
+	
+	@Test
+	public void isInThePast(){
+		assertFalse(course.isInThePast());
+		course.setDate(oneDayLater);
+		assertFalse(course.isInThePast());
+		course.setDate(oneDayEarlier);
+		System.out.println(course.getDate());
+		assertTrue(course.isInThePast());
 	}
 
 }

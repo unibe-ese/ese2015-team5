@@ -53,4 +53,8 @@ public class Application {
 	public void setId(long id) {
 		this.id = id;
 	}
+
+	public boolean isInThePast() {
+		return course.isInThePast();
+	}
 }

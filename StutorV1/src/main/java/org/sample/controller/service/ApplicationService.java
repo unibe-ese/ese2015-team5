@@ -14,4 +14,8 @@ public interface ApplicationService {
 
 	Course acceptApplication(Application app);
 
+	Object getFutureApplications();
+
+	boolean notDuplicate(ApplicationForm application);
+
 }

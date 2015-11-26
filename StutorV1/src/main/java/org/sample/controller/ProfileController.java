@@ -237,7 +237,7 @@ public class ProfileController {
 	public String addApplication(@RequestParam("courseId") long courseId){
 		System.out.println(courseId);
 		ApplicationForm application = buildAppForm(courseId);
-		if(courseService.courseIsAvailable(application.getCourse())){
+		if(courseService.courseIsAvailable(application.getCourse()) && appService.notDuplicate(application)){
 			appService.saveApplication(application);
 		}
 		return "redirect:/index";

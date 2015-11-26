@@ -78,6 +78,7 @@ public class CourseServiceImpl implements CourseService {
 			course.setOwner(user);
 			course.setDate(form.getDate());
 			course.setSlot(form.getSlot());
+			course.setAvailable(true);
 			return courseDao.save(course);
 		}
 		return null;
@@ -134,6 +135,7 @@ public class CourseServiceImpl implements CourseService {
 		Course course = app.getCourse();
 		if(course.getOwner() ==  app.getMaster() && course.getCustomer() == null){
 			course.setCustomer(app.getSlave());
+			course.setAvailable(false);
 		}		
 		return courseDao.save(course);
 	}
