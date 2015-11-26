@@ -10,6 +10,13 @@
 </div>
 <div>
 <h1>Add your Tutoring Subjects</h1>
+
+<form action="./profile/houerlyRate" method="post">
+  <input name="houerlyRate" value="${user.houerlyRate}" type="text"/>
+  <input type="submit" value="GO"/>
+</form>
+
+
 <table class="competenceList">
     <c:forEach items="${user.competences}" var="competence">
         <tr>

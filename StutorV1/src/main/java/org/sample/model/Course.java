@@ -77,7 +77,7 @@ public class Course implements CourseInterface{
 
 	@Override
 	public String getDescription() {
-		return "Free";
+		return available ? "free" : "unfree";
 	}
 
 	public boolean sameDay(Date date2) {

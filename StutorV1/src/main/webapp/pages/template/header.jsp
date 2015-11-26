@@ -70,7 +70,7 @@
 									</form></li>
 							<!-- 	<li class="current"><a href="no-sidebar.html">No Sidebar</a></li>  -->
 								<li>
-									<form action="logout"/>
+									<form action="/Skeleton/logout"/>
 									   <input type="submit" value="Logout"/>
 									</form>
 								</li>

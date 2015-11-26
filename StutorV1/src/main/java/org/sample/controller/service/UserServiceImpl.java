@@ -124,5 +124,11 @@ public class UserServiceImpl implements UserService{
 		profilePicDao.save(pic);		
 	}
 
+	@Override
+	public User setHouerlyRate(User user, float houerlyRate) {
+		user.setHouerlyRate(houerlyRate);
+		return userDao.save(user);
+	}
+
 
 }

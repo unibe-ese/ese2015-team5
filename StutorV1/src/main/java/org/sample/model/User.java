@@ -39,6 +39,8 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+    
+    private float houerlyRate;
 
 	private String aboutYou;
     
@@ -200,6 +202,14 @@ public class User {
 
 	public void setMyApplications(List<Application> myApplications) {
 		this.myApplications = myApplications;
+	}
+
+	public float getHouerlyRate() {
+		return houerlyRate;
+	}
+
+	public void setHouerlyRate(float houerlyRate) {
+		this.houerlyRate = houerlyRate;
 	}
 	
 }

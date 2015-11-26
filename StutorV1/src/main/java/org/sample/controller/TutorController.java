@@ -13,6 +13,7 @@ import org.sample.controller.pojos.AddCourseForm;
 import org.sample.controller.pojos.EditCompetenceForm;
 import org.sample.controller.service.CompetenceService;
 import org.sample.controller.service.CourseService;
+import org.sample.controller.service.UserService;
 import org.sample.model.Competence;
 import org.sample.model.User;
 import org.sample.model.Week;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -36,6 +38,8 @@ public class TutorController {
 	CompetenceService compService;
 	@Autowired
 	CourseService courseService;
+	@Autowired
+	UserService userService;
 	
 	/**
 	 * Deletes a competence
@@ -191,7 +195,14 @@ public class TutorController {
 		redirectAttributes.addFlashAttribute("week", week);
 		return "redirect:/profile";
 	}
-
+	
+	@RequestMapping(value="/profile/houerlyRate", method=RequestMethod.POST)
+	public String setHouerlyRate(@RequestParam("houerlyRate") float houerlyRate, HttpSession session){
+		User user = (User) session.getAttribute("user");
+		System.out.println(houerlyRate);
+		userService.setHouerlyRate(user, houerlyRate);
+		return "redirect:/profile";
+	}
 }
 
 
