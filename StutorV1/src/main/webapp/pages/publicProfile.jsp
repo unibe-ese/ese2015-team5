@@ -20,7 +20,10 @@ ${visitee.email}
         ${competence.description}
     </li>
 </c:forEach>
-
+<button class="btn btn-primary"
+                       onclick="location.href='/Skeleton/profile/${visitee.id}/lastWeek/${week.weekDays[0].dateString}/'">Last Week</button>
+<button class="btn btn-primary"
+                       onclick="location.href='/Skeleton/profile/${visitee.id}/nextWeek/${week.weekDays[0].dateString}/'">Next Week</button>
 <table>
   <tr>
     <c:forEach items="${week.weekDays}" var="day">

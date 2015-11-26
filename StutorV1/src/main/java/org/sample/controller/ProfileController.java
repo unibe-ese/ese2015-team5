@@ -1,7 +1,9 @@
 package org.sample.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +22,7 @@ import org.sample.model.Competence;
 import org.sample.model.ProfilePicture;
 import org.sample.model.User;
 import org.sample.model.Week;
+import org.sample.model.WeekDay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -200,6 +203,7 @@ public class ProfileController {
 	
 	@RequestMapping(value="/profile/{userId}", method=RequestMethod.GET)
 	public String showPublicProfile(@PathVariable long userId, Model model){
+		System.out.println("now in profile");
 		User visitee = userService.getUserById(userId);
 		User visiter = userService.getCurrentUser();
 		if(visitee == null){
@@ -211,26 +215,53 @@ public class ProfileController {
 			return "redirect:/profile";
 		}
 		model.addAttribute("visitee", visitee);
-		model.addAttribute("week", courseService.buildCalendar(Calendar.getInstance(), visitee));
+		if(!model.containsAttribute("week")){
+			model.addAttribute("week", courseService.buildCalendar(Calendar.getInstance(), visitee));
+		}
 		model.addAttribute("application", new ApplicationForm());
 		return "publicProfile";
 	}
 	
-	@RequestMapping(value="/profile/{userId}/nextWeek/", method=RequestMethod.GET)
-	public String showPublicProfileNextWeek(@PathVariable long userId, Model model){
+	@RequestMapping(value="/profile/{userId}/nextWeek/{dateString}/", method=RequestMethod.GET)
+	public String showPublicProfileNextWeek(@PathVariable long userId, @PathVariable("dateString") String dateString, RedirectAttributes redirAttributes){
 		User visitee = userService.getUserById(userId);
-		User visiter = userService.getCurrentUser();
 		if(visitee == null){
 			return "redirect:/index";
 		}
-		//TODO: Can a user view his profile as visitor?
-		if(visitee.equals(visiter)){
-			
-			return "redirect:/profile";
+		Date date;
+		try {
+			date = WeekDay.FORMAT.parse(dateString);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "redirect:/profile/" + userId;
 		}
-		model.addAttribute("visitee", visitee);
-		model.addAttribute("week", courseService.buildCalendar(Calendar.getInstance(), visitee));
-		return "publicProfile";
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.add(Calendar.DAY_OF_YEAR, 7);
+		redirAttributes.addFlashAttribute("week", courseService.buildCalendar(cal, visitee));
+		return "redirect:/profile/" + userId;
+	}
+	
+	@RequestMapping(value="/profile/{userId}/lastWeek/{dateString}/", method=RequestMethod.GET)
+	public String showPublicProfileLastWeek(@PathVariable long userId, @PathVariable("dateString") String dateString, RedirectAttributes redirAttributes){
+		User visitee = userService.getUserById(userId);
+		if(visitee == null){
+			return "redirect:/index";
+		}
+		Date date;
+		try {
+			date = WeekDay.FORMAT.parse(dateString);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "redirect:/profile/" + userId;
+		}
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.add(Calendar.DAY_OF_YEAR, -1);
+		redirAttributes.addFlashAttribute("week", courseService.buildCalendar(cal, visitee));
+		return "redirect:/profile/" + userId;
 	}
 	
 	@RequestMapping(value="/profile/application", method=RequestMethod.POST)

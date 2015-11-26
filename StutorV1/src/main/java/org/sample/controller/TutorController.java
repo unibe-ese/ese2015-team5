@@ -142,12 +142,9 @@ public class TutorController {
 		else{	
 			try {
 				courseService.save(form);
-			} catch (ParseException e) {
-				e.printStackTrace();
-				return "redirect:/profile";
-			}	
+				redirectAttributes.addFlashAttribute("week", courseService.buildCalendar(date));
+			} catch (ParseException e) {e.printStackTrace();}	
 		}
-		redirectAttributes.addFlashAttribute("week", courseService.buildCalendar(date));
     	return "redirect:/profile";
     }
 	
@@ -156,6 +153,9 @@ public class TutorController {
 			HttpSession session){
 		Date date;
 		User user = (User)session.getAttribute("user");
+		if(user == null){
+			return "redirect:/index";
+		}
 		try {
 			date = WeekDay.FORMAT.parse(dateString);
 		} catch (ParseException e) {

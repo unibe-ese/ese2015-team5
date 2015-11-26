@@ -53,14 +53,19 @@ public class CourseServiceImpl implements CourseService {
 		List<Course> courses = user.getCourses();		
 			for(Course course : courses){
 				if(course.isDuring(week)){
-					Calendar cal = Calendar.getInstance();
-					cal.setTime(course.getDate());
-					int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
-					dayOfWeek = computeArraySlot(dayOfWeek);
-					week.getWeekDays()[dayOfWeek].addCourse(course);
+					insertIntoWeek(week, course);
 				}			
 		}
 		return week;
+	}
+
+
+	private void insertIntoWeek(Week week, Course course) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(course.getDate());
+		int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+		dayOfWeek = computeArraySlot(dayOfWeek);
+		week.getWeekDays()[dayOfWeek].addCourse(course);
 	}
 
 	private int computeArraySlot(int dayOfWeek) {

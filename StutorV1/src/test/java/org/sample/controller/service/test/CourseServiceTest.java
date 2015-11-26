@@ -1,6 +1,9 @@
 package org.sample.controller.service.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.text.ParseException;
@@ -15,7 +18,6 @@ import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.sample.controller.pojos.AddCourseForm;
-import org.sample.controller.pojos.ApplicationForm;
 import org.sample.controller.service.CourseService;
 import org.sample.model.Application;
 import org.sample.model.Course;
