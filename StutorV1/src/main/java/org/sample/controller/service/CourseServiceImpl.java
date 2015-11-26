@@ -73,12 +73,15 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public Course save(AddCourseForm form){
 		User user = form.getOwner();
+		
 		if(user != null){
 			Course course = new Course();
 			course.setOwner(user);
 			course.setDate(form.getDate());
 			course.setSlot(form.getSlot());
 			course.setAvailable(true);
+			if(course.isInThePast())
+				return null;
 			return courseDao.save(course);
 		}
 		return null;
