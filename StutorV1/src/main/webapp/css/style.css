@@ -306,6 +306,7 @@ a
 		{
 			width: 100%;
 		}
+		
 
 			table.competenceList
 			{
@@ -329,13 +330,13 @@ a
 
 				table.default td
 				{
-					padding: 0.5em 1em 0.5em 1em;
+					border: 1px solid white;
+					padding: 0.5rem;
 				}
 
 				table.default th
 				{
 					text-align: left;
-					padding: 0.5em 1em 0.5em 1em;
 					font-weight: 800;
 					margin: 0 0 1em 0;
 				}
@@ -353,6 +354,8 @@ a
 				table.default tbody
 				{
 				}
+				
+			/* Table */
 
 	/* Image */
 
@@ -399,6 +402,31 @@ a
 					margin: 0 auto;
 					width: auto;
 				}
+				
+		#tutorTable td, #tutorTable th, #tutorTable tr{
+
+			border: 1px solid white;
+			color: white;
+		}
+		
+		#tutorTable th{
+		
+		    font-size: larger;
+			font-variant: small-caps;
+			font-weight: bold;
+		
+		}
+		
+		#tutorTable div{
+		
+			border-bottom: 1px solid white;
+		}
+		
+		#tutorTable 	input{
+			
+			color: white;
+			background: transparent;
+		}
 
 	/* Button */
 
@@ -561,6 +589,10 @@ a
 			box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.015);
 			box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.05);
 		}
+		
+		
+		
+	
 
 /*********************************************************************************/
 /* Icons                                                                         */

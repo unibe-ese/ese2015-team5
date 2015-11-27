@@ -23,10 +23,10 @@ public class SignupFormValidator implements Validator{
 	@Override
 	public void validate(Object signupForm, Errors error) {
 		SignupForm form = (SignupForm) signupForm;
-		Iterable<User> users = userDao.findAll();
-		
-		String email = form.getEmail();
-		
+//		Iterable<User> users = userDao.findAll();
+//		
+//		String email = form.getEmail();
+//		
 //		
 //		for (User u : users){
 //			if (u.getEmail().equals(email)){
