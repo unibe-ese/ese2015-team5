@@ -45,15 +45,21 @@ public class IndexController {
      */
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public ModelAndView index() {
-    	ModelAndView model = new ModelAndView("index");   
-    	model.addObject("competences", compService.findCompetenceLike(""));
+    	ModelAndView model = buildIndexModel();
     	
-    	model.addObject("applications", appService.getFutureApplications());
     	assert model != null;
         return model;
     }
     
-    /**
+    private ModelAndView buildIndexModel() {
+    	ModelAndView model = new ModelAndView("index");   
+    	model.addObject("competences", compService.findCompetenceLike(""));
+    	
+    	model.addObject("applications", appService.getFutureApplications());
+    	return model;
+	}
+
+	/**
      * Not used. Will be used, if the searchCompetenceLike redirects to the index page. 
      * @param model
      * @return

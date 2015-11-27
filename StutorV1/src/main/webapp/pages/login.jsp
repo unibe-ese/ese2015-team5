@@ -24,9 +24,11 @@
 				</p>
 			<input  type="submit" value="Login" />
 			or
-			<input  type="submit" value="Register" class="alt"/>
-		</form>
 
+		</form>
+		<form action="/Skeleton/register" method="get">
+			<input type="submit" value="Create Account"/>
+		</form>
 
 
 <c:import url="template/footer.jsp" />

@@ -48,12 +48,8 @@ public class RegistrationController {
 		ModelAndView newModel;
 		if(model.containsAttribute("signupForm")){
 			newModel = new ModelAndView("register", model.asMap());
-			if(model.containsAttribute("pictureError")){
-				System.out.println("nopicture!");
-			}
 			return newModel;
-		}
-		
+		}		
 		newModel = new ModelAndView("register");
 		newModel.addObject("signupForm", new SignupForm());
 		assert newModel != null;
@@ -82,9 +78,7 @@ public class RegistrationController {
 			att.addFlashAttribute("org.springframework.validation.BindingResult.signupForm", result);
 
 			if(signupForm.getProfilePic().isEmpty()){
-				System.out.println(signupForm.getProfilePic().isEmpty());
 				att.addFlashAttribute("pictureError", "please choose a picture");
-				System.out.println("added picerror");
 			}
 			
 			return "redirect:register";
@@ -92,8 +86,10 @@ public class RegistrationController {
 		try {				
 			userService.saveUser(signupForm);			
 		} catch (InvalidUserException e){
-			att.addFlashAttribute("error", "Whoops, something went Wrong");
+			System.out.println("exception");
+			att.addFlashAttribute("page-error", e.getMessage());
 			att.addFlashAttribute("signupForm", new SignupForm());
+			return "redirect:register";
 		} 
 		
 		return "redirect:login";
