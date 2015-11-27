@@ -7,9 +7,9 @@
 <c:import url="template/header.jsp" />
 
 <h1>Search for your courses:</h1>
-<form action="/Skeleton/findCompetenceLike"  commandName="searchQuery" method="get">
+<form action="/Skeleton/findCompetenceLike"  commandName="searchQuery" method="get" Style="width: 50em; display:inline-flex">
     <input type="text" name="searchQuery" path="searchQuery"/>
-    <input type="submit" value="Search"></input>
+    <input type="submit" value="Search" Style="height: 1.7em"></input>
 </form>
 <table>
     <c:forEach items="${competences}" var="competence">
