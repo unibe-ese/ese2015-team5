@@ -2,6 +2,7 @@ package org.sample.controller.service;
 
 import java.text.ParseException;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 
 import org.sample.controller.pojos.AddCourseForm;
@@ -32,5 +33,7 @@ public interface CourseService {
 	Course getCourseById(long courseId);
 
 	Course settleCourseFromApplication(Application app);
+
+	Collection<? extends Course> findStudenCoursesFor(User user);
 
 }

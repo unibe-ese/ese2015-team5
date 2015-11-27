@@ -1,6 +1,8 @@
 package org.sample.controller.service;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -146,6 +148,18 @@ public class CourseServiceImpl implements CourseService {
 			course.setAvailable(false);
 		}		
 		return courseDao.save(course);
+	}
+
+
+	@Override
+	public Collection<Course> findStudenCoursesFor(User user) {
+		List<Course> studentCourses = new ArrayList<Course>();
+		for(Course c : courseDao.findAll()){
+			if(c.getCustomer() != null && c.getCustomer().equals(user)){
+				studentCourses.add(c);
+			}
+		}
+		return studentCourses;
 	}
 
 

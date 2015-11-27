@@ -3,7 +3,12 @@ package org.sample.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.sample.model.Course;
+
+import java.util.*;
+
 import org.mortbay.util.ajax.AjaxFilter.AjaxResponse;
+import org.sample.controller.pojos.NewsFeedArticleInterface;
 import org.sample.controller.service.ApplicationService;
 import org.sample.controller.service.CompetenceService;
 import org.sample.controller.service.UserService;
@@ -56,6 +61,9 @@ public class IndexController {
     	model.addObject("competences", compService.findCompetenceLike(""));
     	
     	model.addObject("applications", appService.getFutureApplications());
+    	List<NewsFeedArticleInterface> courses = userService.buildNewsFeed();
+    	System.out.println(courses.toString());
+    	model.addObject("newsfeed", courses);
     	return model;
 	}
 
