@@ -6,6 +6,8 @@
 
 <c:import url="template/header.jsp" />
 
+<ul Style="display: inline-flex">
+<li Style="width: 20em; margin-right: 10em">
 
 <h1>Sign Up Here!</h1>
 
@@ -14,7 +16,7 @@
         <legend>Enter Your Information and upload a picture</legend>
 		
 		<ul Style="display: inline-flex">
-		<li Style="width: 30em">
+		<li Style="margin-right: 50em">
 		    <c:set var="emailErrors"><form:errors path="email"/></c:set>
 	        <div class="control-group<c:if test="${not empty emailErrors}"> error</c:if>">
 	            <label class="control-label" for="field-email">Email</label>
@@ -55,6 +57,7 @@
 	          </c:if>
 	        </div>
 	        <input type="submit" value="Sign up"/>
+	        <a href="/Skeleton/login"> <input type="button" value="Cancel"/> </a>
         </li>
         
         <li>
@@ -64,6 +67,18 @@
         
     </fieldset>
 </form:form>
+</li>
+<li Style="width: 20em; margin-top: 10em">
+<img src="img/wizard no background.gif"/>
+</li>
+<li Style="margin-top:10em">
+<div Style="Background: white; border-radius: 10px; width: 15em">
+Take care! The register-magister is watching you. Remember to
+fill out all text areas and to upload a profile picture.
+Registrus Maximus
+</div>
+</li>
+</ul>
 
 
 
