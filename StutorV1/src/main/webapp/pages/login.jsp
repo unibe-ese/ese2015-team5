@@ -34,7 +34,22 @@
 		</li>
 		<li>
 			<h1>Welcome to Stutor - Your possibility to make some easy ca$h!</h1>
-			Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+			Sounds too good to be true right?! But this is the 21st century,
+			everyting ist possible. There are autodriving cars, corefusion research
+			and even beer mixed with coca-cola. So why not students with actual money?
+			The concept is simple: you pass an exam and you are henceforth a perfectly
+			qualified tutor for this specific course. After that we will help you find a
+			student respectively help the student find you. All you have to do to profit
+			from this awesome and unique easy-money-service is to register right now and
+			become part of this worthy experience.
+			By registering you accept your soultransfer to Stutor™. 
+			Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam 
+			nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat
+			, sed diam voluptua. At vero eos et accusam et justo duo dolores et 
+			ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem 
+			ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing 
+			elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna 
+			aliquyam erat, sed diam voluptua.
 			
 		</li>
 	</ul>
