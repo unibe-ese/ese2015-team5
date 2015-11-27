@@ -401,7 +401,11 @@ a
 				}
 
 	/* Button */
-
+	
+		
+        
+	/*	::-webkit-file-upload-button */
+		
 		input[type="button"],
 		input[type="submit"],
 		input[type="reset"],
@@ -412,7 +416,6 @@ a
 			line-height: 0.1em;
 			display: inline-block;
 			background: linear-gradient(to bottom, rgba(246,248,249,1) 0%,rgba(229,235,238,1) 48%,rgba(215,222,227,1) 51%,rgba(245,247,249,1) 100%);
-			
 			color: grey;
 			text-decoration: none;
 			border-radius: 10px;
