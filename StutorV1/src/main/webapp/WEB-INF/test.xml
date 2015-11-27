@@ -20,6 +20,10 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hdiv="http://www.hdi
 	<bean class="org.mockito.Mockito" factory-method="mock">
 		<constructor-arg value="org.sample.model.dao.CompetenceDao"/>
 	</bean>
+	
+	<bean class="org.mockito.Mockito" factory-method="mock">
+		<constructor-arg value="org.sample.model.dao.ApplicationDao"/>
+	</bean>
 
 	<bean class="org.mockito.Mockito" factory-method="mock">
 		<constructor-arg value="org.sample.model.dao.CourseDao"/>
@@ -32,5 +36,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hdiv="http://www.hdi
 	<bean class="org.sample.controller.service.CompetenceServiceImpl" />
 	
 	<bean class="org.sample.controller.service.CourseServiceImpl" />
+	
+	<bean class="org.sample.controller.service.ApplicationServiceImpl" />
 	
 </beans>

@@ -24,4 +24,6 @@ public interface UserService {
     
     public void updateProfilePicture(ProfilePicture profilePicture);
 
+	public User setHouerlyRate(User user, float houerlyRate);
+
 }

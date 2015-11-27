@@ -69,7 +69,9 @@ public class UserServiceImpl implements UserService{
         } catch (Exception e) {
             throw new InvalidUserException("Picture could not be processed");
         }
-   
+        if(emailAlreadyExists(sgnUp.getEmail())){
+        	throw new InvalidUserException("Username is already in use");
+        }
         User user = new User();
         user.setFirstName(sgnUp.getFirstName());
         user.setEmail(sgnUp.getEmail());
@@ -81,6 +83,15 @@ public class UserServiceImpl implements UserService{
         userDao.save(user);
         
         return user;
+	}
+
+	private boolean emailAlreadyExists(String email) {
+		for(User user : userDao.findAll()){
+			if(user.getEmail().equals(email)){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -122,6 +133,12 @@ public class UserServiceImpl implements UserService{
 		pic.setFile(profilePicture.getFile());
 		userDao.save(user);
 		profilePicDao.save(pic);		
+	}
+
+	@Override
+	public User setHouerlyRate(User user, float houerlyRate) {
+		user.setHouerlyRate(houerlyRate);
+		return userDao.save(user);
 	}
 
 

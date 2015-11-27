@@ -2,8 +2,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+
+<div>
+	<label class="control-label" for="field-aboutYou">Tell something about yourself</label>
+    <textarea id="aboutYou" name="aboutYou" maxlength="500">${user.aboutYou}</textarea>
+</div>
 <div>
 <h1>Add your Tutoring Subjects</h1>
+
+<form action="./profile/houerlyRate" method="post">
+  <input name="houerlyRate" value="${user.houerlyRate}" type="text"/>
+  <input type="submit" value="GO"/>
+</form>
+
+
 <table class="competenceList">
     <c:forEach items="${user.competences}" var="competence">
         <tr>
@@ -43,8 +56,7 @@
         <ul>
           <c:forEach items="${day.courses}" var="course">
             <li>
-              ${course.slot}
-
+              ${course.available}
               <form:form modelAttribute="addCourseForm" action="./addCourse">
                  <form:hidden path="slot" value="${course.slot}"/>
                  <form:hidden path="dateString" value="${day.dateString}" />

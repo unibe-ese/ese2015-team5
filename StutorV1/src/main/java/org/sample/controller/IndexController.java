@@ -4,7 +4,9 @@ package org.sample.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.mortbay.util.ajax.AjaxFilter.AjaxResponse;
+import org.sample.controller.service.ApplicationService;
 import org.sample.controller.service.CompetenceService;
+import org.sample.controller.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,12 @@ public class IndexController {
 
     @Autowired
     CompetenceService compService;
+    
+    @Autowired 
+    UserService userService;
+    
+    @Autowired
+    ApplicationService appService;
 
     /**
      * Displays the index page.
@@ -37,13 +45,21 @@ public class IndexController {
      */
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public ModelAndView index() {
-    	ModelAndView model = new ModelAndView("index");   
-    	model.addObject("competences", compService.findCompetenceLike(""));
+    	ModelAndView model = buildIndexModel();
+    	
     	assert model != null;
         return model;
     }
     
-    /**
+    private ModelAndView buildIndexModel() {
+    	ModelAndView model = new ModelAndView("index");   
+    	model.addObject("competences", compService.findCompetenceLike(""));
+    	
+    	model.addObject("applications", appService.getFutureApplications());
+    	return model;
+	}
+
+	/**
      * Not used. Will be used, if the searchCompetenceLike redirects to the index page. 
      * @param model
      * @return

@@ -1,5 +1,7 @@
 package org.sample.controller.test;
 
+import static org.junit.Assert.*;
+
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.runner.RunWith;
@@ -26,14 +28,14 @@ public class CompetenceControllerTest {
 	
 	private MockMvc mockMvc;
 	
-	@Before
-	public void setup(){
-		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
-	}
+//	@Before
+//	public void setup(){
+//		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+//	}
 	
-	@Test
-	public void Test(){
-		
-	}
+//	@Test
+//	public void Test(){
+//		assertTrue(true);
+//	}
 
 }

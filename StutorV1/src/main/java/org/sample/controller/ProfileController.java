@@ -1,7 +1,9 @@
 package org.sample.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +12,9 @@ import javax.validation.Valid;
 
 import org.sample.controller.pojos.AddCompetenceForm;
 import org.sample.controller.pojos.AddCourseForm;
+import org.sample.controller.pojos.ApplicationForm;
 import org.sample.controller.pojos.ModifyUserForm;
+import org.sample.controller.service.ApplicationService;
 import org.sample.controller.service.CompetenceService;
 import org.sample.controller.service.CourseService;
 import org.sample.controller.service.UserService;
@@ -18,6 +22,7 @@ import org.sample.model.Competence;
 import org.sample.model.ProfilePicture;
 import org.sample.model.User;
 import org.sample.model.Week;
+import org.sample.model.WeekDay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,6 +56,8 @@ public class ProfileController {
 	CompetenceService compService;
 	@Autowired 
 	CourseService courseService;
+	@Autowired
+	ApplicationService appService;
 	
 	/**
 	 * Displays the correct profile page.
@@ -89,7 +96,6 @@ public class ProfileController {
     	if(!model.containsAttribute("addCompetenceForm") ){
     		model.addAttribute("addCompetenceForm", new AddCompetenceForm());
     	}
-    	System.out.println(model.asMap().toString());
     	if(!model.containsAttribute("week")){
     		Week week = courseService.buildCalendar(Calendar.getInstance(), user);
     		model.addAttribute("week", week);
@@ -152,12 +158,6 @@ public class ProfileController {
 	 */
 	@RequestMapping(value = "/changeProfilePic", method = RequestMethod.POST)
     public String uploadFileHandler(@RequestParam("file") MultipartFile file) {
-		try {
-			System.out.println(file.getBytes().toString());
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
         if (!file.isEmpty()) {
             try {
             	ProfilePicture profilePicture = new ProfilePicture();
@@ -203,6 +203,7 @@ public class ProfileController {
 	
 	@RequestMapping(value="/profile/{userId}", method=RequestMethod.GET)
 	public String showPublicProfile(@PathVariable long userId, Model model){
+		System.out.println("now in profile");
 		User visitee = userService.getUserById(userId);
 		User visiter = userService.getCurrentUser();
 		if(visitee == null){
@@ -214,25 +215,71 @@ public class ProfileController {
 			return "redirect:/profile";
 		}
 		model.addAttribute("visitee", visitee);
-		model.addAttribute("week", courseService.buildCalendar(Calendar.getInstance(), visitee));
+		if(!model.containsAttribute("week")){
+			model.addAttribute("week", courseService.buildCalendar(Calendar.getInstance(), visitee));
+		}
+		model.addAttribute("application", new ApplicationForm());
 		return "publicProfile";
 	}
 	
-	@RequestMapping(value="/profile/{userId}/nextWeek/", method=RequestMethod.GET)
-	public String showPublicProfileNextWeek(@PathVariable long userId, Model model){
+	@RequestMapping(value="/profile/{userId}/nextWeek/{dateString}/", method=RequestMethod.GET)
+	public String showPublicProfileNextWeek(@PathVariable long userId, @PathVariable("dateString") String dateString, RedirectAttributes redirAttributes){
 		User visitee = userService.getUserById(userId);
-		User visiter = userService.getCurrentUser();
 		if(visitee == null){
 			return "redirect:/index";
 		}
-		//TODO: Can a user view his profile as visitor?
-		if(visitee.equals(visiter)){
-			
-			return "redirect:/profile";
+		Date date;
+		try {
+			date = WeekDay.FORMAT.parse(dateString);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "redirect:/profile/" + userId;
 		}
-		model.addAttribute("visitee", visitee);
-		model.addAttribute("week", courseService.buildCalendar(Calendar.getInstance(), visitee));
-		return "publicProfile";
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.add(Calendar.DAY_OF_YEAR, 7);
+		redirAttributes.addFlashAttribute("week", courseService.buildCalendar(cal, visitee));
+		return "redirect:/profile/" + userId;
+	}
+	
+	@RequestMapping(value="/profile/{userId}/lastWeek/{dateString}/", method=RequestMethod.GET)
+	public String showPublicProfileLastWeek(@PathVariable long userId, @PathVariable("dateString") String dateString, RedirectAttributes redirAttributes){
+		User visitee = userService.getUserById(userId);
+		if(visitee == null){
+			return "redirect:/index";
+		}
+		Date date;
+		try {
+			date = WeekDay.FORMAT.parse(dateString);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "redirect:/profile/" + userId;
+		}
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.add(Calendar.DAY_OF_YEAR, -1);
+		redirAttributes.addFlashAttribute("week", courseService.buildCalendar(cal, visitee));
+		return "redirect:/profile/" + userId;
+	}
+	
+	@RequestMapping(value="/profile/application", method=RequestMethod.POST)
+	public String addApplication(@RequestParam("courseId") long courseId){
+		System.out.println(courseId);
+		ApplicationForm application = buildAppForm(courseId);
+		if(courseService.courseIsAvailable(application.getCourse()) && appService.notDuplicate(application)){
+			appService.saveApplication(application);
+		}
+		return "redirect:/index";
+	}
+
+	private ApplicationForm buildAppForm(long courseId) {
+		ApplicationForm application = new ApplicationForm();
+		
+		application.setCourse(courseService.getCourseById(courseId));
+		application.setApplicant(userService.getCurrentUser());
+		return application;
 	}
 	
 }

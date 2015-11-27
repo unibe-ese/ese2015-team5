@@ -13,14 +13,12 @@ import org.sample.controller.pojos.AddCourseForm;
 import org.sample.controller.pojos.EditCompetenceForm;
 import org.sample.controller.service.CompetenceService;
 import org.sample.controller.service.CourseService;
+import org.sample.controller.service.UserService;
 import org.sample.model.Competence;
-import org.sample.model.Course;
 import org.sample.model.User;
 import org.sample.model.Week;
 import org.sample.model.WeekDay;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,6 +26,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -39,6 +38,8 @@ public class TutorController {
 	CompetenceService compService;
 	@Autowired
 	CourseService courseService;
+	@Autowired
+	UserService userService;
 	
 	/**
 	 * Deletes a competence
@@ -129,28 +130,25 @@ public class TutorController {
 	@RequestMapping(value="/addCourse", method=RequestMethod.POST)
     public String addCourse(@ModelAttribute("addCourseForm") AddCourseForm form, HttpSession session, RedirectAttributes redirectAttributes){
 		Date date;
-		System.out.println("Unparsed: " + form.getDateString());
-		System.out.println("Slot: " + form.getSlot());
 		try {
 			date = WeekDay.FORMAT.parse(form.getDateString());
-			System.out.println("ParsedDate: " + date);
 		} catch (ParseException e) {
-			System.out.println("nope");
 			e.printStackTrace();
 			return "redirect:/profile";
 		}
-		
 		User user = (User)session.getAttribute("user");
 		form.setOwner(user);
 		form.setDate(date);
-		Course course;
-		try {
-			course = courseService.save(form);
-		} catch (ParseException e) {
-			e.printStackTrace();
-			return "redirect:/profile";
+		
+		if(courseService.alreadyExists(form)){
+			courseService.deleteCourse(form);
 		}
-		redirectAttributes.addFlashAttribute("week", courseService.buildCalendar(course.getDate()));
+		else{	
+			try {
+				courseService.save(form);
+				redirectAttributes.addFlashAttribute("week", courseService.buildCalendar(date));
+			} catch (ParseException e) {e.printStackTrace();}	
+		}
     	return "redirect:/profile";
     }
 	
@@ -159,6 +157,9 @@ public class TutorController {
 			HttpSession session){
 		Date date;
 		User user = (User)session.getAttribute("user");
+		if(user == null){
+			return "redirect:/index";
+		}
 		try {
 			date = WeekDay.FORMAT.parse(dateString);
 		} catch (ParseException e) {
@@ -169,7 +170,7 @@ public class TutorController {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		cal.add(Calendar.DAY_OF_YEAR, 7);
-		Week week = courseService.buildCalendar(cal);
+		Week week = courseService.buildCalendar(cal, user);
 		redirectAttributes.addFlashAttribute("week", week);
 		return "redirect:/profile";
 	}
@@ -177,6 +178,7 @@ public class TutorController {
 	@RequestMapping(value="/profile/lastWeek/{dateString}/", method=RequestMethod.GET)
 	public String lastWeek(@PathVariable("dateString") String dateString, RedirectAttributes redirectAttributes,
 			HttpSession session){
+		
 		Date date;
 		User user = (User)session.getAttribute("user");
 		try {
@@ -189,11 +191,18 @@ public class TutorController {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		cal.add(Calendar.DAY_OF_YEAR, -1);
-		Week week = courseService.buildCalendar(cal);
+		Week week = courseService.buildCalendar(cal, user);
 		redirectAttributes.addFlashAttribute("week", week);
 		return "redirect:/profile";
 	}
-
+	
+	@RequestMapping(value="/profile/houerlyRate", method=RequestMethod.POST)
+	public String setHouerlyRate(@RequestParam("houerlyRate") float houerlyRate, HttpSession session){
+		User user = (User) session.getAttribute("user");
+		System.out.println(houerlyRate);
+		userService.setHouerlyRate(user, houerlyRate);
+		return "redirect:/profile";
+	}
 }
 
 
