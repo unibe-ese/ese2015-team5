@@ -55,6 +55,7 @@
 	          </c:if>
 	        </div>
 	        <input type="submit" value="Sign up"/>
+	        <a href="/Skeleton/login"> <input type="button" value="Cancel"/> </a>
         </li>
         
         <li>
