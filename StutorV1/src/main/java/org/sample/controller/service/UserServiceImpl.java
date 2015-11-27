@@ -2,6 +2,8 @@ package org.sample.controller.service;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.sample.controller.exceptions.InvalidUserException;
@@ -153,23 +155,42 @@ public class UserServiceImpl implements UserService{
 	public List<NewsFeedArticleInterface> buildNewsFeed() {
 		User user = getCurrentUser();
 		List<Course> courses = user.getCourses();
+		removeNotBookedCourses(courses);
 		courses.addAll(courseService.findStudenCoursesFor(user));
-		System.out.println(courses.size());
-		
+		Collections.sort(courses, new Comparator<Course>() {
+		    @Override
+		    public int compare(Course c1, Course c2) {
+		        return c1.getDate().compareTo(c2.getDate());
+		    }
+		});
+		circumciseList(courses);
 		return buildArticles(courses, user);
+	}
+
+	private void removeNotBookedCourses(List<Course> courses) {
+		List<Course> toRemove = new ArrayList<Course>();
+		for(Course c : courses){
+			if(c.getCustomer() == null)
+				toRemove.add(c);
+		}
+		courses.removeAll(toRemove);		
+	}
+
+	private void circumciseList(List<Course> courses) {
+		for(int i = 10; i < courses.size(); i++){
+			courses.remove(i);
+		}
 	}
 
 	private List<NewsFeedArticleInterface> buildArticles(List<Course> courses,
 			User user) {
 		List<NewsFeedArticleInterface> news = new ArrayList<NewsFeedArticleInterface>();
-
 		for(Course c : courses){
 			if(user.equals(c.getOwner()))
 				news.add(buildTutorNews(c));
 			else if(user.equals(c.getCustomer())){
 				news.add(buildStudentNews(c));
-			}
-			
+			}	
 		}
 		return news;
 	}
