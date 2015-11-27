@@ -9,26 +9,42 @@
 </head>
 <body>
 
-	<h1>Login</h1>
-	<div id="login-error">
-		${error}
-	</div>
-		<form action="./j_spring_security_check" method="post" >
-			<p>
-				<label for="j_username">Username</label>
- 			   		<input id="j_username" name="j_username" type="text" />
-				</p>
+	<ul Style="display: inline-flex">
+		<li Style="width: 40em; margin-right: 10em">
+			<h1>Login</h1>
+			<div id="login-error">
+				${error}
+			</div>
+				<form action="./j_spring_security_check" method="post" >
 				<p>
-					<label for="j_password">Password</label>
- 				   	<input id="j_password" name="j_password" type="password" />
-				</p>
-			<input  type="submit" value="Login" />
-			or
-
-		</form>
-		<form action="/Skeleton/register" method="get">
-			<input type="submit" value="Create Account"/>
-		</form>
+					<label for="j_username">Username</label>
+	 			   		<input id="j_username" name="j_username" type="text" />
+					</p>
+					<p>
+						<label for="j_password">Password</label>
+	 				   	<input id="j_password" name="j_password" type="password" />
+					</p>
+				<input  type="submit" value="Login" />
+			</form>
+			<form action="/Skeleton/register" method="get">
+				<input type="submit" value="Create Account"/>
+			</form>
+		</li>
+		<li Style="text-align: justify">
+			<h1>Welcome to Stutor - Your possibility to make some easy ca$h!</h1>
+			Sounds too good to be true right?! But this is the 21st century,
+			everyting ist possible. There are autodriving cars, corefusion research
+			and even beer mixed with coca-cola. So why shouldn't there be students with 
+			actual money?
+			The concept is simple: you pass an exam and you are henceforth a perfectly
+			qualified tutor for this specific course. After that we will help you find a
+			student respectively help the student find you. All you have to do to profit
+			from this awesome and unique easy-money-service is to <a href=/Skeleton/register>register right now</a> and
+			become part of this worthy experience.
+			By registering you accept your soultransfer to Stutor™.
+			
+		</li>
+	</ul>
 
 
 <c:import url="template/footer.jsp" />

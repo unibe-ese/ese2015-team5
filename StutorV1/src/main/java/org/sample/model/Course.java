@@ -122,8 +122,6 @@ public class Course implements CourseInterface{
 		cal.setTime(this.date);
 		int courseYear = cal.get(Calendar.YEAR);
 		int courseDayOfYear = cal.get(Calendar.DAY_OF_YEAR);
-		System.out.println(courseYear + ", " +  compareYear);
-		System.out.println(courseDayOfYear + ", " + compareDayOfYear);
 		
 		return courseYear < compareYear || (courseYear == compareYear && courseDayOfYear < compareDayOfYear);
 		

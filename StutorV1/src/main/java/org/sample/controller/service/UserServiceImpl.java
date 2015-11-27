@@ -1,9 +1,16 @@
 package org.sample.controller.service;
 
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.sample.controller.exceptions.InvalidUserException;
 import org.sample.controller.pojos.ModifyUserForm;
+import org.sample.controller.pojos.NewsFeedArticleInterface;
 import org.sample.controller.pojos.SignupForm;
+import org.sample.controller.pojos.TutorNews;
 import org.sample.model.Competence;
+import org.sample.model.Course;
 import org.sample.model.ProfilePicture;
 import org.sample.model.User;
 import org.sample.model.dao.CompetenceDao;
@@ -14,7 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -33,6 +39,8 @@ public class UserServiceImpl implements UserService{
 	CompetenceDao compDao;
 	@Autowired
 	ProfilePictureDao profilePicDao;
+	@Autowired 
+	CourseService courseService;
 	
 	public User getUserByEmail(String email) {
 		for (User u:userDao.findAll())
@@ -140,6 +148,48 @@ public class UserServiceImpl implements UserService{
 		user.setHouerlyRate(houerlyRate);
 		return userDao.save(user);
 	}
+
+	@Override
+	public List<NewsFeedArticleInterface> buildNewsFeed() {
+		User user = getCurrentUser();
+		List<Course> courses = user.getCourses();
+		courses.addAll(courseService.findStudenCoursesFor(user));
+		System.out.println(courses.size());
+		
+		return buildArticles(courses, user);
+	}
+
+	private List<NewsFeedArticleInterface> buildArticles(List<Course> courses,
+			User user) {
+		List<NewsFeedArticleInterface> news = new ArrayList<NewsFeedArticleInterface>();
+
+		for(Course c : courses){
+			if(user.equals(c.getOwner()))
+				news.add(buildTutorNews(c));
+			else if(user.equals(c.getCustomer())){
+				news.add(buildStudentNews(c));
+			}
+			
+		}
+		return news;
+	}
+
+	private NewsFeedArticleInterface buildStudentNews(Course c) {
+		TutorNews news = new TutorNews();
+		DateFormat format = CalendarServiceImpl.FORMAT;
+		news.setDateRepresentation(format.format(c.getDate()));
+		news.setPartner(c.getOwner());
+		return news;
+	}
+
+	private NewsFeedArticleInterface buildTutorNews(Course c) {
+		TutorNews news = new TutorNews();
+		DateFormat format = CalendarServiceImpl.FORMAT;
+		news.setDateRepresentation(format.format(c.getDate()));
+		news.setPartner(c.getCustomer());
+		return news;
+	}
+
 
 
 }
