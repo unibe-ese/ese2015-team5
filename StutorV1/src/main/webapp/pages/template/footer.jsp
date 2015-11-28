@@ -1,3 +1,4 @@
+		</li>
 	</article>
 
 					</div>
@@ -10,7 +11,7 @@
 				<footer id="footer" class="container">
 					<div class="row">
 						<div class="3u">
-						
+
 							<!-- Links -->
 								<!-- <section class="widget links">
 									<h3>Random Stuff</h3>
@@ -22,25 +23,10 @@
 										<li><a href="#">Nullam scelerisque blandit leo</a></li>
 									</ul>
 								</section>
-						
-						</div> 
-						<div class="3u">  -->
-						
-							<!-- Links -->
-								<!-- <section class="widget links">
-									<h3>Random Stuff</h3>
-									<ul class="style2">
-										<li><a href="#">Etiam feugiat condimentum</a></li>
-										<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-										<li><a href="#">Sed porttitor cras in erat nec</a></li>
-										<li><a href="#">Felis varius pellentesque potenti</a></li>
-										<li><a href="#">Nullam scelerisque blandit leo</a></li>
-									</ul>
-								</section>
-						
+
 						</div>
 						<div class="3u">  -->
-						
+
 							<!-- Links -->
 								<!-- <section class="widget links">
 									<h3>Random Stuff</h3>
@@ -52,10 +38,25 @@
 										<li><a href="#">Nullam scelerisque blandit leo</a></li>
 									</ul>
 								</section>
-						
+
+						</div>
+						<div class="3u">  -->
+
+							<!-- Links -->
+								<!-- <section class="widget links">
+									<h3>Random Stuff</h3>
+									<ul class="style2">
+										<li><a href="#">Etiam feugiat condimentum</a></li>
+										<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
+										<li><a href="#">Sed porttitor cras in erat nec</a></li>
+										<li><a href="#">Felis varius pellentesque potenti</a></li>
+										<li><a href="#">Nullam scelerisque blandit leo</a></li>
+									</ul>
+								</section>
+
 						</div>
 						<div class="3u"> -->
-						
+
 							<!-- Contact -->
 								<!--  <section class="widget contact last">
 									<h3>Contact Us</h3>
@@ -70,9 +71,9 @@
 									Nashville, TN 00000<br />
 									(800) 555-0000</p>
 								</section>
-						
+
 						</div>
-					</div> 
+					</div>
 					<div class="row">
 						<div class="12u">-->
 							<div id="copyright">

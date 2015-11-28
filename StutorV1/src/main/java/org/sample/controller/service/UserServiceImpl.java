@@ -10,6 +10,7 @@ import org.sample.controller.exceptions.InvalidUserException;
 import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.pojos.NewsFeedArticleInterface;
 import org.sample.controller.pojos.SignupForm;
+import org.sample.controller.pojos.StudentNews;
 import org.sample.controller.pojos.TutorNews;
 import org.sample.model.Competence;
 import org.sample.model.Course;
@@ -196,7 +197,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	private NewsFeedArticleInterface buildStudentNews(Course c) {
-		TutorNews news = new TutorNews();
+		StudentNews news = new StudentNews();
 		DateFormat format = CalendarServiceImpl.FORMAT;
 		news.setDateRepresentation(format.format(c.getDate()));
 		news.setPartner(c.getOwner());

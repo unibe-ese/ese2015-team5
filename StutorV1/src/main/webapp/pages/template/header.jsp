@@ -79,7 +79,6 @@
 
 				</header>
 			</div>
-
 		<!-- Main -->
 			<div id="main-wrapper">
 				<div class="container">
@@ -87,3 +86,4 @@
 
 						<!-- Content -->
 							<article>
+								<li style="display:inline-flex">
