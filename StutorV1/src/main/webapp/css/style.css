@@ -39,6 +39,25 @@
 			animation: none !important;
 		}
 
+		.form-label-align
+		{
+			display:inline-block;
+			float:left;
+			padding-right: 5px;
+		}
+
+		.form-input-align
+		{
+			display:block;
+			width:50px;
+		}
+
+		.form-button-align
+		{
+			display:block;
+			float:right;
+		}
+
 		.newsfeed
 		{
 			float:left;
@@ -93,6 +112,33 @@
 	input, select, textarea
 	{
 		background-color: #F5F7F7;
+	}
+
+
+
+	.competence-List-Entry
+	{
+		width:70%;
+		height:50px;
+		display:inline-flex;
+	}
+
+	.competence-List-Description
+	{
+		width:20%;
+		text-align: center;
+		padding-right: 10px;
+	}
+
+	.competence-List-Gradeform
+	{
+		width:65%;
+	}
+
+	.competence-List-Delete
+	{
+		width: 14%;
+		padding-left: 10px;
 	}
 
 .courses

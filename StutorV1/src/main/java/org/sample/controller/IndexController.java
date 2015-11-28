@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.mortbay.util.ajax.AjaxFilter.AjaxResponse;
 import org.sample.controller.pojos.NewsFeedArticleInterface;
 import org.sample.controller.service.ApplicationService;
 import org.sample.controller.service.CompetenceService;
@@ -49,8 +48,7 @@ public class IndexController {
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public ModelAndView index(Model modelo) {  	
     	ModelAndView model = buildIndexModel();
-    	model.addAllObjects(modelo.asMap());
-    	System.out.println("entered Index");
+    	model.addObject("competence", modelo.asMap().get("competences"));
     	assert model != null;
         return model;
     }

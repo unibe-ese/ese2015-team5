@@ -5,49 +5,53 @@
 <script src="/Skeleton/js/color.js"></script>
 
 <div>
-	<label class="control-label" for="field-aboutYou">Tell something about yourself</label>
-    <textarea id="aboutYou" name="aboutYou" maxlength="500">${user.aboutYou}</textarea>
-</div>
-<div>
-<h1>Add your Tutoring Subjects</h1>
-
-<form action="./profile/houerlyRate" method="post">
-  <input name="houerlyRate" value="${user.houerlyRate}" type="text"/>
-  <input type="submit" value="GO"/>
-</form>
-
-
-<table class="competenceList">
-    <c:forEach items="${user.competences}" var="competence">
-        <tr>
-            <td>
-                ${competence.description}
-            </td>
-            <td>
-                <form:form action="profile/deleteComp/${competence.id}" method="get">
-                    <input type="submit" value="X"></input>
-                </form:form>
-                 <button class="btn btn-primary"
-                                        onclick="location.href='profile/editComp/${competence.id}'">Update</button>
-            </td>
-
-        </tr>
-    </c:forEach>
-</table>
-</div>
+	<div class="houerlyRate-container">
+	<form action="./profile/houerlyRate" method="post">
+		<label for="houerlyRate">$$$$$$$$ / hour</label>
+	  <input name="houerlyRate" value="${user.houerlyRate}" type="text" style="display:inline">
+		<c:if test="${not empty houerlyError}">
+			<label class="error-label" for="field-houerlyRate">${houerlyError}</label>
+		</c:if>
+	  <input type="submit" value="GO"/>
+	</form>
+	</div>
 <form:form method="post" modelAttribute="addCompetenceForm" action="./addCompetence" id="addComp">
   <div>
+		<label for="houerlyRate">Add your tutorinc Subjects</label>
     <form:input type="text" path="description"/>
     <form:errors path="description" cssClass="help-inline" element="span"/>
   </div>
   <input type="submit" value="Add new Subject"></input>
 </form:form>
 
+<table class="competenceList">
+    <c:forEach items="${user.competences}" var="competence">
+        <tr class="competence-List-Entry">
+            <td class="competence-List-Description">
+                ${competence.description}
+            </td>
+						<td class="competence-List-Gradeform">
+								<form action="/Skeleton/profile/setGradeForCompetence/${competence.id}" method="post">
+									<label class="form-label-align" for="competenceGrade">Grade</label>
+									<input class="form-input-align" type="text" name="competenceGrade" value="${competence.grade}"/>
+									<input class="form-button-align" type="submit" value="GO"/>
+								</form>
+						</td>
+            <td class="competence-List-Delete">
+                <form:form action="profile/deleteComp/${competence.id}" method="get">
+                    <input type="submit" value="X"></input>
+                </form:form>
+            </td>
+
+        </tr>
+    </c:forEach>
+</table>
+
 <button class="btn btn-primary"
                        onclick="location.href='profile/lastWeek/${week.weekDays[0].dateString}/'">Last Week</button>
 <button class="btn btn-primary"
                        onclick="location.href='profile/nextWeek/${week.weekDays[0].dateString}/'">Next Week</button>
-                       
+
 <table id="tutorTable">
 <thead>
   <tr>

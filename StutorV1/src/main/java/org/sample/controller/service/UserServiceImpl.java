@@ -148,7 +148,8 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User setHouerlyRate(User user, float houerlyRate) {
-		user.setHouerlyRate(houerlyRate);
+		double rate = Math.round(houerlyRate * 100.0) / 100.0;
+		user.setHouerlyRate((float) rate);
 		return userDao.save(user);
 	}
 

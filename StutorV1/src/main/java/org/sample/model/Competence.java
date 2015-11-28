@@ -32,6 +32,8 @@ public class Competence {
 	private User owner;
 	@Size(min=1)
 	private String description;
+	
+	private float grade;
 
 	public String getDescription() {
 		return description;
@@ -80,6 +82,12 @@ public class Competence {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+	public float getGrade() {
+		return grade;
+	}
+	public void setGrade(float grade) {
+		this.grade = grade;
 	}
 	
 

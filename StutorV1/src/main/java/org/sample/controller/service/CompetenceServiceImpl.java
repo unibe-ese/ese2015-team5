@@ -64,6 +64,7 @@ public class CompetenceServiceImpl implements CompetenceService{
 			}
 		}
 		
+		
 		return comps;
 	}
 
@@ -75,6 +76,16 @@ public class CompetenceServiceImpl implements CompetenceService{
 			return compDao.save(comp);
 		}
 		return null;
+	}
+
+	@Override
+	public Competence setGrade(long compId, float grade) {
+		Competence comp = compDao.findOne(compId);
+		if(comp != null){
+			comp.setGrade(grade);
+			compDao.save(comp);
+		}
+		return comp;
 	}
 
 

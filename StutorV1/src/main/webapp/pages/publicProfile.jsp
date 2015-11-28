@@ -41,7 +41,7 @@ ${visitee.email}
                 </form>
               </c:if>
               <c:if test="${course.available == false}">
-                  
+
               </c:if>
             </li>
           </c:forEach>

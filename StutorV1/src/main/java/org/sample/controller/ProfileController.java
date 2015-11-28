@@ -83,6 +83,7 @@ public class ProfileController {
     		modelAndView = new ModelAndView("profile", buildProfileModel(model, user).asMap());
     	}
     	assert modelAndView != null;
+    	System.out.println(model.asMap().get("houerlyError"));
     	return modelAndView;
     }
 

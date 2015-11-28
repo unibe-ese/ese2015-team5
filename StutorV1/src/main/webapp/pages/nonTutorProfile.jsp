@@ -6,9 +6,6 @@
 <form:form method="post" modelAttribute="modifyUserForm" action="./modifyUser" id="modifyUserForm" cssClass="form-horizontal"  autocomplete="off">
     <fieldset>
         <legend><h1>Edit your information</h1></legend>
-        <c:if test="${not empty error}">
-           Error: ${error}
-        </c:if>
 
         <div>
             <label class="control-label" >Email</label>
@@ -53,6 +50,10 @@
                    ${passwordControllError}
                 </c:if>
             </div>
+        </div>
+        <div>
+        	<label class="control-label" for="field-aboutYou">Tell something about yourself</label>
+            <textarea id="aboutYou" name="aboutYou" maxlength="500">${user.aboutYou}</textarea>
         </div>
         <div class="form-actions">
             <input type="submit" value="Submit Changes" class="btn btn-primary"></input>

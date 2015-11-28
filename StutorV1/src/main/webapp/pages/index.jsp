@@ -43,7 +43,7 @@
     <c:forEach items="${competences}" var="competence">
         <tr>
             <td class="courses" onclick="location.href='profile/${competence.owner.id}'">
-                ${competence.description}
+                ${competence.description}, ${competence.grade}
             </td>
         </tr>
     </c:forEach>
