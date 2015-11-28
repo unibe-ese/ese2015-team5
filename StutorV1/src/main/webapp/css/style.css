@@ -39,49 +39,6 @@
 			animation: none !important;
 		}
 
-		.newsfeed
-		{
-			float:left;
-
-		}
-
-		.newsEntryListing-date, .newsEntryListing-name
-		{
-			padding-bottom: 0;
-			margin-bottom: 0;
-		}
-
-		.newsfeedList{
-			padding-right: 50px;
-		}
-
-		.newsEntryContainer
-		{
-
-			padding:7px 7px 7px 7px;
-			border-style: solid;
-			border-width: 1px;
-			border-radius: 4px;
-			text-align: center;
-		}
-
-		.newsEntryElement
-		{
-		margin-bottom: 1em;
-					opacity: 0.5;
-		}
-
-		.tutorNews
-		{
-			background-color: #FFD198;
-
-		}
-
-		.studentNews
-		{
-			background-color: #DAEDF9;
-		}
-
 	body,input,select,textarea
 	{
 		font-family: 'Open Sans', sans-serif;
@@ -106,20 +63,22 @@
 			-ms-transition: background .5s ease-in-out;
 			transition: background .5s ease-in-out;
 	cursor: pointer;
-
-}
+	
+}	
 .courses:hover
 {
 	background: #FFD598;
 }
 
+
+	
 	.tabbable .tabs
 	{
 		list-style: none;
 		margin: 0 10px;
 		padding: 0;
 	}
-
+	
 	.tabbable .tabs li
 	{
 		list-style: none;
@@ -129,7 +88,7 @@
 		position: relative;
 		z-index: 1;
 	}
-
+	
 	.tabbable .tabs li a
 	{
 		text-decoration: none;
@@ -141,13 +100,13 @@
 		background: #84ACD2;
 		font-weight: 600;
 	}
-
+	
 	.tabbable .tabs li a.active, .tabbable .tabs li a:hover
 	{
 		border-bottom-color: #B0CDEA;
 		background: #B0CDEA;
 	}
-
+	
 	.tabcontent
 	{
 		border: 2px solid white;
@@ -155,7 +114,7 @@
 		padding: 10px;
 		border-radius: 10px;
 		background: #B0CDEA;
-	}
+	}	
 
 a
 	{
@@ -309,7 +268,7 @@ a
 				{
 					border: solid 2px #FFE3BA;
 					background: linear-gradient(to bottom, #F7F7F7 0%, #FFE3BA 500%);
-
+					
 				}
 
 			form input[type="text"],
@@ -365,13 +324,13 @@ a
 		{
 			width: 100%;
 		}
-
+		
 
 			table.competenceList
 			{
-				margin: 25px 0px 25px 0px;
+				margin: 25px 0px 25px 0px; 
 			}
-
+			
 			table.default
 			{
 				width: 100%;
@@ -413,7 +372,7 @@ a
 				table.default tbody
 				{
 				}
-
+				
 			/* Table */
 
 	/* Image */
@@ -461,38 +420,38 @@ a
 					margin: 0 auto;
 					width: auto;
 				}
-
+				
 		#tutorTable td, #tutorTable th, #tutorTable tr{
 
 			border: 1px solid white;
 			color: white;
 		}
-
+		
 		#tutorTable th{
-
+		
 		    font-size: larger;
 			font-variant: small-caps;
 			font-weight: bold;
-
+		
 		}
-
+		
 		#tutorTable div{
-
+		
 			border-bottom: 1px solid white;
 		}
-
+		
 		#tutorTable 	input{
-
+			
 			color: white;
 			background: transparent;
 		}
 
 	/* Button */
-
-
-
+	
+		
+        
 	/*	::-webkit-file-upload-button */
-
+		
 		input[type="button"],
 		input[type="submit"],
 		input[type="reset"],
@@ -552,7 +511,7 @@ a
 				line-height: 0.1em;
 				display: inline-block;
 				background: linear-gradient(to bottom, rgba(173,204,235,1) 0%,rgba(145,187,229,1) 50%,rgba(123,171,215,1) 51%,rgba(44,116,194,1) 100%);
-
+				
 				color: grey;
 				text-decoration: none;
 				border-radius: 10px;
@@ -651,10 +610,10 @@ a
 			box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.015);
 			box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.05);
 		}
-
-
-
-
+		
+		
+		
+	
 
 /*********************************************************************************/
 /* Icons                                                                         */
@@ -758,8 +717,6 @@ a
 /* Wrappers                                                                      */
 /*********************************************************************************/
 
-
-
 	#banner-wrapper
 	{
 	}
@@ -768,7 +725,6 @@ a
 	{
 		background: #DBEAF9;
 		box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.05);
-
 	}
 
 	#footer-wrapper
