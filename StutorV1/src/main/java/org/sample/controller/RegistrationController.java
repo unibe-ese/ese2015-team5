@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.sample.controller.exceptions.InvalidUserException;
 import org.sample.controller.pojos.SignupForm;
 import org.sample.controller.service.UserService;
+import org.sample.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,8 +27,8 @@ public class RegistrationController {
 	
 	@Autowired
 	UserService userService;
-	
 
+	
 	/*
 	 *	Here we'd like to create the controller logic for the registration process
 	 *

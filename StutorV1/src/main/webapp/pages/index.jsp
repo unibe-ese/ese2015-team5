@@ -39,13 +39,11 @@
     <input type="text" name="searchQuery" path="searchQuery"/>
     <input type="submit" value="Search" Style="height: 1.7em"></input>
 </form>
-<table>
+<table Style="width: 20em;">
     <c:forEach items="${competences}" var="competence">
         <tr>
-            <td>
+            <td class="courses" onclick="location.href='profile/${competence.owner.id}'">
                 ${competence.description}
-                <button class="btn btn-primary"
-                                       onclick="location.href='profile/${competence.owner.id}'">Visit</button>
             </td>
         </tr>
     </c:forEach>
@@ -66,9 +64,6 @@
       </tr>
   </c:forEach>
   </ul>
-
-
-
 
 
 

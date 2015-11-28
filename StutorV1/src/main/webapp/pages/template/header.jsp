@@ -47,32 +47,15 @@
 					<!-- Nav -->
 						<nav id="nav">
 							<ul>
-							<!--<li><a href="index.html">Welcome</a></li>
+							<!-- <li><a href="index.html">Welcome</a></li>  -->
 								<li>
-									<a href="">Dropdown</a>
+									<a href="" Style="text-weight: 1000; background: linear-gradient(to bottom, rgba(255,241,221,1) 0%,rgba(255,227,186,1) 48%,rgba(255,213,152,1) 51%,rgba(255,200,120,1) 100%)">Navigation Menu</a>
 									<ul>
-										<li><a href="#">Learn More!</a></li>
-										<li><a href="#">About Stutor</a></li>
-										<li>
-											<a href="">Where Your Money Goes</a>
-											<ul>
-												<li><a href="#">Mario</a></li>
-												<li><a href="#">aka The God</a></li>
-												<li><a href="#">Jesus</a></li>
-												<li><a href="#">A freaking baller</a></li>
-											</ul>
-										</li>
+										<li><a href="/Skeleton/">Search courses</a></li>
+										<li><a href="/Skeleton/profile">Profile</a></li>
+										<li><a href="/Skeleton/logout" Style="text-decoration: underline">Logout</a>
 									</ul>
-								</li> -->
-								<li>
-									<form action="/Skeleton/profile" />
-   							 			<input type="submit" value="Profile"/>
-									</form></li>
-							<!-- 	<li class="current"><a href="no-sidebar.html">No Sidebar</a></li>  -->
-								<li>
-									<form action="/Skeleton/logout"/>
-									   <input type="submit" value="Logout"/>
-									</form>
+								</li>
 								</li>
 							</ul>
 						</nav>

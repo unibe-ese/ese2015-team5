@@ -95,6 +95,24 @@
 		background-color: #F5F7F7;
 	}
 
+.courses
+{
+	text-indent: 1.5em;
+	background: linear-gradient(to left, #84ACD2, #DBEAF9);
+	border-radius: 10px;
+	-moz-transition: background .5s ease-in-out;
+			-webkit-transition: background .5s ease-in-out;
+			-o-transition: background .5s ease-in-out;
+			-ms-transition: background .5s ease-in-out;
+			transition: background .5s ease-in-out;
+	cursor: pointer;
+
+}
+.courses:hover
+{
+	background: #FFD598;
+}
+
 	.tabbable .tabs
 	{
 		list-style: none;
@@ -348,6 +366,7 @@ a
 			width: 100%;
 		}
 
+
 			table.competenceList
 			{
 				margin: 25px 0px 25px 0px;
@@ -370,13 +389,13 @@ a
 
 				table.default td
 				{
-					padding: 0.5em 1em 0.5em 1em;
+					border: 1px solid white;
+					padding: 0.5rem;
 				}
 
 				table.default th
 				{
 					text-align: left;
-					padding: 0.5em 1em 0.5em 1em;
 					font-weight: 800;
 					margin: 0 0 1em 0;
 				}
@@ -394,6 +413,8 @@ a
 				table.default tbody
 				{
 				}
+
+			/* Table */
 
 	/* Image */
 
@@ -441,7 +462,36 @@ a
 					width: auto;
 				}
 
+		#tutorTable td, #tutorTable th, #tutorTable tr{
+
+			border: 1px solid white;
+			color: white;
+		}
+
+		#tutorTable th{
+
+		    font-size: larger;
+			font-variant: small-caps;
+			font-weight: bold;
+
+		}
+
+		#tutorTable div{
+
+			border-bottom: 1px solid white;
+		}
+
+		#tutorTable 	input{
+
+			color: white;
+			background: transparent;
+		}
+
 	/* Button */
+
+
+
+	/*	::-webkit-file-upload-button */
 
 		input[type="button"],
 		input[type="submit"],
@@ -453,7 +503,6 @@ a
 			line-height: 0.1em;
 			display: inline-block;
 			background: linear-gradient(to bottom, rgba(246,248,249,1) 0%,rgba(229,235,238,1) 48%,rgba(215,222,227,1) 51%,rgba(245,247,249,1) 100%);
-
 			color: grey;
 			text-decoration: none;
 			border-radius: 10px;
@@ -602,6 +651,10 @@ a
 			box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.015);
 			box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.05);
 		}
+
+
+
+
 
 /*********************************************************************************/
 /* Icons                                                                         */
