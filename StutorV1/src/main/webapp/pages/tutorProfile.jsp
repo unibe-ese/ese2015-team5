@@ -48,9 +48,11 @@
 </table>
 
 <button class="btn btn-primary"
-                       onclick="location.href='profile/lastWeek/${week.weekDays[0].dateString}/'">Last Week</button>
+                       onclick="location.href='profile/lastWeek/${week.weekDays[0].dateString}/'"
+                       Style="height:2em;">Last Week</button>
 <button class="btn btn-primary"
-                       onclick="location.href='profile/nextWeek/${week.weekDays[0].dateString}/'">Next Week</button>
+                       onclick="location.href='profile/nextWeek/${week.weekDays[0].dateString}/'"
+                       Style="height:2em;">Next Week</button>
 
 <table id="tutorTable">
 <thead>

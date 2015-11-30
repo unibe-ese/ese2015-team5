@@ -54,15 +54,15 @@
         <ul>
           <c:forEach items="${day.courses}" var="course">
             <li>
-              <div Style="text-align: center">${course.description}</div>
+              
               <c:if test="${course.available == true}">
                 <form action="./application" method="post">
                   <input name="courseId" value="${course.id}" type="hidden"/>
-                  <input type="submit" value="${course.id}"/>
+                  <input type="submit" value="${course.description}"/>
                 </form>
               </c:if>
               <c:if test="${course.available == false}">
-
+				<div Style="text-align: center">${course.description}</div>
               </c:if>
             </li>
           </c:forEach>
