@@ -74,8 +74,8 @@
 	
 		<c:forEach items="${week.weekDays}" var="day">
 			<th>
-				<p>${day.name} <br>
-				${day.dateString}</p>
+				${day.name} <br>
+				${day.dateString}
 			</th>
 		</c:forEach>
 	</tr>
