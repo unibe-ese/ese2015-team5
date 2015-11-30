@@ -67,7 +67,7 @@ public class ProfileController {
 	 * 
 	 * 
 	 * @param model
-	 * @return
+	 * @return 
 	 */
     @RequestMapping( value = "/profile")
     public ModelAndView gotoProfile(Model model){
@@ -265,7 +265,6 @@ public class ProfileController {
 	
 	@RequestMapping(value="/profile/application", method=RequestMethod.POST)
 	public String addApplication(@RequestParam("courseId") long courseId){
-		System.out.println(courseId);
 		ApplicationForm application = buildAppForm(courseId);
 		if(courseService.courseIsAvailable(application.getCourse()) && appService.notDuplicate(application)){
 			appService.saveApplication(application);

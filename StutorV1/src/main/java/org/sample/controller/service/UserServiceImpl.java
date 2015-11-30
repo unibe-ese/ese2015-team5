@@ -92,6 +92,8 @@ public class UserServiceImpl implements UserService{
         user.setEnableTutor(false);
         user.setPic(profilePicture);
         user.setAboutYou(null);
+        user.setHouerlyRate(0);
+        user.setBalance(0);
         userDao.save(user);
         
         return user;
