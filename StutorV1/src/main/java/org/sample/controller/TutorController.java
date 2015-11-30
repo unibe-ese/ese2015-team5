@@ -149,7 +149,7 @@ public class TutorController {
 				redirectAttributes.addFlashAttribute("week", courseService.buildCalendar(date));
 			} catch (ParseException e) {e.printStackTrace();}	
 		}
-    	return "redirect:/profile";
+    	return "redirect:/profile?tab=tab2";
     }
 	
 	@RequestMapping(value="/profile/nextWeek/{dateString}/", method=RequestMethod.GET)

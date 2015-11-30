@@ -1,15 +1,3 @@
-$(document).ready(function(){
-	var self = this;
-	hideAll();
-	showStoredTab();
-    $(".tabbable").find(".tabs").find("a").click(function(){
-        var id = $(this).attr("href");
-		hideAll();
-		storeTab(id);
-		showTab(id);
-        return false;
-    });
-});
 function hideAll(){
 	$(".tabbable").find(".tabs").find("a").removeClass("active");
 	$(".tabbable").find(".tab").hide();
@@ -17,35 +5,39 @@ function hideAll(){
 
 function showTab(id){
 	this.hideAll();
+	if(!id){
+		id = "#tab1";
+	}
 	$(id + "btn").addClass("active");
 	$(id).show();
 }
 
-function storeTab(id){
-	location.hash = id;
+function getTab(){
+  var query = window.location.search.substring(1);
+  var vars = query.split("&");
+  for (var i=0;i<vars.length;i++) {
+    var pair = vars[i].split("=");
+    if (pair[0] == "tab") {
+		return pair[1];
+    }
+  }
 }
 
-function showStoredTab(){
-	if (location.hash){
-		showTab(location.hash);
-	} else {
-		showTab("#tab1");
-	}
-}
 
-/*
 $(document).ready(function(){
-    $(".tabbable").find(".tab").hide();
-    $(".tabbable").find(".tab").first().show();
-    $(".tabbable").find(".tabs li").first().find("a").addClass("active");
+	console.log("ready");
+	id = getTab();
+	console.log(id);
+	if(id){
+		showTab("#" + id);
+	} else {
+		showTab();
+	}
     $(".tabbable").find(".tabs").find("a").click(function(){
         tab = $(this).attr("href");
-        $(".tabbable").find(".tab").hide();
-        $(".tabbable").find(".tabs").find("a").removeClass("active");
-        $(tab).show();
-        $(this).addClass("active");
+		hideAll();
+		showTab(tab);
         return false;
     });
 });
 
-*/
