@@ -17,7 +17,7 @@
 	</div>
 <form:form method="post" modelAttribute="addCompetenceForm" action="./addCompetence" id="addComp">
   <div>
-		<label for="houerlyRate">Add your tutorinc Subjects</label>
+		<label for="houerlyRate">Add your tutoring Subjects</label>
     <form:input type="text" path="description"/>
     <form:errors path="description" cssClass="help-inline" element="span"/>
   </div>
