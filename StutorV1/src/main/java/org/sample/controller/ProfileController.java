@@ -38,9 +38,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
- * Handles requests that display the profile and modify the {@link org.sample.model.User}.
+ * Handles requests that display the profile and modify the {@link org.sample.model.User User}.
  * Contains methods to modify the user information, change the {@link ProfilePicture}, and add/remove
  * {@link Competence}s.
+ * 
  * 
  * @author ESE Team5
  *
@@ -63,7 +64,8 @@ public class ProfileController {
 	 * Displays the correct profile page.
 	 * 
 	 * Receives the model from the previous page. The model is filled with the necessary
-	 * Objects, depending on if it already contains an instance of them. 
+	 * Objects, depending on if it already contains an instance of them.
+	 * {@link #buildProfileModel(Model model, User user)} 
 	 * 
 	 * 
 	 * @param model
@@ -86,6 +88,17 @@ public class ProfileController {
     	return modelAndView;
     }
 
+    /**
+     * Builds a model for the profile page of the {@link User}.
+     * Checks if the model already contains certain attributes ({@link org.sample.controller.pojos.ModifyUserForm modifyUserForm}, {@link org.sample.controller.pojos.AddCompetenceForm addCompetenceForm}
+     * {@link org.sample.model.Week week}, {@link org.sample.controller.pojos.AddCourseForm addCourseForm}.
+     * The modifyUserForm is filled with the user data it will display in the profile page. {@link #buildModForm(User user)}.
+     * 
+     * 
+     * @param model
+     * @param user
+     * @return
+     */
 	private Model buildProfileModel(Model model, User user) {
 		model.addAttribute("user", user);	
 
