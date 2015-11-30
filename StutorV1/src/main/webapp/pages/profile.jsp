@@ -11,11 +11,11 @@
         <li><a id="tab2btn" href="#tab2">Tutoring Information</a></li>
     </ul>
     <div class="tabcontent">
-        <div id="tab1" class="tab">
-            <c:import url="nonTutorProfile.jsp" />
-        </div>
         <div id="tab2" class="tab">
             <c:import url="tutorProfile.jsp" />
+        </div>
+        <div id="tab1" class="tab">
+            <c:import url="nonTutorProfile.jsp" />
         </div>
     </div>
 </div>

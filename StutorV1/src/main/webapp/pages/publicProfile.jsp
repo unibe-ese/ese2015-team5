@@ -9,33 +9,29 @@
   <link rel="stylesheet" href="/Skeleton/css/skel.css" />
   <link rel="stylesheet" href="/Skeleton/css/style.css" />
   <link rel="stylesheet" href="/Skeleton/css/style-desktop.css" />
-<ul>
-  <li>
-<div>
-<img src="/Skeleton/imageDisplay$userId=${visitee.id}" style="height:100px; width:100px"/>
+  
+<div Style="border: 2px solid white; border-radius: 10px; background: #B0CDEA"> 
+	<ul Style="display: inline-flex;">
+		<li><img src="/Skeleton/imageDisplay$userId=${visitee.id}"style="height:100px; width:100px; margin-right: 3em"/></li>
+		<li Style="margin: 1em 3em 0 0; width: 10em">
+			<div Style="background: linear-gradient(to top, #B0CDEA, #DBEAF9); border-radius: 5px; text-align: center">
+				${visitee.firstName}
+				${visitee.lastName}
+			</div>
+		</li>
+		<li Style="margin-top: 1em; margin-right:3em">
+			<div Style="background: linear-gradient(to top, #B0CDEA, #DBEAF9); border-radius: 5px; text-align: justify">
+				<div Style="margin: 0em 1em 0em 1em">
+					${visitee.aboutYou}
+				</div>
+			</div>
+		</li>
+	</ul>	
 </div>
-</li>
-<li>
-<div>
-  <ul>
-    <li>
-      ${visitee.firstName}
-    </li>
-    <li>
-      ${visitee.lastName}
-    </li>
-  </ul>
-</div>
-</li>
-</ul>
 
-<div>
-  ${visitee.aboutYou}
-</div>
+
 <c:forEach items="${visitee.competences}" var="competence">
-    <li>
-        ${competence.description}
-    </li>
+	<li Style="margin-top: 1em; margin-left: 2em; background: linear-gradient(to left, #5A86B0, #DBEAF9); border-radius: 10px; width: 20%">${competence.description}</li>
 </c:forEach>
 
 </div>
@@ -84,7 +80,6 @@
 		
 	</c:forEach>
 </table> 
-   
 </div>
 
 
