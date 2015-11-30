@@ -402,14 +402,46 @@ a
 					margin: 0 auto;
 					width: auto;
 				}
-				
-		#tutorTable td, #tutorTable th, #tutorTable tr{
+			
+		.courseTable {
+			width: 95%;
+			margin: auto;
+			border-collapse:collapse; 
+		}
+	
+		.courseTable tr:hover > td{
+			background-color: #DBEAF9;
+		}
+		
+		.last_week_btn {
+			float: left;
+		}
+		
+		.next_week_btn{
+			float: right;
+		}
+		
+		
+		
+		.courseTable td, .courseTable th, .courseTable tr{
 
 			border: 1px solid white;
 			color: white;
 		}
 		
-		#tutorTable th{
+		.available {
+		
+			background-color: #5A86B0;
+		
+		}
+		
+		.taken {
+		
+			background-color: #FFC878;
+		
+		}
+		
+		.courseTable th{
 		
 		    font-size: larger;
 			font-variant: small-caps;
@@ -417,15 +449,29 @@ a
 		
 		}
 		
-		#tutorTable div{
+		.courseTable div {
 		
 			border-bottom: 1px solid white;
+			height: 1.5em;
 		}
 		
-		#tutorTable 	input{
+		.table_course {
+		}
+		
+		.table_time{
+			white-space: nowrap;
+		}
+		
+		.courseTable .tableBtn {
 			
+			width:100%;
+			height:100%;
 			color: white;
 			background: transparent;
+		}
+		
+		.courseTable .tableBtn:hover {
+			background:transparent;
 		}
 
 	/* Button */
