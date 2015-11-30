@@ -34,7 +34,7 @@
 								<form action="/Skeleton/profile/setGradeForCompetence/${competence.id}" method="post">
 									<label class="form-label-align" for="competenceGrade">Grade</label>
 									<input class="form-input-align" type="text" name="competenceGrade" value="${competence.grade}"/>
-									<input class="form-button-align" type="submit" value="Save Grade"/>
+									<input class="form-button-align" type="submit" value="Save"/>
 								</form>
 						</td>
             <td class="competence-List-Delete">
