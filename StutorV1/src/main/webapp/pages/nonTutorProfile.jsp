@@ -13,7 +13,7 @@
         </div>
 
         <div class="control-group">
-            <label class="control-label" for="field-enableTut" >I want to offer Tutor-Services <img id="help-picture" height="30px" width="30px" src="img/question.png" title="Enter the amount of Swiss Franks you want to be compensated with for your efforts. Your rate applies to all your tutoring subjects"></label>
+            <label class="control-label" for="field-enableTut" >I want to offer Tutor-Services <img id="help-picture" height="30px" width="30px" src="img/question.png" title="If you want to be a tutor and offer your services for money you can do this by checking this box. Don't forget to save after!"></label>
             <div class="controls">
                 <form:checkbox path="enableTutor" id="field-enableTut" tabindex="1" element="span" title="Check this to become a Tutor for Stutor!"/>
             </div>
