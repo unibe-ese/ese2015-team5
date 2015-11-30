@@ -6,7 +6,6 @@ import org.sample.controller.exceptions.InvalidUserException;
 import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.pojos.NewsFeedArticleInterface;
 import org.sample.controller.pojos.SignupForm;
-import org.sample.model.Course;
 import org.sample.model.ProfilePicture;
 import org.sample.model.User;
 

@@ -36,4 +36,8 @@ public interface CourseService {
 
 	Collection<? extends Course> findStudenCoursesFor(User user);
 
+	void addToBalance(Course course);
+
+	void deleteCourse(Course course);
+
 }

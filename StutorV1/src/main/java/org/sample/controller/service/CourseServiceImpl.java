@@ -130,6 +130,9 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	public boolean courseIsAvailable(Course course) {
+		if(course == null){
+			return false;
+		}
 		return course.getCustomer() == null ? true : false;
 	}
 
@@ -162,5 +165,20 @@ public class CourseServiceImpl implements CourseService {
 		return studentCourses;
 	}
 
+
+	@Override
+	public void addToBalance(Course course) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void deleteCourse(Course course) {
+		course.setCustomer(null);
+		course.setOwner(null);
+		courseDao.delete(course);
+		
+	}
 
 }

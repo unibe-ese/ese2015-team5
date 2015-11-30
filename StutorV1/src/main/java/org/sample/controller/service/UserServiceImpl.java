@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 import org.sample.controller.exceptions.InvalidUserException;
@@ -165,8 +166,32 @@ public class UserServiceImpl implements UserService{
 		        return c1.getDate().compareTo(c2.getDate());
 		    }
 		});
+		removePastCourses(courses);
 		circumciseList(courses);
 		return buildArticles(courses, user);
+	}
+
+	private void removePastCourses(List<Course> courses) {
+		Iterator<Course> iter = courses.iterator();
+		Course course;
+		while(iter.hasNext()){
+			course = iter.next();
+			if(course.isInThePast()){
+				updateBalance(course.getOwner());
+				courseService.deleteCourse(course);
+				
+			}
+		}
+		
+	}
+
+	private void updateBalance(User owner) {
+		float percentage = Math.round(owner.getHouerlyRate() * 100) / 100;
+		System.out.println(owner.getHouerlyRate());
+		System.out.println(percentage);
+		owner.setBalance(owner.getBalance() + percentage);
+		userDao.save(owner);
+		
 	}
 
 	private void removeNotBookedCourses(List<Course> courses) {
@@ -212,7 +237,5 @@ public class UserServiceImpl implements UserService{
 		news.setPartner(c.getCustomer());
 		return news;
 	}
-
-
 
 }

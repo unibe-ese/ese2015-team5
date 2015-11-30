@@ -41,6 +41,8 @@ public class User {
     private String password;
     
     private float houerlyRate;
+    
+    private float balance;
 
 	private String aboutYou;
     
@@ -52,7 +54,7 @@ public class User {
     
     private boolean enableTutor;
     
-    @OneToMany(fetch = FetchType.EAGER, targetEntity=Course.class, mappedBy="owner", cascade=CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, targetEntity=Course.class, mappedBy="owner", cascade=CascadeType.DETACH)
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Course> courses;
     
@@ -210,6 +212,14 @@ public class User {
 
 	public void setHouerlyRate(float houerlyRate) {
 		this.houerlyRate = houerlyRate;
+	}
+
+	public float getBalance() {
+		return balance;
+	}
+
+	public void setBalance(float balance) {
+		this.balance = balance;
 	}
 	
 }
