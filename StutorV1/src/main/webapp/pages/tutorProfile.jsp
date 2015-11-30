@@ -51,13 +51,10 @@
     </c:forEach>
 </table>
 <label><b>Offer possible tutoring time slots</b><img id="help-picture" height="30px" width="30px" src="img/question.png" title="In time table you can offer hourly slots to every full hour.Click on the vertically listed slots to display your availability"></label>
-<button class="btn btn-primary"
-<<<<<<< HEAD
-                       onclick="location.href='profile/lastWeek/${week.weekDays[0].dateString}/'"
-                       Style="height:2em;">Last Week</button>
-=======
-                       onclick="location.href='profile/lastWeek/${week.weekDays[0].dateString}/'">Previous Week</button>
->>>>>>> 78e6dd79bd5259d0918d0e7da251ad1fb3d99508
+<button class="btn btn-primary" 
+		Style="height:2em;"
+		onclick="location.href='profile/lastWeek/${week.weekDays[0].dateString}/'">Previous Week</button>
+
 <button class="btn btn-primary"
                        onclick="location.href='profile/nextWeek/${week.weekDays[0].dateString}/'"
                        Style="height:2em;">Next Week</button>
