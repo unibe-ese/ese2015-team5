@@ -17,11 +17,7 @@
 	</div>
 <form:form method="post" modelAttribute="addCompetenceForm" action="./addCompetence" id="addComp">
   <div>
-<<<<<<< HEAD
-		<label for="houerlyRate">Add your tutoring Subjects</label>
-=======
 		<label for="houerlyRate">Add your tutoring Subjects  <img id="help-picture" height="30px" width="30px" src="img/question.png" title="Add subjects in which you feel like you can tuter other students. You can create a new subject or choose existing ones that appear when you type into the field below. Add your grade after."></label>
->>>>>>> 78e6dd79bd5259d0918d0e7da251ad1fb3d99508
     <form:input type="text" path="description"/>
     <form:errors path="description" cssClass="help-inline" element="span"/>
   </div>
