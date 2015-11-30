@@ -43,22 +43,27 @@
     <c:forEach items="${competences}" var="competence">
         <tr>
             <td class="courses" onclick="location.href='profile/${competence.owner.id}'">
-                ${competence.description}
+                ${competence.description}, ${competence.grade}
             </td>
         </tr>
     </c:forEach>
-    <h1>Click course to view tutor profile</h1>
-    <c:forEach items="${applications}" var="application">
-        <tr>
-            <td>
-                ${application.master.firstName}
-                ${application.slave.firstName}
-                <button onclick="location.href='./accept/${application.id}'">Accept</button>
-                <button onclick="location.href='./decline/${application.id}'">Decline</button>
-            </td>
-        </tr>
-    </c:forEach>
-</table>
+  </table>
+  </ul>
+
+
+  <ul class="applicationsList" style="float:right">
+  <h1>Applications:</h1>
+  <c:forEach items="${applications}" var="application">
+      <tr>
+          <td>
+              ${application.master.firstName}
+              ${application.slave.firstName}
+              <button onclick="location.href='./accept/${application.id}'">Accept</button>
+              <button onclick="location.href='./decline/${application.id}'">Decline</button>
+          </td>
+      </tr>
+  </c:forEach>
+  </ul>
 
 
 
