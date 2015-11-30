@@ -125,7 +125,7 @@
 
 	.competence-List-Entry
 	{
-		width:100%;
+		width:70%;
 		height:50px;
 		display:inline-flex;
 	}
@@ -716,16 +716,6 @@ a
 		}
 
 
-
-		#field-enableTut
-		{
-			zoom: 1.8;
-		}
-		
-		#help-picture
-		{
-			border: none;
-		}
 
 
 
