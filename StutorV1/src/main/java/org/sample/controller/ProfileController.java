@@ -83,7 +83,6 @@ public class ProfileController {
     		modelAndView = new ModelAndView("profile", buildProfileModel(model, user).asMap());
     	}
     	assert modelAndView != null;
-    	System.out.println(model.asMap().get("houerlyError"));
     	return modelAndView;
     }
 
@@ -204,7 +203,6 @@ public class ProfileController {
 	
 	@RequestMapping(value="/profile/{userId}", method=RequestMethod.GET)
 	public String showPublicProfile(@PathVariable long userId, Model model){
-		System.out.println("now in profile");
 		User visitee = userService.getUserById(userId);
 		User visiter = userService.getCurrentUser();
 		if(visitee == null){

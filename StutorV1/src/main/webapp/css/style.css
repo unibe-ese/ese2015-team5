@@ -114,7 +114,11 @@
 		background-color: #F5F7F7;
 	}
 
-
+	.help-inline
+	{
+		color: red;
+		padding-left: 5px;
+	}
 
 	.competence-List-Entry
 	{
@@ -332,6 +336,17 @@ a
 				margin: 0 0 0.8em 0;
 				font-size: 0.8em;
 				color: #444;
+			}
+
+			#modifyUserForm input[type=text],
+			#modifyUserForm input[type=password]
+			{
+				margin: 0 0 0 0;
+			}
+
+			#modifyUserForm label
+			{
+				margin: 0 0 0.8em 0;
 			}
 
 			form input[type="text"],

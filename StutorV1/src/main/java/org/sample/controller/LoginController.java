@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 
 /**
  * Handles requests that have to do with logging in. 
@@ -15,20 +14,6 @@ import org.springframework.web.servlet.View;
 @Controller
 public class LoginController {
 
-	
-	/*
-	 *	Here we'd like to create the controller logic for the login process
-	 *
-	 *	It is capable of:
-	 *	
-	 *	+Handling the login page get request
-	 *	+Handling multiple login failure
-	 *	
-	 *	+
-	 *	+
-	 *
-	 * 	
-	 */
 	
 	/**
 	 * This method handles the GET request for the login page.
