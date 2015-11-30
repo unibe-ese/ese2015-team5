@@ -472,6 +472,12 @@ a
 			/* Table */
 
 	/* Image */
+	
+	img
+	{
+		border: 1px solid #FFC878; border-radius: 5px;
+		margin: 1em 1em 1em 1em;
+	}
 
 		.image
 		{
@@ -548,6 +554,7 @@ a
 
 	/*	::-webkit-file-upload-button */
 
+		.btn, .btn-primary
 		input[type="button"],
 		input[type="submit"],
 		input[type="reset"],
@@ -709,6 +716,7 @@ a
 		}
 
 
+
 		#field-enableTut
 		{
 			zoom: 1.8;
@@ -718,6 +726,7 @@ a
 		{
 			border: none;
 		}
+
 
 
 /*********************************************************************************/
