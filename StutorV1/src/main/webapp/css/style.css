@@ -100,6 +100,13 @@
 		{
 			background-color: #DAEDF9;
 		}
+		
+	
+	.help-inline
+	{
+		color: red;
+		font-weight: 600;
+	}
 
 	body,input,select,textarea
 	{
@@ -329,7 +336,7 @@ a
 			{
 				display: block;
 				font-weight: 800;
-				margin: 0 0 0.8em 0;
+				margin: 1.5em 0 0.8em 0;
 				font-size: 0.8em;
 				color: #444;
 			}
@@ -345,7 +352,7 @@ a
 				width: 20em;
 				border-radius: 8px;
 				border: solid 2px #5A86B0;
-				margin: 0px 0px 2em 0px;
+				margin: 0px 0px 0em 0px;
 				background: #F7F7F7;
 			}
 
@@ -563,6 +570,7 @@ a
 			-o-transition: background .25s ease-in-out;
 			-ms-transition: background .25s ease-in-out;
 			transition: background .25s ease-in-out;
+			margin: 1px 0px 5px 0px;
 		}
 
 			input[type="button"]:hover,

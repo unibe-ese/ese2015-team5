@@ -77,7 +77,7 @@ public class RegistrationController {
 			att.addFlashAttribute("org.springframework.validation.BindingResult.signupForm", result);
 
 			if(signupForm.getProfilePic().isEmpty()){
-				att.addFlashAttribute("pictureError", "please choose a picture");
+				att.addFlashAttribute("pictureError", "Please choose a picture");
 			}
 			
 			return "redirect:register";

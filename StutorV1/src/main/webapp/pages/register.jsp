@@ -53,7 +53,9 @@
 	        <div>
 	          <form:input type="file" path="profilePic"/>
 	          <c:if test="${not empty pictureError}">
+	             <div class="help-inline">
 	             ${pictureError}
+	          	 </div>
 	          </c:if>
 	        </div>
 	        <input type="submit" value="Sign up"/>
