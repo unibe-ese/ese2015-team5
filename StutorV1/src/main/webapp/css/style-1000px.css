@@ -18,18 +18,18 @@
 	{
 		font-size: 1.75em;
 	}
-	
+
 	h3
 	{
 		font-size: 1.1em;
 	}
-	
+
 	/* List */
-	
+
 		ul.style2
 		{
 		}
-		
+
 			ul.style2 li
 			{
 				line-height: 2.25em;
@@ -63,17 +63,17 @@
 	{
 		padding: 2em 0 0 0;
 	}
-	
+
 	#features-wrapper
 	{
 		padding: 1.75em 0 1.75em 0;
 	}
-	
+
 	#main-wrapper
 	{
 		padding: 4em 0 4em 0;
 	}
-	
+
 	#footer-wrapper
 	{
 		padding: 4em 0 6em 0;
@@ -99,7 +99,7 @@
 	.dropotron
 	{
 	}
-	
+
 		.dropotron.level-0
 		{
 			font-size: 0.9em;
@@ -124,7 +124,7 @@
 		{
 			font-size: 2.25em;
 		}
-		
+
 /*********************************************************************************/
 /* Footer                                                                        */
 /*********************************************************************************/

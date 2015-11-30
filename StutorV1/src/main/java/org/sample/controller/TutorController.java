@@ -197,11 +197,51 @@ public class TutorController {
 	}
 	
 	@RequestMapping(value="/profile/houerlyRate", method=RequestMethod.POST)
-	public String setHouerlyRate(@RequestParam("houerlyRate") float houerlyRate, HttpSession session){
+	public String setHouerlyRate(@RequestParam("houerlyRate") String houerlyRateString, HttpSession session,
+			RedirectAttributes redirAttributes){
 		User user = (User) session.getAttribute("user");
-		System.out.println(houerlyRate);
-		userService.setHouerlyRate(user, houerlyRate);
+
+		System.out.println(houerlyRateString);
+		float houerlyRate;
+		try{
+			houerlyRate = Float.parseFloat(houerlyRateString);
+		}
+		catch(NumberFormatException e){
+			redirAttributes.addFlashAttribute("houerlyError", "You can only get paied in money");
+			return "redirect:/profile";
+		}
+		if(houerlyRate < 0){
+			redirAttributes.addFlashAttribute("houerlyError", "Houerly rate cannot be below zero");
+		}
+		else{
+			userService.setHouerlyRate(user, houerlyRate);
+		}
 		return "redirect:/profile";
+	}
+	
+	@RequestMapping(value="/profile/setGradeForCompetence/{compId}", method=RequestMethod.POST)
+	public String setGradeForComp(@PathVariable("compId") long compId, @RequestParam("competenceGrade") String gradeString, 
+			RedirectAttributes redirAttributes){
+		System.out.println("SetGrade[CompetenceId=" + compId + ", Grade=" + gradeString + "]");
+		float grade;
+		//TODO: check for null Competence?
+		try{
+			grade = Float.parseFloat(gradeString);
+		}
+		catch(NumberFormatException e){
+			redirAttributes.addFlashAttribute("gradeError", "Only numbers");
+			return "redirect:/profile";
+		}
+		if(!gradeIsValid(grade)){
+			redirAttributes.addFlashAttribute("gradeError", "Grade not valid");
+			return "redirect:/profile";
+		}
+		compService.setGrade(compId, grade);
+		return "redirect:/profile";
+	}
+
+	private boolean gradeIsValid(float grade) {
+		return true;
 	}
 }
 

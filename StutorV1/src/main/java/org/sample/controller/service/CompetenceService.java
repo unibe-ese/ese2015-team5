@@ -22,4 +22,6 @@ public interface CompetenceService {
 	
 	public List<Competence> findCompetenceLike(String string);
 
+	public Competence setGrade(long compId, float grade);
+
 }

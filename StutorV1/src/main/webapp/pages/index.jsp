@@ -6,6 +6,34 @@
 
 <c:import url="template/header.jsp" />
 
+  <ul class="newsfeedList">
+    <h1>Rendez Vous</h1>
+    <div class="newsfeed">
+      <li>
+        <c:forEach items="${newsfeed}" var="news">
+          <ul class="newsEntryElement">
+            <div class="${news.tutorCourse ? 'newsEntryContainer tutorNews' : 'newsEntryContainer studentNews'}">
+              <c:if test="${news.tutorCourse == true}">
+                Course
+              </c:if>
+              <c:if test="${news.tutorCourse == false}">
+                Lesson
+              </c:if>
+              <li class="newsEntryListing">
+                <ul class="newsEntryListing-date">
+                ${news.dateRepresentation}
+              </ul>
+              <ul class="newsEntryListing-name">
+                ${news.partner.firstName}
+                ${news.partner.lastName}
+              </ul>
+            </div>
+          </ul>
+        </c:forEach>
+      </li>
+    </div>
+  </ul>
+  <ul class="coursesList">
 <h1>Search for your courses:</h1>
 <form action="/Skeleton/findCompetenceLike"  commandName="searchQuery" method="get" Style="width: 50em; display:inline-flex">
     <input type="text" name="searchQuery" path="searchQuery"/>
@@ -33,6 +61,5 @@
 </table>
 
 
-<p id="demo"></p>
 
 <c:import url="template/footer.jsp" />

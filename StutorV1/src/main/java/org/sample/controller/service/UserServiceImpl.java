@@ -2,12 +2,16 @@ package org.sample.controller.service;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 import org.sample.controller.exceptions.InvalidUserException;
 import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.pojos.NewsFeedArticleInterface;
 import org.sample.controller.pojos.SignupForm;
+import org.sample.controller.pojos.StudentNews;
 import org.sample.controller.pojos.TutorNews;
 import org.sample.model.Competence;
 import org.sample.model.Course;
@@ -88,6 +92,8 @@ public class UserServiceImpl implements UserService{
         user.setEnableTutor(false);
         user.setPic(profilePicture);
         user.setAboutYou(null);
+        user.setHouerlyRate(0);
+        user.setBalance(0);
         userDao.save(user);
         
         return user;
@@ -145,7 +151,8 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User setHouerlyRate(User user, float houerlyRate) {
-		user.setHouerlyRate(houerlyRate);
+		double rate = Math.round(houerlyRate * 100.0) / 100.0;
+		user.setHouerlyRate((float) rate);
 		return userDao.save(user);
 	}
 
@@ -153,29 +160,72 @@ public class UserServiceImpl implements UserService{
 	public List<NewsFeedArticleInterface> buildNewsFeed() {
 		User user = getCurrentUser();
 		List<Course> courses = user.getCourses();
+		removeNotBookedCourses(courses);
 		courses.addAll(courseService.findStudenCoursesFor(user));
-		System.out.println(courses.size());
-		
+		Collections.sort(courses, new Comparator<Course>() {
+		    @Override
+		    public int compare(Course c1, Course c2) {
+		        return c1.getDate().compareTo(c2.getDate());
+		    }
+		});
+		removePastCourses(courses);
+		circumciseList(courses);
 		return buildArticles(courses, user);
+	}
+
+	private void removePastCourses(List<Course> courses) {
+		Iterator<Course> iter = courses.iterator();
+		Course course;
+		while(iter.hasNext()){
+			course = iter.next();
+			if(course.isInThePast()){
+				updateBalance(course.getOwner());
+				courseService.deleteCourse(course);
+				
+			}
+		}
+		
+	}
+
+	private void updateBalance(User owner) {
+		float percentage = Math.round(owner.getHouerlyRate() * 100) / 100;
+		System.out.println(owner.getHouerlyRate());
+		System.out.println(percentage);
+		owner.setBalance(owner.getBalance() + percentage);
+		userDao.save(owner);
+		
+	}
+
+	private void removeNotBookedCourses(List<Course> courses) {
+		List<Course> toRemove = new ArrayList<Course>();
+		for(Course c : courses){
+			if(c.getCustomer() == null)
+				toRemove.add(c);
+		}
+		courses.removeAll(toRemove);		
+	}
+
+	private void circumciseList(List<Course> courses) {
+		for(int i = 10; i < courses.size(); i++){
+			courses.remove(i);
+		}
 	}
 
 	private List<NewsFeedArticleInterface> buildArticles(List<Course> courses,
 			User user) {
 		List<NewsFeedArticleInterface> news = new ArrayList<NewsFeedArticleInterface>();
-
 		for(Course c : courses){
 			if(user.equals(c.getOwner()))
 				news.add(buildTutorNews(c));
 			else if(user.equals(c.getCustomer())){
 				news.add(buildStudentNews(c));
-			}
-			
+			}	
 		}
 		return news;
 	}
 
 	private NewsFeedArticleInterface buildStudentNews(Course c) {
-		TutorNews news = new TutorNews();
+		StudentNews news = new StudentNews();
 		DateFormat format = CalendarServiceImpl.FORMAT;
 		news.setDateRepresentation(format.format(c.getDate()));
 		news.setPartner(c.getOwner());
@@ -189,7 +239,5 @@ public class UserServiceImpl implements UserService{
 		news.setPartner(c.getCustomer());
 		return news;
 	}
-
-
 
 }

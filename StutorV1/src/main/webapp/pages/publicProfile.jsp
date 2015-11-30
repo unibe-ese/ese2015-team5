@@ -9,12 +9,29 @@
   <link rel="stylesheet" href="/Skeleton/css/skel.css" />
   <link rel="stylesheet" href="/Skeleton/css/style.css" />
   <link rel="stylesheet" href="/Skeleton/css/style-desktop.css" />
-
-
-${visitee.email}
-
-<div>${visitee.aboutYou}</div>
+<ul>
+  <li>
+<div>
 <img src="/Skeleton/imageDisplay$userId=${visitee.id}" style="height:100px; width:100px"/>
+</div>
+</li>
+<li>
+<div>
+  <ul>
+    <li>
+      ${visitee.firstName}
+    </li>
+    <li>
+      ${visitee.lastName}
+    </li>
+  </ul>
+</div>
+</li>
+</ul>
+
+<div>
+  ${visitee.aboutYou}
+</div>
 <c:forEach items="${visitee.competences}" var="competence">
     <li>
         ${competence.description}
@@ -41,7 +58,7 @@ ${visitee.email}
                 </form>
               </c:if>
               <c:if test="${course.available == false}">
-                  
+
               </c:if>
             </li>
           </c:forEach>

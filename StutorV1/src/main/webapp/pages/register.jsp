@@ -14,13 +14,13 @@
 <form:form method="post" modelAttribute="signupForm" action="register" id="signupForm" cssClass="form-horizontal"  autocomplete="off" enctype="multipart/form-data">
     <fieldset>
         <legend>Enter Your Information and upload a picture</legend>
-		
+
 		<ul Style="display: inline-flex">
 		<li Style="margin-right: 50em">
 		    <c:set var="emailErrors"><form:errors path="email"/></c:set>
 	        <div class="control-group<c:if test="${not empty emailErrors}"> error</c:if>">
 	            <label class="control-label" for="field-email">Email</label>
-	
+
 	            <div class="controls">
 	                <form:input path="email" id="field-email" tabindex="1" maxlength="45" placeholder="Email"/>
 	                <form:errors path="email" cssClass="help-inline" element="span"/>
@@ -53,18 +53,20 @@
 	        <div>
 	          <form:input type="file" path="profilePic"/>
 	          <c:if test="${not empty pictureError}">
+	             <div class="help-inline">
 	             ${pictureError}
+	          	 </div>
 	          </c:if>
 	        </div>
 	        <input type="submit" value="Sign up"/>
 	        <a href="/Skeleton/login"> <input type="button" value="Cancel"/> </a>
         </li>
-        
+
         <li>
-	        
+
         </li>
         </ul>
-        
+
     </fieldset>
 </form:form>
 </li>

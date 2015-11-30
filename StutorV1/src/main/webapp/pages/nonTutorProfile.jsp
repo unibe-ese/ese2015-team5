@@ -6,9 +6,6 @@
 <form:form method="post" modelAttribute="modifyUserForm" action="./modifyUser" id="modifyUserForm" cssClass="form-horizontal"  autocomplete="off">
     <fieldset>
         <legend><h1>Edit your information</h1></legend>
-        <c:if test="${not empty error}">
-           Error: ${error}
-        </c:if>
 
         <div>
             <label class="control-label" >Email</label>
@@ -16,9 +13,9 @@
         </div>
 
         <div class="control-group">
-            <label class="control-label" for="field-enableTut" >Enable Tutor</label>
+            <label class="control-label" for="field-enableTut" >I want to offer Tutor-Services <img id="help-picture" height="30px" width="30px" src="img/question.png" title="Enter the amount of Swiss Franks you want to be compensated with for your efforts. Your rate applies to all your tutoring subjects"></label>
             <div class="controls">
-                <form:checkbox path="enableTutor" id="field-enableTut" tabindex="1" element="span" title="Check this box to become a Tutor for Stutor!"/>
+                <form:checkbox path="enableTutor" id="field-enableTut" tabindex="1" element="span" title="Check this to become a Tutor for Stutor!"/>
             </div>
         </div>
         <div class="control-group">
@@ -54,8 +51,12 @@
                 </c:if>
             </div>
         </div>
+        <div>
+        	<label class="control-label" for="field-aboutYou">Tell something about yourself</label>
+            <textarea id="aboutYou" name="aboutYou" maxlength="500">${user.aboutYou}</textarea>
+        </div>
         <div class="form-actions">
-            <input type="submit" value="Submit Changes" class="btn btn-primary"></input>
+            <input type="submit" value="Save Changes" class="btn btn-primary"></input>
         </div>
     </fieldset>
            	<div style="margin:25px 0px 25px 0;">
