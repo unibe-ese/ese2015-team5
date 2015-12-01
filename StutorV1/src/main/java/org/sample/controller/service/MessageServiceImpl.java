@@ -31,7 +31,7 @@ public class MessageServiceImpl implements MessageService{
 		msg.setTitle(form.getTitle());
 		msg.setRecipient(recipient);
 		msg.setSender(sender);
-		msg.setTime(new Date().getTime());
+		msg.setTime(new Date().toString());
 		return messageDao.save(msg);
 	}
 	

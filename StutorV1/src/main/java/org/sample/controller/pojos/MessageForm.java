@@ -1,11 +1,14 @@
 package org.sample.controller.pojos;
 
+import org.sample.model.User;
+
 
 public class MessageForm {
 	
 	private String title;
 	private String message;
-	private String recipient;
+	private User recipient;
+	private long userId;
 	
 	
 	public String getTitle() {
@@ -20,11 +23,17 @@ public class MessageForm {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public String getRecipient() {
+	public User getRecipient() {
 		return recipient;
 	}
-	public void setRecipient(String recipient) {
-		this.recipient = recipient;
+	public void setRecipient(User user) {
+		this.recipient = user;
+	}
+	public long getUserId() {
+		return userId;
+	}
+	public void setUserId(long id) {
+		this.userId = id;
 	}
 
 }

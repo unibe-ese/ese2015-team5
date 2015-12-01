@@ -14,7 +14,7 @@ public class Message {
 	private long id;
 	private String title;
 	private String message;
-	private long time;
+	private String time;
 	
 	@ManyToOne
 	private User sender;
@@ -52,11 +52,11 @@ public class Message {
 	public void setRecipient(User recipient) {
 		this.recipient = recipient;
 	}
-	public long getTime() {
+	public String getTime() {
 		return time;
 	}
-	public void setTime(long l) {
-		this.time = l;
+	public void setTime(String string) {
+		this.time = string;
 	}
 
 	

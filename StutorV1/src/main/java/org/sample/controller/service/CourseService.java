@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.Date;
 
 import org.sample.controller.pojos.AddCourseForm;
-import org.sample.controller.pojos.ApplicationForm;
 import org.sample.model.Application;
 import org.sample.model.Course;
 import org.sample.model.User;
@@ -34,7 +33,7 @@ public interface CourseService {
 
 	Course settleCourseFromApplication(Application app);
 
-	Collection<? extends Course> findStudenCoursesFor(User user);
+	Collection<Course> findStudenCoursesFor(User user);
 
 	void addToBalance(Course course);
 

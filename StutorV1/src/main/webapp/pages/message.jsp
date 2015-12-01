@@ -5,25 +5,38 @@
 
 
 <c:import url="template/header.jsp" />
-
-<div style="float:left; width: 200px; height:200px;s background-color: white; margin: 10px;">
-	<c:forEach items="${contacts}" var="contact">
-		<p>${contact.email}</p>
+<div style="display:flex">
+<div style="margin: 10px;" class="tabcontent">
+	<h1 style="color:white">Contact your Captain</h1>
+	<c:forEach items="${tutors}" var="contact">
+		<form  method="post" action="./newMessage" id="${contact.id}">
+			<input type="hidden" value=${contact.id} name="id"/>
+			<input type="submit" value="${contact.firstName} ${contact.lastName}" class btn btn-primary></input>
+		</form>
 	</c:forEach>
+	<h1 style="color:white">Contact your Padawan</h1>
+	<c:forEach items="${tutees}" var="contact">
+		<form  method="post" action="./newMessage" id="${contact.id}">
+			<input type="hidden" value=${contact.id} name="id"/>
+			<input type="submit" value="${contact.firstName} ${contact.lastName}" class btn btn-primary></input>
+		</form>
+	</c:forEach>
+	
 
 </div>
 
 
-<div class="tabbable" style="float:right">
+<div class="tabbable">
     <ul class="tabs">
         <li><a id="tab1btn" href="#tab1">Received Messages</a></li>
         <li><a id="tab2btn" href="#tab2">Sent Messages</a></li>
-        <li><a id="tab3btn" href="#tab3">New Message</a></li>
     </ul>
     <div class="tabcontent">
   		<div id="tab1" class="tab">
 			<c:forEach items="${receivedMessages}" var="msg">
-				<div class="message">
+				<div class="message" style="border-bottom: 1px solid white">
+					<p>${msg.time}</p>
+					<p>From: ${msg.sender.firstName} ${msg.sender.lastName}</p>
 					<h1>${msg.title}</h1>
 					<p>${msg.message}</p>
 				</div>
@@ -31,32 +44,16 @@
   		</div>
     	<div id="tab2" class="tab">
     		<c:forEach items="${sentMessages}" var="msg">
-				<div class="message">
+				<div class="message" style="border-bottom: 1px solid white">
+					<p>${msg.time} <br>
+						To: ${msg.recipient.firstName} ${msg.recipient.lastName}</p>
 					<h1>${msg.title}</h1>
 					<p>${msg.message}</p>
 				</div>
 			</c:forEach>
     	</div>
-       	<div id="tab3" class="tab">
-       		<div>
-       			
-       		</div>
-       		<div>
-       		<form:form method="post" modelAttribute="messageForm" action="./sendMessage" id="messageForm"  autocomplete="off">
-       			<label>To</label>
-       			<form:input path="recipient" id="field-recipient" maxLength="35" placeholder=""/>
-       			<label>Titel</label>
-       			<form:input path="title" value="${messageForm.recipient}" id="field-title" maxlength="35"/>
-       			<label>Message</label>
-       			<textarea id="message" name="message" maxlength="500"></textarea>
-       			
-       			<input type="submit" value="Send" class="btn btn-primary"></input>
-       		
-       		</form:form>
-       		</div>
-       		
-       	</div>
     </div>
+</div>
 </div>
 
 <c:import url="template/footer.jsp" />
