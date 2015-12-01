@@ -360,13 +360,14 @@ a
 	
 	.newsfeed
 	{	
-		margin-right: 4em;
+		margin-right: 2em;
 		background: #B0CDEA;
 		color: #FFC878;
 		text-shadow: 1px 1px grey;
 		font-weight: 800;
 		border: 2px solid white;
 		border-radius: 10px;
+		width: 12em;
 	}
 
 	.newsEntryElement
@@ -380,19 +381,10 @@ a
 	.coursesList
 	{
 		background: #B0CDEA;
-	}
-
-	/* Search for courses Table */
-
-	.newsEntryElement
-	{
-		color: #FFC878;
-		text-shadow: 1px 1px grey;
-		font-weight: 800;
 		border: 2px solid white;
 		border-radius: 10px;
-		
 	}
+
 
 	.searchForCourses
 	{
@@ -411,7 +403,7 @@ a
 		background: white;
 		border-radius: 10px;
 		border-top-left-radius:  0px;
-		border-bottom-left-radius: 1000px;
+		border-bottom-left-radius: 30px;
 	}
 
 	.searchForCourses:active
@@ -856,14 +848,12 @@ a
 	padding:7px 7px 7px 7px;
 	border-style: solid;
 	border-width: 1px;
-	border-radius: 4px;
+	border-radius: 5px;
 	text-align: center;
 }
 
 .newsEntryElement
 {
-margin-bottom: 1em;
-			opacity: 0.5;
 }
 
 .tutorNews
@@ -877,7 +867,7 @@ margin-bottom: 1em;
 	background-color: #DAEDF9;
 }
 
-/////
+
 .competence-List-Entry
 {
 	width:70%;
