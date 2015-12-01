@@ -355,6 +355,39 @@ a
 				{
 				}
 				
+				
+	/* Search for courses Table */
+	
+	.newsEntryElement
+	{	
+		color: #FFC878;
+		text-shadow: 1px 1px grey;
+		font-weight: 800;
+	}
+	
+	.searchForCourses
+	{
+		background: linear-gradient(to left, #84ACD2,#DBEAF9);
+		border-radius: 10px;
+		-moz-transition: background .25s ease-in-out;
+			-webkit-transition: background .25s ease-in-out;
+			-o-transition: background .25s ease-in-out;
+			-ms-transition: background .25s ease-in-out;
+			transition: background .25s ease-in-out;
+		
+	}
+	
+	.searchForCourses:hover
+	{
+		cursor: pointer;
+		background: #DBEAF9;
+	}
+
+	.searchForCourses:active
+	{
+		background: #FFD598;
+	}
+				
 	/* Course Table */
 			
 			
