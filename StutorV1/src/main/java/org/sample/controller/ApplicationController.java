@@ -42,7 +42,7 @@ public class ApplicationController {
 	@RequestMapping(value="/decline/{appId}", method=RequestMethod.GET)
 	public String declineApplication(@PathVariable("appId") long appId){
 		Application app = appService.findApplicationById(appId);
-		if(app != null && userService.getCurrentUser().equals(app.getMaster()))
+		if(app != null && userService.getCurrentUser().equals(app.getTutor()))
 			appService.deleteApplication(app);
 		return "redirect:/index";
 	}
@@ -62,7 +62,7 @@ public class ApplicationController {
 	@RequestMapping(value="/accept/{appId}", method=RequestMethod.GET)
 	public String acceptApplication(@PathVariable("appId") long appId){
 		Application app = appService.findApplicationById(appId);
-		if(app != null && userService.getCurrentUser().equals(app.getMaster()))
+		if(app != null && userService.getCurrentUser().equals(app.getTutor()))
 			appService.acceptApplication(app);
 		return "redirect:/index";
 	}

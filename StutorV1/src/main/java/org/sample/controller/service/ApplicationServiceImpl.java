@@ -1,9 +1,6 @@
 package org.sample.controller.service;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import org.sample.controller.pojos.ApplicationForm;
@@ -31,8 +28,8 @@ public class ApplicationServiceImpl implements ApplicationService {
 		Application app = new Application();
 		Course course = form.getCourse();
 		app.setCourse(course);
-		app.setMaster(course.getOwner());
-		app.setSlave(form.getApplicant());
+		app.setTutor(course.getOwner());
+		app.setStudent(form.getApplicant());
 		return appDao.save(app);
 	}
 
@@ -45,15 +42,15 @@ public class ApplicationServiceImpl implements ApplicationService {
 	@Override
 	public void deleteApplication(Application app) {
 		app.setCourse(null);
-		app.setMaster(null);
-		app.setSlave(null);
-		User user = app.getMaster();
+		app.setTutor(null);
+		app.setStudent(null);
+		User user = app.getTutor();
 		List<Application> apps;
 		if(user != null){
 			apps = user.getMyTutorApplications();
 			apps.remove(app);
 		}		
-		user = app.getSlave();
+		user = app.getStudent();
 		if(user != null){
 			apps = user.getMyApplications();
 			apps.remove(app);

@@ -76,6 +76,5 @@
   </li>
 </ul>  
   
- 
 
 <c:import url="template/footer.jsp" />

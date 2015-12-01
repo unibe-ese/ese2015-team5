@@ -16,13 +16,18 @@
 	  		<input type="submit" value="Save"/>
 		</form>
 	</div>
-	
+
 	<form:form method="post" modelAttribute="addCompetenceForm" action="./addCompetence" id="addComp">
   		<div>
-			<label for="houerlyRate">Add your tutoring Subjects  <img id="help-picture" height="30px" width="30px" src="img/question.png" title="Add subjects in which you feel like you can tuter other students. You can create a new subject or choose existing ones that appear when you type into the field below. Add your grade after."></label>
+				<label for="description">Add your tutoring Subjects  <img id="help-picture" height="30px" width="30px" src="img/question.png" title="Add subjects in which you feel like you can tuter other students. You can create a new subject or choose existing ones that appear when you type into the field below. Add your grade after."></label>
     		<form:input type="text" path="description"/>
     		<form:errors path="description" cssClass="help-inline" element="span"/>
   		</div>
+			<div>
+				<label for="Grade">Grade<img id="help-picture" height="30px" width="30px" src="img/question.png" title="Add subjects in which you feel like you can tuter other students. You can create a new subject or choose existing ones that appear when you type into the field below. Add your grade after."></label>
+	    	<form:input type="text" path="grade"/>
+	    	<form:errors path="grade" cssClass="help-inline" element="span"/>
+			</div>
   		<input type="submit" value="Add new Subject"></input>
 	</form:form>
 
@@ -47,7 +52,7 @@
         </tr>
     </c:forEach>
 	</table>
-	
+
 	<form:form method="post" modelAttribute="addCompetenceForm" action="./addCompetence" id="addComp">
   		<div>
     		<form:input type="text" path="description"/>
@@ -63,12 +68,12 @@
                        onclick="location.href='profile/lastWeek/${week.weekDays[0].dateString}/'">Last Week</button>
 		<button class="btn btn-primary next_week_btn"
                        onclick="location.href='profile/nextWeek/${week.weekDays[0].dateString}/'">Next Week</button>
-       
+
 		<table>
 		<tr>
 			<th>Time</th>
 			<c:forEach items="${week.weekDays}" var="day">
-			
+
 			<th>${day.name} <br>${day.dateString}</th>
 			</c:forEach>
 		</tr>
@@ -82,12 +87,12 @@
 					<form:hidden path="dateString" value="${day.dateString}" />
 					<input type="submit" value="${day.courses[i].description}" class="tableBtn table" />
 				</form:form>
-			</td>	
+			</td>
 			</c:forEach>
 		</tr>
-		
+
 		</c:forEach>
-		</table> 
-   
+		</table>
+
 	</div>
 </div>

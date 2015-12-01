@@ -3,6 +3,7 @@ package org.sample.model;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -44,6 +45,7 @@ public class User {
     
     private float balance;
 
+    @Column(length=1000)
 	private String aboutYou;
     
     @OneToOne
@@ -58,15 +60,42 @@ public class User {
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Course> courses;
     
-    @OneToMany(fetch = FetchType.EAGER, targetEntity=Application.class, mappedBy="master", cascade=CascadeType.DETACH)
+    @OneToMany(fetch = FetchType.EAGER, targetEntity=Application.class, mappedBy="tutor", cascade=CascadeType.DETACH)
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Application> myTutorApplications;
     
-    @OneToMany(fetch = FetchType.EAGER, targetEntity=Application.class, mappedBy="slave", cascade=CascadeType.DETACH)
+    @OneToMany(fetch = FetchType.EAGER, targetEntity=Application.class, mappedBy="student", cascade=CascadeType.DETACH)
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Application> myApplications;
+    
+    @OneToMany(fetch = FetchType.EAGER, targetEntity=Message.class, mappedBy="sender", cascade=CascadeType.DETACH)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<Message> sentMessages;
+    
+    @OneToMany(fetch = FetchType.EAGER, targetEntity=Message.class, mappedBy="recipient", cascade=CascadeType.DETACH)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<Message> receivedMessages;
+    
+    
+    
       
-    public ProfilePicture getPic() {
+    public List<Message> getSentMessages() {
+		return sentMessages;
+	}
+
+	public void setSentMessages(List<Message> sentMessages) {
+		this.sentMessages = sentMessages;
+	}
+
+	public List<Message> getReceivedMessages() {
+		return receivedMessages;
+	}
+
+	public void setReceivedMessages(List<Message> receivedMessages) {
+		this.receivedMessages = receivedMessages;
+	}
+
+	public ProfilePicture getPic() {
 		return pic;
 	}
 

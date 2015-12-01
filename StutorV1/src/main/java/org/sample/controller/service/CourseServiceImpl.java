@@ -146,8 +146,8 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public Course settleCourseFromApplication(Application app) {
 		Course course = app.getCourse();
-		if(course.getOwner() ==  app.getMaster() && course.getCustomer() == null){
-			course.setCustomer(app.getSlave());
+		if(course.getOwner() ==  app.getTutor() && course.getCustomer() == null){
+			course.setCustomer(app.getStudent());
 			course.setAvailable(false);
 		}		
 		return courseDao.save(course);
