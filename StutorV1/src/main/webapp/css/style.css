@@ -694,6 +694,12 @@ a
 					padding-left: 0.25em;
 				}
 
+
+		#field-enableTut
+		{
+			zoom: 1.8;
+		}
+
 	/* Box */
 
 		.box
