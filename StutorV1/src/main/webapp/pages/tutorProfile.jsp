@@ -53,15 +53,6 @@
     </c:forEach>
 	</table>
 
-	<form:form method="post" modelAttribute="addCompetenceForm" action="./addCompetence" id="addComp">
-  		<div>
-    		<form:input type="text" path="description"/>
-    		<form:errors path="description" cssClass="help-inline" element="span"/>
-  		</div>
-  		<input type="submit" value="Add new Subject"></input>
-	</form:form>
-
-
 	<div class="courseTable">
 		<h1> Schedule </h1>
 		<button class="btn btn-primary last_week_btn"
