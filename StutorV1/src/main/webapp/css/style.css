@@ -354,12 +354,12 @@ a
 				table.default tbody
 				{
 				}
-				
-				
+
+
 	/* Newsfeed */
-	
+
 	.newsfeed
-	{	
+	{
 		margin-right: 2em;
 		background: #B0CDEA;
 		color: #FFC878;
@@ -370,7 +370,7 @@ a
 		width: 12em;
 	}
 
-	
+
 
 /* Search for courses Table */
 
@@ -912,6 +912,15 @@ background: #FFD598;
 .help-inline
 {
 	color:red;
+}
+
+#registration-Message
+{
+	color: green;
+	font-weight: 600;
+	border-radius: 5px;
+
+	margin-bottom: 10px;
 }
 
 
