@@ -12,9 +12,7 @@
 	<ul Style="display: inline-flex">
 		<li Style="width: 40em; margin-right: 10em">
 			<h1>Login</h1>
-			<div id="login-error">
-				${error}
-			</div>
+			
 				<form action="./j_spring_security_check" method="post" >
 				<p>
 					<label for="j_username">Username</label>
@@ -24,11 +22,15 @@
 						<label for="j_password">Password</label>
 	 				   	<input id="j_password" name="j_password" type="password" />
 					</p>
+			<div class="help-inline">
+				${error}
+			</div>
 				<input  type="submit" value="Login" />
 			</form>
 			<form action="/Skeleton/register" method="get">
 				<input type="submit" value="Create Account"/>
 			</form>
+			
 		</li>
 		<li Style="text-align: justify">
 			<h1>Welcome to Stutor - Your possibility to make some easy ca$h!</h1>

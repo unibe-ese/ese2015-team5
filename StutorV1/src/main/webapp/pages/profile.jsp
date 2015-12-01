@@ -7,16 +7,17 @@
 
 <div class="tabbable">
     <ul class="tabs">
-        <li><a href="#tab1">Personal Information</a></li>
-        <li><a href="#tab2">Tutoring Information</a></li>
+        <li><a id="tab1btn" href="#tab1">Personal Information</a></li>
+        <li><a id="tab2btn" href="#tab2">Tutoring Information</a></li>
     </ul>
     <div class="tabcontent">
-        <div id="tab1" class="tab">
+     <div id="tab1" class="tab">
             <c:import url="nonTutorProfile.jsp" />
         </div>
         <div id="tab2" class="tab">
             <c:import url="tutorProfile.jsp" />
         </div>
+       
     </div>
 </div>
 

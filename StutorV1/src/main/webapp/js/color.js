@@ -1,14 +1,15 @@
 function changeStyle(){
-	var table = document.getElementById("tutorTable");
-	var entries = table.getElementsByTagName("div");
+	var table = document.getElementsByClassName("courseTable");
+	var entries = table[0].getElementsByTagName("td");
 	for(var i = 0, max = entries.length; i < max; i++){
 		var inputs = entries[i].getElementsByTagName("input");
 		for (var j = 0, m = inputs.length; j < m; j++){
 			if(inputs[j].value === "free"){
-				entries[i].style.backgroundColor = "#5A86B0";
-			}
+				entries[i].className = "available";
+			}			
 			if(inputs[j].value === "booked"){
-				entries[i].style.backgroundColor = "#FFC878"
+				entries[i].className = "taken";
+
 			}
 		}
 	}

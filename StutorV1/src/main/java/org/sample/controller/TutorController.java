@@ -196,7 +196,7 @@ public class TutorController {
 				redirectAttributes.addFlashAttribute("week", courseService.buildCalendar(date));
 			} catch (ParseException e) {e.printStackTrace();}	
 		}
-    	return "redirect:/profile";
+    	return "redirect:/profile?tab=tab2";
     }
 	
 	/**
@@ -290,7 +290,7 @@ public class TutorController {
 		}
 		catch(NumberFormatException e){
 			redirAttributes.addFlashAttribute("houerlyError", "You can only get paied in money");
-			return "redirect:/profile";
+			return "redirect:/profile?tab=tab2";
 		}
 		if(houerlyRate < 0){
 			redirAttributes.addFlashAttribute("houerlyError", "Houerly rate cannot be below zero");
@@ -298,7 +298,7 @@ public class TutorController {
 		else{
 			userService.setHouerlyRate(user, houerlyRate);
 		}
-		return "redirect:/profile";
+		return "redirect:/profile?tab=tab2";
 	}
 	
 	/**
@@ -325,14 +325,14 @@ public class TutorController {
 		}
 		catch(NumberFormatException e){
 			redirAttributes.addFlashAttribute("gradeError", "Only numbers");
-			return "redirect:/profile";
+			return "redirect:/profile?tab=tab2";
 		}
 		if(!gradeIsValid(grade)){
 			redirAttributes.addFlashAttribute("gradeError", "Grade " + grade + " not valid");
-			return "redirect:/profile";
+			return "redirect:/profile?tab=tab2";
 		}
 		compService.setGrade(compId, grade);
-		return "redirect:/profile";
+		return "redirect:/profile?tab=tab2";
 	}
 
 	/**

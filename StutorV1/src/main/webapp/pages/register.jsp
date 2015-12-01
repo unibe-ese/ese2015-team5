@@ -53,7 +53,9 @@
 	        <div>
 	          <form:input type="file" path="profilePic"/>
 	          <c:if test="${not empty pictureError}">
+	             <div class="help-inline">
 	             ${pictureError}
+	          	 </div>
 	          </c:if>
 	        </div>
 	        <input type="submit" value="Sign up"/>
@@ -74,7 +76,7 @@
 <li Style="margin-top:10em">
 <div Style="Background: white; border-radius: 10px; width: 15em">
 Take care! The register-magister is watching you. Remember to
-fill out all text areas and to upload a profile picture.
+fill out all text areas and to upload a profile picture.<br>
 Registrus Maximus
 </div>
 </li>
