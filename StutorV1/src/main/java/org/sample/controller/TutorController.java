@@ -10,7 +10,7 @@ import javax.validation.Valid;
 
 import org.sample.controller.pojos.AddCompetenceForm;
 import org.sample.controller.pojos.AddCourseForm;
-import org.sample.controller.pojos.EditCompetenceForm;
+import org.sample.controller.service.AddCompetenceFormValidator;
 import org.sample.controller.service.CompetenceService;
 import org.sample.controller.service.CourseService;
 import org.sample.controller.service.UserService;
@@ -20,14 +20,12 @@ import org.sample.model.Week;
 import org.sample.model.WeekDay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
@@ -144,16 +142,18 @@ public class TutorController {
 	public String addCompetence(@ModelAttribute("addCompetenceForm") @Valid AddCompetenceForm form, BindingResult result, RedirectAttributes redirectedAttribtues, HttpSession session){
 		User user = (User)session.getAttribute("user");
 		System.out.println("added error");
+		AddCompetenceFormValidator validator = new AddCompetenceFormValidator();
+		validator.validate(form, result);
 		if(result.hasErrors()){
 			
 			redirectedAttribtues.addFlashAttribute("addCompetenceForm", form);
 			redirectedAttribtues.addFlashAttribute("org.springframework.validation.BindingResult.addCompetenceForm", result);
 			
-			return "redirect:profile";
+			return "redirect:profile?tab=tab2";
 		}
 		form.setOwnerId(user.getId());
 		compService.saveCompetence(form);
-		return "redirect:profile";
+		return "redirect:profile?tab=tab2";
 		
 	}
 

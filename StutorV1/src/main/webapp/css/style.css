@@ -890,7 +890,10 @@ cursor: pointer;
 background: #FFD598;
 }
 
-
+.help-inline
+{
+	color:red;
+}
 
 
 
