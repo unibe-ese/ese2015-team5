@@ -56,8 +56,8 @@
   <c:forEach items="${applications}" var="application">
       <tr>
           <td>
-              ${application.master.firstName}
-              ${application.slave.firstName}
+              ${application.tutor.firstName}
+              ${application.student.firstName}
               <button onclick="location.href='./accept/${application.id}'">Accept</button>
               <button onclick="location.href='./decline/${application.id}'">Decline</button>
           </td>

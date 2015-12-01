@@ -30,6 +30,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+/**
+ * Handles all the requests that have to do with:
+ * <p>-Adding/deleting/editing {@link Competence}.
+ * <p>-Adding/deleting {@link org.sample.model.Course Course}
+ * <p>-Displaying next/last {@link Week} 
+ * <p>-Setting houerlyRates/Grades for {@link Competence}
+ * 
+ * @author hess
+ *
+ */
 
 @Controller
 public class TutorController {
@@ -59,43 +69,63 @@ public class TutorController {
 		return "redirect:/profile";
 	}
 	
-	@RequestMapping(value="/profile/editComp/{compId}", method=RequestMethod.GET)
-	public ModelAndView editCompetence(@PathVariable("compId")Long compId, HttpSession session, Model model){
-		
-		User user  = (User)session.getAttribute("user");
-	
-		Competence comp = compService.findCompetenceById(compId);
+//	/**
+//	 * @Deprecated Is not used right now.
+//	 * Gets the model for the editCompetence page.
+//	 * 
+//	 * 
+//	 * @param compId
+//	 * @param session
+//	 * @param model
+//	 * @return
+//	 */
+//	@RequestMapping(value="/profile/editComp/{compId}", method=RequestMethod.GET)
+//	public ModelAndView editCompetence(@PathVariable("compId")Long compId, HttpSession session, Model model){
+//		
+//		User user  = (User)session.getAttribute("user");
+//	
+//		Competence comp = compService.findCompetenceById(compId);
+//
+//		ModelAndView newModel = new ModelAndView("editCompetence", model.asMap());
+//		
+//		if(!user.getCompetences().contains(comp) || comp == null){
+//			return new ModelAndView("index");
+//		}
+//		newModel.addObject("competence", comp);
+//		if(!model.containsAttribute("editCompetenceForm") ){
+//			EditCompetenceForm editForm = new EditCompetenceForm(comp);
+//			
+//			newModel.addObject("editCompetenceForm", editForm);
+//		}
+//		assert newModel != null;
+//		return newModel;
+//	}
+//	
 
-		ModelAndView newModel = new ModelAndView("editCompetence", model.asMap());
-		
-		if(!user.getCompetences().contains(comp) || comp == null){
-			return new ModelAndView("index");
-		}
-		newModel.addObject("competence", comp);
-		if(!model.containsAttribute("editCompetenceForm") ){
-			EditCompetenceForm editForm = new EditCompetenceForm(comp);
-			
-			newModel.addObject("editCompetenceForm", editForm);
-		}
-		assert newModel != null;
-		return newModel;
-	}
-	
-	@RequestMapping(value="/profile/editComp/{compId}", method=RequestMethod.POST)
-	public String editCompetence(@ModelAttribute("editCompetenceForm") @Valid EditCompetenceForm editForm, BindingResult result, RedirectAttributes redirectedAttribtues,
-			@PathVariable("compId") long compId){
-		editForm.setCompReferenceId(compId);
-		if(result.hasErrors()){
-			redirectedAttribtues.addFlashAttribute("editCompetenceForm", editForm);
-			redirectedAttribtues.addFlashAttribute("org.springframework.validation.BindingResult.editCompetenceForm", result);
-			
-			return "redirect:/profile/editComp/"  + compId;
-		}
-		
-		compService.updateCompetence(editForm);
-		
-		return "redirect:/profile/editComp/"  + compId;
-	}
+//	/**
+//	 * Handles the POST request to modify a Competence
+//	 * 
+//	 * @param editForm
+//	 * @param result
+//	 * @param redirectedAttribtues
+//	 * @param compId
+//	 * @return
+//	 */
+//	@RequestMapping(value="/profile/editComp/{compId}", method=RequestMethod.POST)
+//	public String editCompetence(@ModelAttribute("editCompetenceForm") @Valid EditCompetenceForm editForm, BindingResult result, RedirectAttributes redirectedAttribtues,
+//			@PathVariable("compId") long compId){
+//		editForm.setCompReferenceId(compId);
+//		if(result.hasErrors()){
+//			redirectedAttribtues.addFlashAttribute("editCompetenceForm", editForm);
+//			redirectedAttribtues.addFlashAttribute("org.springframework.validation.BindingResult.editCompetenceForm", result);
+//			
+//			return "redirect:/profile/editComp/"  + compId;
+//		}
+//		
+//		compService.updateCompetence(editForm);
+//		
+//		return "redirect:/profile/editComp/"  + compId;
+//	}
     
 	/**
 	 * Adds competences to a user and redirects to next URL
@@ -127,6 +157,23 @@ public class TutorController {
 		
 	}
 
+	/**
+	 * Validates a {@link AddCourseForm} and then executes the correct operations.
+	 * <p> Parses the dateString from the AddCourseForm. If the String cannot be parsed, redirects to profile.
+	 * <p> If the Course already exists 
+	 * ({@link org.sample.controller.service.CourseServiceImpl#alreadyExists(AddCourseForm form) alreadyExists(AddCourseForm form)})
+	 * then the Course is deleted. (When you clicked on a Course that already existed).
+	 * <p>Then the course is saved. A new {@link Week} is then created,
+	 * ({@link org.sample.controller.service.CourseServiceImpl#buildCalendar(Calendar cal, User user) buildCalendar(Calendar cal, User user)})
+	 * from the date of the created Course, and added to the redirect Attributes.
+	 * This way, the redirected page will contain display the calendar in the same week, as when 
+	 * the request was sent. 
+	 * 
+	 * @param form: A {@link AddCourseForm} 
+	 * @param session: The current session(contains the {@link User) that is logged in.
+	 * @param redirectAttributes
+	 * @return to profile.
+	 */
 	@RequestMapping(value="/addCourse", method=RequestMethod.POST)
     public String addCourse(@ModelAttribute("addCourseForm") AddCourseForm form, HttpSession session, RedirectAttributes redirectAttributes){
 		Date date;
@@ -152,6 +199,18 @@ public class TutorController {
     	return "redirect:/profile";
     }
 	
+	/**
+	 * Creates a model to represent the nextWeek of {@link User}'s calendar, based on a DateString that is passed.
+	 * Tries to parse the dateString from the URl. 
+	 * <p>Accepts dates of form dd.MM.yyyy </p>
+	 * If not parsable, redirects to index. If parsable, adds 7 days, creates a new {@link Week} with
+	 * {@link org.sample.controller.service.CourseServiceImpl#buildCalendar(Calendar cal, User user) buildCalendar(Calendar cal, User user)}.
+	 *  and redirects to profile.
+	 * 
+	 * @param dateString: A string representation of a Date.(Format: "dd.MM.yyyy") 
+	 * @param session: The current session.
+	 * @return: to the profile page.
+	 */
 	@RequestMapping(value="/profile/nextWeek/{dateString}/", method=RequestMethod.GET)
 	public String nextWeek(@PathVariable("dateString") String dateString, RedirectAttributes redirectAttributes,
 			HttpSession session){
@@ -175,6 +234,18 @@ public class TutorController {
 		return "redirect:/profile";
 	}
 	
+	/**
+	 * Creates a model to represent the last week of {@link User}'s calendar, based on a DateString that is passed.
+	 * Tries to parse the dateString from the URl. 
+	 * <p>Accepts dates of form dd.MM.yyyy </p>
+	 * If not parsable, redirects to index. If parsable, subtracts 1 day, creates a new {@link Week} with
+	 * {@link org.sample.controller.service.CourseServiceImpl#buildCalendar(Calendar cal, User user) buildCalendar(Calendar cal, User user)}.
+	 *  and redirects to profile.
+	 * 
+	 * @param dateString: A string representation of a Date.(Format: "dd.MM.yyyy") 
+	 * @param session: The current session.
+	 * @return: to the profile page.
+	 */
 	@RequestMapping(value="/profile/lastWeek/{dateString}/", method=RequestMethod.GET)
 	public String lastWeek(@PathVariable("dateString") String dateString, RedirectAttributes redirectAttributes,
 			HttpSession session){
@@ -196,12 +267,23 @@ public class TutorController {
 		return "redirect:/profile";
 	}
 	
+	/**
+	 * Parses and sets houerly Rate for a {@link User}.
+	 * 
+	 * The received String is parsed into a float. If there is an exception, an error message is added to the model
+	 * and redirected back to the profile page.
+	 * If the float is negative, adds error and redirects.
+	 * If positive, saves it to {@link User}.
+	 * 
+	 * @param houerlyRateString: long in String format.
+	 * @param session: Current session.
+	 * @return to the profile.
+	 */
 	@RequestMapping(value="/profile/houerlyRate", method=RequestMethod.POST)
 	public String setHouerlyRate(@RequestParam("houerlyRate") String houerlyRateString, HttpSession session,
 			RedirectAttributes redirAttributes){
 		User user = (User) session.getAttribute("user");
 
-		System.out.println(houerlyRateString);
 		float houerlyRate;
 		try{
 			houerlyRate = Float.parseFloat(houerlyRateString);
@@ -219,10 +301,23 @@ public class TutorController {
 		return "redirect:/profile";
 	}
 	
+	/**
+	 * Sets the grade for a {@link Competence}.
+	 * 
+	 * If the competenceGrade String cannot be parsed into a float, a error is added to the model and redirected.
+	 * If the grade is not valid see({@link #gradeIsValid(float Grade)}) a error is added to the model and redir.
+	 * 
+	 * Otherwise, the {@Competence} is updated, and saved.
+	 * 
+	 * @param compId
+	 * @param gradeString
+	 * @param redirAttributes
+	 * @return
+	 */
 	@RequestMapping(value="/profile/setGradeForCompetence/{compId}", method=RequestMethod.POST)
 	public String setGradeForComp(@PathVariable("compId") long compId, @RequestParam("competenceGrade") String gradeString, 
 			RedirectAttributes redirAttributes){
-		System.out.println("SetGrade[CompetenceId=" + compId + ", Grade=" + gradeString + "]");
+		//System.out.println("SetGrade[CompetenceId=" + compId + ", Grade=" + gradeString + "]");
 		float grade;
 		//TODO: check for null Competence?
 		try{
@@ -233,15 +328,23 @@ public class TutorController {
 			return "redirect:/profile";
 		}
 		if(!gradeIsValid(grade)){
-			redirAttributes.addFlashAttribute("gradeError", "Grade not valid");
+			redirAttributes.addFlashAttribute("gradeError", "Grade " + grade + " not valid");
 			return "redirect:/profile";
 		}
 		compService.setGrade(compId, grade);
 		return "redirect:/profile";
 	}
 
+	/**
+	 * Validates a float 
+	 * 
+	 * 1 <= x <= 6
+	 * 
+	 * @param grade
+	 * @return
+	 */
 	private boolean gradeIsValid(float grade) {
-		return true;
+		return 0 <= grade && grade <= 6;
 	}
 }
 

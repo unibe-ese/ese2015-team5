@@ -7,7 +7,7 @@ function changeStyle(){
 			if(inputs[j].value === "free"){
 				entries[i].style.backgroundColor = "#5A86B0";
 			}
-			if(inputs[j].value === "unfree"){
+			if(inputs[j].value === "booked"){
 				entries[i].style.backgroundColor = "#FFC878"
 			}
 		}

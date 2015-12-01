@@ -49,7 +49,11 @@ public class IndexController {
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public ModelAndView index(Model modelo) {  	
     	ModelAndView model = buildIndexModel();
-    	model.addObject("competence", modelo.asMap().get("competences"));
+    	if(!modelo.containsAttribute("competences")){
+    		model.addObject("competences", compService.findCompetenceLike(""));
+    	}else{
+    		model.addObject("competences", modelo.asMap().get("competences"));
+    	}
     	assert model != null;
         return model;
     }

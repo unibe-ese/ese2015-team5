@@ -18,7 +18,9 @@ import org.sample.controller.service.ApplicationService;
 import org.sample.controller.service.CompetenceService;
 import org.sample.controller.service.CourseService;
 import org.sample.controller.service.UserService;
+import org.sample.model.Application;
 import org.sample.model.Competence;
+import org.sample.model.Course;
 import org.sample.model.ProfilePicture;
 import org.sample.model.User;
 import org.sample.model.Week;
@@ -93,11 +95,11 @@ public class ProfileController {
      * Checks if the model already contains certain attributes ({@link org.sample.controller.pojos.ModifyUserForm modifyUserForm}, {@link org.sample.controller.pojos.AddCompetenceForm addCompetenceForm}
      * {@link org.sample.model.Week week}, {@link org.sample.controller.pojos.AddCourseForm addCourseForm}.
      * The modifyUserForm is filled with the user data it will display in the profile page. {@link #buildModForm(User user)}.
+     * The {@link Week} is built with {@link org.sample.controller.service.CourseServiceImpl#buildCalendar(Calendar cal, User user) buildCalendar(Calendar cal, User user)}.
      * 
-     * 
-     * @param model
-     * @param user
-     * @return
+     * @param model: Model of the prevoius page.
+     * @param user: Currently logged in user.
+     * @return: The model for the profile page.
      */
 	private Model buildProfileModel(Model model, User user) {
 		model.addAttribute("user", user);	
@@ -118,6 +120,12 @@ public class ProfileController {
     	return model;
 	}
 
+	/**
+	 * Fills a {@link ModifyUserForm} with the information of a {@link User}
+	 * 
+	 * @param user
+	 * @return
+	 */
 	private ModifyUserForm buildModForm(User user) {
 		ModifyUserForm modForm = new ModifyUserForm();
 		modForm.setEnableTutor(user.getEnableTutor());
@@ -127,7 +135,7 @@ public class ProfileController {
 	}	
     
     /**
-     * Checks if modified information is valid, then redirects to correct URL
+     * Checks if modified information is valid, then saves it/displays errors. 
      * 
      * If the new information is not valid, the errors are store in redirectedAttributes, which can be
      * accessed from the model in the gotoProfile-method. If the information is valid, they are saved to 
@@ -214,14 +222,29 @@ public class ProfileController {
 		
 	}
 	
+	/**
+	 * Handles requests to display the profile of another user.
+	 * 
+	 * When a user requests to see his own profile, he is redirected to the "normal" view of his profile.
+	 * {@link #gotoProfile(Model model)}
+	 * If the userId doesnt correspond to a {@link User}, redirects to index.
+	 * If a corresponding {@link User} has been found, attribtues are added to the model.
+	 * 
+	 * <p>-{@link Week} is built with {@link org.sample.controller.service.CourseServiceImpl#buildCalendar(Calendar cal, User user) buildCalendar(Calendar cal, User user)}
+	 * The current date is passed to the method.</p>
+	 * <p>-A {@link ApplicationForm} is added.
+	 * 
+	 * @param userId: Id of the user you would like to visit.
+	 * @param model: Model from the previous model. 
+	 * @return
+	 */	
 	@RequestMapping(value="/profile/{userId}", method=RequestMethod.GET)
 	public String showPublicProfile(@PathVariable long userId, Model model){
 		User visitee = userService.getUserById(userId);
 		User visiter = userService.getCurrentUser();
-		if(visitee == null){
+		if(visitee == null || visiter == null){
 			return "redirect:/index";
 		}
-		//TODO: Can a user view his profile as visitor?
 		if(visitee.equals(visiter)){
 			
 			return "redirect:/profile";
@@ -234,6 +257,20 @@ public class ProfileController {
 		return "publicProfile";
 	}
 	
+	/**
+	 * Handles requests to display the next {@link Week} of a calendar for a public profile.
+	 * 
+	 * <p>Builds a week for the {@User} with ID userId;</p>
+	 * <p>The requested date is retrieved from the dateString, which is parsed with {@link org.sample.model.WeekDay#FORMAT Week.FORMAT}</p>
+	 * 
+	 * The week is then added to redirectAttributes, so when redirecting to {@link #gotoProfile(Model model) /profile}
+	 * If the dateString cannot be parsed, redirects to profile.
+	 * 
+	 * 
+	 * @param userId: ID refering a {@link User}
+	 * @param dateString: String representation of a Date. "dd.MM.yyyy" can be parsed.
+	 * @return Redirects to profile/userID
+	 */
 	@RequestMapping(value="/profile/{userId}/nextWeek/{dateString}/", method=RequestMethod.GET)
 	public String showPublicProfileNextWeek(@PathVariable long userId, @PathVariable("dateString") String dateString, RedirectAttributes redirAttributes){
 		User visitee = userService.getUserById(userId);
@@ -255,6 +292,20 @@ public class ProfileController {
 		return "redirect:/profile/" + userId;
 	}
 	
+	/**
+	 * Handles requests to display the last {@link Week} of a calendar for a public profile.
+	 * 
+	 * <p>Builds a week for the {@User} with ID userId;</p>
+	 * <p>The requested date is retrieved from the dateString, which is parsed with {@link org.sample.model.WeekDay#FORMAT Week.FORMAT}</p>
+	 * 
+	 * The week is then added to redirectAttributes, so when redirecting to {@link #gotoProfile(Model model) /profile}
+	 * If the dateString cannot be parsed, redirects to profile.
+	 * 
+	 * 
+	 * @param userId: ID refering a {@link User}
+	 * @param dateString: String representation of a Date. "dd.MM.yyyy" can be parsed.
+	 * @return Redirects to profile/userID
+	 */
 	@RequestMapping(value="/profile/{userId}/lastWeek/{dateString}/", method=RequestMethod.GET)
 	public String showPublicProfileLastWeek(@PathVariable long userId, @PathVariable("dateString") String dateString, RedirectAttributes redirAttributes){
 		User visitee = userService.getUserById(userId);
@@ -276,15 +327,41 @@ public class ProfileController {
 		return "redirect:/profile/" + userId;
 	}
 	
+	/**
+	 * Adds a {@link org.sample.model.Application Application} for a {@link org.sample.model.Course Course}.
+	 * 
+	 * Gets the ID of a {@link org.sample.model.Course Course}, and attempts to create a Application
+	 * for the Course. Checks for following things:
+	 * <p>- If the Course is available. (not booked yet) @see{@link org.sample.controller.service.CourseServiceImpl#courseIsAvailable(Course course) 
+	 * courseIsAvailable(Course course)}. </p>
+	 * <p>- The Course is not a duplicate (The customer hasn't already sent an Application 
+	 * see{@link org.sample.controller.service.ApplicationServiceImpl#notDuplicate(ApplicationForm application) notDuplicate}
+	 * </p>
+	 * If these conditions are met, the application is saved with 
+	 * {@link org.sample.controller.service.ApplicationServiceImpl#saveApplication(ApplicationForm application) 
+	 * saveApplication()}, then returns to profile page.
+	 * 
+	 * @param courseId: A ID that corresponds to a {@link Course}
+	 * @return to the public profile page.
+	 */
 	@RequestMapping(value="/profile/application", method=RequestMethod.POST)
-	public String addApplication(@RequestParam("courseId") long courseId){
-		ApplicationForm application = buildAppForm(courseId);
-		if(courseService.courseIsAvailable(application.getCourse()) && appService.notDuplicate(application)){
-			appService.saveApplication(application);
+	public String addApplication(@RequestParam("courseId") long courseId, RedirectAttributes redir){
+		ApplicationForm applicationForm = buildAppForm(courseId);
+		Application app;
+		if(courseService.courseIsAvailable(applicationForm.getCourse()) && appService.notDuplicate(applicationForm)){
+			app = appService.saveApplication(applicationForm);
+			redir.addFlashAttribute("week", courseService.buildCalendar(app.getDate(), app.getTutor()));
+			return "redirect:/profile/" + app.getTutor().getId();
 		}
-		return "redirect:/index";
+		return "redirect:/profile/" + applicationForm.getCourse().getOwner().getId();
 	}
 
+	/**
+	 * Builds a {@link ApplicationForm} for {@link org.sample.model.Course Course}, given a courseId.
+	 * 
+	 * @param courseId
+	 * @return
+	 */
 	private ApplicationForm buildAppForm(long courseId) {
 		ApplicationForm application = new ApplicationForm();
 		

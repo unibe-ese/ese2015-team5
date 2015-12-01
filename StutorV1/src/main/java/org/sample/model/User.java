@@ -58,11 +58,11 @@ public class User {
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Course> courses;
     
-    @OneToMany(fetch = FetchType.EAGER, targetEntity=Application.class, mappedBy="master", cascade=CascadeType.DETACH)
+    @OneToMany(fetch = FetchType.EAGER, targetEntity=Application.class, mappedBy="tutor", cascade=CascadeType.DETACH)
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Application> myTutorApplications;
     
-    @OneToMany(fetch = FetchType.EAGER, targetEntity=Application.class, mappedBy="slave", cascade=CascadeType.DETACH)
+    @OneToMany(fetch = FetchType.EAGER, targetEntity=Application.class, mappedBy="student", cascade=CascadeType.DETACH)
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Application> myApplications;
       

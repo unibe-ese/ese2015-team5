@@ -9,6 +9,26 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+/**
+ * Represents a time, when a {@link User} has time to tutor.
+ * Another user can send an {@link org.sample.model.Application Application} for a course.
+ * Customer being null means that the course is still available.
+ * Costumer being a user means that the course is booked.
+ * The date and slot help locate it exactly in a {@link org.sample.model.Week Week}
+ * 
+ * Implements {@link CourseInterace}, to simplify the 
+ * {@link org.sample.controller.service.CourseServiceImpl#buildCalendar(Calendar cal, User user) buildCalendar(Calendar cal, User user)}.
+ * 
+ * @field: Owner: The user that offers tutoring
+ * @field: Customer: The user that requests tutoring.
+ * @field: date: The date, when the the course is.
+ * @field: slot: Represents the daytime.
+ * @field: available: Represents if the course is already booked. 
+ * 
+ * @author hess
+ *
+ */
+
 @Entity
 public class Course implements CourseInterface{
 
@@ -35,6 +55,13 @@ public class Course implements CourseInterface{
 		this.date = date;
 	}
 
+	/**
+	 * Calculates, if a certain Course is during a {@link org.sample.model.Week}.
+	 * Only cares about the date, hours/minutes/seconds are ignored.
+	 * 
+	 * @param week
+	 * @return if this is during the week.
+	 */
 	public boolean isDuring(Week week){
 		Date monday = week.getWeekDays()[0].getDate();
 		Date sunday = week.getWeekDays()[6].getDate();
@@ -50,14 +77,6 @@ public class Course implements CourseInterface{
 		int courseDay = cal.get(Calendar.DAY_OF_YEAR);
 		return year == cal.get(Calendar.YEAR) && startDay <= courseDay && courseDay <= endDay;
 	}
-//
-//	public long getCustomerId() {
-//		return customerId;
-//	}
-//
-//	public void setCustomerId(long customerId) {
-//		this.customerId = customerId;
-//	}
 
 	public int getSlot() {
 		return slot;
@@ -77,9 +96,15 @@ public class Course implements CourseInterface{
 
 	@Override
 	public String getDescription() {
-		return available ? "free" : "unfree";
+		return available ? "free" : "booked";
 	}
 
+	/**
+	 * Calculates if a Course is on a certain {@link Date}.
+	 * 
+	 * @param date2
+	 * @return boolean, if Course is during week.
+	 */
 	public boolean sameDay(Date date2) {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
@@ -113,6 +138,11 @@ public class Course implements CourseInterface{
 		this.customer = customer;
 	}
 
+	/**
+	 * Calculates if a Course is in the past.
+	 * 
+	 * @return
+	 */
 	public boolean isInThePast() {
 		Calendar cal = Calendar.getInstance();
 		

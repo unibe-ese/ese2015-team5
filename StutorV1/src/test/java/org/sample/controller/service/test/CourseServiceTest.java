@@ -101,9 +101,9 @@ public class CourseServiceTest {
 		
 		applier = new User();
 		application = new Application();
-		application.setSlave(applier);
+		application.setStudent(applier);
 		application.setCourse(expectedCourse);
-		application.setMaster(user);
+		application.setTutor(user);
 		
 		when(courseDao.save(captor.capture())).thenReturn(null);
 		when(courseDao.findAll()).thenReturn(courses);
@@ -167,7 +167,7 @@ public class CourseServiceTest {
 	
 	@Test
 	public void settleOccupiedCourseTest(){
-		application.setMaster(new User());
+		application.setTutor(new User());
 		courseService.settleCourseFromApplication(application);
 		assertEquals(null, expectedCourse.getCustomer() );
 	}
