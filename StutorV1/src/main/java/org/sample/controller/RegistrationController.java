@@ -79,11 +79,13 @@ public class RegistrationController {
 		try {				
 			userService.saveUser(signupForm);			
 		} catch (InvalidUserException e){
-			att.addFlashAttribute("page-error", e.getMessage());
+			att.addFlashAttribute("pageError", e.getMessage());
 			att.addFlashAttribute("signupForm", new SignupForm());
+			att.addFlashAttribute("org.springframework.validation.BindingResult.signupForm", result);
 			return "redirect:register";
 		} 
 		
-		return "redirect:login";
+		return "redirect:/login?success=true";
 	}
+	
 }
