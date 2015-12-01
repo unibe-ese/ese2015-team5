@@ -36,13 +36,19 @@
 	</div>
 	<div>
 		<ul>
+		<h1>This tutors competences</h1>
 			<c:forEach items="${visitee.competences}" var="competence">
 				<li Style="margin-top: 1em; margin-left: 2em; background: linear-gradient(to left, #5A86B0, #DBEAF9); border-radius: 10px; width: 20%">${competence.description}</li>
 			</c:forEach>
 		<ul>
 	<div>
+	
+	<h1 Style="margin-top: 40px"> Schedule </h1>
+	<div Style="margin-bottom: 20px">Here you can book an appointment with the tutor you are currently inspecting. When you click on a field that is marked with "free"
+	the tutor will get a request which he can either accept or decline. If he accepts we will save the date in the "rendez vous" list
+	on the <a href="/Skeleton/">main page</a>.</div>
 	<div class="courseTable">
-	<h1> Schedule </h1>
+	
 	<button class="btn btn-primary last_week_btn"
 						onclick="location.href='/Skeleton/profile/${visitee.id}/lastWeek/${week.weekDays[0].dateString}/'">Last Week</button>
 	<button class="btn btn-primary next_week_btn"
