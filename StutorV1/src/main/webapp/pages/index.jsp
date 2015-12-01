@@ -71,7 +71,7 @@
   	</h1>
   		This is the heart of this website. Here you can search for courses and we will provide you with a list of tutors
   		who can help you with your studies. If you successfully arrange an appointment with a tutor or you get booked by another
-  		student (you need to activate your tutor-status in your <a href="Skeleton/profile">profile</a>) you will see your upcoming 
+  		student (you need to activate your tutor-status in your <a href="/Skeleton/profile">profile</a>) you will see your upcoming 
   		meetings on the left.
   </li>
 </ul>  

@@ -35,16 +35,15 @@
 		<li Style="text-align: justify">
 			<h1>Welcome to Stutor - Your possibility to make some easy ca$h!</h1>
 			Sounds too good to be true right?! But this is the 21st century,
-			everyting ist possible. There are autodriving cars, corefusion research
+			everything is possible. There are self driving cars, core fusion research
 			and even beer mixed with coca-cola. So why shouldn't there be students with 
 			actual money?
 			The concept is simple: you pass an exam and you are henceforth a perfectly
-			qualified tutor for this specific course. After that we will help you find a
-			student respectively help the student find you. All you have to do to profit
+			qualified tutor for this specific course. After that we will help you to find a
+			student or rather help the student find you. All you have to do to profit
 			from this awesome and unique easy-money-service is to <a href=/Skeleton/register>register right now</a> and
 			become part of this worthy experience.
-			By registering you accept your soultransfer to Stutor™.
-			
+			By registering you accept your soul transfer to Stutor™.
 		</li>
 	</ul>
 
