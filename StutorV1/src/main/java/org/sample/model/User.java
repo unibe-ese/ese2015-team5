@@ -65,8 +65,35 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER, targetEntity=Application.class, mappedBy="slave", cascade=CascadeType.DETACH)
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Application> myApplications;
+    
+    @OneToMany(fetch = FetchType.EAGER, targetEntity=Message.class, mappedBy="sender", cascade=CascadeType.DETACH)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<Message> sentMessages;
+    
+    @OneToMany(fetch = FetchType.EAGER, targetEntity=Message.class, mappedBy="recipient", cascade=CascadeType.DETACH)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<Message> receivedMessages;
+    
+    
+    
       
-    public ProfilePicture getPic() {
+    public List<Message> getSentMessages() {
+		return sentMessages;
+	}
+
+	public void setSentMessages(List<Message> sentMessages) {
+		this.sentMessages = sentMessages;
+	}
+
+	public List<Message> getReceivedMessages() {
+		return receivedMessages;
+	}
+
+	public void setReceivedMessages(List<Message> receivedMessages) {
+		this.receivedMessages = receivedMessages;
+	}
+
+	public ProfilePicture getPic() {
 		return pic;
 	}
 
