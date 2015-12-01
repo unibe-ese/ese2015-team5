@@ -7,36 +7,39 @@
 <c:import url="template/header.jsp" />
 
 <ul Style="display: inline-flex">
-	<li Style="width:20em">
+	<li>
 		<div class="newsfeed">
-			<h1 Style="text-shadow: none; margin-left:1em; color: white">------------Rendez  Vous------------</h1>
-			<c:forEach items="${newsfeed}" var="news">
+			<h1 Style="text-shadow: none; margin-left:1em; color: white; text-decoration:underline;">Rendez Vous</h1>
          		<ul class="newsEntryElement">
-         			<li>
-              			<c:if test="${news.tutorCourse == true}">Course</c:if>
-              			<c:if test="${news.tutorCourse == false}">Lesson</c:if>
-              		</li>
-              <!-- 	<li class="newsEntryListing">  -->
-                	<li class="newsEntryListing-date">${news.dateRepresentation}</li>
-              		<li class="newsEntryListing-name">
-						${news.partner.firstName}
-                		${news.partner.lastName}
-              		</li>
+         			<c:forEach items="${newsfeed}" var="news">		
+	         			<li>
+	              			<c:if test="${news.tutorCourse == true}">Course</c:if>
+	              			<c:if test="${news.tutorCourse == false}">Lesson</c:if>
+	              		</li>
+	              <!-- 	<li class="newsEntryListing">  -->
+	                	<li class="newsEntryListing-date">${news.dateRepresentation}</li>
+	              		<li class="newsEntryListing-name" Style="margin-bottom: 15px">
+							${news.partner.firstName}
+	                		${news.partner.lastName}
+	              		</li>
+              		</c:forEach>
               		<li>
-              		<h1 Style="text-shadow: none; color:white">----------------Pending----------------</h1>
+              		<h1 Style="text-shadow: none; color:white; text-decoration: underline">Pending</h1>
 					  	<c:forEach items="${applications}" var="application">
 					      <tr>
 					          <td>
 					          	<ul>
 					          		<li>
-						              ${application.master.firstName}
-						              ${application.slave.firstName}
+						              ${application.tutor.firstName}
+						              ${application.student.firstName}
 						            </li>
 						         	<li>
 						              ${application.dateRepresentation}
 						            </li>
 						            <li>
 					              		<button class="button" Style="width: 7em; font-weight: 100; font-size: 15px;" onclick="location.href='./accept/${application.id}'">Accept</button>
+					              	</li>
+					              	<li>
 					              		<button class="button" Style="width: 7em; font-weight: 100; font-size: 15px;" onclick="location.href='./decline/${application.id}'">Decline</button>
 					          		</li>
 					          	</ul>
@@ -45,7 +48,6 @@
 					  	</c:forEach>
               		</li>
           		</ul>
-        	</c:forEach>
 		</div>
 	</li>
 	
@@ -65,13 +67,13 @@
     		</c:forEach>
   		</table>
   </li>
-  <li Style="margin-left: 2em">
+  <li Style="margin-left: 2em; text-align: justify">
   	<h1>
   		Search, Meet, Learn, Profit!	
   	</h1>
   		This is the heart of this website. Here you can search for courses and we will provide you with a list of tutors
   		who can help you with your studies. If you successfully arrange an appointment with a tutor or you get booked by another
-  		student (you need to activate your tutor-status in your <a href="Skeleton/profile">profile</a>) you will see your upcoming 
+  		student (you need to activate your tutor-status in your <a href="/Skeleton/profile">profile</a>) you will see your upcoming 
   		meetings on the left.
   </li>
 </ul>  
