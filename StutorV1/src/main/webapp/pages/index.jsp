@@ -7,9 +7,9 @@
 <c:import url="template/header.jsp" />
 
 <ul Style="display: inline-flex">
-	<li Style="width:15em">
-		<h1>Rendez Vous</h1>
+	<li Style="width:20em">
 		<div class="newsfeed">
+			<h1 Style="text-shadow: none; margin-left:1em; color: white">------------Rendez  Vous------------</h1>
 			<c:forEach items="${newsfeed}" var="news">
          		<ul class="newsEntryElement">
          			<li>
@@ -22,117 +22,60 @@
 						${news.partner.firstName}
                 		${news.partner.lastName}
               		</li>
+              		<li>
+              		<h1 Style="text-shadow: none; color:white">----------------Pending----------------</h1>
+					  	<c:forEach items="${applications}" var="application">
+					      <tr>
+					          <td>
+					          	<ul>
+					          		<li>
+						              ${application.master.firstName}
+						              ${application.slave.firstName}
+						            </li>
+						         	<li>
+						              ${application.dateRepresentation}
+						            </li>
+						            <li>
+					              		<button class="button" Style="width: 7em; font-weight: 100; font-size: 15px;" onclick="location.href='./accept/${application.id}'">Accept</button>
+					              		<button class="button" Style="width: 7em; font-weight: 100; font-size: 15px;" onclick="location.href='./decline/${application.id}'">Decline</button>
+					          		</li>
+					          	</ul>
+					          </td>
+					      </tr>
+					  	</c:forEach>
+              		</li>
           		</ul>
         	</c:forEach>
 		</div>
 	</li>
 	
-	<li class="coursesList" Style="width:40em">
-		<h1>Search for your courses:</h1>
-		<form action="/Skeleton/findCompetenceLike"  commandName="searchQuery" method="get" Style="width: 50em; display:inline-flex;">
+	<li class="coursesList" Style="width:31em;">
+		<h1 Style="color:white; margin-left: 1em">Search for your courses:</h1>
+		<form action="/Skeleton/findCompetenceLike"  commandName="searchQuery" method="get" Style="width: 50em; display:inline-flex; margin-left:1em">
     		<input type="text" name="searchQuery" path="searchQuery"/>
     		<input type="submit" value="Search" Style="height: 1.7em"></input>
 		</form>
-		<table Style="width: 20em;">
+		<table Style="width: 21em;">
     		<c:forEach items="${competences}" var="competence">
         		<tr>
         			<td class="searchForCourses" onclick="location.href='profile/${competence.owner.id}'">
-                		${competence.description}, ${competence.grade}
+                		<div Style="text-align: right; margin-right:1em">${competence.description}, ${competence.grade}</div>
             		</td>
         		</tr>
     		</c:forEach>
   		</table>
   </li>
-  
-  
-  
-  <li class="applicationsList" style="float:right">
-  	<h1>Applications:</h1>
-  	<c:forEach items="${applications}" var="application">
-      <tr>
-          <td>
-              ${application.master.firstName}
-              ${application.slave.firstName}
-              <button onclick="location.href='./accept/${application.id}'">Accept</button>
-              <button onclick="location.href='./decline/${application.id}'">Decline</button>
-          </td>
-      </tr>
-  	</c:forEach>
+  <li Style="margin-left: 2em">
+  	<h1>
+  		Search, Meet, Learn, Profit!	
+  	</h1>
+  		This is the heart of this website. Here you can search for courses and we will provide you with a list of tutors
+  		who can help you with your studies. If you successfully arrange an appointment with a tutor or you get booked by another
+  		student (you need to activate your tutor-status in your <a href="Skeleton/profile">profile</a>) you will see your upcoming 
+  		meetings on the left.
   </li>
+</ul>  
   
-  
-  
-  
- <!-- 
-  
-</ul>
-	
-	
-	
-	
-	</li>
-
-</ul>
-
-  <ul class="newsfeedList">
-    <h1>Rendez Vous</h1>
-    <div class="newsfeed">
-      <li>
-        <c:forEach items="${newsfeed}" var="news">
-          <ul class="newsEntryElement">
-            <div class="${news.tutorCourse ? 'newsEntryContainer tutorNews' : 'newsEntryContainer studentNews'}">
-              <c:if test="${news.tutorCourse == true}">
-                Course
-              </c:if>
-              <c:if test="${news.tutorCourse == false}">
-                Lesson
-              </c:if>
-              <li class="newsEntryListing">
-                <ul class="newsEntryListing-date">
-                ${news.dateRepresentation}
-              </ul>
-              <ul class="newsEntryListing-name">
-                ${news.partner.firstName}
-                ${news.partner.lastName}
-              </ul>
-            </div>
-          </ul>
-        </c:forEach>
-      </li>
-    </div>
-  </ul>
-  <ul class="coursesList">
-<h1 Style="align:center">Search for your courses:</h1>
-<form action="/Skeleton/findCompetenceLike"  commandName="searchQuery" method="get" Style="width: 50em; display:inline-flex">
-    <input type="text" name="searchQuery" path="searchQuery"/>
-    <input type="submit" value="Search" Style="height: 1.7em"></input>
-</form>
-<table Style="width: 20em;">
-    <c:forEach items="${competences}" var="competence">
-        <tr>
-            <td class="courses" onclick="location.href='profile/${competence.owner.id}'">
-                ${competence.description}, ${competence.grade}
-            </td>
-        </tr>
-    </c:forEach>
-  </table>
-  </ul>
-
-
-  <ul class="applicationsList" style="float:right">
-  <h1>Applications:</h1>
-  <c:forEach items="${applications}" var="application">
-      <tr>
-          <td>
-              ${application.master.firstName}
-              ${application.slave.firstName}
-              <button onclick="location.href='./accept/${application.id}'">Accept</button>
-              <button onclick="location.href='./decline/${application.id}'">Decline</button>
-          </td>
-      </tr>
-  </c:forEach>
-  </ul>
-
- -->
+ 
 
 <c:import url="template/footer.jsp" />

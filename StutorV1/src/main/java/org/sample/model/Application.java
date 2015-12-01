@@ -1,10 +1,15 @@
 package org.sample.model;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+import org.sample.controller.service.CalendarServiceImpl;
 
 @Entity
 public class Application {
@@ -21,6 +26,9 @@ public class Application {
 	
 	@OneToOne
 	private Course course;
+	
+	private String dateRepresentation;
+	
 
 	public User getMaster() {
 		return master;
@@ -56,5 +64,11 @@ public class Application {
 
 	public boolean isInThePast() {
 		return course.isInThePast();
+	}
+
+	public String getDateRepresentation() {
+		DateFormat format = CalendarServiceImpl.FORMAT;
+		this.dateRepresentation = format.format(course.getDate());
+		return dateRepresentation;
 	}
 }

@@ -356,31 +356,57 @@ a
 				}
 				
 				
-	/* Search for courses Table */
+	/* Newsfeed */
 	
-	.newsEntryElement
+	.newsfeed
 	{	
+		margin-right: 4em;
+		background: #B0CDEA;
 		color: #FFC878;
 		text-shadow: 1px 1px grey;
 		font-weight: 800;
+		border: 2px solid white;
+		border-radius: 10px;
+	}
+
+	.newsEntryElement
+	{
+		margin-left: 1em;
+		
+	}
+
+/* Search for courses Table */
+
+	.coursesList
+	{
+		background: #B0CDEA;
+		color: #FFC878;
+		text-shadow: 1px 1px grey;
+		font-weight: 800;
+		border: 2px solid white;
+		border-radius: 10px;
+		
 	}
 	
 	.searchForCourses
 	{
-		background: linear-gradient(to left, #84ACD2,#DBEAF9);
+		background: linear-gradient(to left, #84ACD2,#B0CDEA);
 		border-radius: 10px;
-		-moz-transition: background .25s ease-in-out;
-			-webkit-transition: background .25s ease-in-out;
-			-o-transition: background .25s ease-in-out;
-			-ms-transition: background .25s ease-in-out;
-			transition: background .25s ease-in-out;
+		-moz-transition: background 1s ease-in-out;
+			-webkit-transition: background 1s ease-in-out;
+			-o-transition: background 1s ease-in-out;
+			-ms-transition: background 1s ease-in-out;
+			transition: background 1s ease-in-out;
 		
 	}
 	
 	.searchForCourses:hover
 	{
 		cursor: pointer;
-		background: #DBEAF9;
+		background: white;
+		border-radius: 10px;
+		border-top-left-radius:  0px;
+		border-bottom-left-radius: 1000px;
 	}
 
 	.searchForCourses:active
