@@ -28,19 +28,13 @@ public class RegistrationController {
 	@Autowired
 	UserService userService;
 
-	
-	/*
-	 *	Here we'd like to create the controller logic for the registration process
-	 *
-	 *	It is capable of:
-	 *	
-	 *	+Handling the register page get request
-	 *	+Handling the registration form submission
-	 *	
-	 *	+
-	 *	+
-	 *
-	 * 	
+	/**
+	 * Creates a {@link ModelAndView} for the registration page.<p>
+	 * If the prevous model already contained a Object {@link SignupForm}, no new
+	 * SignupForm is added. (When register redirects to this method.)
+	 * 
+	 * @param model
+	 * @return
 	 */
 	@RequestMapping(value="/register", method=RequestMethod.GET)
 	public ModelAndView getRegisterPage(Model model){
@@ -85,7 +79,6 @@ public class RegistrationController {
 		try {				
 			userService.saveUser(signupForm);			
 		} catch (InvalidUserException e){
-			System.out.println("exception");
 			att.addFlashAttribute("page-error", e.getMessage());
 			att.addFlashAttribute("signupForm", new SignupForm());
 			return "redirect:register";

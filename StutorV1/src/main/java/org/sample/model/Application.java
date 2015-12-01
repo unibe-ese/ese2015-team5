@@ -1,10 +1,24 @@
 package org.sample.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+	
+/**
+ * Represents an application, that a student ({@link User}) sends to a Tutor ({@link User}) for a certain
+ * {@link Course}. If accepted, the course will be reserved for the student.
+ * 
+ * @field: tutor: The owner of the course
+ * @field: student: The applicant.
+ * @field: course: The course, the student wants to reserve.
+ * 
+ * @author ESE Team5
+ *
+ */
 
 @Entity
 public class Application {
@@ -14,28 +28,28 @@ public class Application {
 	private long id;
 	
 	@ManyToOne
-	private User master;
+	private User tutor;
 	
 	@ManyToOne
-	private User slave;
+	private User student;
 	
 	@OneToOne
 	private Course course;
 
-	public User getMaster() {
-		return master;
+	public User getTutor() {
+		return tutor;
 	}
 
-	public void setMaster(User master) {
-		this.master = master;
+	public void setTutor(User master) {
+		this.tutor = master;
 	}
 
-	public User getSlave() {
-		return slave;
+	public User getStudent() {
+		return student;
 	}
 
-	public void setSlave(User slave) {
-		this.slave = slave;
+	public void setStudent(User slave) {
+		this.student = slave;
 	}
 
 	public Course getCourse() {
@@ -56,5 +70,9 @@ public class Application {
 
 	public boolean isInThePast() {
 		return course.isInThePast();
+	}
+	
+	public Date getDate(){
+		return this.course.getDate();
 	}
 }

@@ -1,5 +1,14 @@
 package org.sample.model;
 
+import java.util.Calendar;
+
+/**
+ * Represents a empty Course.
+ * see{@link org.sample.controller.service.CourseServiceImpl#buildCalendar(Calendar cal, User user) buildCalendar(Calendar cal, User user)}.
+ * 
+ * @author hess
+ *
+ */
 public class EmptyCourse implements CourseInterface {
 
 	private int slot;

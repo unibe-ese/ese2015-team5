@@ -6,9 +6,10 @@ function changeStyle(){
 		for (var j = 0, m = inputs.length; j < m; j++){
 			if(inputs[j].value === "free"){
 				entries[i].className = "available";
-			}
-			if(inputs[j].value === "unfree"){
+			}			
+			if(inputs[j].value === "booked"){
 				entries[i].className = "taken";
+
 			}
 		}
 	}

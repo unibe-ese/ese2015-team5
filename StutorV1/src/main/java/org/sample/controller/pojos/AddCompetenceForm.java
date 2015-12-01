@@ -1,6 +1,5 @@
 package org.sample.controller.pojos;
 
-import javax.validation.constraints.Size;
 
 /**
  * Holds information to create a {@link org.sample.model.Competence} Object and add it to a {@link org.sample.model.User}.
@@ -13,8 +12,9 @@ import javax.validation.constraints.Size;
 
 public class AddCompetenceForm {
 	
-	@Size(min=1, message="Cannot be empty")
 	private String description;
+	
+	private String grade;
 	
 	private Long ownerId;
 
@@ -36,6 +36,14 @@ public class AddCompetenceForm {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
 	}
 	
 	

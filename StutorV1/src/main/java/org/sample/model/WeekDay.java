@@ -5,6 +5,21 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * Represents a Day in a {@link Week}.
+ * 
+ * Contans a list of {@link CourseInterface}s with size. This consists of all the real courses for the Date of the 
+ * Day, filled up with {@link EmptyCourse}s.
+ * 
+ * @field date: a {@link Date} when the Day is.
+ * @field dateString: A String representation for the Date
+ * @field name: The name of the Day. (e.g. Monday)
+ * @field courses: The list of courses for this day.
+ * 
+ * @author hess
+ *
+ */
+
 public class WeekDay {
 
 	private static final String[] NAMES = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
@@ -26,6 +41,11 @@ public class WeekDay {
 		setupCourses();
 	}
 
+	/**
+	 * Initializes the list courses with a ArrayList.
+	 * Size 24, filled with {@link EmptyCourse}s.
+	 * 
+	 */
 	private void setupCourses() {
 		this.courses = new CourseInterface[24];
 		for(int i = 0; i < 24; i++){
@@ -36,6 +56,9 @@ public class WeekDay {
 		}
 	}
 
+	/**
+	 * Selects the correct dayname (e.g. Monday) for a Date.
+	 */
 	private void setupName() {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(this.date);
@@ -52,6 +75,13 @@ public class WeekDay {
 		this.date = date;
 	}
 
+	/**
+	 * Calculates if the date of this Day is the same Date as another.
+	 * Ignores hours, minutes, seconds.
+	 * 
+	 * @param courseDate: The date to compare.
+	 * @return: Same date or not.
+	 */
 	public boolean sameDay(Date courseDate) {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
@@ -93,8 +123,5 @@ public class WeekDay {
 		this.courses[course.getSlot()] = course;
 		
 	}
-	
-	
-	//TODO: name
 	
 }
