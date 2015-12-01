@@ -12,8 +12,8 @@
 <link rel="stylesheet" href="/Skeleton/css/skel.css" />
 <link rel="stylesheet" href="/Skeleton/css/style.css" />
 <link rel="stylesheet" href="/Skeleton/css/style-desktop.css" />
-  
-<div Style="border: 2px solid white; border-radius: 10px; background: #B0CDEA; padding:10px;"> 
+
+<div Style="border: 2px solid white; border-radius: 10px; background: #B0CDEA; padding:10px;">
 
 	<div>
 		<ul Style="display: inline-flex;">
@@ -31,7 +31,7 @@
 					</div>
 				</div>
 			</li>
-		</ul>	
+		</ul>
 	</div>
 	<div>
 		<ul>
@@ -43,16 +43,16 @@
 	<div class="courseTable">
 	<h1> Schedule </h1>
 	<button class="btn btn-primary last_week_btn"
-						onclick="location.href='profile/lastWeek/${week.weekDays[0].dateString}/'">Last Week</button>
+						onclick="location.href='/Skeleton/profile/${visitee.id}/lastWeek/${week.weekDays[0].dateString}/'">Last Week</button>
 	<button class="btn btn-primary next_week_btn"
-						onclick="location.href='profile/nextWeek/${week.weekDays[0].dateString}/'">Next Week</button>
-		
+						onclick="location.href='/Skeleton/profile/${visitee.id}/nextWeek/${week.weekDays[0].dateString}/'">Next Week</button>
+
 	<table>
 		<tr>
 			<th>
 				Time
 			</th>
-		
+
 			<c:forEach items="${week.weekDays}" var="day">
 				<th>
 					${day.name} <br>
@@ -77,12 +77,12 @@
 					<c:otherwise>
 					</c:otherwise>
 				</c:choose>
-				</td>	
+				</td>
 				</c:forEach>
 			</tr>
-			
+
 		</c:forEach>
-	</table> 
+	</table>
 	</div>
 
 </div>
