@@ -53,7 +53,7 @@
         </div>
         <div>
         	<label class="control-label" for="field-aboutYou">Tell something about yourself</label>
-            <textarea id="aboutYou" name="aboutYou" maxlength="500">${user.aboutYou}</textarea>
+            <textarea id="aboutYou" name="aboutYou" maxlength="1000">${user.aboutYou}</textarea>
         </div>
         <div class="form-actions">
             <input type="submit" value="Save Changes" class="btn btn-primary"></input>
