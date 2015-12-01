@@ -10,18 +10,19 @@
 	<li>
 		<div class="newsfeed">
 			<h1 Style="text-shadow: none; margin-left:1em; color: white; text-decoration:underline;">Rendez Vous</h1>
-			<c:forEach items="${newsfeed}" var="news">
          		<ul class="newsEntryElement">
-         			<li>
-              			<c:if test="${news.tutorCourse == true}">Course</c:if>
-              			<c:if test="${news.tutorCourse == false}">Lesson</c:if>
-              		</li>
-              <!-- 	<li class="newsEntryListing">  -->
-                	<li class="newsEntryListing-date">${news.dateRepresentation}</li>
-              		<li class="newsEntryListing-name">
-						${news.partner.firstName}
-                		${news.partner.lastName}
-              		</li>
+         			<c:forEach items="${newsfeed}" var="news">		
+	         			<li>
+	              			<c:if test="${news.tutorCourse == true}">Course</c:if>
+	              			<c:if test="${news.tutorCourse == false}">Lesson</c:if>
+	              		</li>
+	              <!-- 	<li class="newsEntryListing">  -->
+	                	<li class="newsEntryListing-date">${news.dateRepresentation}</li>
+	              		<li class="newsEntryListing-name" Style="margin-bottom: 15px">
+							${news.partner.firstName}
+	                		${news.partner.lastName}
+	              		</li>
+              		</c:forEach>
               		<li>
               		<h1 Style="text-shadow: none; color:white; text-decoration: underline">Pending</h1>
 					  	<c:forEach items="${applications}" var="application">
@@ -47,7 +48,6 @@
 					  	</c:forEach>
               		</li>
           		</ul>
-        	</c:forEach>
 		</div>
 	</li>
 	
