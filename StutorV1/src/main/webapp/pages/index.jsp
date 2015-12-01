@@ -67,7 +67,7 @@
     		</c:forEach>
   		</table>
   </li>
-  <li Style="margin-left: 2em; max-width: 20em; text-align: justify">
+  <li Style="margin-left: 2em; text-align: justify">
   	<h1>
   		Search, Meet, Learn, Profit!	
   	</h1>
