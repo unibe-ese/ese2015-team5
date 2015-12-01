@@ -354,33 +354,52 @@ a
 				table.default tbody
 				{
 				}
-
-
-	/* Search for courses Table */
-
-	.newsEntryElement
-	{
+				
+				
+	/* Newsfeed */
+	
+	.newsfeed
+	{	
+		margin-right: 2em;
+		background: #B0CDEA;
 		color: #FFC878;
 		text-shadow: 1px 1px grey;
 		font-weight: 800;
+		border: 2px solid white;
+		border-radius: 10px;
+		width: 12em;
 	}
+
+	
+
+/* Search for courses Table */
+
+	.coursesList
+	{
+		background: #B0CDEA;
+		border: 2px solid white;
+		border-radius: 10px;
+	}
+
 
 	.searchForCourses
 	{
-		background: linear-gradient(to left, #84ACD2,#DBEAF9);
+		background: linear-gradient(to left, #84ACD2,#B0CDEA);
 		border-radius: 10px;
-		-moz-transition: background .25s ease-in-out;
-			-webkit-transition: background .25s ease-in-out;
-			-o-transition: background .25s ease-in-out;
-			-ms-transition: background .25s ease-in-out;
-			transition: background .25s ease-in-out;
-
-	}
+		-moz-transition: background 1s ease-in-out;
+			-webkit-transition: background 1s ease-in-out;
+			-o-transition: background 1s ease-in-out;
+			-ms-transition: background 1s ease-in-out;
+			transition: background 1s ease-in-out;
+		}
 
 	.searchForCourses:hover
 	{
 		cursor: pointer;
-		background: #DBEAF9;
+		background: white;
+		border-radius: 10px;
+		border-top-left-radius:  0px;
+		border-bottom-left-radius: 30px;
 	}
 
 	.searchForCourses:active
@@ -825,14 +844,14 @@ a
 	padding:7px 7px 7px 7px;
 	border-style: solid;
 	border-width: 1px;
-	border-radius: 4px;
+	border-radius: 5px;
 	text-align: center;
 }
 
 .newsEntryElement
 {
-margin-bottom: 1em;
-			opacity: 0.5;
+	margin-left: 1em;
+	line-height: 20px;
 }
 
 .tutorNews
@@ -846,10 +865,10 @@ margin-bottom: 1em;
 	background-color: #DAEDF9;
 }
 
-/////
+
 .competence-List-Entry
 {
-	width:70%;
+	width:100%%;
 	height:50px;
 	display:inline-flex;
 }
@@ -863,12 +882,12 @@ margin-bottom: 1em;
 
 .competence-List-Gradeform
 {
-	width:65%;
+	width:20%;
 }
 
 .competence-List-Delete
 {
-	width: 14%;
+	width: 20%;
 	padding-left: 10px;
 }
 

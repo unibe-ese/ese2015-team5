@@ -9,6 +9,13 @@
 <ul Style="display: inline-flex">
 <li Style="width: 20em; margin-right: 10em">
 
+  <c:if test="${not empty pageError}">
+        <div class="alert help-inline">
+            <h4>Error!</h4>
+                ${pageError}
+        </div>
+    </c:if>
+
 <h1>Sign Up Here!</h1>
 
 <form:form method="post" modelAttribute="signupForm" action="register" id="signupForm" cssClass="form-horizontal"  autocomplete="off" enctype="multipart/form-data">
@@ -81,16 +88,6 @@ Registrus Maximus
 </div>
 </li>
 </ul>
-
-
-
-	<c:if test="${page_error != null }">
-        <div class="alert alert-error">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <h4>Error!</h4>
-                ${page_error}
-        </div>
-    </c:if>
 
 
 <c:import url="template/footer.jsp" />

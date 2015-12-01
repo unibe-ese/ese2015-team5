@@ -53,9 +53,9 @@
 									<ul>
 										<li><a href="/Skeleton/">Search courses</a></li>
 										<li><a href="/Skeleton/profile">Profile</a></li>
-										<li><a href="/Skeleton/">FAQ</a></li>
-										<li><a href="/Skeleton/">Impressum</a></li>
-										<li><a href="/Skeleton/logout" Style="text-decoration: underline">Logout</a></li>
+										<li><a href="/Skeleton/faq">FAQ</a></li>
+										<li><a href="/Skeleton/impressum">Impressum</a></li>
+										<li><a href="/Skeleton/logout" Style="text-decoration: underline">Logout</a>
 									</ul>
 								</li>
 							</ul>

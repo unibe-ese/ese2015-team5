@@ -35,15 +35,11 @@
     <c:forEach items="${user.competences}" var="competence">
         <tr class="competence-List-Entry">
             <td class="competence-List-Description">
-                ${competence.description}
+                <label>Description:</label>  <b>${competence.description}</b>
             </td>
-       		<td class="competence-List-Gradeform">
-				<form action="/Skeleton/profile/setGradeForCompetence/${competence.id}" method="post">
-					<label class="form-label-align" for="competenceGrade">Grade</label>
-					<input class="form-input-align" type="text" name="competenceGrade" value="${competence.grade}"/>
-					<input class="form-button-align" type="submit" value="Save Grade"/>
-				</form>
-			</td>
+       			<td class="competence-List-Gradeform">
+								<label>Grade:</label>  <b>${competence.grade}</b>
+						</td>
             <td class="competence-List-Delete">
                 <form:form action="profile/deleteComp/${competence.id}" method="get">
                     <input type="submit" value="X"></input>
