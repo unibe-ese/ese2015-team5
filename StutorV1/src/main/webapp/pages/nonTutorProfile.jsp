@@ -51,7 +51,7 @@
                 </c:if>
             </div>
         </div>
-        <div>
+        <div Style="width:50em">
         	<label class="control-label" for="field-aboutYou">Tell something about yourself</label>
             <textarea id="aboutYou" name="aboutYou" maxlength="1000">${user.aboutYou}</textarea>
         </div>

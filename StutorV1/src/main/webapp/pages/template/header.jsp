@@ -70,4 +70,3 @@
 
 						<!-- Content -->
 							<article>
-								<li style="display:inline-flex">
