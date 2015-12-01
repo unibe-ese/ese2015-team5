@@ -11,7 +11,7 @@
 			<label for="houerlyRate">Hourly Rate $/h  <img id="help-picture" height="30px" width="30px" src="img/question.png" title="Enter the amount of Swiss Franks you want to be compensated with for your efforts. Your rate applies to all your tutoring subjects"></label>
 			<input name="houerlyRate" value="${user.houerlyRate}" type="text" style="display:inline" />
 			<c:if test="${not empty houerlyError}">
-			<label class="error-label" for="field-houerlyRate">${houerlyError}</label>
+			<div class="error-label, help-inline" for="field-houerlyRate">${houerlyError}</div>
 			</c:if>
 	  		<input type="submit" value="Save"/>
 		</form>
@@ -37,7 +37,7 @@
             <td class="competence-List-Description">
                 <label>Description:</label>  <b>${competence.description}</b>
             </td>
-       			<td class="competence-List-Gradeform">
+       			<td class="competence-List-Grade">
 								<label>Grade:</label>  <b>${competence.grade}</b>
 						</td>
             <td class="competence-List-Delete">

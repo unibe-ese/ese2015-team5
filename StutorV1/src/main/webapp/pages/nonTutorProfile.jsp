@@ -3,9 +3,12 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
+<ul Style="display: inline-flex">
+<li>
 <form:form method="post" modelAttribute="modifyUserForm" action="./modifyUser" id="modifyUserForm" cssClass="form-horizontal"  autocomplete="off">
-    <fieldset>
+    <fieldset Style="margin-right: -10em">
         <legend><h1>Edit your information</h1></legend>
+
 
         <div>
             <label class="control-label" >Email</label>
@@ -59,13 +62,18 @@
             <input type="submit" value="Save Changes" class="btn btn-primary"></input>
         </div>
     </fieldset>
-           	<div style="margin:25px 0px 25px 0;">
-           	<h1>Change your Profile Picture</h1>
-	 		<img src="/Skeleton/imageDisplay$userId=${user.id}" style="height:100px; width:100px"/>
-        </div>
 </form:form>
+</li>
 
-<form method="POST" action="./changeProfilePic" enctype="multipart/form-data">
-    <input type="file" name="file"/>
-    <input type="submit" value="Upload new Picture">
-</form>
+
+<li>
+	<div style="margin:25px 0px 25px 0;">
+		<h1>Change your Profile Picture</h1>
+		<img src="/Skeleton/imageDisplay$userId=${user.id}" style="height:100px; width:100px"/>
+	</div>
+	<form method="POST" action="./changeProfilePic" enctype="multipart/form-data">
+	    <input type="file" name="file"/>
+	    <input type="submit" value="Upload new Picture">
+	</form>
+</li>
+</ul>

@@ -16,6 +16,9 @@
 	<ul Style="display: inline-flex">
 		<li Style="width: 40em; margin-right: 10em">
 			<label id="registration-Message"></label>
+			<div class="help-inline">
+				${error}
+			</div>
 			<h1>Login</h1>
 
 				<form action="./j_spring_security_check" method="post" >
@@ -27,9 +30,6 @@
 						<label for="j_password">Password</label>
 	 				   	<input id="j_password" name="j_password" type="password" />
 					</p>
-			<div class="help-inline">
-				${error}
-			</div>
 				<input  type="submit" value="Login" />
 			</form>
 			<form action="/Skeleton/register" method="get">

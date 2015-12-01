@@ -223,7 +223,7 @@ public class TutorController {
 			date = WeekDay.FORMAT.parse(dateString);
 		} catch (ParseException e) {
 			e.printStackTrace();
-			return "redirect:/profile";
+			return "redirect:/profile?tab=tab2";
 			
 		}
 		Calendar cal = Calendar.getInstance();
@@ -231,7 +231,7 @@ public class TutorController {
 		cal.add(Calendar.DAY_OF_YEAR, 7);
 		Week week = courseService.buildCalendar(cal, user);
 		redirectAttributes.addFlashAttribute("week", week);
-		return "redirect:/profile";
+		return "redirect:/profile?tab=tab2";
 	}
 	
 	/**
@@ -256,7 +256,7 @@ public class TutorController {
 			date = WeekDay.FORMAT.parse(dateString);
 		} catch (ParseException e) {
 			e.printStackTrace();
-			return "redirect:/profile";
+			return "redirect:/profile?tab=tab";
 			
 		}
 		Calendar cal = Calendar.getInstance();
@@ -264,7 +264,7 @@ public class TutorController {
 		cal.add(Calendar.DAY_OF_YEAR, -1);
 		Week week = courseService.buildCalendar(cal, user);
 		redirectAttributes.addFlashAttribute("week", week);
-		return "redirect:/profile";
+		return "redirect:/profile?tab=tab2";
 	}
 	
 	/**

@@ -1,11 +1,11 @@
 
-function displaySuccess(){
+function displaySuccess(output){
   var div = document.getElementById('registration-Message');
 
-  div.innerHTML = 'Created Account';
+  div.innerHTML = output;
 }
 
-function getArg(){
+function getArg(search){
   var pageURL = window.location.search.substring(1);
   var args = pageURL.split("&");
   console.log(args);
@@ -19,7 +19,7 @@ function getArg(){
 
 
 $( document ).ready(function() {
-  if( getArg() == "true"){
-	   displaySuccess();
+  if( getArg('success') == "true"){
+	   displaySuccess('Created Account');
     }
 });
