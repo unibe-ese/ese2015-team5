@@ -249,7 +249,7 @@ public class ProfileController {
 	 * @return
 	 */	
 	@RequestMapping(value="/profile/{userId}", method=RequestMethod.GET)
-	public String showPublicProfile(@PathVariable long userId, Model model){
+	public String showPublicProfile(@PathVariable long userId, Model model, RedirectAttributes red){
 		User visitee = userService.getUserById(userId);
 		User visiter = userService.getCurrentUser();
 		if(visitee == null || visiter == null){
@@ -266,6 +266,8 @@ public class ProfileController {
 		
 		model.addAttribute("hours", hours);
 		model.addAttribute("application", new ApplicationForm());
+		
+		
 		return "publicProfile";
 	}
 	

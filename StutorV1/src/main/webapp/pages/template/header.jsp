@@ -55,9 +55,8 @@
 										<li><a href="/Skeleton/profile">Profile</a></li>
 										<li><a href="/Skeleton/">FAQ</a></li>
 										<li><a href="/Skeleton/">Impressum</a></li>
-										<li><a href="/Skeleton/logout" Style="text-decoration: underline">Logout</a>
+										<li><a href="/Skeleton/logout" Style="text-decoration: underline">Logout</a></li>
 									</ul>
-								</li>
 								</li>
 							</ul>
 						</nav>
@@ -71,4 +70,3 @@
 
 						<!-- Content -->
 							<article>
-								<li style="display:inline-flex">

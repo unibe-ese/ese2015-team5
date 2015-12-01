@@ -1,4 +1,3 @@
-		</li>
 	</article>
 
 					</div>

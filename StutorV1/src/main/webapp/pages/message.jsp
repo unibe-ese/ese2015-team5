@@ -6,7 +6,15 @@
 
 <c:import url="template/header.jsp" />
 
-<div class="tabbable">
+<div style="float:left; width: 200px; height:200px;s background-color: white; margin: 10px;">
+	<c:forEach items="${contacts}" var="contact">
+		<p>${contact.email}</p>
+	</c:forEach>
+
+</div>
+
+
+<div class="tabbable" style="float:right">
     <ul class="tabs">
         <li><a id="tab1btn" href="#tab1">Received Messages</a></li>
         <li><a id="tab2btn" href="#tab2">Sent Messages</a></li>
@@ -36,7 +44,7 @@
        		<div>
        		<form:form method="post" modelAttribute="messageForm" action="./sendMessage" id="messageForm"  autocomplete="off">
        			<label>To</label>
-       			<form:input path="recipient" id="field-recipient" maxLength="35" placeholder="e.g. epic-tutor@tutor-industries.sl"/>
+       			<form:input path="recipient" id="field-recipient" maxLength="35" placeholder=""/>
        			<label>Titel</label>
        			<form:input path="title" value="${messageForm.recipient}" id="field-title" maxlength="35"/>
        			<label>Message</label>
