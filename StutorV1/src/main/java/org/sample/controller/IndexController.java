@@ -103,6 +103,19 @@ public class IndexController {
         redirectAttributes.addFlashAttribute("page_error", "You do have permission to do that!");
         return "redirect:/";
     }
+    
+    @RequestMapping(value = "/faq")
+    public String getToFaq()
+    {
+    	return "/faq";
+    }
+    
+    @RequestMapping(value = "/impressum")
+    public String getToImpressum()
+    {
+    	return "/impressum";
+    }
+    
 
     
     

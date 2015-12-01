@@ -15,6 +15,7 @@
 
 <div Style="border: 2px solid white; border-radius: 10px; background: #B0CDEA; padding:10px;">
 
+
 	<div>
 		<ul Style="display: inline-flex;">
 			<li><img src="/Skeleton/imageDisplay$userId=${visitee.id}"style="height:100px; width:100px; margin-right: 3em"/></li>
