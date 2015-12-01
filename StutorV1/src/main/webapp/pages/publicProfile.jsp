@@ -15,7 +15,16 @@
 
 <div Style="border: 2px solid white; border-radius: 10px; background: #B0CDEA; padding:10px;">
 
-
+  <c:if test="${not empty pageSuccess}">
+    <div class="success-Message">
+      ${pageSuccess}
+    </div>
+  </c:if>
+  <c:if test="${not empty pageError}">
+    <div class="error-Message">
+      ${pageError}
+    </div>
+  </c:if>
 	<div>
 		<ul Style="display: inline-flex;">
 			<li><img src="/Skeleton/imageDisplay$userId=${visitee.id}"style="height:100px; width:100px; margin-right: 3em"/></li>
@@ -42,13 +51,13 @@
 			</c:forEach>
 		<ul>
 	<div>
-	
+
 	<h1 Style="margin-top: 40px"> Schedule </h1>
 	<div Style="margin-bottom: 20px">Here you can book an appointment with the tutor you are currently inspecting. When you click on a field that is marked with "free"
 	the tutor will get a request which he can either accept or decline. If he accepts we will save the date in the "rendez vous" list
 	on the <a href="/Skeleton/">main page</a>.</div>
 	<div class="courseTable">
-	
+
 	<button class="btn btn-primary last_week_btn"
 						onclick="location.href='/Skeleton/profile/${visitee.id}/lastWeek/${week.weekDays[0].dateString}/'">Last Week</button>
 	<button class="btn btn-primary next_week_btn"

@@ -365,8 +365,10 @@ public class ProfileController {
 		if(courseService.courseIsAvailable(applicationForm.getCourse()) && appService.notDuplicate(applicationForm)){
 			app = appService.saveApplication(applicationForm);
 			redir.addFlashAttribute("week", courseService.buildCalendar(app.getDate(), app.getTutor()));
+			redir.addFlashAttribute("pageSuccess", "Application has been sent");
 			return "redirect:/profile/" + app.getTutor().getId();
 		}
+		redir.addAttribute("pageError", "Could not send Application.\n -Was it in the past? \n -Did you already apply?");
 		return "redirect:/profile/" + applicationForm.getCourse().getOwner().getId();
 	}
 
