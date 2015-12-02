@@ -64,7 +64,7 @@ public class TutorController {
 		if(comp != null){
 			compService.deleteCompetence(comp);
 		}
-		return "redirect:/profile";
+		return "redirect:/profile?tab=tab2";
 	}
 	
 //	/**
@@ -181,7 +181,7 @@ public class TutorController {
 			date = WeekDay.FORMAT.parse(form.getDateString());
 		} catch (ParseException e) {
 			e.printStackTrace();
-			return "redirect:/profile";
+			return "redirect:/profile?tab=tab2";
 		}
 		User user = (User)session.getAttribute("user");
 		form.setOwner(user);
@@ -318,7 +318,7 @@ public class TutorController {
 	public String setGradeForComp(@PathVariable("compId") long compId, @RequestParam("competenceGrade") String gradeString, 
 			RedirectAttributes redirAttributes){
 		//System.out.println("SetGrade[CompetenceId=" + compId + ", Grade=" + gradeString + "]");
-		float grade;
+		float grade = 0;
 		//TODO: check for null Competence?
 		try{
 			grade = Float.parseFloat(gradeString);

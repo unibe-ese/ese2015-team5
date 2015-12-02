@@ -41,7 +41,19 @@ public class CompetenceServiceImpl implements CompetenceService{
 		comp.setDescription(form.getDescription());
 		comp.setOwner(user);
 		comp.setisEnabled(user.getEnableTutor());
+		comp.setGrade(calculateGrade(form.getGrade()));
 		return compDao.save(comp);
+	}
+
+	private float calculateGrade(String gradeString) {
+		float grade = 0;
+		try{
+			grade = Float.parseFloat(gradeString);
+		}catch(NumberFormatException e){
+			
+		}
+		grade = (float) (Math.round(grade * 10.0) / 10.0);
+		return grade;
 	}
 
 	public void deleteCompetence(Competence comp) {

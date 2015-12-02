@@ -19,11 +19,12 @@ public class AddCompetenceFormValidator implements Validator {
 		ValidationUtils.rejectIfEmpty(errors, "grade", "field.required", "Grade is required");
 		float gradeFloat = 0;
 		try{
-			Float.parseFloat(form.getGrade());
+			 gradeFloat = Float.parseFloat(form.getGrade());
 		}catch(NumberFormatException e){
-			errors.rejectValue("grade", "grade.format", "Grade can only be numbers");
-			return;
+			errors.rejectValue("grade", "grade.format", "Grade can only be numbers ( 0 - 6 ) ");
 		}
+		System.out.println(gradeFloat);
+		System.out.println(gradeIsValid(gradeFloat));
 		if(!gradeIsValid(gradeFloat)){
 			errors.rejectValue("grade", "grade.range", "Grade has to be between 0 and 6");
 		}
