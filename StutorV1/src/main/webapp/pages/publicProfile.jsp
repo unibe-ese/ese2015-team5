@@ -21,7 +21,7 @@
     </ul>
     <div class="tabcontent">
 		<div id="tab1" class="tab">
-			
+
 			<c:if test="${not empty pageSuccess}">
     			<div class="success-Message">
       				${pageSuccess}
@@ -39,7 +39,7 @@
 				</div>
 				<ul Style="display: inline-flex; border-radius: 10px; background: linear-gradient(to top, #B0CDEA, #DBEAF9)">
 					<li><img src="/Skeleton/imageDisplay$userId=${visitee.id}"style="height:100px; width:100px; margin: 1em 3em 0em 1em"/></li>
-					
+
 					<li Style="margin-top: 1em; margin-right:3em">
 						<div Style="border-radius: 5px; text-align: justify">
 							<div Style="margin: 0em 1em 0em 1em">
@@ -50,12 +50,12 @@
 					</li>
 				</ul>
 			</div>
-	
+
 
 			<h1 Style="margin-top: 40px"> Schedule </h1>
 			<div Style="margin-bottom: 20px">Here you can book an appointment with the tutor you are currently inspecting. When you click on a field that is marked with "free"
 			the tutor will get a request which he can either accept or decline. If he accepts we will save the date in the "rendez vous" list
-			on the <a href="/Skeleton/">main page</a>. You can also check out the tutors other competences in the second tab.</div> 
+			on the <a href="/Skeleton/">main page</a>. You can also check out the tutors other competences in the second tab.</div>
 			<div class="courseTable">
 
 			<button class="btn btn-primary last_week_btn"
@@ -68,7 +68,7 @@
 					<th>
 						Time
 					</th>
-		
+
 					<c:forEach items="${week.weekDays}" var="day">
 						<th>
 							${day.name} <br>
@@ -96,12 +96,12 @@
 						</td>
 						</c:forEach>
 					</tr>
-		
+
 				</c:forEach>
 			</table>
 		</div>
         </div> <!-- tab1 close div -->
-        
+
         <div id="tab2" class="tab">
 			<h1>This tutors competences</h1>
 			<ul>

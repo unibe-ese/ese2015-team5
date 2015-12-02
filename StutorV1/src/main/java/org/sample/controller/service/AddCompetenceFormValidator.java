@@ -23,8 +23,6 @@ public class AddCompetenceFormValidator implements Validator {
 		}catch(NumberFormatException e){
 			errors.rejectValue("grade", "grade.format", "Grade can only be numbers ( 0 - 6 ) ");
 		}
-		System.out.println(gradeFloat);
-		System.out.println(gradeIsValid(gradeFloat));
 		if(!gradeIsValid(gradeFloat)){
 			errors.rejectValue("grade", "grade.range", "Grade has to be between 0 and 6");
 		}
