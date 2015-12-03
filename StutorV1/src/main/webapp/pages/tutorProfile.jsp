@@ -5,18 +5,8 @@
 <script src="/Skeleton/js/color.js"></script>
 
 <div>
-
-	<div class="houerlyRate-container">
-		<form action="./profile/houerlyRate" method="post">
-			<label for="houerlyRate">Hourly Rate $/h  <img id="help-picture" height="30px" width="30px" src="img/question.png" title="Enter the amount of Swiss Franks you want to be compensated with for your efforts. Your rate applies to all your tutoring subjects"></label>
-			<input name="houerlyRate" value="${user.houerlyRate}" type="text" style="display:inline" />
-			<c:if test="${not empty houerlyError}">
-			<div class="error-label, help-inline" for="field-houerlyRate">${houerlyError}</div>
-			</c:if>
-	  		<input type="submit" value="Save"/>
-		</form>
-	</div>
-
+	<ul Style="display:inline-flex">
+	<li>
 	<form:form method="post" modelAttribute="addCompetenceForm" action="./addCompetence" id="addComp">
   		<div>
 				<label for="description">Add your tutoring Subjects  <img id="help-picture" height="30px" width="30px" src="img/question.png" title="Add subjects in which you feel like you can tuter other students. You can create a new subject or choose existing ones that appear when you type into the field below. Add your grade after."></label>
@@ -30,6 +20,8 @@
 			</div>
   		<input type="submit" value="Add new Subject"></input>
 	</form:form>
+	
+	
 
 	<table class="competenceList">
     <c:forEach items="${user.competences}" var="competence">
@@ -48,6 +40,22 @@
         </tr>
     </c:forEach>
 	</table>
+	</li>
+	
+	<li>
+	<div class="houerlyRate-container">
+		<form action="./profile/houerlyRate" method="post">
+			<label for="houerlyRate">Hourly Rate $/h  <img id="help-picture" height="30px" width="30px" src="img/question.png" title="Enter the amount of Swiss Franks you want to be compensated with for your efforts. Your rate applies to all your tutoring subjects"></label>
+			<input name="houerlyRate" value="${user.houerlyRate}" type="text" style="display:inline" />
+			<c:if test="${not empty houerlyError}">
+			<div class="error-label, help-inline" for="field-houerlyRate">${houerlyError}</div>
+			</c:if>
+	  		<input type="submit" value="Save Hourly Rate"/>
+		</form>
+	</div>
+	</li>
+	
+	</ul>
 
 	<div class="courseTable">
 		<h1> Schedule </h1>
