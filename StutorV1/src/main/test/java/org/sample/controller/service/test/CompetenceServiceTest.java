@@ -102,6 +102,7 @@ public class CompetenceServiceTest {
 		
 		AddCompetenceForm form = new AddCompetenceForm();
 		form.setDescription(competenceDescription);
+		form.setGrade("5");
 		form.setOwnerId(666);
 		
 		Competence comp = compService.saveCompetence(form);

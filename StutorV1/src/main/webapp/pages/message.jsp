@@ -65,7 +65,7 @@
 </div>
 </li>
 <li>
-<img Style="width: 15em; margin-left: -3em" src="img/CA_1.PNG"/>
+<img Style="width: 15em; margin-left: -3em" src="img/wizzard_messages.png"/>
 </li>
 </ul>
 
