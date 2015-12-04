@@ -4,14 +4,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.sample.controller.pojos.MessageForm;
 import org.sample.controller.service.CourseService;
 import org.sample.controller.service.MessageService;
 import org.sample.controller.service.UserService;
 import org.sample.model.Course;
-import org.sample.model.CourseInterface;
 import org.sample.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
