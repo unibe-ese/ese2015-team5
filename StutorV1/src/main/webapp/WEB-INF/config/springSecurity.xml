@@ -31,6 +31,6 @@
  	<bean class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" id="passwordEncoder"/>
  
 	
-	<bean class="org.sample.security.CustomUserDetailsService" id="userDetailsService" ></bean>
+	<bean class="org.sample.controller.service.CustomUserDetailsService" id="userDetailsService" ></bean>
 
 </beans>

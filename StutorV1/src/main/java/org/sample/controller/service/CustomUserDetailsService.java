@@ -1,11 +1,12 @@
-package org.sample.security;
+package org.sample.controller.service;
  
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.sample.controller.service.SampleService;
 import org.sample.model.User;
+import org.sample.model.dao.UserDao;
+import org.sample.security.UsernamePasswordIDAuthenticationToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -28,7 +29,7 @@ import org.springframework.stereotype.Component;
 public class CustomUserDetailsService implements AuthenticationProvider {
 
 	@Autowired
-    SampleService sampleService;
+    UserDao userDao;
 	
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
@@ -46,7 +47,13 @@ public class CustomUserDetailsService implements AuthenticationProvider {
 		 */
 		String email = authentication.getName();
 		String password = (String) authentication.getCredentials();
-		User user = sampleService.loadUserByUserName(email);
+		
+		User user = null;
+		for (User u:userDao.findAll())
+		{
+			if(u.getEmail().equals(email))
+				user = u;
+		}
 		
 		/**
 		 * Creates a role for the authentication token. 
@@ -70,8 +77,4 @@ public class CustomUserDetailsService implements AuthenticationProvider {
 	public boolean supports(Class<?> authentication) {
 		return true;
 	}
- 
-
-//   
- 
 }
