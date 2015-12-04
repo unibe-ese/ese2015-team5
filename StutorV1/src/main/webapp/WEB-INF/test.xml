@@ -33,6 +33,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hdiv="http://www.hdi
 	<bean class="org.sample.controller.service.UserServiceImpl" />
 
 	<bean class="org.sample.controller.RegistrationController" />
+	
 	<bean class="org.sample.controller.service.CompetenceServiceImpl" />
 	
 	<bean class="org.sample.controller.service.CourseServiceImpl" />

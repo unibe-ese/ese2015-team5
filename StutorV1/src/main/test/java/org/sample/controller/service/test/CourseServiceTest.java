@@ -17,6 +17,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
+import org.sample.controller.exceptions.InvalidCourseDateException;
 import org.sample.controller.pojos.AddCourseForm;
 import org.sample.controller.service.CourseService;
 import org.sample.model.Application;
@@ -128,15 +129,18 @@ public class CourseServiceTest {
 //	}
 	
 	@Test
-	public void saveTest() throws ParseException{
+	public void saveTest() throws ParseException, InvalidCourseDateException{
 		courseService.save(form);
 		assertEquals(expectedCourse, captor.getValue());
-		form.setDate(pastDate);
+		form.setOwner(null);
 		Course course = courseService.save(form);
 		assertEquals(null, course);
-		form.setOwner(null);
-		course = courseService.save(form);
-		assertEquals(null, course);
+	}
+	
+	@Test(expected=InvalidCourseDateException.class)
+	public void saveTestFail() throws ParseException, InvalidCourseDateException{
+		form.setDate(pastDate);
+		courseService.save(form);
 	}
 
 	@Test

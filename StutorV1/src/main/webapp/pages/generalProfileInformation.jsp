@@ -3,8 +3,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
+<script src="/Skeleton/js/editSuccess.js"></script>
 <ul Style="display: inline-flex">
 <li>
+<div id="edit-Message"></div>
 <form:form method="post" modelAttribute="modifyUserForm" action="./modifyUser" id="modifyUserForm" cssClass="form-horizontal"  autocomplete="off">
     <fieldset Style="margin-right: -10em">
         <legend><h1>Edit your information</h1></legend>
@@ -49,9 +51,7 @@
             <label class="control-label" for="field-password">Confirm Password</label>
             <div class="controls">
                 <form:input path="passwordControll" type="password" id="field-password" tabindex="4" maxlength="35" value="${user.password}"/>
-                <c:if test="${not empty passwordControllError}">
-                   ${passwordControllError}
-                </c:if>
+                <form:errors path="passwordControll" cssClass="help-inline" element="span"/>
             </div>
         </div>
         <div Style="width:50em">

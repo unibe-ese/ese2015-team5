@@ -91,8 +91,19 @@ public class UserServiceTest {
 		ecpectedUser.setLastName("Doe");
 		ecpectedUser.setPassword("fdsa");
 		
+		User someUser = new User();
+		someUser.setEmail("abc@asdf.ch");
+		user.setFirstName("Franz");
+		user.setLastName("Meier");
+		user.setPassword("asdf");
+		user.setEnableTutor(false);
+		
+		List<User> testUserList = new ArrayList<User>();
+		testUserList.add(someUser);
+		
 		when(testUserDao.findOne(any(Long.class))).thenReturn(user);
 		when(testUserDao.save(captor.capture())).thenReturn(null);
+		when(testUserDao.findAll()).thenReturn(testUserList);
 		
 	}
 	

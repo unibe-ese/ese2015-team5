@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import org.sample.controller.exceptions.InvalidCourseDateException;
 import org.sample.controller.pojos.AddCourseForm;
 import org.sample.model.Application;
 import org.sample.model.Course;
@@ -78,7 +79,7 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public Course save(AddCourseForm form){
+	public Course save(AddCourseForm form) throws InvalidCourseDateException{
 		User user = form.getOwner();
 		
 		if(user != null){
@@ -88,7 +89,7 @@ public class CourseServiceImpl implements CourseService {
 			course.setSlot(form.getSlot());
 			course.setAvailable(true);
 			if(course.isInThePast())
-				return null;
+				throw new InvalidCourseDateException("Date is in the past");
 			return courseDao.save(course);
 		}
 		return null;

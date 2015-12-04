@@ -8,7 +8,6 @@ import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 
 import org.sample.controller.pojos.AddCompetenceForm;
 import org.sample.controller.pojos.AddCourseForm;
@@ -17,6 +16,7 @@ import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.service.ApplicationService;
 import org.sample.controller.service.CompetenceService;
 import org.sample.controller.service.CourseService;
+import org.sample.controller.service.ModifyUserFormValidator;
 import org.sample.controller.service.UserService;
 import org.sample.model.Application;
 import org.sample.model.Competence;
@@ -159,20 +159,20 @@ public class ProfileController {
      */
     @RequestMapping(value="/modifyUser", method=RequestMethod.POST)
 	public String modifyUser( @ModelAttribute("user") User user, 
-			 @Valid ModifyUserForm form, BindingResult result, RedirectAttributes redirectAttributes){
+			ModifyUserForm form, BindingResult result, RedirectAttributes redirectAttributes){
 		form.setId(user.getId());
-		if(result.hasErrors() || !form.getPasswordControll().equals(form.getPassword())){
-			
+		ModifyUserFormValidator validator = new ModifyUserFormValidator();
+		validator.validate(form, result);
+		if(result.hasErrors()){
 			redirectAttributes.addFlashAttribute("modifyUserForm", form);
-			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.modifyUserForm", result);			
-			if(!form.getPasswordControll().equals(form.getPassword())){
-				redirectAttributes.addFlashAttribute("passwordControllError", "Must match password");
-			}
+			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.modifyUserForm", result);
+			return "redirect:/profile?edit=fail";
 		}
 		else if(userService.validateModifyUserForm(form)){	
 			user = userService.updateUser(form);
+			return "redirect:/profile?edit=success";
 		}
-        return "redirect:tutorProfile";
+        return "redirect:/index";
 	}
 	
 	/**

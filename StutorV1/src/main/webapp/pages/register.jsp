@@ -78,7 +78,7 @@
 </form:form>
 </li>
 <li Style="width: 20em; margin-top: 10em">
-<img Style="width: 30em;" src="img/magicka__red_wizard__render_by_quidek-d8fxnbj.png"/>
+<img Style="width: 30em;" src="img/wizzard_registration.png"/>
 </li>
 <li Style="margin-top:10em">
 <div Style="Background: white; border-radius: 10px; width: 15em">

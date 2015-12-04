@@ -8,6 +8,7 @@ import java.util.Date;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.sample.controller.exceptions.InvalidCourseDateException;
 import org.sample.controller.pojos.AddCompetenceForm;
 import org.sample.controller.pojos.AddCourseForm;
 import org.sample.controller.service.AddCompetenceFormValidator;
@@ -133,12 +134,17 @@ public class TutorController {
 		
 		if(courseService.alreadyExists(form)){
 			courseService.deleteCourse(form);
+			redirectAttributes.addFlashAttribute("addCourseSuccess", "Deleted Course");
 		}
 		else{	
 			try {
 				courseService.save(form);
 				redirectAttributes.addFlashAttribute("week", courseService.buildCalendar(date));
-			} catch (ParseException e) {e.printStackTrace();}	
+				redirectAttributes.addFlashAttribute("addCourseSuccess", "Created Course");
+			} catch (ParseException | InvalidCourseDateException e) 
+				{e.printStackTrace();
+				redirectAttributes.addFlashAttribute("addCourseError", e.getMessage());
+			}	
 		}
     	return "redirect:/tutorProfile?tab=tab2";
     }

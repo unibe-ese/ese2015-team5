@@ -1,6 +1,5 @@
 package org.sample.controller.pojos;
 
-import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * Contains information to edit a {@link org.sample.model.User}.
@@ -13,13 +12,10 @@ public class ModifyUserForm{
 	
 	private long id;
 	
-	@NotBlank(message = "Please provide your firstname")
     private String firstName;
 	
-	@NotBlank(message = "Please provide your Lastname")
     private String lastName;
 	
-	@NotBlank(message="Password cant be empty")
     private String password;
     private String passwordControll;
     
