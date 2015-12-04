@@ -20,8 +20,8 @@
 			</div>
   		<input type="submit" value="Add new Subject"></input>
 	</form:form>
-	
-	
+
+
 
 	<table class="competenceList">
     <c:forEach items="${user.competences}" var="competence">
@@ -41,7 +41,7 @@
     </c:forEach>
 	</table>
 	</li>
-	
+
 	<li>
 	<div class="houerlyRate-container">
 		<form action="./profile/houerlyRate" method="post">
@@ -54,9 +54,18 @@
 		</form>
 	</div>
 	</li>
-	
-	</ul>
 
+	</ul>
+<c:if test="${not empty addCourseError}">
+	<div class="error-Message">
+		${addCourseError}
+	</div>
+</c:if>
+<c:if test="${not empty addCourseSuccess}">
+	<div class="success-Message">
+		${addCourseSuccess}
+	</div>
+</c:if>
 	<div class="courseTable">
 		<h1> Schedule </h1>
 		<button class="btn btn-primary last_week_btn"

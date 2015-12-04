@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 
+import org.sample.controller.exceptions.InvalidCourseDateException;
 import org.sample.controller.pojos.AddCourseForm;
 import org.sample.model.Application;
 import org.sample.model.Course;
@@ -17,7 +18,7 @@ public interface CourseService {
 	
 	Week buildCalendar(Date date, User user);
 
-	Course save(AddCourseForm form) throws ParseException;
+	Course save(AddCourseForm form) throws ParseException, InvalidCourseDateException;
 
 	Object buildCalendar(Date date);
 

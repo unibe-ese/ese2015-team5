@@ -120,9 +120,15 @@ public class UserServiceImpl implements UserService{
 				compDao.save(c);
 			}
 		}
-		user.setFirstName(mod.getFirstName());
-		user.setLastName(mod.getLastName());
-		user.setPassword(mod.getPassword());
+		if(!mod.getFirstName().isEmpty()){
+			user.setFirstName(mod.getFirstName());
+		}
+		if(!mod.getLastName().isEmpty()){
+			user.setLastName(mod.getLastName());
+		}
+		if(!mod.getPassword().isEmpty()){
+			user.setPassword(mod.getPassword());
+		}
 		user.setEnableTutor(mod.getEnableTutor());
 		user.setAboutYou(mod.getAboutYou());
 		return userDao.save(user);
@@ -130,7 +136,7 @@ public class UserServiceImpl implements UserService{
 
 	public boolean validateModifyUserForm(ModifyUserForm mod) {
 		User user = userDao.findOne(mod.getId());
-    	if(user == null || !mod.getPassword().equals(mod.getPasswordControll())){
+    	if(user == null){
     		return false;
     	}
     	
