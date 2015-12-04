@@ -13,6 +13,7 @@ import org.sample.controller.pojos.NewsFeedArticleInterface;
 import org.sample.controller.pojos.SignupForm;
 import org.sample.controller.pojos.StudentNews;
 import org.sample.controller.pojos.TutorNews;
+import org.sample.model.Application;
 import org.sample.model.Competence;
 import org.sample.model.Course;
 import org.sample.model.ProfilePicture;
@@ -226,7 +227,7 @@ public class UserServiceImpl implements UserService{
 
 	private NewsFeedArticleInterface buildStudentNews(Course c) {
 		StudentNews news = new StudentNews();
-		DateFormat format = CalendarServiceImpl.FORMAT;
+		DateFormat format = Application.FORMAT;
 		news.setDateRepresentation(format.format(c.getDate()));
 		news.setPartner(c.getOwner());
 		return news;
@@ -234,7 +235,7 @@ public class UserServiceImpl implements UserService{
 
 	private NewsFeedArticleInterface buildTutorNews(Course c) {
 		TutorNews news = new TutorNews();
-		DateFormat format = CalendarServiceImpl.FORMAT;
+		DateFormat format = Application.FORMAT;
 		news.setDateRepresentation(format.format(c.getDate()));
 		news.setPartner(c.getCustomer());
 		return news;

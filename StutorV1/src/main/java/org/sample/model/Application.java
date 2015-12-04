@@ -1,6 +1,7 @@
 package org.sample.model;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -8,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-	
 /**
  * Represents an application, that a student ({@link User}) sends to a Tutor ({@link User}) for a certain
  * {@link Course}. If accepted, the course will be reserved for the student.
@@ -21,10 +21,11 @@ import javax.persistence.OneToOne;
  *
  */
 
-import org.sample.controller.service.CalendarServiceImpl;
-
 @Entity
 public class Application {
+	
+	public static final DateFormat FORMAT = new SimpleDateFormat("dd.MM.yyyy");
+	
 	
 	@Id
     @GeneratedValue
@@ -79,7 +80,7 @@ public class Application {
 	}
 
 	public String getDateRepresentation() {
-		DateFormat format = CalendarServiceImpl.FORMAT;
+		DateFormat format = FORMAT;
 		this.dateRepresentation = format.format(course.getDate());
 		return dateRepresentation;
 	}
