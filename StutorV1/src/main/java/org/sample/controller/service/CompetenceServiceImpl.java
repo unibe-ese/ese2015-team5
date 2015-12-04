@@ -46,11 +46,11 @@ public class CompetenceServiceImpl implements CompetenceService{
 	}
 
 	private float calculateGrade(String gradeString) {
-		float grade = 0;
+		float grade;
 		try{
 			grade = Float.parseFloat(gradeString);
 		}catch(NumberFormatException e){
-			
+			grade = 0;
 		}
 		grade = (float) (Math.round(grade * 10.0) / 10.0);
 		return grade;
