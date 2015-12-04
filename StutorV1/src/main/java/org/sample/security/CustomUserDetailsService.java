@@ -4,7 +4,7 @@ package org.sample.security;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.sample.controller.service.SampleService;
+import org.sample.controller.service.UserService;
 import org.sample.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -28,7 +28,7 @@ import org.springframework.stereotype.Component;
 public class CustomUserDetailsService implements AuthenticationProvider {
 
 	@Autowired
-    SampleService sampleService;
+    UserService userService;
 	
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
@@ -46,7 +46,7 @@ public class CustomUserDetailsService implements AuthenticationProvider {
 		 */
 		String email = authentication.getName();
 		String password = (String) authentication.getCredentials();
-		User user = sampleService.loadUserByUserName(email);
+		User user = userService.getUserByEmail(email);
 		
 		/**
 		 * Creates a role for the authentication token. 
@@ -70,8 +70,4 @@ public class CustomUserDetailsService implements AuthenticationProvider {
 	public boolean supports(Class<?> authentication) {
 		return true;
 	}
- 
-
-//   
- 
 }
