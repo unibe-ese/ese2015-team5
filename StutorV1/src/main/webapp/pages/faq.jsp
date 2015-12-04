@@ -12,15 +12,15 @@
 
 
     <h1>Was passiert mit meinen persönlichen Daten?</h1>
-    Werden in der Datenbank abgelegt
+    <p>Werden in der Datenbank abgelegt</p>
     <h1>Was passiert, wenn ich mein Passwort vergessen habe?</h1>
-    Mach das lieber nicht!
+    <p>Mach das lieber nicht!</p>
     <h1>Wie kann ich mein Passwort ändern?</h1>
-	Profil   
+	<p>In der Profil-Rubrik</p> 
     <h1>Wie kann ich meinen Account kündigen?</h1>
-    Gar nicht
+    <p>Gar nicht</p>
     <h1>Welche Zahlungsvarianten werden akzeptiert?</h1>
-    Keine
+    <p>Keine</p>
 
 <c:import url="template/footer.jsp" />
 
