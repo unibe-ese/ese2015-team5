@@ -5,6 +5,9 @@
 
 
 <c:import url="template/header.jsp" />
+
+<ul Style="display:inline-flex">
+<li>
 <div style="display:flex">
 <div style="margin: 10px;" class="tabcontent">
 	<h1 style="color:white">Contact your Captain</h1>
@@ -55,5 +58,17 @@
     </div>
 </div>
 </div>
+</li>
+<li Style="margin-left: 10em">
+<div Style="Background: white; text-align: justify; border-radius: 10px; width: 10em">
+"Remember: you can only write messages to people you already have an appointment with."
+</div>
+</li>
+<li>
+<img Style="width: 15em; margin-left: -3em" src="img/CA_1.PNG"/>
+</li>
+</ul>
+
+
 
 <c:import url="template/footer.jsp" />
