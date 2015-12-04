@@ -23,7 +23,7 @@
 
 				<form action="./j_spring_security_check" method="post" >
 				<p>
-					<label for="j_username">Username</label>
+					<label for="j_username">E-Mail</label>
 	 			   		<input id="j_username" name="j_username" type="text" />
 					</p>
 					<p>
