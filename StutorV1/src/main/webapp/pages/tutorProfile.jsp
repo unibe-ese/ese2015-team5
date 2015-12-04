@@ -56,17 +56,18 @@
 	</li>
 
 	</ul>
-<c:if test="${not empty addCourseError}">
-	<div class="error-Message">
-		${addCourseError}
-	</div>
-</c:if>
-<c:if test="${not empty addCourseSuccess}">
-	<div class="success-Message">
-		${addCourseSuccess}
-	</div>
-</c:if>
 	<div class="courseTable">
+		<c:if test="${not empty addCourseError}">
+			<div class="error-Message">
+				${addCourseError}
+			</div>
+		</c:if>
+		<c:if test="${not empty addCourseSuccess}">
+			<div class="success-Message">
+				${addCourseSuccess}
+			</div>
+		</c:if>
+
 		<h1> Schedule </h1>
 		<button class="btn btn-primary last_week_btn"
                        onclick="location.href='profile/lastWeek/${week.weekDays[0].dateString}/'">Last Week</button>
