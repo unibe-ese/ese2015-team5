@@ -1,4 +1,4 @@
-package org.sample.security;
+package org.sample.controller.service;
  
 
 import java.util.ArrayList;
@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.sample.model.User;
 import org.sample.model.dao.UserDao;
+import org.sample.security.UsernamePasswordIDAuthenticationToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
