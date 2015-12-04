@@ -80,7 +80,7 @@ public class ProfileController {
 	 * @param model
 	 * @return 
 	 */
-    @RequestMapping( value = "/profile")
+    @RequestMapping( value = "/tutorProfile")
     public ModelAndView gotoProfile(Model model){
   	
     	User user = userService.getCurrentUser();
@@ -88,10 +88,10 @@ public class ProfileController {
     		return new ModelAndView("index");
     	}   	
 
-    	ModelAndView modelAndView = new ModelAndView("profileOnlyPersonalInformation", buildProfileModel(model, user).asMap());
+    	ModelAndView modelAndView = new ModelAndView("generalProfile", buildProfileModel(model, user).asMap());
     	if(user.getEnableTutor())
     	{
-    		modelAndView = new ModelAndView("profile", buildProfileModel(model, user).asMap());
+    		modelAndView = new ModelAndView("tutorProfile", buildProfileModel(model, user).asMap());
     	}
     	assert modelAndView != null;
     	return modelAndView;
@@ -172,7 +172,7 @@ public class ProfileController {
 		else if(userService.validateModifyUserForm(form)){	
 			user = userService.updateUser(form);
 		}
-        return "redirect:profile";
+        return "redirect:tutorProfile";
 	}
 	
 	/**
@@ -197,12 +197,12 @@ public class ProfileController {
             	
             	userService.updateProfilePicture(profilePicture);
             	
-                return "redirect:profile";
+                return "redirect:tutorProfile";
             } catch (Exception e) {
-                return "redirect:profile";
+                return "redirect:tutorProfile";
             }
         }else{       	
-        	return "redirect:profile";
+        	return "redirect:tutorProfile";
         }
     }
 	
@@ -248,7 +248,7 @@ public class ProfileController {
 	 * @param model: Model from the previous model. 
 	 * @return
 	 */	
-	@RequestMapping(value="/profile/{userId}", method=RequestMethod.GET)
+	@RequestMapping(value="/tutorProfile/{userId}", method=RequestMethod.GET)
 	public String showPublicProfile(@PathVariable long userId, Model model, RedirectAttributes red){
 		User visitee = userService.getUserById(userId);
 		User visiter = userService.getCurrentUser();
@@ -257,7 +257,7 @@ public class ProfileController {
 		}
 		if(visitee.equals(visiter)){
 			
-			return "redirect:/profile";
+			return "redirect:/tutorProfile";
 		}
 		model.addAttribute("visitee", visitee);
 		if(!model.containsAttribute("week")){
@@ -277,7 +277,7 @@ public class ProfileController {
 	 * <p>Builds a week for the {@User} with ID userId;</p>
 	 * <p>The requested date is retrieved from the dateString, which is parsed with {@link org.sample.model.WeekDay#FORMAT Week.FORMAT}</p>
 	 * 
-	 * The week is then added to redirectAttributes, so when redirecting to {@link #gotoProfile(Model model) /profile}
+	 * The week is then added to redirectAttributes, so when redirecting to {@link #gotoProfile(Model model) /tutorProfile}
 	 * If the dateString cannot be parsed, redirects to profile.
 	 * 
 	 * 
@@ -285,7 +285,7 @@ public class ProfileController {
 	 * @param dateString: String representation of a Date. "dd.MM.yyyy" can be parsed.
 	 * @return Redirects to profile/userID
 	 */
-	@RequestMapping(value="/profile/{userId}/nextWeek/{dateString}/", method=RequestMethod.GET)
+	@RequestMapping(value="/tutorProfile/{userId}/nextWeek/{dateString}/", method=RequestMethod.GET)
 	public String showPublicProfileNextWeek(@PathVariable long userId, @PathVariable("dateString") String dateString, RedirectAttributes redirAttributes){
 		User visitee = userService.getUserById(userId);
 		if(visitee == null){
@@ -297,13 +297,13 @@ public class ProfileController {
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "redirect:/profile/" + userId;
+			return "redirect:/tutorProfile/" + userId;
 		}
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		cal.add(Calendar.DAY_OF_YEAR, 7);
 		redirAttributes.addFlashAttribute("week", courseService.buildCalendar(cal, visitee));
-		return "redirect:/profile/" + userId;
+		return "redirect:/tutorProfile/" + userId;
 	}
 	
 	/**
@@ -312,15 +312,15 @@ public class ProfileController {
 	 * <p>Builds a week for the {@User} with ID userId;</p>
 	 * <p>The requested date is retrieved from the dateString, which is parsed with {@link org.sample.model.WeekDay#FORMAT Week.FORMAT}</p>
 	 * 
-	 * The week is then added to redirectAttributes, so when redirecting to {@link #gotoProfile(Model model) /profile}
+	 * The week is then added to redirectAttributes, so when redirecting to {@link #gotoProfile(Model model) /tutorProfile}
 	 * If the dateString cannot be parsed, redirects to profile.
 	 * 
 	 * 
 	 * @param userId: ID refering a {@link User}
 	 * @param dateString: String representation of a Date. "dd.MM.yyyy" can be parsed.
-	 * @return Redirects to profile/userID
+	 * @return Redirects to tutorProfile/userID
 	 */
-	@RequestMapping(value="/profile/{userId}/lastWeek/{dateString}/", method=RequestMethod.GET)
+	@RequestMapping(value="/tutorProfile/{userId}/lastWeek/{dateString}/", method=RequestMethod.GET)
 	public String showPublicProfileLastWeek(@PathVariable long userId, @PathVariable("dateString") String dateString, RedirectAttributes redirAttributes){
 		User visitee = userService.getUserById(userId);
 		if(visitee == null){
@@ -332,13 +332,13 @@ public class ProfileController {
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "redirect:/profile/" + userId;
+			return "redirect:/tutorProfile/" + userId;
 		}
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		cal.add(Calendar.DAY_OF_YEAR, -1);
 		redirAttributes.addFlashAttribute("week", courseService.buildCalendar(cal, visitee));
-		return "redirect:/profile/" + userId;
+		return "redirect:/tutorProfile/" + userId;
 	}
 	
 	/**
@@ -358,7 +358,7 @@ public class ProfileController {
 	 * @param courseId: A ID that corresponds to a {@link Course}
 	 * @return to the public profile page.
 	 */
-	@RequestMapping(value="/profile/application", method=RequestMethod.POST)
+	@RequestMapping(value="/tutorProfile/application", method=RequestMethod.POST)
 	public String addApplication(@RequestParam("courseId") long courseId, RedirectAttributes redir){
 		ApplicationForm applicationForm = buildAppForm(courseId);
 		Application app;
@@ -366,11 +366,11 @@ public class ProfileController {
 			app = appService.saveApplication(applicationForm);
 			redir.addFlashAttribute("week", courseService.buildCalendar(app.getDate(), app.getTutor()));
 			redir.addFlashAttribute("pageSuccess", "Application has been sent");
-			return "redirect:/profile/" + app.getTutor().getId();
+			return "redirect:/tutorProfile/" + app.getTutor().getId();
 		}
 		redir.addFlashAttribute("pageError", "Could not send Application.<br> -Was it in the past? <br> -Did you already apply?");
 		System.out.println("Added pageError");
-		return "redirect:/profile/" + applicationForm.getCourse().getOwner().getId();
+		return "redirect:/tutorProfile/" + applicationForm.getCourse().getOwner().getId();
 	}
 
 	/**

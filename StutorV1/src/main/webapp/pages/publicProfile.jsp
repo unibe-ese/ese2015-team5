@@ -33,8 +33,8 @@
 		    	</div>
 			</c:if>
 			<div>
-				<div Style="margin-bottom: -10px; margin-left: 10px;">
-					<h1 Style="color:white; text-shadow: 1px 1px grey">${visitee.firstName}
+				<div Style="margin-bottom: -2px; margin-left: 10px;">
+					<h1 Style="color:#FFC878; text-shadow: 1px 1px grey; font-size: 45px">${visitee.firstName}
 					${visitee.lastName}</h1>
 				</div>
 				<ul Style="display: inline-flex; border-radius: 10px; background: linear-gradient(to top, #B0CDEA, #DBEAF9)">
@@ -59,9 +59,9 @@
 			<div class="courseTable">
 
 			<button class="btn btn-primary last_week_btn"
-								onclick="location.href='/Skeleton/profile/${visitee.id}/lastWeek/${week.weekDays[0].dateString}/'">Last Week</button>
+								onclick="location.href='/Skeleton/tutorProfile/${visitee.id}/lastWeek/${week.weekDays[0].dateString}/'">Last Week</button>
 			<button class="btn btn-primary next_week_btn"
-								onclick="location.href='/Skeleton/profile/${visitee.id}/nextWeek/${week.weekDays[0].dateString}/'">Next Week</button>
+								onclick="location.href='/Skeleton/tutorProfile/${visitee.id}/nextWeek/${week.weekDays[0].dateString}/'">Next Week</button>
 
 			<table>
 				<tr>
@@ -108,7 +108,7 @@
 				<c:forEach items="${visitee.competences}" var="competence">
 					<li Style="margin-top: 1em; margin-left: 2em; background: linear-gradient(to left, #5A86B0, #B0CDEA); border-radius: 10px; width: 30%">${competence.description}(${competence.grade})</li>
 				</c:forEach>
-			<ul>
+			</ul>
         </div>
     </div>
 </div>
