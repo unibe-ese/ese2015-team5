@@ -53,6 +53,7 @@
 									<ul>
 										<li><a href="/Skeleton/">Search courses</a></li>
 										<li><a href="/Skeleton/profile">Profile</a></li>
+										<li><a href="/Skeleton/messages">Messages</a></li>
 										<li><a href="/Skeleton/faq">FAQ</a></li>
 										<li><a href="/Skeleton/impressum">Impressum</a></li>
 										<li><a href="/Skeleton/logout" Style="text-decoration: underline">Logout</a>

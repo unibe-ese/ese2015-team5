@@ -12,42 +12,31 @@
 			<h1 Style="text-shadow: none; margin-left:1em; color: white; text-decoration:underline;">Rendez Vous</h1>
          		<ul class="newsEntryElement">
          			<c:forEach items="${newsfeed}" var="news">		
-	         			<li>
+	         			<li style="border-bottom:1px solid white; padding-bottom: 5px">
 	              			<c:if test="${news.tutorCourse == true}">Course</c:if>
 	              			<c:if test="${news.tutorCourse == false}">Lesson</c:if>
-	              		</li>
-	              <!-- 	<li class="newsEntryListing">  -->
-	                	<li class="newsEntryListing-date">${news.dateRepresentation}</li>
-	              		<li class="newsEntryListing-name" Style="margin-bottom: 15px">
+							<br>
+							${news.dateRepresentation} 
+							<br>
 							${news.partner.firstName}
 	                		${news.partner.lastName}
 	              		</li>
               		</c:forEach>
-              		<li>
-              		<h1 Style="text-shadow: none; color:white; text-decoration: underline">Pending</h1>
+              		</ul>
+              		<h1  Style="text-shadow: none; margin-left:1em; color:white; text-decoration: underline;">Pending</h1>
+						<ul class="newsEntryElement">
 					  	<c:forEach items="${applications}" var="application">
-					      <tr>
-					          <td>
-					          	<ul>
-					          		<li>
-						              ${application.tutor.firstName}
-						              ${application.student.firstName}
-						            </li>
-						         	<li>
-						              ${application.dateRepresentation}
-						            </li>
-						            <li>
-					              		<button class="button" Style="width: 7em; font-weight: 100; font-size: 15px;" onclick="location.href='./accept/${application.id}'">Accept</button>
-					              	</li>
-					              	<li>
-					              		<button class="button" Style="width: 7em; font-weight: 100; font-size: 15px;" onclick="location.href='./decline/${application.id}'">Decline</button>
-					          		</li>
-					          	</ul>
-					          </td>
-					      </tr>
+						<li Style="border-bottom:1px solid white; padding-bottom: 5px;">
+							${application.student.firstName}
+							${application.student.lastName}
+							${application.dateRepresentation}
+							<button class="button" Style="width: 7em; font-weight: 100; font-size: 15px;" onclick="location.href='./accept/${application.id}'">Accept</button>
+							<button class="button" Style="width: 7em; font-weight: 100; font-size: 15px;" onclick="location.href='./decline/${application.id}'">Decline</button>
+						</li>
 					  	</c:forEach>
-              		</li>
-          		</ul>
+						</ul>
+              		
+          		
 		</div>
 	</li>
 	
