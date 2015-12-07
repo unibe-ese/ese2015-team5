@@ -267,7 +267,6 @@ public class TutorController {
 	public String setGradeForComp(@PathVariable("compId") long compId, @RequestParam("competenceGrade") String gradeString, 
 			RedirectAttributes redirAttributes){
 		float grade = 0;
-		//TODO: check for null Competence?
 		try{
 			grade = Float.parseFloat(gradeString);
 		}

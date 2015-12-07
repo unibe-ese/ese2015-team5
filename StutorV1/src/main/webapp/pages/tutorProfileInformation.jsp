@@ -27,7 +27,7 @@
     <c:forEach items="${user.competences}" var="competence">
         <tr class="competence-List-Entry">
             <td class="competence-List-Description">
-                <label>Description:</label>  <b>${competence.description}</b>
+                <label>Tutoring Course:</label>  <b>${competence.description}</b>
             </td>
        			<td class="competence-List-Grade">
 								<label>Grade:</label>  <b>${competence.grade}</b>
