@@ -49,7 +49,7 @@
 		<table Style="width: 21em;">
     		<c:forEach items="${competences}" var="competence">
         		<tr>
-        			<td class="searchForCourses" onclick="location.href='profile/${competence.owner.id}'">
+        			<td class="searchForCourses" onclick="location.href='tutorProfile/${competence.owner.id}'">
                 		<div Style="text-align: right; margin-right:1em">${competence.description}, ${competence.grade}</div>
             		</td>
         		</tr>
@@ -62,7 +62,7 @@
   	</h1>
   		This is the heart of this website. Here you can search for courses and we will provide you with a list of tutors
   		who can help you with your studies. If you successfully arrange an appointment with a tutor or you get booked by another
-  		student (you need to activate your tutor-status in your <a href="/Skeleton/profile">profile</a>) you will see your upcoming 
+  		student (you need to activate your tutor-status in your <a href="/Skeleton/tutorProfile">profile</a>) you will see your upcoming 
   		meetings on the left.
   </li>
 </ul>  

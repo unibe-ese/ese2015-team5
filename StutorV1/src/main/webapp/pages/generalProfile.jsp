@@ -3,9 +3,17 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-
 <c:import url="template/header.jsp" />
 
-<img src="${pageContext.request.contextPath}/upload/${pic.img}" />
+<div class="tabbable">
+    <ul class="tabs">
+        <li><a href="#tab1">General Information</a></li>
+    </ul>
+    <div class="tabcontent">
+        <div id="tab1" class="tab">
+            <c:import url="generalProfileInformation.jsp" />
+        </div>
+    </div>
+</div>
 
 <c:import url="template/footer.jsp" />

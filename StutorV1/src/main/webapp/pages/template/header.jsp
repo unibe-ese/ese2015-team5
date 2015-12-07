@@ -52,7 +52,7 @@
 									<a href="" Style="text-weight: 1000; background: linear-gradient(to bottom, rgba(255,241,221,1) 0%,rgba(255,227,186,1) 48%,rgba(255,213,152,1) 51%,rgba(255,200,120,1) 100%)">Navigation Menu</a>
 									<ul>
 										<li><a href="/Skeleton/">Search courses</a></li>
-										<li><a href="/Skeleton/profile">Profile</a></li>
+										<li><a href="/Skeleton/tutorProfile">Profile</a></li>
 										<li><a href="/Skeleton/messages">Messages</a></li>
 										<li><a href="/Skeleton/faq">FAQ</a></li>
 										<li><a href="/Skeleton/impressum">Impressum</a></li>

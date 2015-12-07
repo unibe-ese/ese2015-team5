@@ -17,7 +17,7 @@ ID of Comp: ${competence.id}
 
 
 
-<form:form method="post" modelAttribute="editCompetenceForm" action="/Skeleton/profile/editComp/${competence.id}">
+<form:form method="post" modelAttribute="editCompetenceForm" action="/Skeleton/tutorProfile/editComp/${competence.id}">
     <form:input type="text" path="description" value="${competence.description}"/>
     <form:errors path="description" cssClass="help-inline" element="span"/>
 
