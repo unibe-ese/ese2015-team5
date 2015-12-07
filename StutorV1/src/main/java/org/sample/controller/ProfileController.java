@@ -266,7 +266,6 @@ public class ProfileController {
 		
 		model.addAttribute("hours", hours);
 		model.addAttribute("application", new ApplicationForm());
-		System.out.println(model.asMap().get("pageError"));
 		
 		return "publicProfile";
 	}
@@ -369,7 +368,6 @@ public class ProfileController {
 			return "redirect:/tutorProfile/" + app.getTutor().getId();
 		}
 		redir.addFlashAttribute("pageError", "Could not send Application.<br> -Was it in the past? <br> -Did you already apply?");
-		System.out.println("Added pageError");
 		return "redirect:/tutorProfile/" + applicationForm.getCourse().getOwner().getId();
 	}
 

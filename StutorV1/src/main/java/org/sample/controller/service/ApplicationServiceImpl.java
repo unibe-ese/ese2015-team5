@@ -88,7 +88,6 @@ public class ApplicationServiceImpl implements ApplicationService {
 	public boolean notDuplicate(ApplicationForm application) {
 		System.out.println(application.getCourse().toString());
 		for(Application app : application.getApplicant().getMyApplications()){
-			System.out.println(app.getCourse().toString());
 			if(app.getCourse().equals(application.getCourse())){
 				return false;
 			}

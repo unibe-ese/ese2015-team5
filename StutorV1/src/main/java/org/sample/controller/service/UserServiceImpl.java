@@ -196,8 +196,6 @@ public class UserServiceImpl implements UserService{
 
 	private void updateBalance(User owner) {
 		float percentage = Math.round(owner.getHouerlyRate() * 100) / 100;
-		System.out.println(owner.getHouerlyRate());
-		System.out.println(percentage);
 		owner.setBalance(owner.getBalance() + percentage);
 		userDao.save(owner);
 		
