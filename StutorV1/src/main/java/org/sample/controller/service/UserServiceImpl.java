@@ -234,7 +234,7 @@ public class UserServiceImpl implements UserService{
 	private NewsFeedArticleInterface buildStudentNews(Course c) {
 		StudentNews news = new StudentNews();
 		DateFormat format = Application.FORMAT;
-		news.setDateRepresentation(format.format(c.getDate()));
+		news.setDateRepresentation(format.format(c.getDate()) + " " + c.getSlot() + ":00");
 		news.setPartner(c.getOwner());
 		return news;
 	}
@@ -242,7 +242,7 @@ public class UserServiceImpl implements UserService{
 	private NewsFeedArticleInterface buildTutorNews(Course c) {
 		TutorNews news = new TutorNews();
 		DateFormat format = Application.FORMAT;
-		news.setDateRepresentation(format.format(c.getDate()));
+		news.setDateRepresentation(format.format(c.getDate()) + " " + c.getSlot() + ":00");
 		news.setPartner(c.getCustomer());
 		return news;
 	}

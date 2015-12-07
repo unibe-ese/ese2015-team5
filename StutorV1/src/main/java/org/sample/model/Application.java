@@ -82,7 +82,8 @@ public class Application {
 	public String getDateRepresentation() {
 		DateFormat format = FORMAT;
 		this.dateRepresentation = format.format(course.getDate());
-		return dateRepresentation;
+		int timeslot = course.getSlot();
+		return dateRepresentation + " " + timeslot + ":00";
 	}
 	
 	public Date getDate(){

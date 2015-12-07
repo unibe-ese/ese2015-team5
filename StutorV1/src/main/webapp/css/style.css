@@ -51,6 +51,15 @@
 	{
 		background-color: #F5F7F7;
 	}
+	
+	hr
+	{
+		border: none;
+		border-top: 1px solid #E00060;
+		color: #FFFFFF;
+		background-color: #FFFFFF;
+		height: 2px;
+	}
 
 
 
@@ -114,6 +123,8 @@ a
 		{
 			text-decoration: none;
 		}
+		
+
 
 	h1, h2, h3, h4, h5, h6
 	{
@@ -414,11 +425,21 @@ a
 	/* Course Table */
 
 
-	.courseTable {
+		.courseTable 
+		{
 			width: 95%;
 			margin: auto;
 			border-collapse:collapse;
 		}
+		
+		.courseTableDescription
+		{
+			text-align: justify;
+			width: 95%;
+			margin: auto;
+			border-collapse:collapse;
+		}
+		
 
 		.courseTable tr:hover > td{
 			background-color: #DBEAF9;

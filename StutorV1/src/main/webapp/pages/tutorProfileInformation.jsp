@@ -57,8 +57,21 @@
 	
 	</ul>
 
+
+	<hr>
+
+	<div class="courseTableDescription">
+		<h1> Calendar </h1>
+		This is your calendar, click time-slots to make them available to students who want to book a lesson with you.
+		If you don't click any slots nobody can choose you. Once a student has chosen a particular time-slot you will 
+		be shown his/her apply on your main search page. You can accept and get your pay for a one hour lesson, or decline 
+		and go empty.
+	</div>
+
 	<div class="courseTable">
-		<h1> Schedule </h1>
+		
+		
+		
 		<button class="btn btn-primary last_week_btn"
                        onclick="location.href='tutorProfile/lastWeek/${week.weekDays[0].dateString}/'">Last Week</button>
 		<button class="btn btn-primary next_week_btn"
