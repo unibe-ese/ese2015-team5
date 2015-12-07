@@ -53,7 +53,7 @@
 	        <div class="control-group<c:if test="${not empty password}"> error</c:if>">
 	            <label class="control-label" for="field-password">Password</label>
 	            <div class="controls">
-	                <form:input path="password" id="field-password" tabindex="3" maxlength="35" placeholder="Password"/>
+	                <form:input path="password" id="field-password" tabindex="3" maxlength="35" placeholder="Password" type="password"/>
 	                <form:errors path="password" cssClass="help-inline" element="span"/>
 	            </div>
 	        </div>

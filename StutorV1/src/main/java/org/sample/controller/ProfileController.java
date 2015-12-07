@@ -166,11 +166,11 @@ public class ProfileController {
 		if(result.hasErrors()){
 			redirectAttributes.addFlashAttribute("modifyUserForm", form);
 			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.modifyUserForm", result);
-			return "redirect:/profile?edit=fail";
+			return "redirect:/tutorProfile?edit=fail";
 		}
 		else if(userService.validateModifyUserForm(form)){	
 			user = userService.updateUser(form);
-			return "redirect:/profile?edit=success";
+			return "redirect:/tutorProfile?edit=success";
 		}
         return "redirect:/index";
 	}
