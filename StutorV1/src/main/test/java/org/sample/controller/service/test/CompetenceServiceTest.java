@@ -44,7 +44,8 @@ public class CompetenceServiceTest {
 	private List<Competence> comps;
 	
 	private String competenceDescription = "Ballerness", competenceDescription2 = "Kickass",
-			competenceDescription3 = "Blubbi", competenceDescription4 = "iRanOutOfNames";
+			competenceDescription3 = "Blubbi", competenceDescription4 = "iRanOutOfNames",
+			gradeString = "1";
 	private String editCompetenceDescription = "JipJip";
 	private boolean isUserEnabled = true;
 	private long userId = 333;
@@ -102,8 +103,8 @@ public class CompetenceServiceTest {
 		
 		AddCompetenceForm form = new AddCompetenceForm();
 		form.setDescription(competenceDescription);
-		form.setGrade("5");
 		form.setOwnerId(666);
+		form.setGrade(gradeString);
 		
 		Competence comp = compService.saveCompetence(form);
 		assertEquals(competenceDescription, comp.getDescription());

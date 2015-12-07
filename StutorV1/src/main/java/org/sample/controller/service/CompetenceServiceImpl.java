@@ -41,12 +41,14 @@ public class CompetenceServiceImpl implements CompetenceService{
 		comp.setDescription(form.getDescription());
 		comp.setOwner(user);
 		comp.setisEnabled(user.getEnableTutor());
+		System.out.println(form.getGrade());
 		comp.setGrade(calculateGrade(form.getGrade()));
 		return compDao.save(comp);
 	}
 
 	private float calculateGrade(String gradeString) {
 		float grade;
+		System.out.println(gradeString);
 		try{
 			grade = Float.parseFloat(gradeString);
 		}catch(NumberFormatException e){
