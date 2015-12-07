@@ -20,6 +20,8 @@ public interface CourseInterface {
 	public String getDescription();
 	
 	public boolean isAvailable();
+
+	void setId(int i);
 	
 }
 

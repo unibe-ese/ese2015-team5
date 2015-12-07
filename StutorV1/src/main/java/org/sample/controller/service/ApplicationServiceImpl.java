@@ -42,8 +42,6 @@ public class ApplicationServiceImpl implements ApplicationService {
 	@Override
 	public void deleteApplication(Application app) {
 		app.setCourse(null);
-		app.setTutor(null);
-		app.setStudent(null);
 		User user = app.getTutor();
 		List<Application> apps;
 		if(user != null){
@@ -55,6 +53,8 @@ public class ApplicationServiceImpl implements ApplicationService {
 			apps = user.getMyApplications();
 			apps.remove(app);
 		}
+		app.setTutor(null);
+		app.setStudent(null);
 		appDao.delete(app);
 		
 	}
@@ -68,7 +68,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	
 	@Override
-	public Object getFutureApplications() {
+	public List<Application> getFutureApplications() {
 		User user = userService.getCurrentUser();
 		List<Application> apps = user.getMyTutorApplications();
 		List<Application> toRemove = new ArrayList<Application>();
@@ -86,7 +86,9 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	@Override
 	public boolean notDuplicate(ApplicationForm application) {
+		System.out.println(application.getCourse().toString());
 		for(Application app : application.getApplicant().getMyApplications()){
+			System.out.println(app.getCourse().toString());
 			if(app.getCourse().equals(application.getCourse())){
 				return false;
 			}

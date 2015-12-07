@@ -1,5 +1,7 @@
 package org.sample.controller.service;
 
+import java.util.List;
+
 import org.sample.controller.pojos.ApplicationForm;
 import org.sample.model.Application;
 import org.sample.model.Course;
@@ -14,7 +16,7 @@ public interface ApplicationService {
 
 	Course acceptApplication(Application app);
 
-	Object getFutureApplications();
+	List<Application> getFutureApplications();
 
 	boolean notDuplicate(ApplicationForm application);
 

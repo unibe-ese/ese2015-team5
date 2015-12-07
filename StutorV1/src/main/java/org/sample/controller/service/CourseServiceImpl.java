@@ -147,6 +147,7 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public Course settleCourseFromApplication(Application app) {
 		Course course = app.getCourse();
+		System.out.println(course.toString());
 		if(course.getOwner() ==  app.getTutor() && course.getCustomer() == null){
 			course.setCustomer(app.getStudent());
 			course.setAvailable(false);

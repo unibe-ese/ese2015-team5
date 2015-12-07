@@ -129,6 +129,11 @@ public class Course implements CourseInterface{
 	public long getId() {
 		return this.id;
 	}
+	
+	@Override
+	public void setId(int i) {
+		this.id = i;
+	}
 
 	public User getCustomer() {
 		return customer;
@@ -177,6 +182,13 @@ public class Course implements CourseInterface{
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Course [id=" + id + ", owner=" + owner + ", customer="
+				+ customer + ", date=" + date + ", slot=" + slot
+				+ ", available=" + available + "]";
 	}
 	
 }
