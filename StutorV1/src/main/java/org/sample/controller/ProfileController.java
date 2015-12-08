@@ -87,7 +87,7 @@ public class ProfileController {
     	if(user == null){
     		return new ModelAndView("index");
     	}   	
-
+    	System.out.println(model.containsAttribute("pictureError"));
     	ModelAndView modelAndView = new ModelAndView("generalProfile", buildProfileModel(model, user).asMap());
     	if(user.getEnableTutor())
     	{
@@ -188,7 +188,7 @@ public class ProfileController {
 	 * @return: Redirects to the profile page. 
 	 */
 	@RequestMapping(value = "/changeProfilePic", method = RequestMethod.POST)
-    public String uploadFileHandler(@RequestParam("file") MultipartFile file) {
+    public String uploadFileHandler(@RequestParam("file") MultipartFile file, RedirectAttributes redir) {
         if (!file.isEmpty()) {
             try {
             	ProfilePicture profilePicture = new ProfilePicture();
@@ -199,9 +199,12 @@ public class ProfileController {
             	
                 return "redirect:tutorProfile";
             } catch (Exception e) {
+            	e.printStackTrace();
+            	redir.addFlashAttribute("pictureError", "Picture could not be processed");
                 return "redirect:tutorProfile";
             }
         }else{       	
+        	redir.addFlashAttribute("pictureError", "Picture cannot be empty");
         	return "redirect:tutorProfile";
         }
     }

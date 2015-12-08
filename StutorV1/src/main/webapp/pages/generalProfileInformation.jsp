@@ -75,5 +75,10 @@
 	    <input type="file" name="file"/>
 	    <input type="submit" value="Upload new Picture">
 	</form>
+  <c:if test="${not empty pictureError}">
+    <div class="error-Message">
+      ${pictureError}
+    </div>
+  </c:if>
 </li>
 </ul>
