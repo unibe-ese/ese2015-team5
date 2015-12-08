@@ -14,10 +14,12 @@ import org.sample.controller.exceptions.InvalidUserException;
 import org.sample.controller.pojos.AddCompetenceForm;
 import org.sample.controller.pojos.AddCourseForm;
 import org.sample.controller.pojos.ApplicationForm;
+import org.sample.controller.pojos.MessageForm;
 import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.service.ApplicationService;
 import org.sample.controller.service.CompetenceService;
 import org.sample.controller.service.CourseService;
+import org.sample.controller.service.MessageService;
 import org.sample.controller.service.ModifyUserFormValidator;
 import org.sample.controller.service.UserService;
 import org.sample.model.Application;
@@ -70,6 +72,8 @@ public class ProfileController {
 	CourseService courseService;
 	@Autowired
 	ApplicationService appService;
+	@Autowired
+	MessageService msgService;
 	
 	
 	@Autowired
@@ -381,7 +385,13 @@ public class ProfileController {
 		if(courseService.courseIsAvailable(applicationForm.getCourse()) && appService.notDuplicate(applicationForm)){
 			app = appService.saveApplication(applicationForm);
 			redir.addFlashAttribute("week", courseService.buildCalendar(app.getDate(), app.getTutor()));
-			redir.addFlashAttribute("pageSuccess", "Application has been sent");
+			redir.addFlashAttribute("pageSuccess", "Application has been sent (See your messenger for further information)");
+			MessageForm msgForm = new MessageForm();
+			msgForm.setTitle("Application");
+			msgForm.setMessage(app.getStudent().getFirstName() + " " + app.getStudent().getLastName() + 
+					" has sent an application for " + app.getDateRepresentation() + "After you accept, " +
+					"the student will be added to your contacts and you can exchange further information.");
+			msgService.saveMessage(msgForm, app.getStudent(), app.getTutor());
 			return "redirect:/tutorProfile/" + app.getTutor().getId();
 		}
 		redir.addFlashAttribute("pageError", "Could not send Application.<br> -Was it in the past? <br> -Did you already apply?");
