@@ -105,6 +105,7 @@ public class CompetenceServiceTest {
 		form.setDescription(competenceDescription);
 		form.setOwnerId(666);
 		form.setGrade(gradeString);
+		System.out.println(form.getGrade());
 		
 		Competence comp = compService.saveCompetence(form);
 		assertEquals(competenceDescription, comp.getDescription());
