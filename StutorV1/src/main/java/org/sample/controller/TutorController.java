@@ -208,11 +208,14 @@ public class TutorController {
 		
 		Date date;
 		User user = (User)session.getAttribute("user");
+		if(user == null){
+			return "redirect:/index";
+		}
 		try {
 			date = WeekDay.FORMAT.parse(dateString);
 		} catch (ParseException e) {
 			e.printStackTrace();
-			return "redirect:/tutorProfile?tab=tab";
+			return "redirect:/tutorProfile?tab=tab2";
 			
 		}
 		Calendar cal = Calendar.getInstance();
@@ -257,49 +260,6 @@ public class TutorController {
 		return "redirect:/tutorProfile?tab=tab2";
 	}
 	
-	/**
-	 * Sets the grade for a {@link Competence}.
-	 * 
-	 * If the competenceGrade String cannot be parsed into a float, a error is added to the model and redirected.
-	 * If the grade is not valid see({@link #gradeIsValid(float Grade)}) a error is added to the model and redir.
-	 * 
-	 * Otherwise, the {@Competence} is updated, and saved.
-	 * 
-	 * @param compId
-	 * @param gradeString
-	 * @param redirAttributes
-	 * @return
-	 */
-	@RequestMapping(value="/tutorProfile/setGradeForCompetence/{compId}", method=RequestMethod.POST)
-	public String setGradeForComp(@PathVariable("compId") long compId, @RequestParam("competenceGrade") String gradeString, 
-			RedirectAttributes redirAttributes){
-		float grade = 0;
-		try{
-			grade = Float.parseFloat(gradeString);
-		}
-		catch(NumberFormatException e){
-			redirAttributes.addFlashAttribute("gradeError", "Only numbers");
-			return "redirect:/tutorProfile?tab=tab2";
-		}
-		if(!gradeIsValid(grade)){
-			redirAttributes.addFlashAttribute("gradeError", "Grade " + grade + " not valid");
-			return "redirect:/tutorProfile?tab=tab2";
-		}
-		compService.setGrade(compId, grade);
-		return "redirect:/tutorProfile?tab=tab2";
-	}
-
-	/**
-	 * Validates a float 
-	 * 
-	 * 1 <= x <= 6
-	 * 
-	 * @param grade
-	 * @return
-	 */
-	private boolean gradeIsValid(float grade) {
-		return 0 <= grade && grade <= 6;
-	}
 }
 
 

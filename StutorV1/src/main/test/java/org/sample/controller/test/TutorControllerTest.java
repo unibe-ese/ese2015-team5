@@ -3,6 +3,7 @@ package org.sample.controller.test;
 import static org.junit.Assert.*;
 
 import java.beans.PropertyEditor;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -22,11 +23,13 @@ import org.mockito.exceptions.base.MockitoException;
 import org.mockito.internal.matchers.Any;
 import org.sample.controller.TutorController;
 import org.sample.controller.pojos.AddCompetenceForm;
+import org.sample.controller.pojos.AddCourseForm;
 import org.sample.controller.service.CompetenceService;
 import org.sample.controller.service.CourseService;
 import org.sample.controller.service.UserService;
 import org.sample.model.Competence;
 import org.sample.model.User;
+import org.sample.model.Week;
 import org.springframework.beans.PropertyEditorRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -79,7 +82,12 @@ public class TutorControllerTest {
 	
 	private AddCompetenceForm addCompetenceForm;
 	
+	private AddCourseForm addCourseForm;
+	
 	private RedirectAttributesModelMap redirectModelMap;
+
+	private String invaldDateString = "Blubbibla", validDateString = "10.11.1993",
+			invalidHouerlyRateString = "abc", validHouerlyRateString = "1";
 	
 	@Before
 	public void setup(){
@@ -99,11 +107,15 @@ public class TutorControllerTest {
 		addCompetenceForm.setDescription("");
 		addCompetenceForm.setGrade("");
 		
+		addCourseForm = new AddCourseForm();
+		addCourseForm.setDateString(invaldDateString );
+		
 		Mockito.when(compService.findCompetenceById(Matchers.anyLong())).thenReturn(testCompetence);
 		Mockito.when(compService.deleteCompetence(captor.capture())).thenReturn(null);
 		Mockito.when(session.getAttribute("user")).thenReturn(currentUser);
 		Mockito.when(result.hasErrors()).thenReturn(false);
 		Mockito.when(compService.saveCompetence(formCaptor.capture())).thenReturn(null);
+		Mockito.when(courseService.buildCalendar(Matchers.any(Calendar.class), Matchers.any(User.class))).thenReturn(new Week());
 		
 	}
 
@@ -151,6 +163,95 @@ public class TutorControllerTest {
 		String returnString = tutController.addCompetence(addCompetenceForm, result, redirectModelMap, session);
 		assertEquals(addCompetenceForm, formCaptor.getValue());
 		assertEquals("redirect:tutorProfile?tab=tab2", returnString);
+	}
+	
+	@Test
+	public void addCourseTest_InvalidDate(){
+		String returnValue = tutController.addCourse(addCourseForm, null, redirectModelMap);
+		assertEquals("redirect:/tutorProfile?tab=tab2", returnValue);
+		assertEquals(0, redirectModelMap.getFlashAttributes().keySet().size());
+	}
+	
+	@Test
+	public void addCourseTest_ValidDateAlreadyExisting(){
+		Mockito.when(courseService.alreadyExists(Matchers.any(AddCourseForm.class))).thenReturn(true);
+		addCourseForm.setDateString(validDateString);
+		String returnValue = tutController.addCourse(addCourseForm, session, redirectModelMap);
+		assertEquals("redirect:/tutorProfile?tab=tab2", returnValue);
+		assertEquals(1, redirectModelMap.getFlashAttributes().keySet().size());
+	}
+	
+	@Test
+	public void addCourseTest_ValidDateNotExisting(){
+		addCourseForm.setDateString(validDateString);
+		String returnValue = tutController.addCourse(addCourseForm, session, redirectModelMap);
+		assertEquals("redirect:/tutorProfile?tab=tab2", returnValue);
+		assertEquals(2, redirectModelMap.getFlashAttributes().keySet().size());
+	}
+	
+	@Test
+	public void nextWeekTest_NullUser(){
+		Mockito.when(session.getAttribute("user")).thenReturn(null);
+		String returnValue = tutController.nextWeek(validDateString, redirectModelMap, session);
+		assertEquals("redirect:/index", returnValue);
+	}
+	
+	@Test
+	public void lastWeekTest_NullUser(){
+		Mockito.when(session.getAttribute("user")).thenReturn(null);
+		String returnValue = tutController.lastWeek(validDateString, redirectModelMap, session);
+		assertEquals("redirect:/index", returnValue);
+	}
+	
+	@Test
+	public void nextWeekTest_InvalidDate(){
+		String returnValue = tutController.nextWeek(invaldDateString, redirectModelMap, session);
+		assertEquals("redirect:/tutorProfile?tab=tab2", returnValue);
+		assertEquals(0, redirectModelMap.getFlashAttributes().keySet().size());
+	}
+	
+	@Test
+	public void lastWeekTest_InvalidDate(){
+		String returnValue = tutController.lastWeek(invaldDateString, redirectModelMap, session);
+		assertEquals("redirect:/tutorProfile?tab=tab2", returnValue);
+		assertEquals(0, redirectModelMap.getFlashAttributes().keySet().size());
+	}
+	
+	@Test
+	public void nextWeekTest_ValidDate(){
+		String returnValue = tutController.nextWeek(validDateString, redirectModelMap, session);
+		assertEquals("redirect:/tutorProfile?tab=tab2", returnValue);
+		System.out.println(redirectModelMap.getFlashAttributes().keySet());
+		assertNotNull(redirectModelMap.getFlashAttributes().get("week"));
+	}
+	
+	@Test
+	public void lastWeekTest_ValidDate(){
+		String returnValue = tutController.lastWeek(validDateString, redirectModelMap, session);
+		assertEquals("redirect:/tutorProfile?tab=tab2", returnValue);
+		System.out.println(redirectModelMap.getFlashAttributes().keySet());
+		assertNotNull(redirectModelMap.getFlashAttributes().get("week"));
+	}
+	
+	@Test
+	public void houerlyRate_InvalidInputTest(){
+		String returnString = tutController.setHouerlyRate(invalidHouerlyRateString, session, redirectModelMap);
+		assertEquals("redirect:/tutorProfile?tab=tab2", returnString);
+		assertNotNull(redirectModelMap.getFlashAttributes().get("houerlyError"));
+	}
+	
+	@Test
+	public void houerlyRate_InvalidInputTestBelow0(){
+		String returnString = tutController.setHouerlyRate("-1", session, redirectModelMap);
+		assertEquals("redirect:/tutorProfile?tab=tab2", returnString);
+		assertNotNull(redirectModelMap.getFlashAttributes().get("houerlyError"));
+	}
+	
+	@Test
+	public void houerlyRateTest(){
+		String returnString = tutController.setHouerlyRate(validHouerlyRateString, session, redirectModelMap);
+		assertEquals("redirect:/tutorProfile?tab=tab2", returnString);
+		assertNull(redirectModelMap.getFlashAttributes().get("houerlyError"));
 	}
 	
 }
