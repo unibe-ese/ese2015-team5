@@ -33,9 +33,10 @@ public class ApplicationController {
 	MessageService msgService;
 	
     @Autowired
-    public ApplicationController(UserService userService, ApplicationService appService){
+    public ApplicationController(UserService userService, ApplicationService appService, MessageService msgService){
     	this.userService = userService;
     	this.appService  = appService;
+    	this.msgService = msgService;
     }
 	
 	/**

@@ -14,6 +14,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.exceptions.base.MockitoException;
 import org.sample.controller.ApplicationController;
 import org.sample.controller.service.ApplicationService;
+import org.sample.controller.service.MessageService;
 import org.sample.controller.service.UserService;
 import org.sample.model.Application;
 import org.sample.model.User;
@@ -40,7 +41,11 @@ public class ApplicationControllerTest {
 	@Mock 
 	ApplicationService appService;
 	
+	@Mock
+	MessageService messageService;
+	
 	Application testApplication,  controllApplication;
+
 	
 	@Mock
 	Model model;
@@ -77,7 +82,7 @@ public class ApplicationControllerTest {
 
 	private void initializeMocks() {
 		MockitoAnnotations.initMocks(this);	
-		appController = new ApplicationController(userService, appService);
+		appController = new ApplicationController(userService, appService, messageService);
 	}
 
 	@Test

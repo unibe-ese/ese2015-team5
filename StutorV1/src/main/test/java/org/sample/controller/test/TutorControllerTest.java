@@ -67,9 +67,6 @@ public class TutorControllerTest {
 	@Mock
 	BindingResult result;
 	
-	@Mock
-	RedirectAttributes redirectAttributes;
-	
 	TutorController tutController;
 	
 	ArgumentCaptor<Competence> captor;
