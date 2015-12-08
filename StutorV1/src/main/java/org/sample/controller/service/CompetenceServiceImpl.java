@@ -47,6 +47,10 @@ public class CompetenceServiceImpl implements CompetenceService{
 
 	private float calculateGrade(String gradeString) {
 		float grade;
+
+		if(gradeString == null){
+			return 0;
+		}
 		try{
 			grade = Float.parseFloat(gradeString);
 		}catch(NumberFormatException e){
@@ -89,6 +93,7 @@ public class CompetenceServiceImpl implements CompetenceService{
 	}
 
 	@Override
+	@Deprecated
 	public Competence setGrade(long compId, float grade) {
 		Competence comp = compDao.findOne(compId);
 		if(comp != null){

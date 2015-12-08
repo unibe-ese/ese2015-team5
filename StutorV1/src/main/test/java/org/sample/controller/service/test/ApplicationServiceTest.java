@@ -1,6 +1,8 @@
 package org.sample.controller.service.test; 
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 
 import java.util.ArrayList;
@@ -11,20 +13,18 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.AdditionalAnswers;
-import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.sample.controller.pojos.ApplicationForm;
 import org.sample.controller.service.ApplicationService;
-import org.sample.controller.service.CourseService;
 import org.sample.model.Application;
 import org.sample.model.Course;
 import org.sample.model.User;
 import org.sample.model.dao.ApplicationDao;
 import org.sample.model.dao.CourseDao;
 import org.sample.model.dao.UserDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/test.xml"})

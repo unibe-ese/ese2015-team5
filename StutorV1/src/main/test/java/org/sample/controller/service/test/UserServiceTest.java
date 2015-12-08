@@ -1,11 +1,11 @@
 package org.sample.controller.service.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +49,8 @@ public class UserServiceTest {
 	
 	long newID = 111;
 	
+	private float houerlyRate = (float) 5.0;
+	
 	@Before
 	public void setUp()
 	{
@@ -81,6 +83,11 @@ public class UserServiceTest {
 		user.setLastName("Doe");
 		user.setPassword("asdf");
 		List<Competence> comps = new ArrayList<Competence>();
+		for(int i = 0; i < 3; i++){
+			Competence comp = new Competence();
+			comp.setisEnabled(false);
+			comps.add(comp);
+		}
 		user.setCompetences(comps);
 		user.setEnableTutor(false);
 		
@@ -93,10 +100,10 @@ public class UserServiceTest {
 		
 		User someUser = new User();
 		someUser.setEmail("abc@asdf.ch");
-		user.setFirstName("Franz");
-		user.setLastName("Meier");
-		user.setPassword("asdf");
-		user.setEnableTutor(false);
+		someUser.setFirstName("Franz");
+		someUser.setLastName("Meier");
+		someUser.setPassword("asdf");
+		someUser.setEnableTutor(false);
 		
 		List<User> testUserList = new ArrayList<User>();
 		testUserList.add(someUser);
@@ -108,11 +115,10 @@ public class UserServiceTest {
 	}
 	
 	@Test
-	public void testSaveUser() throws Exception {
-		
+	public void testSaveUser() throws IOException {
 		
 		User testUser = testUserService.saveUser(testSignupForm);
-		
+
 		assertEquals("ese@hs15.ch", testUser.getEmail());
 		assertEquals("John", testUser.getFirstName());
 		assertEquals("Doe", testUser.getLastName());
@@ -120,17 +126,20 @@ public class UserServiceTest {
 		assertEquals(testPic.getBytes(), testUser.getPic().getFile());
 		
 		assertEquals(user, captor.getValue());
-		
+	}
+	
+	@Test(expected=InvalidUserException.class)
+	public void testSaveUserExisting() throws IOException {
+		testSignupForm.setEmail("abc@asdf.ch");
+		testUserService.saveUser(testSignupForm);
 	}
 	
 	@Test
-	public void testUpdateUser() throws InvalidUserException
-	{
+	public void testUpdateUser() throws InvalidUserException{
 		Mockito.when(testUserDao.save(any(User.class))).then(AdditionalAnswers.returnsFirstArg());
 		
 		User modifiedUser = testUserService.updateUser(testForm);
-		assertEquals(ecpectedUser, modifiedUser);
-		
+		assertEquals(ecpectedUser, modifiedUser);		
 	}
 	
 	@Test
@@ -139,19 +148,52 @@ public class UserServiceTest {
 	}
 	
 	@Test
-	public void testValidateModifyUserFormWInorrect(){
-		testForm.setPasswordControll("something Else");
-		assertFalse(testUserService.validateModifyUserForm(testForm));
+	public void testUpdateUserEmptyFirstname() throws InvalidUserException{
+		Mockito.when(testUserDao.save(any(User.class))).then(AdditionalAnswers.returnsFirstArg());
+		testForm.setFirstName("");
+		User modifiedUser = testUserService.updateUser(testForm);
+		assertEquals(user.getFirstName(), modifiedUser.getFirstName());	
+		assertEquals(ecpectedUser.getLastName(), modifiedUser.getLastName());
+		assertEquals(ecpectedUser.getPassword(), modifiedUser.getPassword());
 	}
 	
-//	@Test
-//	public void testUpdateProfilePicture(){
-//		Authentication auth = new UsernamePasswordIDAuthenticationToken(user.getId(), null, null, null);
-//		SecurityContextHolder.getContext().setAuthentication(auth);
-//		ProfilePicture pic = new ProfilePicture();
-//		pic.setFile(byteArray2);
-//		testUserService.updateProfilePicture(pic);
-//		assertEquals(byteArray2, user.getPic().getFile());
-//	}
+	@Test
+	public void testUpdateUserEmptyLastname() throws InvalidUserException{
+		Mockito.when(testUserDao.save(any(User.class))).then(AdditionalAnswers.returnsFirstArg());
+		testForm.setLastName("");
+		User modifiedUser = testUserService.updateUser(testForm);
+		assertEquals(user.getLastName(), modifiedUser.getLastName());	
+		assertEquals(ecpectedUser.getFirstName(), modifiedUser.getFirstName());
+		assertEquals(ecpectedUser.getPassword(), modifiedUser.getPassword());
+	}
+	
+	@Test
+	public void testUpdateUserEmptyPassword() throws InvalidUserException{
+		Mockito.when(testUserDao.save(any(User.class))).then(AdditionalAnswers.returnsFirstArg());
+		testForm.setPassword("");
+		User modifiedUser = testUserService.updateUser(testForm);
+		assertEquals(user.getPassword(), modifiedUser.getPassword());	
+		assertEquals(ecpectedUser.getFirstName(), modifiedUser.getFirstName());
+		assertEquals(ecpectedUser.getLastName(), modifiedUser.getLastName());
+	}
+	
+	@Test
+	public void testUpdateUserUpdateCompetences() throws InvalidUserException{
+		Mockito.when(testUserDao.save(any(User.class))).then(AdditionalAnswers.returnsFirstArg());
+		testForm.setPassword("");
+		User modifiedUser = testUserService.updateUser(testForm);
+		for(Competence c : modifiedUser.getCompetences()){
+			assertTrue(c.getisEnabled());
+		}
+	}
+	
+	@Test
+	public void setHouerlyRateTest(){
+		Mockito.when(testUserDao.save(any(User.class))).then(AdditionalAnswers.returnsFirstArg());
+		User returnedUser = testUserService.setHouerlyRate(user, houerlyRate);
+		assertTrue(houerlyRate == returnedUser.getHouerlyRate());
+	}
+	
+	
 
 }
