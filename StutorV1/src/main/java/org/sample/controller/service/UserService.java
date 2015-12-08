@@ -1,5 +1,6 @@
 package org.sample.controller.service;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import org.sample.controller.exceptions.InvalidUserException;
@@ -17,7 +18,7 @@ public interface UserService {
 	
 	public User saveUser(SignupForm sgnUp) throws InvalidUserException;
 	
-	public User updateUser(ModifyUserForm mod) throws InvalidUserException;
+	public User updateUser(ModifyUserForm mod) throws InvalidUserException, UnsupportedEncodingException;
 	
 	public boolean validateModifyUserForm(ModifyUserForm mod);
 

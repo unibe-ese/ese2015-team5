@@ -1,5 +1,8 @@
 package org.sample.controller.service;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,6 +10,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.sample.controller.exceptions.InvalidUserException;
 import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.pojos.NewsFeedArticleInterface;
@@ -89,7 +93,7 @@ public class UserServiceImpl implements UserService{
         user.setFirstName(sgnUp.getFirstName());
         user.setEmail(sgnUp.getEmail());
         user.setLastName(sgnUp.getLastName());
-        user.setPassword(sgnUp.getPassword());
+		user.setPassword(DigestUtils.md5Hex(sgnUp.getPassword()));
         user.setEnableTutor(false);
         user.setPic(profilePicture);
         user.setAboutYou(null);
@@ -111,9 +115,10 @@ public class UserServiceImpl implements UserService{
 
 	/**
 	 * Only call this method after calling validateModifyUserForm.
+	 * @throws UnsupportedEncodingException 
 	 * 
 	 */
-	public User updateUser(ModifyUserForm mod) throws InvalidUserException {
+	public User updateUser(ModifyUserForm mod) throws InvalidUserException, UnsupportedEncodingException {
 		User user  = userDao.findOne(mod.getId());
 		if(user.getEnableTutor() != mod.getEnableTutor()){
 			for(Competence c : user.getCompetences()){
@@ -128,7 +133,7 @@ public class UserServiceImpl implements UserService{
 			user.setLastName(mod.getLastName());
 		}
 		if(!mod.getPassword().isEmpty()){
-			user.setPassword(mod.getPassword());
+			user.setPassword(DigestUtils.md5Hex(mod.getPassword()));
 		}
 		user.setEnableTutor(mod.getEnableTutor());
 		user.setAboutYou(mod.getAboutYou());

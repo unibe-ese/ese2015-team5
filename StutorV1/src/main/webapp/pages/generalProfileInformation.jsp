@@ -42,7 +42,7 @@
         <div class="control-group<c:if test="${not empty password}"> error</c:if>">
             <label class="control-label" for="field-password">Password</label>
             <div class="controls">
-                <form:input path="password" type="password" id="field-password" tabindex="3" maxlength="35" value="${user.password}"/>
+                <form:input path="password" type="password" id="field-password" tabindex="3" maxlength="35" placeholder="Password"/>
                 <form:errors path="password" cssClass="help-inline" element="span"/>
             </div>
         </div>
@@ -50,7 +50,7 @@
         <div class="control-group<c:if test="${not empty password}"> error</c:if>">
             <label class="control-label" for="field-password">Confirm Password</label>
             <div class="controls">
-                <form:input path="passwordControll" type="password" id="field-password" tabindex="4" maxlength="35" value="${user.password}"/>
+                <form:input path="passwordControll" type="password" id="field-password" tabindex="4" maxlength="35" placeholder="Confirm Password"/>
                 <form:errors path="passwordControll" cssClass="help-inline" element="span"/>
             </div>
         </div>
@@ -75,5 +75,10 @@
 	    <input type="file" name="file"/>
 	    <input type="submit" value="Upload new Picture">
 	</form>
+  <c:if test="${not empty pictureError}">
+    <div class="error-Message">
+      ${pictureError}
+    </div>
+  </c:if>
 </li>
 </ul>

@@ -1,9 +1,13 @@
 package org.sample.controller.service;
  
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.sample.model.User;
 import org.sample.model.dao.UserDao;
 import org.sample.security.UsernamePasswordIDAuthenticationToken;
@@ -47,7 +51,8 @@ public class CustomUserDetailsService implements AuthenticationProvider {
 		 */
 		String email = authentication.getName();
 		String password = (String) authentication.getCredentials();
-		
+		password = DigestUtils.md5Hex(password); 
+				
 		User user = null;
 		for (User u:userDao.findAll())
 		{
@@ -65,6 +70,8 @@ public class CustomUserDetailsService implements AuthenticationProvider {
         	throw new BadCredentialsException("username not found");
         }
         if(!user.getPassword().equals(password)){
+        	System.out.println(user.getPassword());
+        	System.out.println(password);
         	throw new BadCredentialsException("Wrong Credentials");
         }
         
