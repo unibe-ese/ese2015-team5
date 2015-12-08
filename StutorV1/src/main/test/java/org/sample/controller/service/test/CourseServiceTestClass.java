@@ -127,15 +127,6 @@ public class CourseServiceTestClass {
 		assertNotNull(courseDao);
 	}
 	
-	@Test
-	public void saveTest() throws ParseException, InvalidCourseDateException{
-		courseService.save(form);
-		assertEquals(expectedCourse, captor.getValue());
-		form.setOwner(null);
-		Course course = courseService.save(form);
-		assertEquals(null, course);
-	}
-	
 	@Test(expected=InvalidCourseDateException.class)
 	public void saveTestFail() throws ParseException, InvalidCourseDateException{
 		form.setDate(pastDate);

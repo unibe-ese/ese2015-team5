@@ -1,7 +1,8 @@
 package org.sample.controller;
 
+import org.sample.controller.pojos.MessageForm;
 import org.sample.controller.service.ApplicationService;
-import org.sample.controller.service.CompetenceService;
+import org.sample.controller.service.MessageService;
 import org.sample.controller.service.UserService;
 import org.sample.model.Application;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class ApplicationController {
 	
 	@Autowired 
 	UserService userService;
+	
+	@Autowired
+	MessageService msgService;
 	
     @Autowired
     public ApplicationController(UserService userService, ApplicationService appService){
@@ -70,8 +74,15 @@ public class ApplicationController {
 	@RequestMapping(value="/accept/{appId}", method=RequestMethod.GET)
 	public String acceptApplication(@PathVariable("appId") long appId){
 		Application app = appService.findApplicationById(appId);
-		if(app != null && userService.getCurrentUser().equals(app.getTutor()))
+		if(app != null && userService.getCurrentUser().equals(app.getTutor())){
 			appService.acceptApplication(app);
+			MessageForm msgForm = new MessageForm();
+			msgForm.setTitle("Application Accepted");
+			msgForm.setMessage(userService.getCurrentUser().getFirstName() + " " + userService.getCurrentUser().getLastName() +
+					" has been added to your contacts." +
+					"Contact your tutor to exchange further information.");
+			msgService.saveMessage(msgForm, userService.getCurrentUser(), app.getStudent());
+		}
 		return "redirect:/index";
 	}
 	
