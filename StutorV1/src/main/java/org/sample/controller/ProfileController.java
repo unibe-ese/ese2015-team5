@@ -1,6 +1,7 @@
 package org.sample.controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
@@ -9,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.sample.controller.exceptions.InvalidUserException;
 import org.sample.controller.pojos.AddCompetenceForm;
 import org.sample.controller.pojos.AddCourseForm;
 import org.sample.controller.pojos.ApplicationForm;
@@ -156,10 +158,12 @@ public class ProfileController {
      * @param result Possible errors in the form
      * @param redirectAttributes 
      * @return Returns the new URL 
+     * @throws UnsupportedEncodingException 
+     * @throws InvalidUserException 
      */
     @RequestMapping(value="/modifyUser", method=RequestMethod.POST)
 	public String modifyUser( @ModelAttribute("user") User user, 
-			ModifyUserForm form, BindingResult result, RedirectAttributes redirectAttributes){
+			ModifyUserForm form, BindingResult result, RedirectAttributes redirectAttributes) throws InvalidUserException, UnsupportedEncodingException{
 		form.setId(user.getId());
 		ModifyUserFormValidator validator = new ModifyUserFormValidator();
 		validator.validate(form, result);

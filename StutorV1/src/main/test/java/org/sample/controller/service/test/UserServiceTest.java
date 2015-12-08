@@ -6,6 +6,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +53,7 @@ public class UserServiceTest {
 	private float houerlyRate = (float) 5.0;
 	
 	@Before
-	public void setUp()
+	public void setUp() throws UnsupportedEncodingException
 	{
 		byte[] byteArray = {0,1,0};
 		
@@ -81,7 +82,7 @@ public class UserServiceTest {
 		user.setEmail("ese@hs15.ch");
 		user.setFirstName("John");
 		user.setLastName("Doe");
-		user.setPassword("asdf");
+		user.setPassword("asdf".getBytes("UTF-8").toString());
 		List<Competence> comps = new ArrayList<Competence>();
 		for(int i = 0; i < 3; i++){
 			Competence comp = new Competence();
@@ -96,13 +97,13 @@ public class UserServiceTest {
 		ecpectedUser.setEnableTutor(true);
 		ecpectedUser.setFirstName("Gandalf");
 		ecpectedUser.setLastName("Doe");
-		ecpectedUser.setPassword("fdsa");
+		ecpectedUser.setPassword("fdsa".getBytes("UTF-8").toString());
 		
 		User someUser = new User();
 		someUser.setEmail("abc@asdf.ch");
 		someUser.setFirstName("Franz");
 		someUser.setLastName("Meier");
-		someUser.setPassword("asdf");
+		someUser.setPassword("asdf".getBytes("UTF-8").toString());
 		someUser.setEnableTutor(false);
 		
 		List<User> testUserList = new ArrayList<User>();
@@ -135,7 +136,7 @@ public class UserServiceTest {
 	}
 	
 	@Test
-	public void testUpdateUser() throws InvalidUserException{
+	public void testUpdateUser() throws InvalidUserException, UnsupportedEncodingException{
 		Mockito.when(testUserDao.save(any(User.class))).then(AdditionalAnswers.returnsFirstArg());
 		
 		User modifiedUser = testUserService.updateUser(testForm);
@@ -148,7 +149,7 @@ public class UserServiceTest {
 	}
 	
 	@Test
-	public void testUpdateUserEmptyFirstname() throws InvalidUserException{
+	public void testUpdateUserEmptyFirstname() throws InvalidUserException, UnsupportedEncodingException{
 		Mockito.when(testUserDao.save(any(User.class))).then(AdditionalAnswers.returnsFirstArg());
 		testForm.setFirstName("");
 		User modifiedUser = testUserService.updateUser(testForm);
@@ -158,7 +159,7 @@ public class UserServiceTest {
 	}
 	
 	@Test
-	public void testUpdateUserEmptyLastname() throws InvalidUserException{
+	public void testUpdateUserEmptyLastname() throws InvalidUserException, UnsupportedEncodingException{
 		Mockito.when(testUserDao.save(any(User.class))).then(AdditionalAnswers.returnsFirstArg());
 		testForm.setLastName("");
 		User modifiedUser = testUserService.updateUser(testForm);
@@ -168,7 +169,7 @@ public class UserServiceTest {
 	}
 	
 	@Test
-	public void testUpdateUserEmptyPassword() throws InvalidUserException{
+	public void testUpdateUserEmptyPassword() throws InvalidUserException, UnsupportedEncodingException{
 		Mockito.when(testUserDao.save(any(User.class))).then(AdditionalAnswers.returnsFirstArg());
 		testForm.setPassword("");
 		User modifiedUser = testUserService.updateUser(testForm);
@@ -178,7 +179,7 @@ public class UserServiceTest {
 	}
 	
 	@Test
-	public void testUpdateUserUpdateCompetences() throws InvalidUserException{
+	public void testUpdateUserUpdateCompetences() throws InvalidUserException, UnsupportedEncodingException{
 		Mockito.when(testUserDao.save(any(User.class))).then(AdditionalAnswers.returnsFirstArg());
 		testForm.setPassword("");
 		User modifiedUser = testUserService.updateUser(testForm);
