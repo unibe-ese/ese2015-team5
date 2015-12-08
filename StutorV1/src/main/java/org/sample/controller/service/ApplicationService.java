@@ -12,7 +12,7 @@ public interface ApplicationService {
 
 	Application findApplicationById(long appId);
 
-	void deleteApplication(Application app);
+	Application deleteApplication(Application app);
 
 	Course acceptApplication(Application app);
 
