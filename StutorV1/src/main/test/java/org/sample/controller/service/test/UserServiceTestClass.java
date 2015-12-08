@@ -10,6 +10,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,7 +32,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/test.xml"})
-public class UserServiceTest {
+public class UserServiceTestClass {
 
 	@Autowired
 	private UserService testUserService;
@@ -82,7 +83,7 @@ public class UserServiceTest {
 		user.setEmail("ese@hs15.ch");
 		user.setFirstName("John");
 		user.setLastName("Doe");
-		user.setPassword("asdf".getBytes("UTF-8").toString());
+		user.setPassword(DigestUtils.md5Hex("asdf"));
 		List<Competence> comps = new ArrayList<Competence>();
 		for(int i = 0; i < 3; i++){
 			Competence comp = new Competence();
@@ -97,7 +98,7 @@ public class UserServiceTest {
 		ecpectedUser.setEnableTutor(true);
 		ecpectedUser.setFirstName("Gandalf");
 		ecpectedUser.setLastName("Doe");
-		ecpectedUser.setPassword("fdsa".getBytes("UTF-8").toString());
+		ecpectedUser.setPassword(DigestUtils.md5Hex("fdsa"));
 		
 		User someUser = new User();
 		someUser.setEmail("abc@asdf.ch");
@@ -123,7 +124,7 @@ public class UserServiceTest {
 		assertEquals("ese@hs15.ch", testUser.getEmail());
 		assertEquals("John", testUser.getFirstName());
 		assertEquals("Doe", testUser.getLastName());
-		assertEquals("asdf", testUser.getPassword());
+		assertEquals(DigestUtils.md5Hex("asdf"), testUser.getPassword());
 		assertEquals(testPic.getBytes(), testUser.getPic().getFile());
 		
 		assertEquals(user, captor.getValue());

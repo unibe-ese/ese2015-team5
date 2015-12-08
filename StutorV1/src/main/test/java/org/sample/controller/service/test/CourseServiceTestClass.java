@@ -1,9 +1,6 @@
 package org.sample.controller.service.test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
 import java.text.ParseException;
@@ -32,7 +29,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/test.xml"})
-public class CourseServiceTest {
+public class CourseServiceTestClass {
 	
 	@Autowired
 	CourseService courseService;
@@ -158,10 +155,14 @@ public class CourseServiceTest {
 	
 	@Test
 	public void courseIsAvailableTest(){
-		assertFalse(courseService.courseIsAvailable(null));
 		assertTrue(courseService.courseIsAvailable(expectedCourse));
 		expectedCourse.setCustomer(new User());
 		assertFalse(courseService.courseIsAvailable(expectedCourse));
+	}
+	
+	@Test
+	public void courseIsAvailable_Null(){
+		assertFalse(courseService.courseIsAvailable(null));
 	}
 	
 	@Test
@@ -224,5 +225,22 @@ public class CourseServiceTest {
 			}
 		}
 	}
+	
+	@Test
+	public void buildWeekTests(){
+		assertNotNull(courseService.buildCalendar(Calendar.getInstance(), user));
+		assertNotNull(courseService.buildCalendar(Calendar.getInstance().getTime(), user));
+		
+	}
+	
+	@Test
+	public void deleteCompetenceTest(){
+		expectedCourse.setOwner(new User());
+		courseService.deleteCourse(expectedCourse);
+		assertNull(expectedCourse.getCustomer());
+		assertNull(expectedCourse.getOwner());
+	}
+	
+	
 	
 }

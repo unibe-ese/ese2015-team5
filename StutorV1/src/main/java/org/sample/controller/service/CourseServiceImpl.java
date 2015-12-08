@@ -168,13 +168,6 @@ public class CourseServiceImpl implements CourseService {
 
 
 	@Override
-	public void addToBalance(Course course) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
 	public void deleteCourse(Course course) {
 		course.setCustomer(null);
 		course.setOwner(null);

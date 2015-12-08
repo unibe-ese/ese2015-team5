@@ -35,9 +35,7 @@ public interface CourseService {
 	Course settleCourseFromApplication(Application app);
 
 	Collection<Course> findStudenCoursesFor(User user);
-
-	void addToBalance(Course course);
-
+	
 	void deleteCourse(Course course);
 
 }
