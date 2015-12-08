@@ -52,8 +52,9 @@
 			</div>
 
 
-			<h1 Style="margin-top: 40px"> Schedule </h1>
-			<div Style="margin-bottom: 20px">Here you can book an appointment with the tutor you are currently inspecting. When you click on a field that is marked with "free"
+			<hr>
+			<div Style="margin-bottom: 20px; margin-top: 40px" class="courseTableDescription">
+			<h1> Schedule </h1>Here you can book an appointment with the tutor you are currently inspecting. When you click on a field that is marked with "free"
 			the tutor will get a request which he can either accept or decline. If he accepts we will save the date in the "rendez vous" list
 			on the <a href="/Skeleton/">main page</a>. You can also check out the tutors other competences in the second tab.</div>
 			<div class="courseTable">
