@@ -26,6 +26,9 @@ public class AddCompetenceFormValidator implements Validator {
 		if(!gradeIsValid(gradeFloat)){
 			errors.rejectValue("grade", "grade.range", "Grade has to be between 0 and 6");
 		}
+		if(form.getDescription().length() > 35){
+			errors.rejectValue("description", "grade.length", "Max length is 35");
+		}
 	}
 	
 	private boolean gradeIsValid(float grade) {

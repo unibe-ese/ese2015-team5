@@ -121,9 +121,15 @@ public class UserServiceImpl implements UserService{
 				compDao.save(c);
 			}
 		}
-		user.setFirstName(mod.getFirstName());
-		user.setLastName(mod.getLastName());
-		user.setPassword(mod.getPassword());
+		if(!mod.getFirstName().isEmpty()){
+			user.setFirstName(mod.getFirstName());
+		}
+		if(!mod.getLastName().isEmpty()){
+			user.setLastName(mod.getLastName());
+		}
+		if(!mod.getPassword().isEmpty()){
+			user.setPassword(mod.getPassword());
+		}
 		user.setEnableTutor(mod.getEnableTutor());
 		user.setAboutYou(mod.getAboutYou());
 		return userDao.save(user);
@@ -131,7 +137,7 @@ public class UserServiceImpl implements UserService{
 
 	public boolean validateModifyUserForm(ModifyUserForm mod) {
 		User user = userDao.findOne(mod.getId());
-    	if(user == null || !mod.getPassword().equals(mod.getPasswordControll())){
+    	if(user == null){
     		return false;
     	}
     	
@@ -190,8 +196,6 @@ public class UserServiceImpl implements UserService{
 
 	private void updateBalance(User owner) {
 		float percentage = Math.round(owner.getHouerlyRate() * 100) / 100;
-		System.out.println(owner.getHouerlyRate());
-		System.out.println(percentage);
 		owner.setBalance(owner.getBalance() + percentage);
 		userDao.save(owner);
 		
@@ -228,7 +232,7 @@ public class UserServiceImpl implements UserService{
 	private NewsFeedArticleInterface buildStudentNews(Course c) {
 		StudentNews news = new StudentNews();
 		DateFormat format = Application.FORMAT;
-		news.setDateRepresentation(format.format(c.getDate()));
+		news.setDateRepresentation(format.format(c.getDate()) + " " + c.getSlot() + ":00");
 		news.setPartner(c.getOwner());
 		return news;
 	}
@@ -236,7 +240,7 @@ public class UserServiceImpl implements UserService{
 	private NewsFeedArticleInterface buildTutorNews(Course c) {
 		TutorNews news = new TutorNews();
 		DateFormat format = Application.FORMAT;
-		news.setDateRepresentation(format.format(c.getDate()));
+		news.setDateRepresentation(format.format(c.getDate()) + " " + c.getSlot() + ":00");
 		news.setPartner(c.getCustomer());
 		return news;
 	}

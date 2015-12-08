@@ -8,6 +8,7 @@ import java.util.Date;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.sample.controller.exceptions.InvalidCourseDateException;
 import org.sample.controller.pojos.AddCompetenceForm;
 import org.sample.controller.pojos.AddCourseForm;
 import org.sample.controller.service.AddCompetenceFormValidator;
@@ -58,72 +59,16 @@ public class TutorController {
 	 * @param compId The id of the competence.
 	 * @return Redirects to the profile page.
 	 */
-	@RequestMapping(value="/profile/deleteComp/{compId}", method=RequestMethod.GET)
+	@RequestMapping(value="/tutorProfile/deleteComp/{compId}", method=RequestMethod.GET)
 	public String deleteCompetence(@PathVariable("compId")long compId){
 		Competence comp = compService.findCompetenceById(compId);
 		if(comp != null){
 			compService.deleteCompetence(comp);
 		}
-		return "redirect:/profile?tab=tab2";
+		return "redirect:/tutorProfile?tab=tab2";
 	}
 	
-//	/**
-//	 * @Deprecated Is not used right now.
-//	 * Gets the model for the editCompetence page.
-//	 * 
-//	 * 
-//	 * @param compId
-//	 * @param session
-//	 * @param model
-//	 * @return
-//	 */
-//	@RequestMapping(value="/profile/editComp/{compId}", method=RequestMethod.GET)
-//	public ModelAndView editCompetence(@PathVariable("compId")Long compId, HttpSession session, Model model){
-//		
-//		User user  = (User)session.getAttribute("user");
-//	
-//		Competence comp = compService.findCompetenceById(compId);
-//
-//		ModelAndView newModel = new ModelAndView("editCompetence", model.asMap());
-//		
-//		if(!user.getCompetences().contains(comp) || comp == null){
-//			return new ModelAndView("index");
-//		}
-//		newModel.addObject("competence", comp);
-//		if(!model.containsAttribute("editCompetenceForm") ){
-//			EditCompetenceForm editForm = new EditCompetenceForm(comp);
-//			
-//			newModel.addObject("editCompetenceForm", editForm);
-//		}
-//		assert newModel != null;
-//		return newModel;
-//	}
-//	
 
-//	/**
-//	 * Handles the POST request to modify a Competence
-//	 * 
-//	 * @param editForm
-//	 * @param result
-//	 * @param redirectedAttribtues
-//	 * @param compId
-//	 * @return
-//	 */
-//	@RequestMapping(value="/profile/editComp/{compId}", method=RequestMethod.POST)
-//	public String editCompetence(@ModelAttribute("editCompetenceForm") @Valid EditCompetenceForm editForm, BindingResult result, RedirectAttributes redirectedAttribtues,
-//			@PathVariable("compId") long compId){
-//		editForm.setCompReferenceId(compId);
-//		if(result.hasErrors()){
-//			redirectedAttribtues.addFlashAttribute("editCompetenceForm", editForm);
-//			redirectedAttribtues.addFlashAttribute("org.springframework.validation.BindingResult.editCompetenceForm", result);
-//			
-//			return "redirect:/profile/editComp/"  + compId;
-//		}
-//		
-//		compService.updateCompetence(editForm);
-//		
-//		return "redirect:/profile/editComp/"  + compId;
-//	}
     
 	/**
 	 * Adds competences to a user and redirects to next URL
@@ -141,7 +86,6 @@ public class TutorController {
 	@RequestMapping(value="/addCompetence", method=RequestMethod.POST)
 	public String addCompetence(@ModelAttribute("addCompetenceForm") @Valid AddCompetenceForm form, BindingResult result, RedirectAttributes redirectedAttribtues, HttpSession session){
 		User user = (User)session.getAttribute("user");
-		System.out.println("added error");
 		AddCompetenceFormValidator validator = new AddCompetenceFormValidator();
 		validator.validate(form, result);
 		if(result.hasErrors()){
@@ -149,11 +93,11 @@ public class TutorController {
 			redirectedAttribtues.addFlashAttribute("addCompetenceForm", form);
 			redirectedAttribtues.addFlashAttribute("org.springframework.validation.BindingResult.addCompetenceForm", result);
 			
-			return "redirect:profile?tab=tab2";
+			return "redirect:tutorProfile?tab=tab2";
 		}
 		form.setOwnerId(user.getId());
 		compService.saveCompetence(form);
-		return "redirect:profile?tab=tab2";
+		return "redirect:tutorProfile?tab=tab2";
 		
 	}
 
@@ -181,7 +125,7 @@ public class TutorController {
 			date = WeekDay.FORMAT.parse(form.getDateString());
 		} catch (ParseException e) {
 			e.printStackTrace();
-			return "redirect:/profile?tab=tab2";
+			return "redirect:/tutorProfile?tab=tab2";
 		}
 		User user = (User)session.getAttribute("user");
 		form.setOwner(user);
@@ -189,14 +133,19 @@ public class TutorController {
 		
 		if(courseService.alreadyExists(form)){
 			courseService.deleteCourse(form);
+			redirectAttributes.addFlashAttribute("addCourseSuccess", "Deleted Course");
 		}
 		else{	
 			try {
 				courseService.save(form);
 				redirectAttributes.addFlashAttribute("week", courseService.buildCalendar(date));
-			} catch (ParseException e) {e.printStackTrace();}	
+				redirectAttributes.addFlashAttribute("addCourseSuccess", "Created Course");
+			} catch (ParseException | InvalidCourseDateException e) 
+				{e.printStackTrace();
+				redirectAttributes.addFlashAttribute("addCourseError", e.getMessage());
+			}	
 		}
-    	return "redirect:/profile?tab=tab2";
+    	return "redirect:/tutorProfile?tab=tab2";
     }
 	
 	/**
@@ -211,7 +160,7 @@ public class TutorController {
 	 * @param session: The current session.
 	 * @return: to the profile page.
 	 */
-	@RequestMapping(value="/profile/nextWeek/{dateString}/", method=RequestMethod.GET)
+	@RequestMapping(value="/tutorProfile/nextWeek/{dateString}/", method=RequestMethod.GET)
 	public String nextWeek(@PathVariable("dateString") String dateString, RedirectAttributes redirectAttributes,
 			HttpSession session){
 		Date date;
@@ -223,7 +172,7 @@ public class TutorController {
 			date = WeekDay.FORMAT.parse(dateString);
 		} catch (ParseException e) {
 			e.printStackTrace();
-			return "redirect:/profile?tab=tab2";
+			return "redirect:/tutorProfile?tab=tab2";
 			
 		}
 		Calendar cal = Calendar.getInstance();
@@ -231,7 +180,7 @@ public class TutorController {
 		cal.add(Calendar.DAY_OF_YEAR, 7);
 		Week week = courseService.buildCalendar(cal, user);
 		redirectAttributes.addFlashAttribute("week", week);
-		return "redirect:/profile?tab=tab2";
+		return "redirect:/tutorProfile?tab=tab2";
 	}
 	
 	/**
@@ -246,7 +195,7 @@ public class TutorController {
 	 * @param session: The current session.
 	 * @return: to the profile page.
 	 */
-	@RequestMapping(value="/profile/lastWeek/{dateString}/", method=RequestMethod.GET)
+	@RequestMapping(value="/tutorProfile/lastWeek/{dateString}/", method=RequestMethod.GET)
 	public String lastWeek(@PathVariable("dateString") String dateString, RedirectAttributes redirectAttributes,
 			HttpSession session){
 		
@@ -256,7 +205,7 @@ public class TutorController {
 			date = WeekDay.FORMAT.parse(dateString);
 		} catch (ParseException e) {
 			e.printStackTrace();
-			return "redirect:/profile?tab=tab";
+			return "redirect:/tutorProfile?tab=tab";
 			
 		}
 		Calendar cal = Calendar.getInstance();
@@ -264,7 +213,7 @@ public class TutorController {
 		cal.add(Calendar.DAY_OF_YEAR, -1);
 		Week week = courseService.buildCalendar(cal, user);
 		redirectAttributes.addFlashAttribute("week", week);
-		return "redirect:/profile?tab=tab2";
+		return "redirect:/tutorProfile?tab=tab2";
 	}
 	
 	/**
@@ -279,7 +228,7 @@ public class TutorController {
 	 * @param session: Current session.
 	 * @return to the profile.
 	 */
-	@RequestMapping(value="/profile/houerlyRate", method=RequestMethod.POST)
+	@RequestMapping(value="/tutorProfile/houerlyRate", method=RequestMethod.POST)
 	public String setHouerlyRate(@RequestParam("houerlyRate") String houerlyRateString, HttpSession session,
 			RedirectAttributes redirAttributes){
 		User user = (User) session.getAttribute("user");
@@ -290,7 +239,7 @@ public class TutorController {
 		}
 		catch(NumberFormatException e){
 			redirAttributes.addFlashAttribute("houerlyError", "You can only get paied in money");
-			return "redirect:/profile?tab=tab2";
+			return "redirect:/tutorProfile?tab=tab2";
 		}
 		if(houerlyRate < 0){
 			redirAttributes.addFlashAttribute("houerlyError", "Houerly rate cannot be below zero");
@@ -298,7 +247,7 @@ public class TutorController {
 		else{
 			userService.setHouerlyRate(user, houerlyRate);
 		}
-		return "redirect:/profile?tab=tab2";
+		return "redirect:/tutorProfile?tab=tab2";
 	}
 	
 	/**
@@ -314,25 +263,23 @@ public class TutorController {
 	 * @param redirAttributes
 	 * @return
 	 */
-	@RequestMapping(value="/profile/setGradeForCompetence/{compId}", method=RequestMethod.POST)
+	@RequestMapping(value="/tutorProfile/setGradeForCompetence/{compId}", method=RequestMethod.POST)
 	public String setGradeForComp(@PathVariable("compId") long compId, @RequestParam("competenceGrade") String gradeString, 
 			RedirectAttributes redirAttributes){
-		//System.out.println("SetGrade[CompetenceId=" + compId + ", Grade=" + gradeString + "]");
 		float grade = 0;
-		//TODO: check for null Competence?
 		try{
 			grade = Float.parseFloat(gradeString);
 		}
 		catch(NumberFormatException e){
 			redirAttributes.addFlashAttribute("gradeError", "Only numbers");
-			return "redirect:/profile?tab=tab2";
+			return "redirect:/tutorProfile?tab=tab2";
 		}
 		if(!gradeIsValid(grade)){
 			redirAttributes.addFlashAttribute("gradeError", "Grade " + grade + " not valid");
-			return "redirect:/profile?tab=tab2";
+			return "redirect:/tutorProfile?tab=tab2";
 		}
 		compService.setGrade(compId, grade);
-		return "redirect:/profile?tab=tab2";
+		return "redirect:/tutorProfile?tab=tab2";
 	}
 
 	/**

@@ -35,6 +35,11 @@
 	 <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>  <!-- Servlet config -->
      </listener>
+     <listener>
+		<listener-class>
+			org.springframework.web.context.request.RequestContextListener
+		</listener-class>
+   	</listener>
 
 
     <!-- Spring MVC Servlet config -->

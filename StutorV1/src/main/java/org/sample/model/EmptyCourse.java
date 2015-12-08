@@ -35,8 +35,15 @@ public class EmptyCourse implements CourseInterface {
 	}
 
 	@Override
+	public void setId(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
 	public long getId() {
-		return -1;
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

@@ -82,10 +82,48 @@ public class Application {
 	public String getDateRepresentation() {
 		DateFormat format = FORMAT;
 		this.dateRepresentation = format.format(course.getDate());
-		return dateRepresentation;
+		int timeslot = course.getSlot();
+		return dateRepresentation + " " + timeslot + ":00";
 	}
 	
 	public Date getDate(){
 		return this.course.getDate();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((course == null) ? 0 : course.hashCode());
+		result = prime * result + ((student == null) ? 0 : student.hashCode());
+		result = prime * result + ((tutor == null) ? 0 : tutor.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Application other = (Application) obj;
+		if (course == null) {
+			if (other.course != null)
+				return false;
+		} else if (!course.equals(other.course))
+			return false;
+		if (student == null) {
+			if (other.student != null)
+				return false;
+		} else if (!student.equals(other.student))
+			return false;
+		if (tutor == null) {
+			if (other.tutor != null)
+				return false;
+		} else if (!tutor.equals(other.tutor))
+			return false;
+		return true;
 	}
 }

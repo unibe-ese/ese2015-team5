@@ -45,6 +45,8 @@ public class AddCompetenceForm {
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
+
+
 	
 	
 	
