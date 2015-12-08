@@ -71,6 +71,19 @@ public class ProfileController {
 	@Autowired
 	ApplicationService appService;
 	
+	
+	@Autowired
+	public ProfileController(UserService userService, CompetenceService compService, CourseService courseService, ApplicationService appService){
+		this.userService = userService;
+		this.compService = compService;
+		this.courseService = courseService;
+		this.appService = appService;
+	}
+	
+	
+	
+	
+	
 	/**
 	 * Displays the correct profile page.
 	 * 
@@ -89,7 +102,6 @@ public class ProfileController {
     	if(user == null){
     		return new ModelAndView("index");
     	}   	
-    	System.out.println(model.containsAttribute("pictureError"));
     	ModelAndView modelAndView = new ModelAndView("generalProfile", buildProfileModel(model, user).asMap());
     	if(user.getEnableTutor())
     	{
@@ -128,7 +140,6 @@ public class ProfileController {
 		model.addAttribute("hours", hours);
     	
     	model.addAttribute("addCourseForm", new AddCourseForm());
-    	assert model != null;
     	return model;
 	}
 
@@ -142,7 +153,6 @@ public class ProfileController {
 		ModifyUserForm modForm = new ModifyUserForm();
 		modForm.setEnableTutor(user.getEnableTutor());
 		modForm.setId(user.getId());
-		assert modForm != null;
 		return modForm;
 	}	
     
