@@ -29,6 +29,10 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hdiv="http://www.hdi
 		<constructor-arg value="org.sample.model.dao.CourseDao"/>
 	</bean>
 	
+		<bean class="org.mockito.Mockito" factory-method="mock">
+		<constructor-arg value="org.sample.model.dao.MessageDao"/>
+	</bean>
+	
 	<!-- AUTOWIRE services -->
 	<bean class="org.sample.controller.service.UserServiceImpl" />
 
@@ -39,5 +43,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hdiv="http://www.hdi
 	<bean class="org.sample.controller.service.CourseServiceImpl" />
 	
 	<bean class="org.sample.controller.service.ApplicationServiceImpl" />
+	
+	<bean class="org.sample.controller.service.MessageServiceImpl" />
 	
 </beans>
