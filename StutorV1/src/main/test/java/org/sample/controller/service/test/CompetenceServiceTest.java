@@ -88,6 +88,9 @@ public class CompetenceServiceTest {
 		comps.add(comp);
 		comps.add(comp2);
 		comps.add(comp3);
+		
+		when(compDao.save(any(Competence.class))).then(AdditionalAnswers.returnsFirstArg());
+		when(userDao.findOne(any(Long.class))).thenReturn(loggedin);
 	}
 	
 	@Test
@@ -97,11 +100,9 @@ public class CompetenceServiceTest {
 	}
 	
 	@Test
-	public void addCompetenceTest(){
-		when(compDao.save(any(Competence.class))).then(AdditionalAnswers.returnsFirstArg());
-		when(userDao.findOne(any(Long.class))).thenReturn(loggedin);
-		
+	public void addCompetenceTest(){	
 		AddCompetenceForm form = new AddCompetenceForm();
+		
 		form.setDescription(competenceDescription);
 		form.setOwnerId(666);
 		form.setGrade(gradeString);
@@ -110,12 +111,44 @@ public class CompetenceServiceTest {
 		assertEquals(competenceDescription, comp.getDescription());
 		assertEquals(isUserEnabled, comp.getisEnabled());
 		assertTrue(userId == comp.getOwner().getId());
+		assertTrue(1.0 == comp.getGrade());
 	}
 	
 	@Test
-	public void editCompetenceTest(){
+	public void addCompetenceTestNull(){	
+		AddCompetenceForm form = new AddCompetenceForm();
 		
+		form.setDescription(competenceDescription);
+		form.setOwnerId(666);
+		form.setGrade(null);
+
+		Competence comp = compService.saveCompetence(form);
+		assertEquals(competenceDescription, comp.getDescription());
+		assertEquals(isUserEnabled, comp.getisEnabled());
+		assertTrue(userId == comp.getOwner().getId());
+		assertTrue(0.0 == comp.getGrade());
+	}
 	
+	@Test
+	public void addCompetenceTestInvalidGrade(){	
+		AddCompetenceForm form = new AddCompetenceForm();
+		
+		form.setDescription(competenceDescription);
+		form.setOwnerId(666);
+		form.setGrade(competenceDescription);
+
+		Competence comp = compService.saveCompetence(form);
+
+		assertEquals(competenceDescription, comp.getDescription());
+		assertEquals(isUserEnabled, comp.getisEnabled());
+		assertTrue(userId == comp.getOwner().getId());
+		assertTrue(0.0 == comp.getGrade());
+	}
+	
+	
+	@Test
+	public void editCompetenceTest(){
+
 		when(compDao.findOne(any(long.class))).thenReturn(comp);
 		
 		EditCompetenceForm editForm = new EditCompetenceForm();

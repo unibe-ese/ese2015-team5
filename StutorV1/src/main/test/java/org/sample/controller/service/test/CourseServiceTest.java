@@ -9,6 +9,7 @@ import static org.mockito.Mockito.when;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -23,6 +24,7 @@ import org.sample.controller.service.CourseService;
 import org.sample.model.Application;
 import org.sample.model.Course;
 import org.sample.model.User;
+import org.sample.model.Week;
 import org.sample.model.dao.CourseDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -48,15 +50,22 @@ public class CourseServiceTest {
 	
 	private AddCourseForm form;
 	
-	private User user, applier;
+	private User user, applier, user2;
 	
 	Application application;
+	
+	private Week week;
 	
 	@Captor
 	private ArgumentCaptor<Course> captor;
 	
 	@Before
 	public void setup(){
+		
+		user = new User();
+		applier = new User();
+		applier.setId((long) 1);
+		user2 = new User();
 		
 		captor = ArgumentCaptor.forClass(Course.class);
 		
@@ -68,11 +77,14 @@ public class CourseServiceTest {
 		//Monday
 		cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
 		course1.setDate(cal.getTime());
+		course1.setCustomer(user);
+		course1.setOwner(user2);
 		
 		//Last Sunday
 		cal.add(Calendar.DAY_OF_YEAR, -1);
 		pastDate = cal.getTime();
 		course2.setDate(pastDate);
+		course2.setCustomer(applier);
 		
 		//This Sunday
 		cal.add(Calendar.DAY_OF_YEAR, 7);
@@ -106,10 +118,10 @@ public class CourseServiceTest {
 		application.setCourse(expectedCourse);
 		application.setTutor(user);
 		
+		week = courseService.buildCalendar(Calendar.getInstance(), user);
+		
 		when(courseDao.save(captor.capture())).thenReturn(null);
-		when(courseDao.findAll()).thenReturn(courses);
-		
-		
+		when(courseDao.findAll()).thenReturn(courses);	
 	}
 	
 	@Test
@@ -117,16 +129,6 @@ public class CourseServiceTest {
 		assertNotNull(courseService);
 		assertNotNull(courseDao);
 	}
-	
-//	@Test
-//	public void buildWeekTest(){
-//		Week week = courseService.buildCalendar(Calendar.getInstance());
-//		assertEquals(1, week.getWeekDays()[0].getCourses().size());
-//		assertEquals(course1, week.getWeekDays()[0].getCourses().get(0));
-//		for(int i = 1; i < Week.WEEKDAYS; i++){
-//			assertEquals(0, week.getWeekDays()[i].getCourses().size());
-//		}
-//	}
 	
 	@Test
 	public void saveTest() throws ParseException, InvalidCourseDateException{
@@ -156,6 +158,7 @@ public class CourseServiceTest {
 	
 	@Test
 	public void courseIsAvailableTest(){
+		assertFalse(courseService.courseIsAvailable(null));
 		assertTrue(courseService.courseIsAvailable(expectedCourse));
 		expectedCourse.setCustomer(new User());
 		assertFalse(courseService.courseIsAvailable(expectedCourse));
@@ -175,4 +178,51 @@ public class CourseServiceTest {
 		courseService.settleCourseFromApplication(application);
 		assertEquals(null, expectedCourse.getCustomer() );
 	}
+	
+	@Test
+	public void findPublicCoursesTest(){
+		Collection<Course> courses = courseService.findStudenCoursesFor(user);
+		System.out.println("Courses " + courses.toString());
+		assertEquals(1, courses.size());
+	}
+	
+	@Test
+	public void deleteCourseTest(){
+		user.setCourses(courses);
+		form.setOwner(user);
+		form.setDate(course1.getDate());
+		form.setSlot(course1.getSlot());
+		
+		courseService.deleteCourse(form);
+		assertEquals(null, course1.getOwner());
+	
+	}
+	
+	@Test
+	public void deleteCourseTestNotRightSlot(){
+		user.setCourses(courses);
+		form.setOwner(user);
+		form.setDate(course1.getDate());
+		form.setSlot(course1.getSlot() + 1);
+		
+		courseService.deleteCourse(form);
+		assertEquals(user2, course1.getOwner());
+	}
+	
+	@Test
+	public void buildWeekTestSize(){
+		for(int i = 1; i < Week.WEEKDAYS; i++){
+			assertEquals(24, week.getWeekDays()[i].getCourses().length);
+		}
+	}
+	
+	@Test
+	public void buildWeekTestInitialisation(){
+		for(int i = 0; i < Week.WEEKDAYS; i++){
+			for(int j = 0; j < 24; j++){
+				assertNotNull(week.getWeekDays()[i].getCourses()[j]);
+			}
+		}
+	}
+	
 }

@@ -46,6 +46,12 @@ public class AddCompetenceForm {
 		this.grade = grade;
 	}
 
+	@Override
+	public String toString() {
+		return "AddCompetenceForm [description=" + description + ", grade="
+				+ grade + ", ownerId=" + ownerId + "]";
+	}
+
 
 	
 	
