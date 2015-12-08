@@ -1,18 +1,16 @@
 package org.sample.controller.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.when;
 
-import org.hibernate.mapping.Map;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import static org.mockito.Mockito.*;
-
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.sample.controller.IndexController;
@@ -56,24 +54,44 @@ public class IndexControllerTest {
 	
 	
 	@Test
-	public void getIndex_returnIndexPageSuccess(){
+	public void getIndex_returnIndexPage(){
 		ModelAndView view = controller.index(model);
 		assertEquals("index", view.getViewName());
 	}
 	
 	@Test
-	public void getIndex_addCompetencesIfNotAddedYet(){
+	public void getIndex_addCompetencesAttributeIfNotAlreadyAdded(){
+		when(model.containsAttribute("competences")).thenReturn(false);
+		
 		ModelAndView view = controller.index(model);
 		assertNotNull(view.getModel().get("competences"));
 	}
 	
 	@Test
-	public void getIndex_dontAddCompetencesIfAlreadyAdded(){
+	public void getIndex_dontAddCompetencesAttributeIfAlreadyAdded(){
 		String key = "competences";
-		String object = "object";
+		String object = "test";
+		Map <String, Object> map = new HashMap<String, Object>();
+		map.put(key, object);
+		when(model.asMap()).thenReturn(map);
+		when(model.containsAttribute("competences")).thenReturn(true);
+		
 		ModelAndView view = controller.index(model);
-		assertEquals(object, view.getModelMap().get("competences"));
+		
+		assertTrue(view.getModelMap().containsAttribute("competences"));
+		assertEquals(object, view.getModel().get("competences"));
 	}
+	
+	@Test
+	public void getIndex_addApplicationsAndNewsFeed(){
+		ModelAndView view = controller.index(model);
+		assertNotNull(view.getModel().get("applications"));
+		assertNotNull(view.getModel().get("newsfeed"));
+	}
+	
+	
+	
+	
 
 	// http://www.petrikainulainen.net/programming/spring-framework/unit-testing-of-spring-mvc-controllers-normal-controllers/
 

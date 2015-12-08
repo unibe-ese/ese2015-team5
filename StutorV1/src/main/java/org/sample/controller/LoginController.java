@@ -26,9 +26,6 @@ public class LoginController {
 	 *  an input field with name attribute = j_password
 	 *  an input field for submission
 	 * 
-	 * if the login page is not valid throw an error (very difficult to implement)
-	 * if no error is thrown the login mechanism won't work anyway
-	 * 
 	 * @return ModelAndView loginPageView
 	 */
 	@RequestMapping(value="/login", method=RequestMethod.GET)
