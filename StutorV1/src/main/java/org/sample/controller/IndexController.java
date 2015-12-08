@@ -30,13 +30,25 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class IndexController {
 
     @Autowired
-    CompetenceService compService;
+    private CompetenceService compService;
     
     @Autowired 
-    UserService userService;
+    private UserService userService;
     
     @Autowired
-    ApplicationService appService;
+    private ApplicationService appService;
+    
+    @Autowired
+    public IndexController(CompetenceService compService, UserService userService, ApplicationService appService){
+    	this.compService = compService;
+    	this.userService = userService;
+    	this.appService  = appService;
+    }
+    
+    
+    
+    
+    
 
     /**
      * Displays the index page.
