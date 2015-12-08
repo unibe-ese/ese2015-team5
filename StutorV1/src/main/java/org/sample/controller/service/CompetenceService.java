@@ -16,7 +16,7 @@ public interface CompetenceService {
 	
 	public Competence updateCompetence(EditCompetenceForm editForm);
 	
-	public void deleteCompetence(Competence comp);
+	public Competence deleteCompetence(Competence comp);
 	
 	public Competence validateComptence(Competence comp);
 	

@@ -19,18 +19,9 @@ import org.springframework.web.context.WebApplicationContext;
 @Rollback
 public class CompetenceControllerTest {
 	
-	@Autowired private WebApplicationContext wac;
+	@Autowired 
+	private WebApplicationContext wac;
 	
-	private MockMvc mockMvc;
 	
-//	@Before
-//	public void setup(){
-//		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
-//	}
-	
-//	@Test
-//	public void Test(){
-//		assertTrue(true);
-//	}
 
 }

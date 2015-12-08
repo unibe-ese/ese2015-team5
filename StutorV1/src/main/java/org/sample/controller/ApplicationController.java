@@ -1,6 +1,7 @@
 package org.sample.controller;
 
 import org.sample.controller.service.ApplicationService;
+import org.sample.controller.service.CompetenceService;
 import org.sample.controller.service.UserService;
 import org.sample.model.Application;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ApplicationController {
 
+	
 	@Autowired 
 	ApplicationService appService;
 	
 	@Autowired 
 	UserService userService;
+	
+    @Autowired
+    public ApplicationController(UserService userService, ApplicationService appService){
+    	this.userService = userService;
+    	this.appService  = appService;
+    }
 	
 	/**
 	 * Handles a request that declines an application.

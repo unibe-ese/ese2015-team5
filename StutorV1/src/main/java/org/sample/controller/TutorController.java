@@ -50,6 +50,13 @@ public class TutorController {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	public TutorController(CompetenceService compServ, CourseService cServ, UserService uServ){
+		this.compService = compServ;
+		this.courseService = cServ;
+		this.userService = uServ;
+	}
+	
 	/**
 	 * Deletes a competence
 	 * 
@@ -89,7 +96,7 @@ public class TutorController {
 		AddCompetenceFormValidator validator = new AddCompetenceFormValidator();
 		validator.validate(form, result);
 		if(result.hasErrors()){
-			
+			System.out.println("errors");
 			redirectedAttribtues.addFlashAttribute("addCompetenceForm", form);
 			redirectedAttribtues.addFlashAttribute("org.springframework.validation.BindingResult.addCompetenceForm", result);
 			

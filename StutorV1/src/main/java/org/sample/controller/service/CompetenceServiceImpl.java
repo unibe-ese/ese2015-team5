@@ -60,9 +60,10 @@ public class CompetenceServiceImpl implements CompetenceService{
 		return grade;
 	}
 
-	public void deleteCompetence(Competence comp) {
+	public Competence deleteCompetence(Competence comp) {
 		comp.setOwner(null);
 		compDao.delete(comp);
+		return comp;
 	}
 
 	public Competence validateComptence(Competence comp) {

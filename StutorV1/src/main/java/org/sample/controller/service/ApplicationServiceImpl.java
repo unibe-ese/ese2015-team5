@@ -40,7 +40,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	@Override
-	public void deleteApplication(Application app) {
+	public Application deleteApplication(Application app) {
 		app.setCourse(null);
 		User user = app.getTutor();
 		List<Application> apps;
@@ -56,7 +56,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 		app.setTutor(null);
 		app.setStudent(null);
 		appDao.delete(app);
-		
+		return app;
 	}
 
 	@Override
