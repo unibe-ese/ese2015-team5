@@ -86,7 +86,6 @@ public class TutorController {
 	@RequestMapping(value="/addCompetence", method=RequestMethod.POST)
 	public String addCompetence(@ModelAttribute("addCompetenceForm") @Valid AddCompetenceForm form, BindingResult result, RedirectAttributes redirectedAttribtues, HttpSession session){
 		User user = (User)session.getAttribute("user");
-		System.out.println("added error");
 		AddCompetenceFormValidator validator = new AddCompetenceFormValidator();
 		validator.validate(form, result);
 		if(result.hasErrors()){
@@ -267,9 +266,7 @@ public class TutorController {
 	@RequestMapping(value="/tutorProfile/setGradeForCompetence/{compId}", method=RequestMethod.POST)
 	public String setGradeForComp(@PathVariable("compId") long compId, @RequestParam("competenceGrade") String gradeString, 
 			RedirectAttributes redirAttributes){
-		//System.out.println("SetGrade[CompetenceId=" + compId + ", Grade=" + gradeString + "]");
 		float grade = 0;
-		//TODO: check for null Competence?
 		try{
 			grade = Float.parseFloat(gradeString);
 		}

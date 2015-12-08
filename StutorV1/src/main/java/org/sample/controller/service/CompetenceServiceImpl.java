@@ -47,6 +47,7 @@ public class CompetenceServiceImpl implements CompetenceService{
 
 	private float calculateGrade(String gradeString) {
 		float grade;
+
 		if(gradeString == null){
 			return 0;
 		}
@@ -71,7 +72,6 @@ public class CompetenceServiceImpl implements CompetenceService{
 	
 	public List<Competence> findCompetenceLike(String string){
 		List<Competence> comps = new ArrayList<Competence>();
-		System.out.println(compDao.findAll().toString());
 		for(Competence c : compDao.findAll()){
 			
 			if(c.getDescription().toLowerCase().contains(string.toLowerCase()) && c.getisEnabled()){
@@ -84,7 +84,6 @@ public class CompetenceServiceImpl implements CompetenceService{
 	}
 
 	public Competence updateCompetence(EditCompetenceForm editForm) {
-		System.out.println(editForm.toString());
 		Competence comp = compDao.findOne(editForm.getCompReferenceId());
 		if(comp != null){
 			comp.setDescription(editForm.getDescription());

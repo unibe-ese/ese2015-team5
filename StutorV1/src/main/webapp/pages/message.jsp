@@ -60,7 +60,7 @@
 </div>
 </li>
 <li Style="margin-left: 10em">
-<div Style="Background: white; text-align: justify; border-radius: 10px; width: 10em">
+<div Style="Background: white; text-align: center; border-radius: 10px; width: 10em; padding: 5px">
 "Remember: you can only write messages to people you already have an appointment with."
 </div>
 </li>

@@ -166,11 +166,11 @@ public class ProfileController {
 		if(result.hasErrors()){
 			redirectAttributes.addFlashAttribute("modifyUserForm", form);
 			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.modifyUserForm", result);
-			return "redirect:/profile?edit=fail";
+			return "redirect:/tutorProfile?edit=fail";
 		}
 		else if(userService.validateModifyUserForm(form)){	
 			user = userService.updateUser(form);
-			return "redirect:/profile?edit=success";
+			return "redirect:/tutorProfile?edit=success";
 		}
         return "redirect:/index";
 	}
@@ -266,7 +266,6 @@ public class ProfileController {
 		
 		model.addAttribute("hours", hours);
 		model.addAttribute("application", new ApplicationForm());
-		System.out.println(model.asMap().get("pageError"));
 		
 		return "publicProfile";
 	}
@@ -369,7 +368,6 @@ public class ProfileController {
 			return "redirect:/tutorProfile/" + app.getTutor().getId();
 		}
 		redir.addFlashAttribute("pageError", "Could not send Application.<br> -Was it in the past? <br> -Did you already apply?");
-		System.out.println("Added pageError");
 		return "redirect:/tutorProfile/" + applicationForm.getCourse().getOwner().getId();
 	}
 

@@ -53,7 +53,7 @@
 	        <div class="control-group<c:if test="${not empty password}"> error</c:if>">
 	            <label class="control-label" for="field-password">Password</label>
 	            <div class="controls">
-	                <form:input path="password" id="field-password" tabindex="3" maxlength="35" placeholder="Password"/>
+	                <form:input path="password" id="field-password" tabindex="3" maxlength="35" placeholder="Password" type="password"/>
 	                <form:errors path="password" cssClass="help-inline" element="span"/>
 	            </div>
 	        </div>
@@ -81,7 +81,7 @@
 <img Style="width: 30em;" src="img/wizzard_registration.png"/>
 </li>
 <li Style="margin-top:10em">
-<div Style="Background: white; border-radius: 10px; width: 15em">
+<div Style="Background: white; border-radius: 10px; width: 15em; padding: 5px">
 Take care! The register-magister is watching you. Remember to
 fill out all text areas and to upload a profile picture.<br>
 Registrus Maximus
