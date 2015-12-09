@@ -18,17 +18,21 @@ import org.mockito.AdditionalAnswers;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mockito;
+import org.mockito.exceptions.base.MockitoException;
 import org.sample.controller.exceptions.InvalidUserException;
 import org.sample.controller.pojos.ModifyUserForm;
 import org.sample.controller.pojos.SignupForm;
 import org.sample.controller.service.UserService;
 import org.sample.model.Competence;
+import org.sample.model.ProfilePicture;
 import org.sample.model.User;
 import org.sample.model.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.mysql.jdbc.PacketTooBigException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/test.xml"})
@@ -42,7 +46,7 @@ public class UserServiceTestClass {
 	@Captor
 	private ArgumentCaptor<User> captor;
 
-	private User user, ecpectedUser;
+	private User user, ecpectedUser, testUser;
 	private SignupForm testSignupForm;
 	private ModifyUserForm testForm;
 	private MockMultipartFile testPic;
@@ -100,20 +104,31 @@ public class UserServiceTestClass {
 		ecpectedUser.setLastName("Doe");
 		ecpectedUser.setPassword(DigestUtils.md5Hex("fdsa"));
 		
-		User someUser = new User();
-		someUser.setEmail("abc@asdf.ch");
-		someUser.setFirstName("Franz");
-		someUser.setLastName("Meier");
-		someUser.setPassword("asdf".getBytes("UTF-8").toString());
-		someUser.setEnableTutor(false);
+		testUser = new User();
+		testUser.setEmail("abc@asdf.ch");
+		testUser.setFirstName("Franz");
+		testUser.setLastName("Meier");
+		testUser.setPassword("asdf".getBytes("UTF-8").toString());
+		testUser.setEnableTutor(false);
 		
 		List<User> testUserList = new ArrayList<User>();
-		testUserList.add(someUser);
+		testUserList.add(testUser);
 		
 		when(testUserDao.findOne(any(Long.class))).thenReturn(user);
 		when(testUserDao.save(captor.capture())).thenReturn(null);
 		when(testUserDao.findAll()).thenReturn(testUserList);
-		
+	}
+	
+	@Test
+	public void getUserByEmailTestNull(){
+		User foundUser = testUserService.getUserByEmail("notFound");
+		assertEquals(null, foundUser);
+	}
+	
+	@Test
+	public void getUserByEmailTestFound(){
+		User foundUser = testUserService.getUserByEmail("abc@asdf.ch");
+		assertEquals(testUser, foundUser);
 	}
 	
 	@Test
@@ -133,6 +148,12 @@ public class UserServiceTestClass {
 	@Test(expected=InvalidUserException.class)
 	public void testSaveUserExisting() throws IOException {
 		testSignupForm.setEmail("abc@asdf.ch");
+		testUserService.saveUser(testSignupForm);
+	}
+	
+	@Test(expected=InvalidUserException.class)
+	public void testSaveUserBadPicture(){
+		Mockito.when(testUserService.saveProfilePicture(any(ProfilePicture.class))).thenThrow(new InvalidUserException(""));
 		testUserService.saveUser(testSignupForm);
 	}
 	
@@ -196,6 +217,6 @@ public class UserServiceTestClass {
 		assertTrue(houerlyRate == returnedUser.getHouerlyRate());
 	}
 	
-	
+
 
 }

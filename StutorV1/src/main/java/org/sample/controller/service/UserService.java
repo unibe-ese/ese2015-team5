@@ -24,7 +24,7 @@ public interface UserService {
 
 	public User getUserById(long userId);
 	
-    public void saveProfilePicture(ProfilePicture profilePicture);
+    public ProfilePicture saveProfilePicture(ProfilePicture profilePicture);
     
     public void updateProfilePicture(ProfilePicture profilePicture);
 

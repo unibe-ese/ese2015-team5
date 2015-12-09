@@ -58,12 +58,12 @@ public class ProfileControllerTest {
 	@Mock
 	private User user;
 	
+	@Mock
+	private BindingResult result;
+	
 	private User userToEdit, testUser;
 	
 	private ModifyUserForm modForm;
-	
-	@Mock
-	private BindingResult result;
 	
 	private ProfileController controller;
 	

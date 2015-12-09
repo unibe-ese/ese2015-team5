@@ -81,9 +81,10 @@ public class UserServiceImpl implements UserService{
 		MultipartFile file = sgnUp.getProfilePic();
         ProfilePicture profilePicture = new ProfilePicture();
         try {       	
-        	profilePicture.setFile(file.getBytes());    	
+         	profilePicture.setFile(file.getBytes());
         	saveProfilePicture(profilePicture);
         } catch (Exception e) {
+        	e.printStackTrace();
             throw new InvalidUserException("Picture could not be processed");
         }
         if(emailAlreadyExists(sgnUp.getEmail())){
@@ -149,8 +150,8 @@ public class UserServiceImpl implements UserService{
     	return true;
 	}
 
-    public void saveProfilePicture(ProfilePicture profilePicture){
-    	profilePicDao.save(profilePicture);
+    public ProfilePicture saveProfilePicture(ProfilePicture profilePicture){
+    	return profilePicDao.save(profilePicture);
     }
 
 	public void updateProfilePicture(ProfilePicture profilePicture) {

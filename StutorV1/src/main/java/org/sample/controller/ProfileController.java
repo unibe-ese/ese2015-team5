@@ -389,7 +389,7 @@ public class ProfileController {
 			MessageForm msgForm = new MessageForm();
 			msgForm.setTitle("Application");
 			msgForm.setMessage(app.getStudent().getFirstName() + " " + app.getStudent().getLastName() + 
-					" has sent an application for " + app.getDateRepresentation() + "After you accept, " +
+					" has sent an application for " + app.getDateRepresentation() + ". After you accept, " +
 					"the student will be added to your contacts and you can exchange further information.");
 			msgService.saveMessage(msgForm, app.getStudent(), app.getTutor());
 			return "redirect:/tutorProfile/" + app.getTutor().getId();
