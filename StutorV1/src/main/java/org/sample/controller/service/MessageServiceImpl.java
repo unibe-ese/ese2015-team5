@@ -1,5 +1,6 @@
 package org.sample.controller.service;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import org.sample.controller.pojos.MessageForm;
@@ -25,7 +26,9 @@ public class MessageServiceImpl implements MessageService{
 		msg.setTitle(form.getTitle());
 		msg.setRecipient(recipient);
 		msg.setSender(sender);
-		msg.setTime(new Date().toString());
+		Calendar cal = Calendar.getInstance();
+		msg.setDate(cal.getTime());
+		msg.setTime(cal.getTime().toString());
 		return messageDao.save(msg);
 	}
 

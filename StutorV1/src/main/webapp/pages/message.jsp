@@ -9,7 +9,7 @@
 <ul Style="display:inline-flex">
 <li>
 <div style="display:flex">
-<div style="margin: 10px;" class="tabcontent">
+<div style="margin: 10px;" class="tabcontent contactBar">
 	<h1 style="color:white">Contact your Captain</h1>
 	<c:forEach items="${tutors}" var="contact">
 		<form  method="post" action="./newMessage" id="${contact.id}">
@@ -24,7 +24,7 @@
 			<input type="submit" value="${contact.firstName} ${contact.lastName}" class btn btn-primary></input>
 		</form>
 	</c:forEach>
-	
+
 
 </div>
 

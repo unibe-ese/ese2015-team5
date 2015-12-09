@@ -1,7 +1,10 @@
 package org.sample.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.sample.controller.pojos.MessageForm;
@@ -9,6 +12,7 @@ import org.sample.controller.service.CourseService;
 import org.sample.controller.service.MessageService;
 import org.sample.controller.service.UserService;
 import org.sample.model.Course;
+import org.sample.model.Message;
 import org.sample.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,8 +40,25 @@ public class MessageController {
 	public String showMessages(Model model){
 		User user = userService.getCurrentUser();
 		
-		model.addAttribute("sentMessages", user.getSentMessages());
-		model.addAttribute("receivedMessages", user.getReceivedMessages());
+		List<Message> messages = new ArrayList<Message>();
+		messages = user.getSentMessages();
+		Collections.sort(messages, new Comparator<Message>() {
+		    @Override
+		    public int compare(Message m1, Message m2) {
+		    	
+		        return m2.getDate().compareTo(m1.getDate());
+		    }
+		});
+		model.addAttribute("sentMessages", messages);
+		messages = user.getReceivedMessages();
+		Collections.sort(messages, new Comparator<Message>() {
+		    @Override
+		    public int compare(Message m1, Message m2) {
+		    	
+		        return m2.getDate().compareTo(m1.getDate());
+		    }
+		});
+		model.addAttribute("receivedMessages", messages);
 		
 		ArrayList<User> tutors = new ArrayList<User>();
 		Collection<Course> myTutorCourses = courseService.findStudenCoursesFor(user);

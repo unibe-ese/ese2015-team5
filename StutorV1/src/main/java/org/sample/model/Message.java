@@ -1,5 +1,7 @@
 package org.sample.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,6 +23,7 @@ public class Message {
 	@ManyToOne
 	private User recipient;
 	
+	private Date date;
 	
 	public long getId() {
 		return id;
@@ -57,6 +60,12 @@ public class Message {
 	}
 	public void setTime(String string) {
 		this.time = string;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	
